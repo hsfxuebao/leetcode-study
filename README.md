@@ -7,3 +7,4 @@ leetcode刷题记录
 - [合并两个有序序列](https://leetcode.cn/problems/merge-two-sorted-lists/)
 - [分割链表](https://leetcode.cn/problems/partition-list/)
 - [合并k个有序链表](https://leetcode.cn/problems/merge-k-sorted-lists/)
+- [删除链表的倒数第k个节点](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/)
