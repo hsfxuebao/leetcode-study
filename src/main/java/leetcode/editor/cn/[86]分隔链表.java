@@ -67,7 +67,7 @@ class Solution {
                 p2.next = p;
                 p2 = p2.next;
             }
-            // 断开原链表中的每个节点
+            // todo 易错点 断开原链表中的每个节点
             ListNode temp = p.next;
             p.next = null;
             p = temp;
