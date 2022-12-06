@@ -8,3 +8,4 @@ leetcode刷题记录
 - [分割链表](https://leetcode.cn/problems/partition-list/)
 - [合并k个有序链表](https://leetcode.cn/problems/merge-k-sorted-lists/)
 - [删除链表的倒数第k个节点](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/)
+- [相交链表](https://leetcode.cn/problems/intersection-of-two-linked-lists/)
