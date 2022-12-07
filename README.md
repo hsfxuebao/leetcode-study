@@ -9,3 +9,8 @@ leetcode刷题记录
 - [合并k个有序链表](https://leetcode.cn/problems/merge-k-sorted-lists/)
 - [删除链表的倒数第k个节点](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/)
 - [相交链表](https://leetcode.cn/problems/intersection-of-two-linked-lists/)
+### 1.1.2 反转链表
+- [反转链表](https://leetcode.cn/problems/reverse-linked-list/)
+- [反转链表2](https://leetcode.cn/problems/reverse-linked-list-ii/)
+### 1.1.3 K个一组反转链表
+- [k个一组反转链表](https://leetcode.cn/problems/reverse-nodes-in-k-group/)
