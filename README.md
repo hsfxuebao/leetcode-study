@@ -14,3 +14,5 @@ leetcode刷题记录
 - [反转链表2](https://leetcode.cn/problems/reverse-linked-list-ii/)
 ### 1.1.3 K个一组反转链表
 - [k个一组反转链表](https://leetcode.cn/problems/reverse-nodes-in-k-group/)
+### 1.1.4 回文链表
+- [回文链表](https://leetcode.cn/problems/palindrome-linked-list/)
