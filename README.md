@@ -21,3 +21,4 @@ leetcode刷题记录
 - [删除有序数组中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)
 - [删除有序链表中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-list/)
 - [移除元素](https://leetcode.cn/problems/remove-element/)
+- [移动零](https://leetcode.cn/problems/move-zeroes/)
