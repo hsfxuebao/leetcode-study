@@ -16,3 +16,6 @@ leetcode刷题记录
 - [k个一组反转链表](https://leetcode.cn/problems/reverse-nodes-in-k-group/)
 ### 1.1.4 回文链表
 - [回文链表](https://leetcode.cn/problems/palindrome-linked-list/)
+## 1.2 数组
+### 1.2.1 双指针秒杀7道数组提
+- [删除有序数组中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)
