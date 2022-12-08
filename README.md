@@ -19,3 +19,4 @@ leetcode刷题记录
 ## 1.2 数组
 ### 1.2.1 双指针秒杀7道数组提
 - [删除有序数组中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)
+- [删除有序链表中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-list/)
