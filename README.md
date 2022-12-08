@@ -18,7 +18,13 @@ leetcode刷题记录
 - [回文链表](https://leetcode.cn/problems/palindrome-linked-list/)
 ## 1.2 数组
 ### 1.2.1 双指针秒杀7道数组提
+#### 快慢指针
 - [删除有序数组中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)
 - [删除有序链表中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-list/)
 - [移除元素](https://leetcode.cn/problems/remove-element/)
 - [移动零](https://leetcode.cn/problems/move-zeroes/)
+#### 
+
+#### 快慢指针（滑动窗口）
+- [最小覆盖子串](https://leetcode.cn/problems/minimum-window-substring/solutions/)
+
