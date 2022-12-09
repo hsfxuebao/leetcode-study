@@ -30,4 +30,6 @@ leetcode刷题记录
 - [字符串排列](https://leetcode.cn/problems/permutation-in-string/)
 - [438.找到字符串中所有字母异位词](https://leetcode.cn/problems/find-all-anagrams-in-a-string/)
 - [3. 无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters/)
-
+#### 左右指针（二分搜索）
+- [704. 二分查找](https://leetcode.cn/problems/binary-search/)
+- [34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/)
