@@ -27,4 +27,6 @@ leetcode刷题记录
 
 #### 快慢指针（滑动窗口）
 - [最小覆盖子串](https://leetcode.cn/problems/minimum-window-substring/solutions/)
+- [字符串排列](https://leetcode.cn/problems/permutation-in-string/)
+- [438.找到字符串中所有字母异位词](https://leetcode.cn/problems/find-all-anagrams-in-a-string/)
 
