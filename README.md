@@ -33,3 +33,8 @@ leetcode刷题记录
 #### 左右指针（二分搜索）
 - [704. 二分查找](https://leetcode.cn/problems/binary-search/)
 - [34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/)
+
+#### 团灭nSum问题
+- [1. 两数之和](https://leetcode.cn/problems/two-sum/)
+- [167. 两数之和 II - 输入有序数组](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/)
+- [15. 三数之和](https://leetcode.cn/problems/3sum/)
