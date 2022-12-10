@@ -60,7 +60,7 @@ package leetcode.editor.cn;
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution27 {
 
     public int removeElement(int[] nums, int val) {
         if (nums.length <= 0) {

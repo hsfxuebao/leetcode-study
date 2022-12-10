@@ -61,7 +61,7 @@ import common.ListNode;
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution {
+class Solution23 {
     public ListNode mergeKLists(ListNode[] lists) {
 
         // 参数判断

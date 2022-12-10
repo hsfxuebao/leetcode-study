@@ -103,7 +103,8 @@ import common.ListNode;
  *     }
  * }
  */
-public class Solution {
+class Solution160 {
+
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
 
         ListNode p1 = headA, p2 = headB;

@@ -54,7 +54,7 @@ import common.ListNode;
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution {
+class Solution25 {
 
     public ListNode reverseKGroup(ListNode head, int k) {
         if (head == null) {

@@ -57,7 +57,7 @@ import java.util.List;
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution15 {
 
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
@@ -120,12 +120,6 @@ class Solution {
         }
         return result;
     }
-
-//    public static void main(String[] args) {
-//        int[] nums = {-1, 0,1,2,-1,-4};
-//        System.out.println(twoSumAll(nums, 0, 0));
-//
-//    }
 
 }
 //leetcode submit region end(Prohibit modification and deletion)

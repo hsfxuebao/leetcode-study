@@ -52,7 +52,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution76 {
     public String minWindow(String s, String t) {
 
         // 维护两个map记录窗口中符合条件的字符以及need

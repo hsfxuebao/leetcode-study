@@ -47,7 +47,7 @@ import common.ListNode;
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution {
+class Solution876 {
 
     public ListNode middleNode(ListNode head) {
 

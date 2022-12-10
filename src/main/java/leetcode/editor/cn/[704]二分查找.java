@@ -33,7 +33,7 @@ package leetcode.editor.cn;
 import javax.swing.text.html.HTML.Tag;
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution704 {
 
     /**
      * 二分查找

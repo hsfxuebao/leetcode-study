@@ -38,3 +38,4 @@ leetcode刷题记录
 - [1. 两数之和](https://leetcode.cn/problems/two-sum/)
 - [167. 两数之和 II - 输入有序数组](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/)
 - [15. 三数之和](https://leetcode.cn/problems/3sum/)
+- [18. 四数之和](https://leetcode.cn/problems/4sum/)

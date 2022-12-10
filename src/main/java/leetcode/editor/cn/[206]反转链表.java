@@ -57,7 +57,7 @@ import common.ListNode;
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution {
+class Solution206 {
     public ListNode reverseList(ListNode head) {
 
         // 迭代方式实现

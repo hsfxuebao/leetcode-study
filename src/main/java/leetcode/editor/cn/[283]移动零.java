@@ -36,7 +36,7 @@ package leetcode.editor.cn;
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution283 {
     public void moveZeroes(int[] nums) {
 
         if (nums.length <= 0) {

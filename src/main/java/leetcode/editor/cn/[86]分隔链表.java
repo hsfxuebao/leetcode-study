@@ -47,7 +47,7 @@ import common.ListNode;
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution {
+class Solution86 {
 
     public ListNode partition(ListNode head, int x) {
 

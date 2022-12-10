@@ -47,7 +47,7 @@ import common.ListNode;
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution {
+class Solution234 {
 
     public boolean isPalindrome(ListNode head) {
         // 使用 链表 后续遍历实现

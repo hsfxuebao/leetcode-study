@@ -44,7 +44,7 @@ import java.util.List;
 import java.util.Map;
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution438 {
 
     public List<Integer> findAnagrams(String s, String p) {
 

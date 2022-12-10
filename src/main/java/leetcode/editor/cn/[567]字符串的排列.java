@@ -37,7 +37,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution567 {
 
     public boolean checkInclusion(String s1, String s2) {
 
