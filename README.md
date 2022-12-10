@@ -23,7 +23,6 @@ leetcode刷题记录
 - [删除有序链表中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-list/)
 - [移除元素](https://leetcode.cn/problems/remove-element/)
 - [移动零](https://leetcode.cn/problems/move-zeroes/)
-#### 
 
 #### 快慢指针（滑动窗口）
 - [最小覆盖子串](https://leetcode.cn/problems/minimum-window-substring/solutions/)
@@ -39,3 +38,6 @@ leetcode刷题记录
 - [167. 两数之和 II - 输入有序数组](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/)
 - [15. 三数之和](https://leetcode.cn/problems/3sum/)
 - [18. 四数之和](https://leetcode.cn/problems/4sum/)
+
+#### 其他
+- [344. 反转字符串](https://leetcode.cn/problems/reverse-string/)
