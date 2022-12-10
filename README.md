@@ -39,5 +39,8 @@ leetcode刷题记录
 - [15. 三数之和](https://leetcode.cn/problems/3sum/)
 - [18. 四数之和](https://leetcode.cn/problems/4sum/)
 
-#### 其他
+#### 反转数组
 - [344. 反转字符串](https://leetcode.cn/problems/reverse-string/)
+
+#### 回文串判断
+- []()
