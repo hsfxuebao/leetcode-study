@@ -50,3 +50,8 @@ leetcode刷题记录
 - [303. 区域和检索 - 数组不可变](https://leetcode.cn/problems/range-sum-query-immutable/)
 - [304. 二维区域和检索 - 矩阵不可变](https://leetcode.cn/problems/range-sum-query-2d-immutable/)
 
+#### 差分数组
+- [370. 区间加法](https://leetcode.cn/problems/range-addition/)
+- [1109. 航班预订统计](https://leetcode.cn/problems/corporate-flight-bookings/)
+- [1094. 拼车](https://leetcode.cn/problems/car-pooling/)
+
