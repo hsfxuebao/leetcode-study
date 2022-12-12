@@ -37,7 +37,7 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution870 {
 
     public int[] advantageCount(int[] nums1, int[] nums2) {
 
