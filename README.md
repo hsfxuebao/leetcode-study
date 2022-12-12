@@ -61,3 +61,6 @@ leetcode刷题记录
 - [54. 螺旋矩阵](https://leetcode.cn/problems/spiral-matrix/)
 - [59. 螺旋矩阵 II](https://leetcode.cn/problems/spiral-matrix-ii/)
 
+#### 带权重的随机选择
+- [528. 按权重随机选择](https://leetcode.cn/problems/random-pick-with-weight/)
+

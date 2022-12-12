@@ -29,7 +29,7 @@ package leetcode.editor.cn;
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution59 {
 
     public int[][] generateMatrix(int n) {
 
