@@ -57,4 +57,7 @@ leetcode刷题记录
 
 #### 花式遍历数组
 - [151. 反转字符串中的单词](https://leetcode.cn/problems/reverse-words-in-a-string/)
+- [48. 旋转图像](https://leetcode.cn/problems/rotate-image/)
+- [54. 螺旋矩阵](https://leetcode.cn/problems/spiral-matrix/)
+- [59. 螺旋矩阵 II](https://leetcode.cn/problems/spiral-matrix-ii/)
 

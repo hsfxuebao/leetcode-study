@@ -54,7 +54,7 @@ package leetcode.editor.cn;
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution151 {
 
     public static String reverseWords(String s) {
 
