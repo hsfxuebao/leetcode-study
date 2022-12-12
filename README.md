@@ -64,3 +64,6 @@ leetcode刷题记录
 #### 带权重的随机选择
 - [528. 按权重随机选择](https://leetcode.cn/problems/random-pick-with-weight/)
 
+#### 田忌赛马背后的算法
+- [870. 优势洗牌](https://leetcode.cn/problems/advantage-shuffle/)
+
