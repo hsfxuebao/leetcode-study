@@ -37,7 +37,7 @@ package leetcode.editor.cn;
 // 👍 220 👎 0
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution1094 {
 
     public static boolean carPooling(int[][] trips, int capacity) {
 

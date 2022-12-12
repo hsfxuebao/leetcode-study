@@ -55,3 +55,6 @@ leetcode刷题记录
 - [1109. 航班预订统计](https://leetcode.cn/problems/corporate-flight-bookings/)
 - [1094. 拼车](https://leetcode.cn/problems/car-pooling/)
 
+#### 花式遍历数组
+- [151. 反转字符串中的单词](https://leetcode.cn/problems/reverse-words-in-a-string/)
+
