@@ -67,3 +67,7 @@ leetcode刷题记录
 #### 田忌赛马背后的算法
 - [870. 优势洗牌](https://leetcode.cn/problems/advantage-shuffle/)
 
+### 常数时间删除-查找任意元素
+- [380. O(1) 时间插入、删除和获取随机元素](https://leetcode.cn/problems/insert-delete-getrandom-o1/)
+- [710. 黑名单中的随机数](https://leetcode.cn/problems/random-pick-with-blacklist/description/)
+
