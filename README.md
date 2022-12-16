@@ -85,3 +85,7 @@ leetcode刷题记录
 ### 构造二叉树
 - [654. 最大二叉树](https://leetcode.cn/problems/maximum-binary-tree/)
 
+### 序列化（反序列化）
+- [297. 二叉树的序列化与反序列化](https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/)
+
+
