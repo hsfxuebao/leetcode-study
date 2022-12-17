@@ -88,4 +88,11 @@ leetcode刷题记录
 ### 序列化（反序列化）
 - [297. 二叉树的序列化与反序列化](https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/)
 
+### 后序遍历
+- [652. 寻找重复的子树](https://leetcode.cn/problems/find-duplicate-subtrees/)
 
+## 1.4 二叉搜索树
+
+### 特性（基本操作）
+- [230. 二叉搜索树中第K小的元素](https://leetcode.cn/problems/kth-smallest-element-in-a-bst/)
+- [538. 把二叉搜索树转换为累加树](https://leetcode.cn/problems/convert-bst-to-greater-tree/)

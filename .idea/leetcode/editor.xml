@@ -147,6 +147,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[230]二叉搜索树中第K小的元素.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[230]二叉搜索树中第K小的元素.java" />
+              <option name="questionId" value="230" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[234]回文链表.java">
           <value>
             <LeetcodeEditor>
@@ -283,6 +291,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[538]把二叉搜索树转换为累加树.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[538]把二叉搜索树转换为累加树.java" />
+              <option name="questionId" value="538" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[543]二叉树的直径.java">
           <value>
             <LeetcodeEditor>
@@ -320,6 +336,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[5]最长回文子串.java" />
               <option name="questionId" value="5" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[652]寻找重复的子树.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[652]寻找重复的子树.java" />
+              <option name="questionId" value="652" />
             </LeetcodeEditor>
           </value>
         </entry>
