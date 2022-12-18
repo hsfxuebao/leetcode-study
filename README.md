@@ -96,3 +96,6 @@ leetcode刷题记录
 ### 特性（基本操作）
 - [230. 二叉搜索树中第K小的元素](https://leetcode.cn/problems/kth-smallest-element-in-a-bst/)
 - [538. 把二叉搜索树转换为累加树](https://leetcode.cn/problems/convert-bst-to-greater-tree/)
+- [98. 验证二叉搜索树](https://leetcode.cn/problems/validate-binary-search-tree/)
+- [700. 二叉搜索树中的搜索](https://leetcode.cn/problems/search-in-a-binary-search-tree/)
+- [450. 删除二叉搜索树中的节点](https://leetcode.cn/problems/delete-node-in-a-bst/)

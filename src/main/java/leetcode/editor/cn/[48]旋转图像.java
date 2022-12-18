@@ -37,7 +37,7 @@ package leetcode.editor.cn;
 import static jdk.nashorn.internal.objects.NativeArray.reverse;
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution48 {
 
     // 顺时针旋转数组
     public void rotate(int[][] matrix) {
