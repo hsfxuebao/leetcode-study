@@ -99,3 +99,7 @@ leetcode刷题记录
 - [98. 验证二叉搜索树](https://leetcode.cn/problems/validate-binary-search-tree/)
 - [700. 二叉搜索树中的搜索](https://leetcode.cn/problems/search-in-a-binary-search-tree/)
 - [450. 删除二叉搜索树中的节点](https://leetcode.cn/problems/delete-node-in-a-bst/)
+
+### 构造二叉搜索树
+- [96. 不同的二叉搜索树](https://labuladong.github.io/algo/2/21/44/)
+- [95. 不同的二叉搜索树 II](https://leetcode.cn/problems/unique-binary-search-trees-ii/)

@@ -18,7 +18,7 @@ import common.TreeNode;
  *     }
  * }
  */
-class Solution {
+class Solution450 {
 
     public TreeNode deleteNode(TreeNode root, int key) {
 
