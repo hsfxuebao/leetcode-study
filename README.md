@@ -4,29 +4,29 @@ leetcode刷题记录
 # 1. 数据结构
 ## 1.1 单链表
 ### 双指针技巧秒杀7道链表
-- [合并两个有序序列](https://leetcode.cn/problems/merge-two-sorted-lists/)
-- [分割链表](https://leetcode.cn/problems/partition-list/)
-- [合并k个有序链表](https://leetcode.cn/problems/merge-k-sorted-lists/)
-- [删除链表的倒数第k个节点](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/)
-- [相交链表](https://leetcode.cn/problems/intersection-of-two-linked-lists/)
+- [21.合并两个有序序列](https://leetcode.cn/problems/merge-two-sorted-lists/)
+- [86.分割链表](https://leetcode.cn/problems/partition-list/)
+- [23.合并k个有序链表](https://leetcode.cn/problems/merge-k-sorted-lists/)
+- [19.删除链表的倒数第k个节点](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/)
+- [160.相交链表](https://leetcode.cn/problems/intersection-of-two-linked-lists/)
 ### 反转链表
-- [反转链表](https://leetcode.cn/problems/reverse-linked-list/)
-- [反转链表2](https://leetcode.cn/problems/reverse-linked-list-ii/)
+- [206.反转链表](https://leetcode.cn/problems/reverse-linked-list/)
+- [92.反转链表2](https://leetcode.cn/problems/reverse-linked-list-ii/)
 ### K个一组反转链表
-- [k个一组反转链表](https://leetcode.cn/problems/reverse-nodes-in-k-group/)
+- [25.k个一组反转链表](https://leetcode.cn/problems/reverse-nodes-in-k-group/)
 ### 回文链表
-- [回文链表](https://leetcode.cn/problems/palindrome-linked-list/)
+- [234回文链表](https://leetcode.cn/problems/palindrome-linked-list/)
 
 ## 1.2 数组
 ### 快慢指针
-- [删除有序数组中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)
-- [删除有序链表中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-list/)
-- [移除元素](https://leetcode.cn/problems/remove-element/)
-- [移动零](https://leetcode.cn/problems/move-zeroes/)
+- [26.删除有序数组中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)
+- [83.删除有序链表中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-list/)
+- [27.移除元素](https://leetcode.cn/problems/remove-element/)
+- [283.移动零](https://leetcode.cn/problems/move-zeroes/)
 
 ### 快慢指针（滑动窗口）
-- [最小覆盖子串](https://leetcode.cn/problems/minimum-window-substring/solutions/)
-- [字符串排列](https://leetcode.cn/problems/permutation-in-string/)
+- [76.最小覆盖子串](https://leetcode.cn/problems/minimum-window-substring/solutions/)
+- [567.字符串排列](https://leetcode.cn/problems/permutation-in-string/)
 - [438.找到字符串中所有字母异位词](https://leetcode.cn/problems/find-all-anagrams-in-a-string/)
 - [3. 无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters/)
 ### 左右指针（二分搜索）
@@ -90,6 +90,11 @@ leetcode刷题记录
 
 ### 后序遍历
 - [652. 寻找重复的子树](https://leetcode.cn/problems/find-duplicate-subtrees/)
+#### 归并排序
+- [912. 排序数组](https://leetcode.cn/problems/sort-an-array/)
+- [315. 计算右侧小于当前元素的个数](https://leetcode.cn/problems/count-of-smaller-numbers-after-self/)
+- [493. 翻转对](https://leetcode.cn/problems/reverse-pairs/)
+- [327. 区间和的个数](https://leetcode.cn/problems/count-of-range-sum/)
 
 ## 1.4 二叉搜索树
 

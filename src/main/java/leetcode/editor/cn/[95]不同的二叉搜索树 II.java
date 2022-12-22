@@ -22,7 +22,7 @@ import common.TreeNode;
  *     }
  * }
  */
-class Solution {
+class Solution95 {
 
     public List<TreeNode> generateTrees(int n) {
 

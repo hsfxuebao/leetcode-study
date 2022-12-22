@@ -16,7 +16,7 @@ import common.TreeNode;
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class Codec {
+class Codec {
 
     // 分隔符
     String SEP = ",";
