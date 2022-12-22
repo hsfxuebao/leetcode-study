@@ -108,3 +108,7 @@ leetcode刷题记录
 ### 构造二叉搜索树
 - [96. 不同的二叉搜索树](https://labuladong.github.io/algo/2/21/44/)
 - [95. 不同的二叉搜索树 II](https://leetcode.cn/problems/unique-binary-search-trees-ii/)
+
+### 应用-快排
+- [912. 排序数组](https://leetcode.cn/problems/sort-an-array/)
+- [215. 数组中的第K个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/description/)
