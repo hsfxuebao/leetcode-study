@@ -6,7 +6,7 @@ import java.util.Random;
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution215 {
 
     /**
      * 使用小根堆，优先队列实现
@@ -124,15 +124,6 @@ class QuickSort {
         nums[i] = nums[j];
         nums[j] = temp;
 
-    }
-
-    public static void main(String[] args) {
-        int[] nums = {3,2,1,5,6,4};
-        new QuickSort().sort(nums);
-        for (int num : nums) {
-            System.out.println(num);
-        }
-        System.out.println(new Solution().findKthLargest(nums, 2));
     }
 
 }

@@ -112,3 +112,18 @@ leetcode刷题记录
 ### 应用-快排
 - [912. 排序数组](https://leetcode.cn/problems/sort-an-array/)
 - [215. 数组中的第K个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/description/)
+
+
+
+# 2. 动态规划
+## 2.1 基本技巧
+### 套路框架
+- [509. 斐波那契数](https://leetcode.cn/problems/fibonacci-number/)
+- [322. 零钱兑换](https://leetcode.cn/problems/coin-change/)
+
+### 子序列
+- [300. 最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence/description/)
+- [354. 俄罗斯套娃信封问题](https://leetcode.cn/problems/russian-doll-envelopes/)
+### 背包类型问题
+- [0-1背包问题]()
+- [416. 分割等和子集](https://leetcode.cn/problems/partition-equal-subset-sum/description/)
