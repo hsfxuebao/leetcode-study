@@ -43,6 +43,22 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1143]最长公共子序列.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1143]最长公共子序列.java" />
+              <option name="questionId" value="1250" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1144]递减元素使数组呈锯齿状.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1144]递减元素使数组呈锯齿状.java" />
+              <option name="questionId" value="1247" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[114]二叉树展开为链表.java">
           <value>
             <LeetcodeEditor>
@@ -363,6 +379,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[518]零钱兑换 II.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[518]零钱兑换 II.java" />
+              <option name="questionId" value="518" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[528]按权重随机选择.java">
           <value>
             <LeetcodeEditor>
@@ -376,6 +400,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[538]把二叉搜索树转换为累加树.java" />
               <option name="questionId" value="538" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[53]最大子数组和.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[53]最大子数组和.java" />
+              <option name="questionId" value="53" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -400,6 +432,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[567]字符串的排列.java" />
               <option name="questionId" value="567" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[583]两个字符串的删除操作.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[583]两个字符串的删除操作.java" />
+              <option name="questionId" value="583" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -456,6 +496,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[710]黑名单中的随机数.java" />
               <option name="questionId" value="894" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[712]两个字符串的最小ASCII删除和.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[712]两个字符串的最小ASCII删除和.java" />
+              <option name="questionId" value="712" />
             </LeetcodeEditor>
           </value>
         </entry>

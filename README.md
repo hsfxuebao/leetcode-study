@@ -124,6 +124,11 @@ leetcode刷题记录
 ### 子序列
 - [300. 最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence/description/)
 - [354. 俄罗斯套娃信封问题](https://leetcode.cn/problems/russian-doll-envelopes/)
+- [53. 最大子数组和](https://leetcode.cn/problems/maximum-subarray/)
+- [1143. 最长公共子序列](https://leetcode.cn/problems/longest-common-subsequence/)
+- [583. 两个字符串的删除操作](https://leetcode.cn/problems/delete-operation-for-two-strings/)
+- [712. 两个字符串的最小ASCII删除和](https://leetcode.cn/problems/minimum-ascii-delete-sum-for-two-strings/)
 ### 背包类型问题
 - [0-1背包问题]()
 - [416. 分割等和子集](https://leetcode.cn/problems/partition-equal-subset-sum/description/)
+- [518. 零钱兑换 II](https://leetcode.cn/problems/coin-change-ii/)
