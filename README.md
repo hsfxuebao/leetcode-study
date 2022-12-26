@@ -132,3 +132,12 @@ leetcode刷题记录
 - [0-1背包问题]()
 - [416. 分割等和子集](https://leetcode.cn/problems/partition-equal-subset-sum/description/)
 - [518. 零钱兑换 II](https://leetcode.cn/problems/coin-change-ii/)
+
+### 动态规划玩游戏
+#### 一个方法团灭 LEETCODE 股票买卖问题
+- [121. 买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/)
+- [122. 买卖股票的最佳时机 II](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/)
+- [309. 最佳买卖股票时机含冷冻期](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-cooldown/)
+- [714. 买卖股票的最佳时机含手续费](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/)
+- [123. 买卖股票的最佳时机 III](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iii/)
+- [188. 买卖股票的最佳时机 IV](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iv/)

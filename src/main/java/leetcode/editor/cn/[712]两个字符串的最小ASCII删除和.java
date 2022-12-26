@@ -5,7 +5,7 @@ import java.util.Arrays;
 import com.sun.xml.internal.bind.v2.model.core.ID;
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution712 {
 
     int[][] dp;
     public int minimumDeleteSum(String s1, String s2) {
