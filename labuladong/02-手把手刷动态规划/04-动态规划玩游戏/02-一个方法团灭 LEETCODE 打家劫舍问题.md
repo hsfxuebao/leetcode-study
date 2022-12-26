@@ -6,26 +6,33 @@
 
 下面，我们从第一道开始分析。
 
-House Robber I
-图片
+### House Robber I
+
+![图片](https://mmbiz.qpic.cn/sz_mmbiz_png/gibkIz0MVqdG9kDIzE6qfsOcugRP3xn8nx1mHGkQ9Hjc9UnufRmia0yuOI9rbfp4hibeAa4rQLvGtfDBV8FaelNUA/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
 
 
+
+```
 public int rob(int[] nums);
-题目很容易理解，而且动态规划的特征很明显。我们前文 动态规划详解 做过总结，解决动态规划问题就是找「状态」和「选择」，仅此而已。
+```
 
-假想你就是这个专业强盗，从左到右走过这一排房子，在每间房子前都有两种选择：抢或者不抢。
+题目很容易理解，而且动态规划的特征很明显。我们前文 [动态规划详解](http://mp.weixin.qq.com/s?__biz=MzAxODQxMDM0Mw==&mid=2247484731&idx=1&sn=f1db6dee2c8e70c42240aead9fd224e6&chksm=9bd7fb33aca07225bee0b23a911c30295e0b90f393af75eca377caa4598ffb203549e1768336&scene=21#wechat_redirect) 做过总结，**解决动态规划问题就是找「状态」和「选择」，仅此而已**。
 
-如果你抢了这间房子，那么你肯定不能抢相邻的下一间房子了，只能从下下间房子开始做选择。
+假想你就是这个专业强盗，从左到右走过这一排房子，在每间房子前都有两种**选择**：抢或者不抢。
 
-如果你不抢这间房子，那么你可以走到下一间房子前，继续做选择。
+如果你抢了这间房子，那么你肯定不能抢相邻的下一间房子了，只能从**下下间**房子开始做选择。
 
-当你走过了最后一间房子后，你就没得抢了，能抢到的钱显然是 0（base case）。
+如果你不抢这间房子，那么你可以走到**下一间**房子前，继续做选择。
 
-以上的逻辑很简单吧，其实已经明确了「状态」和「选择」：你面前房子的索引就是状态，抢和不抢就是选择。
+当你走过了最后一间房子后，你就没得抢了，能抢到的钱显然是 0（**base case**）。
 
+以上的逻辑很简单吧，其实已经明确了「状态」和「选择」：**你面前房子的索引就是状态，抢和不抢就是选择**。
+
+![图片](https://mmbiz.qpic.cn/sz_mmbiz_jpg/gibkIz0MVqdG9kDIzE6qfsOcugRP3xn8nv9r9HSvIbBiaqK3sgINedoq9Ib9Pyqn8Kj5GIQTFKDol6u90bRnSdLA/640?wx_fmt=jpeg&wxfrom=5&wx_lazy=1&wx_co=1)
 
 在两个选择中，每次都选更大的结果，最后得到的就是最多能抢到的 money：
 
+```
 // 主函数
 public int rob(int[] nums) {
     return dp(nums, 0);
@@ -44,12 +51,15 @@ private int dp(int[] nums, int start) {
         );
     return res;
 }
-明确了状态转移，就可以发现对于同一start位置，是存在重叠子问题的，比如下图：
+```
 
-图片
+明确了状态转移，就可以发现对于同一`start`位置，是存在重叠子问题的，比如下图：
+
+![图片](https://mmbiz.qpic.cn/sz_mmbiz_jpg/gibkIz0MVqdG9kDIzE6qfsOcugRP3xn8nZMwN4TBQyzPxoKCib6ibTg93lT25VFKK7TojarRxfib0uJPyWaTpohPHg/640?wx_fmt=jpeg&wxfrom=5&wx_lazy=1&wx_co=1)
 
 盗贼有多种选择可以走到这个位置，如果每次到这都进入递归，岂不是浪费时间？所以说存在重叠子问题，可以用备忘录进行优化：
 
+```
 private int[] memo;
 // 主函数
 public int rob(int[] nums) {
@@ -74,8 +84,11 @@ private int dp(int[] nums, int start) {
     memo[start] = res;
     return res;
 }
-这就是自顶向下的动态规划解法，我们也可以略作修改，写出自底向上的解法：
+```
 
+这就是自顶向下的动态规划解法，我们也可以略作修改，写出**自底向上**的解法：
+
+```
  int rob(int[] nums) {
     int n = nums.length;
     // dp[i] = x 表示：
@@ -87,8 +100,11 @@ private int dp(int[] nums, int start) {
     }
     return dp[0];
 }
-我们又发现状态转移只和dp[i]最近的两个状态有关，所以可以进一步优化，将空间复杂度降低到 O(1)。
+```
 
+我们又发现状态转移只和`dp[i]`最近的两个状态有关，所以可以进一步优化，将空间复杂度降低到 O(1)。
+
+```
 int rob(int[] nums) {
     int n = nums.length;
     // 记录 dp[i+1] 和 dp[i+2]
@@ -102,23 +118,27 @@ int rob(int[] nums) {
     }
     return dp_i;
 }
-以上的流程，在我们 动态规划详解 中详细解释过，相信大家都能手到擒来了。我认为很有意思的是这个问题的 follow up，需要基于我们现在的思路做一些巧妙的应变。
+```
 
-House Robber II
-这道题目和第一道描述基本一样，强盗依然不能抢劫相邻的房子，输入依然是一个数组，但是告诉你这些房子不是一排，而是围成了一个圈。
+以上的流程，在我们 [动态规划详解](http://mp.weixin.qq.com/s?__biz=MzAxODQxMDM0Mw==&mid=2247484731&idx=1&sn=f1db6dee2c8e70c42240aead9fd224e6&chksm=9bd7fb33aca07225bee0b23a911c30295e0b90f393af75eca377caa4598ffb203549e1768336&scene=21#wechat_redirect) 中详细解释过，相信大家都能手到擒来了。我认为很有意思的是这个问题的 follow up，需要基于我们现在的思路做一些巧妙的应变。
 
-也就是说，现在第一间房子和最后一间房子也相当于是相邻的，不能同时抢。比如说输入数组nums=[2,3,2]，算法返回的结果应该是 3 而不是 4，因为开头和结尾不能同时被抢。
+### House Robber II
 
-这个约束条件看起来应该不难解决，我们前文 单调栈 Monotonic Stack 的使用 说过一种解决环形数组的方案，那么在这个问题上怎么处理呢？
+这道题目和第一道描述基本一样，强盗依然不能抢劫相邻的房子，输入依然是一个数组，但是告诉你**这些房子不是一排，而是围成了一个圈**。
+
+也就是说，现在第一间房子和最后一间房子也相当于是相邻的，不能同时抢。比如说输入数组`nums=[2,3,2]`，算法返回的结果应该是 3 而不是 4，因为开头和结尾不能同时被抢。
+
+这个约束条件看起来应该不难解决，我们前文 [单调栈 Monotonic Stack 的使用](http://mp.weixin.qq.com/s?__biz=MzAxODQxMDM0Mw==&mid=2247484525&idx=1&sn=3d2e63694607fec72455a52d9b15d4e5&chksm=9bd7fa65aca073734df90b45054448e09c14e6e35ad7b778bff62f9bd6c2b4f6e1ca7bc4f844&scene=21#wechat_redirect) 说过一种解决环形数组的方案，那么在这个问题上怎么处理呢？
 
 首先，首尾房间不能同时被抢，那么只可能有三种不同情况：要么都不被抢；要么第一间房子被抢最后一间不抢；要么最后一间房子被抢第一间不抢。
 
-图片
+![图片](https://mmbiz.qpic.cn/sz_mmbiz_jpg/gibkIz0MVqdG9kDIzE6qfsOcugRP3xn8nlATHI4e9ib8SUiar0s2OR8zQdvficwknUKDwfcKWV0sc3WwL1lC0Cw5GQ/640?wx_fmt=jpeg&wxfrom=5&wx_lazy=1&wx_co=1)
 
-那就简单了啊，这三种情况，哪种的结果最大，就是最终答案呗！不过，其实我们不需要比较三种情况，只要比较情况二和情况三就行了，因为这两种情况对于房子的选择余地比情况一大呀，房子里的钱数都是非负数，所以选择余地大，最优决策结果肯定不会小。
+那就简单了啊，这三种情况，哪种的结果最大，就是最终答案呗！不过，其实我们不需要比较三种情况，**只要比较情况二和情况三就行了，****因为这两种情况对于房子的选择余地比情况一大呀，房子里的钱数都是非负数，所以选择余地大，最优决策结果肯定不会小**。
 
 所以只需对之前的解法稍作修改即可：
 
+```
 public int rob(int[] nums) {
     int n = nums.length;
     if (n == 1) return nums[0];
@@ -138,15 +158,19 @@ int robRange(int[] nums, int start, int end) {
     }
     return dp_i;
 }
+```
+
 至此，第二问也解决了。
 
-House Robber III
+### House Robber III
+
 第三题又想法设法地变花样了，此强盗发现现在面对的房子不是一排，不是一圈，而是一棵二叉树！房子在二叉树的节点上，相连的两个房子不能同时被抢劫：
 
-图片
+
 
 整体的思路完全没变，还是做抢或者不抢的选择，取收益较大的选择。甚至我们可以直接按这个套路写出代码：
 
+```
 Map<TreeNode, Integer> memo = new HashMap<>();
 public int rob(TreeNode root) {
     if (root == null) return 0;
@@ -166,10 +190,13 @@ public int rob(TreeNode root) {
     memo.put(root, res);
     return res;
 }
-这道题就解决了，时间复杂度 O(N)，N为数的节点数。
+```
+
+这道题就解决了，时间复杂度 O(N)，`N`为数的节点数。
 
 但是这道题让我觉得巧妙的点在于，还有更漂亮的解法。比如下面是我在评论区看到的一个解法：
 
+```
 int rob(TreeNode root) {
     int[] res = dp(root);
     return Math.max(res[0], res[1]);
@@ -191,9 +218,11 @@ int[] dp(TreeNode root) {
 
     return new int[]{not_rob, rob};
 }
+```
+
 时间复杂度 O(N)，空间复杂度只有递归函数堆栈所需的空间，不需要备忘录的额外空间。
 
-你看他和我们的思路不一样，修改了递归函数的定义，略微修改了思路，使得逻辑自洽，依然得到了正确的答案，而且代码更漂亮。这就是我们前文 动态规划：不同的定义产生不同的解法 所说过的动态规划问题的一个特性。
+你看他和我们的思路不一样，修改了递归函数的定义，略微修改了思路，使得逻辑自洽，依然得到了正确的答案，而且代码更漂亮。这就是我们前文 [动态规划：不同的定义产生不同的解法](http://mp.weixin.qq.com/s?__biz=MzAxODQxMDM0Mw==&mid=2247484469&idx=1&sn=e8d321c8ad62483874a997e9dd72da8f&chksm=9bd7fa3daca0732b316aa0afa58e70357e1cb7ab1fe0855d06bc4a852abb1b434c01c7dd19d6&scene=21#wechat_redirect) 所说过的动态规划问题的一个特性。
 
 实际上，这个解法比我们的解法运行时间要快得多，虽然算法分析层面时间复杂度是相同的。原因在于此解法没有使用额外的备忘录，减少了数据操作的复杂性，所以实际运行效率会快。
 
