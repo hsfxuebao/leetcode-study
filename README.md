@@ -148,6 +148,8 @@ leetcode刷题记录
 
 #### 最小路径和
 - [64. 最小路径和](https://leetcode.cn/problems/minimum-path-sum/)
+#### 魔塔游戏（最小路径和（每个空格有限制））
+- [174. 地下城游戏](https://leetcode.cn/problems/dungeon-game/)
 
 #### 博弈问题
 - [486. 预测赢家](https://leetcode.cn/problems/predict-the-winner/)
