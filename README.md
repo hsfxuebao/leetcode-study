@@ -153,3 +153,10 @@ leetcode刷题记录
 
 #### 博弈问题
 - [486. 预测赢家](https://leetcode.cn/problems/predict-the-winner/)
+
+
+# 3. 必知必会的算法技巧
+## 3.1 暴力搜索算法
+### 3.1.1 回溯算法(基本框架)
+- [46. 全排列](https://leetcode.cn/problems/permutations/)
+- [51. N 皇后](https://leetcode.cn/problems/n-queens/)
