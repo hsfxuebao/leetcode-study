@@ -145,3 +145,9 @@ leetcode刷题记录
 - [198. 打家劫舍](https://leetcode.cn/problems/house-robber/)
 - [213. 打家劫舍 II](https://leetcode.cn/problems/house-robber-ii/)
 - [337. 打家劫舍 III](https://leetcode.cn/problems/house-robber-iii/)
+
+#### 最小路径和
+- [64. 最小路径和](https://leetcode.cn/problems/minimum-path-sum/)
+
+#### 博弈问题
+- [486. 预测赢家](https://leetcode.cn/problems/predict-the-winner/)
