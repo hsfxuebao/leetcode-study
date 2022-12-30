@@ -172,3 +172,12 @@ leetcode刷题记录
 - [47. 全排列 II](https://leetcode.cn/problems/permutations-ii/)
 #### 元素无重可复选
 - [39. 组合总和](https://leetcode.cn/problems/combination-sum/)
+
+### 3.1.2 BFS(宽度优先遍历)
+
+#### BFS框架
+- [111. 二叉树的最小深度](https://leetcode.cn/problems/minimum-depth-of-binary-tree/)
+- [752. 打开转盘锁](https://leetcode.cn/problems/open-the-lock/)
+
+#### BFS秒杀智力题
+- [773. 滑动谜题](https://leetcode.cn/problems/sliding-puzzle/)
