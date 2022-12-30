@@ -1,6 +1,6 @@
 package leetcode.editor.cn;
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution174 {
 
     /**
      * 动态规划

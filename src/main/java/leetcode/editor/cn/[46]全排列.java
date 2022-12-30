@@ -4,7 +4,7 @@ package leetcode.editor.cn;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-class Solution {
+class Solution46 {
 
     // 记录结果集
     List<List<Integer>> result = new ArrayList<>();

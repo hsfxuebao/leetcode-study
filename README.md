@@ -160,3 +160,15 @@ leetcode刷题记录
 ### 3.1.1 回溯算法(基本框架)
 - [46. 全排列](https://leetcode.cn/problems/permutations/)
 - [51. N 皇后](https://leetcode.cn/problems/n-queens/)
+
+### 排列组合子集问题
+#### 元素无重不可复选
+- [78. 子集](https://leetcode.cn/problems/subsets/)
+- [77. 组合](https://leetcode.cn/problems/combinations/)
+- [46. 全排列](https://leetcode.cn/problems/permutations/)
+#### 元素可重不可复选
+- [90. 子集 II](https://leetcode.cn/problems/subsets-ii/)
+- [40. 组合总和 II](https://leetcode.cn/problems/combination-sum-ii/)
+- [47. 全排列 II](https://leetcode.cn/problems/permutations-ii/)
+#### 元素无重可复选
+- [39. 组合总和](https://leetcode.cn/problems/combination-sum/)
