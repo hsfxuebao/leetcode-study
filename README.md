@@ -156,7 +156,7 @@ leetcode刷题记录
 
 
 # 3. 必知必会的算法技巧
-## 3.1 暴力搜索算法
+## 3.1 回溯算法
 ### 回溯算法(基本框架)
 - [46. 全排列](https://leetcode.cn/problems/permutations/)
 - [51. N 皇后](https://leetcode.cn/problems/n-queens/)
@@ -176,6 +176,12 @@ leetcode刷题记录
 #### 元素无重可复选
 - [39. 组合总和](https://leetcode.cn/problems/combination-sum/)
 
+### 括号生成
+- [22. 括号生成](https://leetcode.cn/problems/generate-parentheses/)
+
+### 数独问题
+- [37. 解数独](https://leetcode.cn/problems/sudoku-solver/)
+
 ### 岛屿问题
 - [200. 岛屿数量](https://leetcode.cn/problems/number-of-islands/)
 - [1254. 统计封闭岛屿的数目](https://leetcode.cn/problems/number-of-closed-islands/)
@@ -183,7 +189,7 @@ leetcode刷题记录
 - [695. 岛屿的最大面积](https://leetcode.cn/problems/max-area-of-island/)
 - [1905. 统计子岛屿](https://leetcode.cn/problems/count-sub-islands/)
 - [694.不同岛屿的数量]()
-### BFS(宽度优先遍历)
+## BFS(宽度优先遍历)
 
 #### BFS框架
 - [111. 二叉树的最小深度](https://leetcode.cn/problems/minimum-depth-of-binary-tree/)
