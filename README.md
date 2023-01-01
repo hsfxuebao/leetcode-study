@@ -164,6 +164,11 @@ leetcode刷题记录
 #### 区间重叠
 - [253.会议室II]()
 
+#### 区间交集并集覆盖问题
+- [1288. 删除被覆盖区间](https://leetcode.cn/problems/remove-covered-intervals/)
+- [56. 合并区间](https://leetcode.cn/problems/merge-intervals/description/)
+- [986. 区间列表的交集](https://leetcode.cn/problems/interval-list-intersections/)
+
 #### 按start排序
 - [1024. 视频拼接](https://leetcode.cn/problems/video-stitching/description/)
 
