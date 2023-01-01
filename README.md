@@ -154,6 +154,23 @@ leetcode刷题记录
 #### 博弈问题
 - [486. 预测赢家](https://leetcode.cn/problems/predict-the-winner/)
 
+## 2.2 贪心算法
+### 区间调度
+
+#### 无重叠区间(按end排序)
+- [435. 无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/)
+- [452. 用最少数量的箭引爆气球](https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/)
+
+#### 区间重叠
+- [253.会议室II]()
+
+#### 按start排序
+- [1024. 视频拼接](https://leetcode.cn/problems/video-stitching/description/)
+
+
+### 跳跃游戏
+- [55. 跳跃游戏](https://leetcode.cn/problems/jump-game/)
+- [45. 跳跃游戏 II](https://leetcode.cn/problems/jump-game-ii/)
 
 # 3. 必知必会的算法技巧
 ## 3.1 回溯算法
