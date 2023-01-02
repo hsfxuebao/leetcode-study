@@ -186,7 +186,10 @@ leetcode刷题记录
 - [45. 跳跃游戏 II](https://leetcode.cn/problems/jump-game-ii/)
 
 # 3. 必知必会的算法技巧
+
 ## 3.1 回溯算法
+### 动态规划和回溯算法
+- [494. 目标和](https://leetcode.cn/problems/target-sum/)
 ### 回溯算法(基本框架)
 - [46. 全排列](https://leetcode.cn/problems/permutations/)
 - [51. N 皇后](https://leetcode.cn/problems/n-queens/)
