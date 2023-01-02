@@ -96,6 +96,12 @@ leetcode刷题记录
 - [493. 翻转对](https://leetcode.cn/problems/reverse-pairs/)
 - [327. 区间和的个数](https://leetcode.cn/problems/count-of-range-sum/)
 
+### 最近公共祖先LCA问题
+- [236. 二叉树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/)
+- [1676. 二叉树的最近公共祖先 IV]()
+- [1644.二叉树的最近公共祖先 II]()
+- [235. 二叉搜索树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree/)
+
 ## 1.4 二叉搜索树
 
 ### 特性（基本操作）
@@ -113,7 +119,9 @@ leetcode刷题记录
 - [912. 排序数组](https://leetcode.cn/problems/sort-an-array/)
 - [215. 数组中的第K个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/description/)
 
-
+## 1.5 完全二叉树（满二叉树）
+### 完全二叉树
+- [222. 完全二叉树的节点个数](https://leetcode.cn/problems/count-complete-tree-nodes/)
 
 # 2. 动态规划
 ## 2.1 基本技巧
