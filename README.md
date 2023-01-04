@@ -123,6 +123,18 @@ leetcode刷题记录
 ### 完全二叉树
 - [222. 完全二叉树的节点个数](https://leetcode.cn/problems/count-complete-tree-nodes/)
 
+
+## 1.6 设计数据结构
+### 栈队列相互实现
+- [232. 用栈实现队列](https://leetcode.cn/problems/implement-queue-using-stacks/)
+- [225. 用队列实现栈](https://leetcode.cn/problems/implement-stack-using-queues/)
+
+### 二叉堆
+- [295. 数据流的中位数](https://leetcode.cn/problems/find-median-from-data-stream/)
+
+### 前缀树
+- []()
+
 # 2. 动态规划
 ## 2.1 基本技巧
 ### 套路框架

@@ -28,6 +28,7 @@ public class N_03_HeapSort {
 		}
 	}
 
+	// 上浮，往末尾添加一个元素
 	public static void heapInsert(int[] arr, int index) {
 		while (arr[index] > arr[(index - 1) / 2]) {
 			swap(arr, index, (index - 1) / 2);
@@ -35,6 +36,7 @@ public class N_03_HeapSort {
 		}
 	}
 
+	// 下沉
 	public static void heapify(int[] arr, int index, int size) {
 		int left = index * 2 + 1;
 		while (left < size) {
