@@ -125,9 +125,17 @@ leetcode刷题记录
 
 
 ## 1.6 设计数据结构
-### 栈队列相互实现
+### LRU
+
+
+### 栈队列
 - [232. 用栈实现队列](https://leetcode.cn/problems/implement-queue-using-stacks/)
 - [225. 用队列实现栈](https://leetcode.cn/problems/implement-stack-using-queues/)
+
+#### 单调栈
+- [496. 下一个更大元素 I](https://leetcode.cn/problems/next-greater-element-i/)
+- [739. 每日温度](https://leetcode.cn/problems/daily-temperatures/)
+- [503. 下一个更大元素 II](https://leetcode.cn/problems/next-greater-element-ii/)
 
 ### 二叉堆
 - [295. 数据流的中位数](https://leetcode.cn/problems/find-median-from-data-stream/)
