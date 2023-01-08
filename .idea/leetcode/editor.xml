@@ -147,6 +147,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[146]LRU 缓存.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[146]LRU 缓存.java" />
+              <option name="questionId" value="146" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[151]反转字符串中的单词.java">
           <value>
             <LeetcodeEditor>
@@ -248,6 +256,22 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[206]反转链表.java" />
               <option name="questionId" value="206" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[208]实现 Trie (前缀树).java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[208]实现 Trie (前缀树).java" />
+              <option name="questionId" value="208" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[211]添加与搜索单词 - 数据结构设计.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[211]添加与搜索单词 - 数据结构设计.java" />
+              <option name="questionId" value="211" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -635,6 +659,22 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[496]下一个更大元素 I.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[496]下一个更大元素 I.java" />
+              <option name="questionId" value="496" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[503]下一个更大元素 II.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[503]下一个更大元素 II.java" />
+              <option name="questionId" value="503" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[509]斐波那契数.java">
           <value>
             <LeetcodeEditor>
@@ -747,6 +787,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[648]单词替换.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[648]单词替换.java" />
+              <option name="questionId" value="648" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[64]最小路径和.java">
           <value>
             <LeetcodeEditor>
@@ -768,6 +816,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[654]最大二叉树.java" />
               <option name="questionId" value="654" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[677]键值映射.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[677]键值映射.java" />
+              <option name="questionId" value="677" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -832,6 +888,14 @@
             <LeetcodeEditor>
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[714]买卖股票的最佳时机含手续费.java" />
               <option name="questionId" value="714" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[739]每日温度.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[739]每日温度.java" />
+              <option name="questionId" value="739" />
             </LeetcodeEditor>
           </value>
         </entry>

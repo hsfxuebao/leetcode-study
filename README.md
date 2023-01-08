@@ -125,7 +125,8 @@ leetcode刷题记录
 
 
 ## 1.6 设计数据结构
-### LRU
+### LRU和LFU
+- [146. LRU 缓存](https://leetcode.cn/problems/lru-cache/)
 
 
 ### 栈队列
@@ -141,8 +142,10 @@ leetcode刷题记录
 - [295. 数据流的中位数](https://leetcode.cn/problems/find-median-from-data-stream/)
 
 ### 前缀树
-- []()
-
+- [208. 实现 Trie (前缀树)](https://leetcode.cn/problems/implement-trie-prefix-tree/)
+- [648. 单词替换](https://leetcode.cn/problems/replace-words/)
+- [211. 添加与搜索单词 - 数据结构设计](https://leetcode.cn/problems/design-add-and-search-words-data-structure/)
+- [1804.实现 Trie （前缀树） II]()
 # 2. 动态规划
 ## 2.1 基本技巧
 ### 套路框架
