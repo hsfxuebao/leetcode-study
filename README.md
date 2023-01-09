@@ -253,3 +253,11 @@ leetcode刷题记录
 
 #### BFS秒杀智力题
 - [773. 滑动谜题](https://leetcode.cn/problems/sliding-puzzle/)
+
+## 3.2 数学运算技巧
+
+### 位运算
+- [136. 只出现一次的数字](https://leetcode.cn/problems/single-number/)
+- [191. 位1的个数](https://leetcode.cn/problems/number-of-1-bits/)
+- [231. 2 的幂](https://leetcode.cn/problems/power-of-two/)
+- [268. 丢失的数字](https://leetcode.cn/problems/missing-number/)
