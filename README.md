@@ -261,3 +261,8 @@ leetcode刷题记录
 - [191. 位1的个数](https://leetcode.cn/problems/number-of-1-bits/)
 - [231. 2 的幂](https://leetcode.cn/problems/power-of-two/)
 - [268. 丢失的数字](https://leetcode.cn/problems/missing-number/)
+
+### 一行代码解决问题
+- [292. Nim 游戏](https://leetcode.cn/problems/nim-game/)
+- [877. 石子游戏](https://leetcode.cn/problems/stone-game/)
+- [319. 灯泡开关](https://leetcode.cn/problems/bulb-switcher/)
