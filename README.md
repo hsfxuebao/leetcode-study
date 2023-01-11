@@ -266,3 +266,6 @@ leetcode刷题记录
 - [292. Nim 游戏](https://leetcode.cn/problems/nim-game/)
 - [877. 石子游戏](https://leetcode.cn/problems/stone-game/)
 - [319. 灯泡开关](https://leetcode.cn/problems/bulb-switcher/)
+
+### 缺失和重复的数
+- [645. 错误的集合](https://leetcode.cn/problems/set-mismatch/)
