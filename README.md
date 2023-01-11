@@ -269,3 +269,8 @@ leetcode刷题记录
 
 ### 缺失和重复的数
 - [645. 错误的集合](https://leetcode.cn/problems/set-mismatch/)
+
+### 随机算法
+- [384. 打乱数组](https://leetcode.cn/problems/shuffle-an-array/)
+- [382. 链表随机节点](https://leetcode.cn/problems/linked-list-random-node/)
+- [398. 随机数索引](https://leetcode.cn/problems/random-pick-index/)
