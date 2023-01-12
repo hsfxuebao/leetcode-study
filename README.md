@@ -274,3 +274,6 @@ leetcode刷题记录
 - [384. 打乱数组](https://leetcode.cn/problems/shuffle-an-array/)
 - [382. 链表随机节点](https://leetcode.cn/problems/linked-list-random-node/)
 - [398. 随机数索引](https://leetcode.cn/problems/random-pick-index/)
+
+### 阶乘
+- [172. 阶乘后的零](https://leetcode.cn/problems/factorial-trailing-zeroes/)
