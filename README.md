@@ -277,3 +277,6 @@ leetcode刷题记录
 
 ### 阶乘
 - [172. 阶乘后的零](https://leetcode.cn/problems/factorial-trailing-zeroes/)
+
+### 素数
+- [204. 计数质数](https://leetcode.cn/problems/count-primes/)
