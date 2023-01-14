@@ -127,6 +127,7 @@ leetcode刷题记录
 ## 1.6 设计数据结构
 ### LRU和LFU
 - [146. LRU 缓存](https://leetcode.cn/problems/lru-cache/)
+- [460. LFU 缓存](https://leetcode.cn/problems/lfu-cache/)
 
 
 ### 栈队列
