@@ -80,7 +80,7 @@ import java.util.LinkedHashSet;
  */
 class P460_LfuCache{
     public static void main(String[] args) {
-        LFUCache solution = new P460_LfuCache().new LFUCache();
+//        LFUCache solution = new P460_LfuCache().new LFUCache();
         
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
