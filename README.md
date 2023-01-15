@@ -33,6 +33,7 @@ leetcode刷题记录
 - [704. 二分查找](https://leetcode.cn/problems/binary-search/)
 - [34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/)
 - [42. 接雨水](https://leetcode.cn/problems/trapping-rain-water/?show=1)
+- [88. 合并两个有序数组](https://leetcode.cn/problems/merge-sorted-array/)
 
 ### 团灭nSum问题
 - [1. 两数之和](https://leetcode.cn/problems/two-sum/)
