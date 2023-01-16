@@ -127,6 +127,9 @@ leetcode刷题记录
 ## 1.6 图
 - [797. 所有可能的路径](https://leetcode.cn/problems/all-paths-from-source-to-target/)
 
+### 环检测和拓扑排序算法
+- [207. 课程表](https://leetcode.cn/problems/course-schedule/)
+
 ## 1.7 设计数据结构
 ### LRU和LFU
 - [146. LRU 缓存](https://leetcode.cn/problems/lru-cache/)
