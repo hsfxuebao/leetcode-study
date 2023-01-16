@@ -124,8 +124,10 @@ leetcode刷题记录
 ### 完全二叉树
 - [222. 完全二叉树的节点个数](https://leetcode.cn/problems/count-complete-tree-nodes/)
 
+## 1.6 图
+- [797. 所有可能的路径](https://leetcode.cn/problems/all-paths-from-source-to-target/)
 
-## 1.6 设计数据结构
+## 1.7 设计数据结构
 ### LRU和LFU
 - [146. LRU 缓存](https://leetcode.cn/problems/lru-cache/)
 - [460. LFU 缓存](https://leetcode.cn/problems/lfu-cache/)
