@@ -84,6 +84,7 @@ leetcode刷题记录
 
 ### 层序遍历
 - [102. 二叉树的层序遍历](https://leetcode.cn/problems/binary-tree-level-order-traversal/)
+- [103. 二叉树的锯齿形层序遍历](https://leetcode.cn/problems/binary-tree-zigzag-level-order-traversal/)
 - [116. 填充每个节点的下一个右侧节点指针](https://leetcode.cn/problems/populating-next-right-pointers-in-each-node/description/)
 
 ### 构造二叉树
@@ -132,6 +133,10 @@ leetcode刷题记录
 
 ### 环检测和拓扑排序算法
 - [207. 课程表](https://leetcode.cn/problems/course-schedule/)
+
+### 二分图
+- [785. 判断二分图](https://leetcode.cn/problems/is-graph-bipartite/)
+- [886. 可能的二分法](https://leetcode.cn/problems/possible-bipartition/)
 
 ## 1.7 设计数据结构
 ### LRU和LFU
