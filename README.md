@@ -165,6 +165,11 @@ leetcode刷题记录
 - [648. 单词替换](https://leetcode.cn/problems/replace-words/)
 - [211. 添加与搜索单词 - 数据结构设计](https://leetcode.cn/problems/design-add-and-search-words-data-structure/)
 - [1804.实现 Trie （前缀树） II]()
+
+## 1.8 字符串
+### KMP算法(动态规划)
+- [28. 找出字符串中第一个匹配项的下标](https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/)
+
 # 2. 动态规划
 ## 2.1 基本技巧
 ### 套路框架
@@ -204,6 +209,9 @@ leetcode刷题记录
 #### 博弈问题
 - [486. 预测赢家](https://leetcode.cn/problems/predict-the-winner/)
 
+#### 有限状态机之 KMP 字符匹配算法
+- [28. 找出字符串中第一个匹配项的下标](https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/)
+
 ## 2.2 贪心算法
 ### 区间调度
 
@@ -226,6 +234,8 @@ leetcode刷题记录
 ### 跳跃游戏
 - [55. 跳跃游戏](https://leetcode.cn/problems/jump-game/)
 - [45. 跳跃游戏 II](https://leetcode.cn/problems/jump-game-ii/)
+
+
 
 # 3. 必知必会的算法技巧
 
