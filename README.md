@@ -141,6 +141,11 @@ leetcode刷题记录
 - [785. 判断二分图](https://leetcode.cn/problems/is-graph-bipartite/)
 - [886. 可能的二分法](https://leetcode.cn/problems/possible-bipartition/)
 
+### 并查集（连通分量）
+- [323.无向连通图中的连通分量个数](https://blog.csdn.net/u011240016/article/details/100521176)
+- [990. 等式方程的可满足性](https://leetcode.cn/problems/satisfiability-of-equality-equations/)
+- [130. 被围绕的区域](https://leetcode.cn/problems/surrounded-regions/)
+
 ## 1.7 设计数据结构
 ### LRU和LFU
 - [146. LRU 缓存](https://leetcode.cn/problems/lru-cache/)

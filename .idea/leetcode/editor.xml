@@ -91,6 +91,28 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1302]层数最深叶子节点的和.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[1302]层数最深叶子节点的和.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1302" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1302]层数最深叶子节点的和.java" />
+              <option name="titleSlug" value="deepest-leaves-sum" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[130]被围绕的区域.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[130]被围绕的区域.md" />
+              <option name="frontendQuestionId" value="leetcode.cn130" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[130]被围绕的区域.java" />
+              <option name="titleSlug" value="surrounded-regions" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1403]非递增顺序的最小子序列.java">
           <value>
             <LeetcodeEditor>
@@ -275,6 +297,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[94]二叉树的中序遍历.java" />
               <option name="titleSlug" value="binary-tree-inorder-traversal" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[990]等式方程的可满足性.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[990]等式方程的可满足性.md" />
+              <option name="frontendQuestionId" value="leetcode.cn990" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[990]等式方程的可满足性.java" />
+              <option name="titleSlug" value="satisfiability-of-equality-equations" />
             </LeetcodeEditor>
           </value>
         </entry>
