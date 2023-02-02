@@ -124,6 +124,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1584]连接所有点的最小费用.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[1584]连接所有点的最小费用.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1584" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1584]连接所有点的最小费用.java" />
+              <option name="titleSlug" value="min-cost-to-connect-all-points" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1869]哪种连续子字符串更长.java">
           <value>
             <LeetcodeEditor>
