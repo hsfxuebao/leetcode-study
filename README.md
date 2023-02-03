@@ -89,6 +89,8 @@ leetcode刷题记录
 - [1161. 最大层内元素和](https://leetcode.cn/problems/maximum-level-sum-of-a-binary-tree/)
 - [1302. 层数最深叶子节点的和](https://leetcode.cn/problems/deepest-leaves-sum/)
 - [116. 填充每个节点的下一个右侧节点指针](https://leetcode.cn/problems/populating-next-right-pointers-in-each-node/description/)
+- [1609. 奇偶树](https://leetcode.cn/problems/even-odd-tree/)
+- [637. 二叉树的层平均值](https://leetcode.cn/problems/average-of-levels-in-binary-tree/)
 
 ### 构造二叉树
 - [654. 最大二叉树](https://leetcode.cn/problems/maximum-binary-tree/)
