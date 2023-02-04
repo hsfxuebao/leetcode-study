@@ -148,10 +148,16 @@ leetcode刷题记录
 - [990. 等式方程的可满足性](https://leetcode.cn/problems/satisfiability-of-equality-equations/)
 - [130. 被围绕的区域](https://leetcode.cn/problems/surrounded-regions/)
 
-### Kruskal 最小生成树算法
+### 最小生成树算法(Kruskal 和Prim)
 - [261：以图判树](https://blog.csdn.net/itcodexy/article/details/116679045)
 - [1584. 连接所有点的最小费用](https://leetcode.cn/problems/min-cost-to-connect-all-points/)
 - [1135. 最低成本联通所有城市](http://e.betheme.net/article/show-54604.html?action=onClick)
+
+### Dijkstra 算法
+- [743. 网络延迟时间](https://leetcode.cn/problems/network-delay-time/)
+- [1514. 概率最大的路径](https://leetcode.cn/problems/path-with-maximum-probability/)
+- [1631. 最小体力消耗路径](https://leetcode.cn/problems/path-with-minimum-effort/)
+
 ## 1.7 设计数据结构
 ### LRU和LFU
 - [146. LRU 缓存](https://leetcode.cn/problems/lru-cache/)
