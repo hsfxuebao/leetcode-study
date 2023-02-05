@@ -355,6 +355,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[919]完全二叉树插入器.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[919]完全二叉树插入器.md" />
+              <option name="frontendQuestionId" value="leetcode.cn919" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[919]完全二叉树插入器.java" />
+              <option name="titleSlug" value="complete-binary-tree-inserter" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[929]独特的电子邮件地址.java">
           <value>
             <LeetcodeEditor>

@@ -132,6 +132,8 @@ leetcode刷题记录
 ## 1.5 完全二叉树（满二叉树）
 ### 完全二叉树
 - [222. 完全二叉树的节点个数](https://leetcode.cn/problems/count-complete-tree-nodes/)
+- [919. 完全二叉树插入器](https://leetcode.cn/problems/complete-binary-tree-inserter/)
+- [958. 二叉树的完全性检验](https://leetcode.cn/problems/check-completeness-of-a-binary-tree/)
 
 ## 1.6 图
 - [797. 所有可能的路径](https://leetcode.cn/problems/all-paths-from-source-to-target/)
