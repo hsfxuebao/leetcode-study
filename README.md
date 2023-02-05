@@ -74,6 +74,7 @@ leetcode刷题记录
 
 ## 1.3 二叉树
 ### 遍历、分解二叉树思想
+- [144. 二叉树的前序遍历](https://leetcode.cn/problems/binary-tree-preorder-traversal/)
 - [94. 二叉树的中序遍历](https://leetcode.cn/problems/binary-tree-inorder-traversal/)
 - [100. 相同的树](https://leetcode.cn/problems/same-tree/)
 - [572. 另一棵树的子树](https://leetcode.cn/problems/subtree-of-another-tree/)

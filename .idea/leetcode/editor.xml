@@ -36,6 +36,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[104]二叉树的最大深度.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[104]二叉树的最大深度.md" />
+              <option name="frontendQuestionId" value="leetcode.cn104" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[104]二叉树的最大深度.java" />
+              <option name="titleSlug" value="maximum-depth-of-binary-tree" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[105]从前序与中序遍历序列构造二叉树.java">
           <value>
             <LeetcodeEditor>
@@ -121,6 +132,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1403]非递增顺序的最小子序列.java" />
               <option name="titleSlug" value="minimum-subsequence-in-non-increasing-order" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[144]二叉树的前序遍历.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[144]二叉树的前序遍历.md" />
+              <option name="frontendQuestionId" value="leetcode.cn144" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[144]二叉树的前序遍历.java" />
+              <option name="titleSlug" value="binary-tree-preorder-traversal" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -385,6 +407,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[94]二叉树的中序遍历.java" />
               <option name="titleSlug" value="binary-tree-inorder-traversal" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[958]二叉树的完全性检验.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[958]二叉树的完全性检验.md" />
+              <option name="frontendQuestionId" value="leetcode.cn958" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[958]二叉树的完全性检验.java" />
+              <option name="titleSlug" value="check-completeness-of-a-binary-tree" />
             </LeetcodeEditor>
           </value>
         </entry>
