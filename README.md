@@ -203,6 +203,8 @@ leetcode刷题记录
 - [1143. 最长公共子序列](https://leetcode.cn/problems/longest-common-subsequence/)
 - [583. 两个字符串的删除操作](https://leetcode.cn/problems/delete-operation-for-two-strings/)
 - [712. 两个字符串的最小ASCII删除和](https://leetcode.cn/problems/minimum-ascii-delete-sum-for-two-strings/)
+- [72. 编辑距离](https://leetcode.cn/problems/edit-distance/)
+
 ### 背包类型问题
 - [0-1背包问题]()
 - [416. 分割等和子集](https://leetcode.cn/problems/partition-equal-subset-sum/description/)
