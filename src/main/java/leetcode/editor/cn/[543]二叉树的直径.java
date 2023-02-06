@@ -1,11 +1,10 @@
 package leetcode.editor.cn;
-import common.TreeNode;
-//给定一棵二叉树，你需要计算它的直径长度。一棵二叉树的直径长度是任意两个结点路径长度中的最大值。这条路径可能穿过也可能不穿过根结点。
+
+//给定一棵二叉树，你需要计算它的直径长度。一棵二叉树的直径长度是任意两个结点路径长度中的最大值。这条路径可能穿过也可能不穿过根结点。 
 //
 // 
 //
-// 示例 : 
-//给定二叉树 
+// 示例 : 给定二叉树 
 //
 //           1
 //         / \
@@ -19,14 +18,29 @@ import common.TreeNode;
 // 
 //
 // 注意：两结点之间的路径长度是以它们之间边的数目表示。 
-// Related Topics 树 深度优先搜索 二叉树 
-// 👍 1198 👎 0
+//
+// Related Topics树 | 深度优先搜索 | 二叉树 
+//
+// 👍 1231, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
+import common.TreeNode;
 
-//leetcode submit region begin(Prohibit modification and deletion)
-
-
-
+/**
+ * 二叉树的直径
+ *
+ * @author hsfxuebao
+ * 2023-02-06 19:13:06 
+ */
+class P543_DiameterOfBinaryTree{
+    public static void main(String[] args) {
+        Solution solution = new P543_DiameterOfBinaryTree().new Solution();
+        
+    }  
+    //leetcode submit region begin(Prohibit modification and deletion)
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -42,29 +56,24 @@ import common.TreeNode;
  *     }
  * }
  */
-class Solution543 {
-
-    int maxDiameter;
-
+class Solution {
+    private int res = 0;
     public int diameterOfBinaryTree(TreeNode root) {
-
-        maxDepth(root);
-        return maxDiameter;
+        traverve(root);
+        return res;
     }
 
-    // 计算二叉树 最大深度
-    private int maxDepth(TreeNode root) {
-        // base case
+    private int traverve(TreeNode root) {
         if (root == null) {
             return 0;
         }
-        int leftDepth = maxDepth(root.left);
-        int rightDepth = maxDepth(root.right);
 
-        // 更新当前节点的最大深度
-        maxDiameter = Math.max(maxDiameter, (leftDepth + rightDepth));
+        int leftDepth = traverve(root.left);
+        int rightDepth = traverve(root.right);
+        res = Math.max(res, leftDepth + rightDepth);
         return Math.max(leftDepth, rightDepth) + 1;
-
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
+ 
+}

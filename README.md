@@ -82,6 +82,7 @@ leetcode刷题记录
 - [543. 二叉树的直径](https://leetcode.cn/problems/diameter-of-binary-tree/)
 - [226. 翻转二叉树](https://leetcode.cn/problems/invert-binary-tree/)
 - [114. 二叉树展开为链表](https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/)
+- [559. N 叉树的最大深度](https://leetcode.cn/problems/maximum-depth-of-n-ary-tree/)
 
 ### 层序遍历
 - [102. 二叉树的层序遍历](https://leetcode.cn/problems/binary-tree-level-order-traversal/)
