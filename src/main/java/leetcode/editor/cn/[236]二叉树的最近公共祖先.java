@@ -77,17 +77,23 @@ class Solution {
         if (root == null) {
             return null;
         }
-        // 扎到目标值，返回
-        if (root.val == p.val || root.val == q.val) {
+
+        // 找到了
+        if (root == p || root == q) {
             return root;
         }
-        // 查找左右字数
-        TreeNode left = find(root.left, p, q);
-        TreeNode right = find(root.right, p, q);
-        if (left != null && right != null) {
+
+        TreeNode leftNode = find(root.left, p, q);
+        TreeNode rightNode = find(root.right, p, q);
+        // 若左右子树 都不为null 当前节点为公共节点
+        if (leftNode != null && rightNode != null) {
             return root;
         }
-        return left != null ? left : right;
+
+        if (leftNode == null && rightNode == null) {
+            return null;
+        }
+        return leftNode != null ? leftNode : rightNode;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

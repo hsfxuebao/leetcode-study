@@ -82,9 +82,7 @@ leetcode刷题记录
 - [543. 二叉树的直径](https://leetcode.cn/problems/diameter-of-binary-tree/)
 - [226. 翻转二叉树](https://leetcode.cn/problems/invert-binary-tree/)
 - [114. 二叉树展开为链表](https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/)
-- [559. N 叉树的最大深度](https://leetcode.cn/problems/maximum-depth-of-n-ary-tree/)
-- [589. N 叉树的前序遍历](https://leetcode.cn/problems/n-ary-tree-preorder-traversal/)
-- [590. N 叉树的后序遍历](https://leetcode.cn/problems/n-ary-tree-postorder-traversal/)
+
 
 ### 层序遍历
 - [102. 二叉树的层序遍历](https://leetcode.cn/problems/binary-tree-level-order-traversal/)
@@ -111,10 +109,19 @@ leetcode刷题记录
 - [327. 区间和的个数](https://leetcode.cn/problems/count-of-range-sum/)
 
 ### 最近公共祖先LCA问题
+- [865. 具有所有最深节点的最小子树](https://leetcode.cn/problems/smallest-subtree-with-all-the-deepest-nodes/)
+- [1123. 最深叶节点的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-deepest-leaves/)
+- 
 - [236. 二叉树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/)
+- [1644.二叉树的最近公共祖先 II](https://blog.csdn.net/qq_21201267/article/details/119707604)
+- []()
 - [1676. 二叉树的最近公共祖先 IV]()
-- [1644.二叉树的最近公共祖先 II]()
 - [235. 二叉搜索树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree/)
+
+## 1.3 N叉树
+- [559. N 叉树的最大深度](https://leetcode.cn/problems/maximum-depth-of-n-ary-tree/)
+- [589. N 叉树的前序遍历](https://leetcode.cn/problems/n-ary-tree-preorder-traversal/)
+- [590. N 叉树的后序遍历](https://leetcode.cn/problems/n-ary-tree-postorder-traversal/)
 
 ## 1.4 二叉搜索树
 
