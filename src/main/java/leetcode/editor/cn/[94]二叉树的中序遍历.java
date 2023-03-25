@@ -82,7 +82,7 @@ class P94_BinaryTreeInorderTraversal{
 class Solution {
 
     /**
-     * 中序遍历  递归
+     * 中序遍历  分解子问题
      */
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();
@@ -106,7 +106,7 @@ class Solution {
     }
 
     /**
-     * 中序遍历  回溯
+     * 中序遍历  递归
      */
     private void traverse(TreeNode root) {
 

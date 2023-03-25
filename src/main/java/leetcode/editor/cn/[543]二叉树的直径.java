@@ -21,7 +21,7 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 深度优先搜索 | 二叉树 
 //
-// 👍 1231, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1281, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
@@ -33,7 +33,7 @@ import common.TreeNode;
  * 二叉树的直径
  *
  * @author hsfxuebao
- * 2023-02-06 19:13:06 
+ * 2023-03-20 08:51:00 
  */
 class P543_DiameterOfBinaryTree{
     public static void main(String[] args) {
@@ -57,21 +57,34 @@ class P543_DiameterOfBinaryTree{
  * }
  */
 class Solution {
-    private int res = 0;
+    /**
+     * 后续遍历位置
+     * @param root
+     * @return
+     */
+    // 记录最大直径的长度
+    int maxDiameter = 0;
     public int diameterOfBinaryTree(TreeNode root) {
-        traverve(root);
-        return res;
+        maxDepth(root);
+        return maxDiameter;
     }
 
-    private int traverve(TreeNode root) {
+    /**
+     *
+     * 以root 为节点，当前节点的最大深度
+     * @param root
+     * @return
+     */
+    private int maxDepth(TreeNode root) {
         if (root == null) {
             return 0;
         }
-
-        int leftDepth = traverve(root.left);
-        int rightDepth = traverve(root.right);
-        res = Math.max(res, leftDepth + rightDepth);
+        int leftDepth = maxDepth(root.left);
+        int rightDepth = maxDepth(root.right);
+        // 更新最大深度
+        maxDiameter = Math.max(maxDiameter, leftDepth + rightDepth);
         return Math.max(leftDepth, rightDepth) + 1;
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

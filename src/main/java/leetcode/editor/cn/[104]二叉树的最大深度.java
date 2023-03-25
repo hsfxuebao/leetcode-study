@@ -18,21 +18,21 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 深度优先搜索 | 广度优先搜索 | 二叉树 
 //
-// 👍 1485, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1543, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
 //
+
+
 
 import common.TreeNode;
-import org.omg.CORBA.ServiceInformationHelper;
-
 
 /**
  * 二叉树的最大深度
  *
  * @author hsfxuebao
- * 2023-02-05 12:28:31 
+ * 2023-03-20 08:38:54 
  */
 class P104_MaximumDepthOfBinaryTree{
     public static void main(String[] args) {
@@ -58,44 +58,41 @@ class P104_MaximumDepthOfBinaryTree{
 class Solution {
 
     /**
-     * 动态规划，分解子问题
+     * 分解子问题
+     * @param root
+     * @return
      */
     public int maxDepth(TreeNode root) {
 
         if (root == null) {
             return 0;
         }
-
         int leftDepth = maxDepth(root.left);
         int rightDepth = maxDepth(root.right);
         return Math.max(leftDepth, rightDepth) + 1;
     }
 
-
     /**
-     * 回溯算法，递归
+     * 递归
      */
-    int result = 0;
+    int res = 0;
     int depth = 0;
     public int maxDepth1(TreeNode root) {
         traverse(root);
-        return result;
+        return res;
     }
 
     private void traverse(TreeNode root) {
-
         if (root == null) {
             return;
         }
-        // 前序遍历位置
         depth++;
-        result = Math.max(result, depth);
-        // 遍历的过程中记录最⼤深度
+        // 更新最大深度
+        res = Math.max(res, depth);
         traverse(root.left);
         traverse(root.right);
-
-        // 后续遍历位置
         depth--;
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

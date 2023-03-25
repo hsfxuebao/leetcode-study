@@ -1,6 +1,6 @@
 package leetcode.editor.cn;
-import common.TreeNode;
-//给你一棵二叉树的根节点 root ，翻转这棵二叉树，并返回其根节点。
+
+//给你一棵二叉树的根节点 root ，翻转这棵二叉树，并返回其根节点。 
 //
 // 
 //
@@ -37,11 +37,29 @@ import common.TreeNode;
 // 树中节点数目范围在 [0, 100] 内 
 // -100 <= Node.val <= 100 
 // 
-// Related Topics 树 深度优先搜索 广度优先搜索 二叉树 
-// 👍 1459 👎 0
+//
+// Related Topics树 | 深度优先搜索 | 广度优先搜索 | 二叉树 
+//
+// 👍 1530, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
+import common.TreeNode;
 
-//leetcode submit region begin(Prohibit modification and deletion)
+/**
+ * 翻转二叉树
+ *
+ * @author hsfxuebao
+ * 2023-03-22 19:06:00 
+ */
+class P226_InvertBinaryTree{
+    public static void main(String[] args) {
+        Solution solution = new P226_InvertBinaryTree().new Solution();
+        
+    }  
+    //leetcode submit region begin(Prohibit modification and deletion)
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -57,49 +75,19 @@ import common.TreeNode;
  *     }
  * }
  */
-class Solution226 {
+class Solution {
 
-    /**
-     * 遍历
-     */
-//    public TreeNode invertTree(TreeNode root) {
-//        if (root == null) {
-//            return null;
-//        }
-//        traverse(root);
-//        return root;
-//    }
-
-    // 遍历二叉树
-    private void traverse(TreeNode root) {
-        //base case
-        if (root == null) {
-            return;
-        }
-        // 前序位置
-        // 更换左右位置
-        TreeNode temp = root.left;
-        root.left = root.right;
-        root.right = temp;
-
-        traverse(root.left);
-        traverse(root.right);
-    }
-
-    /**
-     * 分解问题（递归）
-     */
     public TreeNode invertTree(TreeNode root) {
-
         if (root == null) {
             return null;
         }
-        TreeNode left = invertTree(root.left);
-        TreeNode right = invertTree(root.right);
-
-        root.left = right;
-        root.right = left;
+        TreeNode leftNode = invertTree(root.left);
+        TreeNode rightNode = invertTree(root.right);
+        root.left = rightNode;
+        root.right = leftNode;
         return root;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
+ 
+}

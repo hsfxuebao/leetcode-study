@@ -91,6 +91,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[111]二叉树的最小深度.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[111]二叉树的最小深度.md" />
+              <option name="frontendQuestionId" value="leetcode.cn111" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[111]二叉树的最小深度.java" />
+              <option name="titleSlug" value="minimum-depth-of-binary-tree" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1123]最深叶节点的最近公共祖先.java">
           <value>
             <LeetcodeEditor>
@@ -102,6 +113,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[114]二叉树展开为链表.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[114]二叉树展开为链表.md" />
+              <option name="frontendQuestionId" value="leetcode.cn114" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[114]二叉树展开为链表.java" />
+              <option name="titleSlug" value="flatten-binary-tree-to-linked-list" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1161]最大层内元素和.java">
           <value>
             <LeetcodeEditor>
@@ -110,6 +132,28 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1161]最大层内元素和.java" />
               <option name="titleSlug" value="maximum-level-sum-of-a-binary-tree" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[116]填充每个节点的下一个右侧节点指针.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[116]填充每个节点的下一个右侧节点指针.md" />
+              <option name="frontendQuestionId" value="leetcode.cn116" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[116]填充每个节点的下一个右侧节点指针.java" />
+              <option name="titleSlug" value="populating-next-right-pointers-in-each-node" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[124]二叉树中的最大路径和.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[124]二叉树中的最大路径和.md" />
+              <option name="frontendQuestionId" value="leetcode.cn124" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[124]二叉树中的最大路径和.java" />
+              <option name="titleSlug" value="binary-tree-maximum-path-sum" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -132,6 +176,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[130]被围绕的区域.java" />
               <option name="titleSlug" value="surrounded-regions" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1325]删除给定值的叶子节点.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[1325]删除给定值的叶子节点.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1325" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1325]删除给定值的叶子节点.java" />
+              <option name="titleSlug" value="delete-leaves-with-a-given-value" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -245,6 +300,28 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[226]翻转二叉树.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[226]翻转二叉树.md" />
+              <option name="frontendQuestionId" value="leetcode.cn226" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[226]翻转二叉树.java" />
+              <option name="titleSlug" value="invert-binary-tree" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[230]二叉搜索树中第K小的元素.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[230]二叉搜索树中第K小的元素.md" />
+              <option name="frontendQuestionId" value="leetcode.cn230" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[230]二叉搜索树中第K小的元素.java" />
+              <option name="titleSlug" value="kth-smallest-element-in-a-bst" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[235]二叉搜索树的最近公共祖先.java">
           <value>
             <LeetcodeEditor>
@@ -289,6 +366,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[297]二叉树的序列化与反序列化.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[297]二叉树的序列化与反序列化.md" />
+              <option name="frontendQuestionId" value="leetcode.cn297" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[297]二叉树的序列化与反序列化.java" />
+              <option name="titleSlug" value="serialize-and-deserialize-binary-tree" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[460]LFU 缓存.java">
           <value>
             <LeetcodeEditor>
@@ -308,6 +396,28 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[471]编码最短长度的字符串.java" />
               <option name="titleSlug" value="encode-string-with-shortest-length" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[501]二叉搜索树中的众数.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[501]二叉搜索树中的众数.md" />
+              <option name="frontendQuestionId" value="leetcode.cn501" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[501]二叉搜索树中的众数.java" />
+              <option name="titleSlug" value="find-mode-in-binary-search-tree" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[530]二叉搜索树的最小绝对差.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[530]二叉搜索树的最小绝对差.md" />
+              <option name="frontendQuestionId" value="leetcode.cn530" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[530]二叉搜索树的最小绝对差.java" />
+              <option name="titleSlug" value="minimum-absolute-difference-in-bst" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -377,6 +487,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[652]寻找重复的子树.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[652]寻找重复的子树.md" />
+              <option name="frontendQuestionId" value="leetcode.cn652" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[652]寻找重复的子树.java" />
+              <option name="titleSlug" value="find-duplicate-subtrees" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[654]最大二叉树.java">
           <value>
             <LeetcodeEditor>
@@ -385,6 +506,28 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[654]最大二叉树.java" />
               <option name="titleSlug" value="maximum-binary-tree" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[687]最长同值路径.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[687]最长同值路径.md" />
+              <option name="frontendQuestionId" value="leetcode.cn687" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[687]最长同值路径.java" />
+              <option name="titleSlug" value="longest-univalue-path" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[700]二叉搜索树中的搜索.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[700]二叉搜索树中的搜索.md" />
+              <option name="frontendQuestionId" value="leetcode.cn700" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[700]二叉搜索树中的搜索.java" />
+              <option name="titleSlug" value="search-in-a-binary-search-tree" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -407,6 +550,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[743]网络延迟时间.java" />
               <option name="titleSlug" value="network-delay-time" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[783]二叉搜索树节点最小距离.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[783]二叉搜索树节点最小距离.md" />
+              <option name="frontendQuestionId" value="leetcode.cn783" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[783]二叉搜索树节点最小距离.java" />
+              <option name="titleSlug" value="minimum-distance-between-bst-nodes" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -528,6 +682,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[958]二叉树的完全性检验.java" />
               <option name="titleSlug" value="check-completeness-of-a-binary-tree" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[965]单值二叉树.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[965]单值二叉树.md" />
+              <option name="frontendQuestionId" value="leetcode.cn965" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[965]单值二叉树.java" />
+              <option name="titleSlug" value="univalued-binary-tree" />
             </LeetcodeEditor>
           </value>
         </entry>

@@ -54,24 +54,23 @@ package leetcode.editor.cn;
 //
 // Related Topics栈 | 树 | 深度优先搜索 | 二叉树 
 //
-// 👍 984, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1027, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
 //
 
-import common.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+import common.TreeNode;
 
 /**
  * 二叉树的前序遍历
  *
  * @author hsfxuebao
- * 2023-02-05 12:35:06 
+ * 2023-03-21 20:56:30 
  */
 class P144_BinaryTreePreorderTraversal{
     public static void main(String[] args) {
@@ -97,10 +96,26 @@ class P144_BinaryTreePreorderTraversal{
 class Solution {
 
     /**
-     * 回溯 递归
+     * 分解子问题
      */
-    private List<Integer> res = new ArrayList<>();
     public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        // 左右子节点
+        result.add(root.val);
+        result.addAll(preorderTraversal(root.left));
+        result.addAll(preorderTraversal(root.right));
+        return result;
+    }
+
+
+    /**
+     * 递归
+     */
+    List<Integer> res = new ArrayList<>();
+    public List<Integer> preorderTraversal1(TreeNode root) {
         traverse(root);
         return res;
     }
@@ -109,24 +124,10 @@ class Solution {
         if (root == null) {
             return;
         }
-        // 前序遍历位置
+        // 前序位置
         res.add(root.val);
         traverse(root.left);
         traverse(root.right);
-    }
-
-    /**
-     * 动态规划 分解子问题
-     */
-    public List<Integer> preorderTraversal1(TreeNode root) {
-        List<Integer> res = new ArrayList<>();
-        if (root == null) {
-            return res;
-        }
-        res.add(root.val);
-        res.addAll(preorderTraversal1(root.left));
-        res.addAll(preorderTraversal1(root.right));
-        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
