@@ -38,7 +38,7 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 深度优先搜索 | 广度优先搜索 | 二叉树 
 //
-// 👍 957, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 989, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
@@ -50,7 +50,7 @@ import common.TreeNode;
  * 相同的树
  *
  * @author hsfxuebao
- * 2023-01-30 17:37:57 
+ * 2023-03-25 20:27:40 
  */
 class P100_SameTree{
     public static void main(String[] args) {
@@ -75,7 +75,6 @@ class P100_SameTree{
  */
 class Solution {
     public boolean isSameTree(TreeNode p, TreeNode q) {
-
         if (p == null && q == null) {
             return true;
         }

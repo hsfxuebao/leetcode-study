@@ -38,7 +38,7 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 深度优先搜索 | 二叉树 | 字符串匹配 | 哈希函数 
 //
-// 👍 864, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 887, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
@@ -50,7 +50,7 @@ import common.TreeNode;
  * 另一棵树的子树
  *
  * @author hsfxuebao
- * 2023-01-30 17:47:55 
+ * 2023-03-25 20:31:44 
  */
 class P572_SubtreeOfAnotherTree{
     public static void main(String[] args) {
@@ -75,20 +75,20 @@ class P572_SubtreeOfAnotherTree{
  */
 class Solution {
     public boolean isSubtree(TreeNode root, TreeNode subRoot) {
-
         if (root == null) {
             return subRoot == null;
         }
 
-        if (isSameTree(root, subRoot)) {
+        // 以root为节点是否 和subRoot相同
+        if (isSamTree(root, subRoot)) {
             return true;
         }
-
         return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
 
     }
 
-    private boolean isSameTree(TreeNode root, TreeNode subRoot) {
+    private boolean isSamTree(TreeNode root, TreeNode subRoot) {
+
         if (root == null && subRoot == null) {
             return true;
         }
@@ -98,7 +98,8 @@ class Solution {
         if (root.val != subRoot.val) {
             return false;
         }
-        return isSameTree(root.left, subRoot.left) && isSameTree(root.right, subRoot.right);
+        return isSamTree(root.left, subRoot.left) && isSamTree(root.right, subRoot.right);
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

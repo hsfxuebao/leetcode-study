@@ -36,24 +36,24 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 广度优先搜索 | 二叉树 
 //
-// 👍 732, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 752, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
 //
-
-import common.TreeNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import common.TreeNode;
+
 /**
  * 二叉树的锯齿形层序遍历
  *
  * @author hsfxuebao
- * 2023-01-30 19:42:29 
+ * 2023-03-26 09:22:03 
  */
 class P103_BinaryTreeZigzagLevelOrderTraversal{
     public static void main(String[] args) {
@@ -77,52 +77,36 @@ class P103_BinaryTreeZigzagLevelOrderTraversal{
  * }
  */
 class Solution {
-
-    /**
-     * BFS
-     */
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> res = new ArrayList<>();
+        List<List<Integer>> result = new ArrayList<>();
         if (root == null) {
-            return res;
+            return result;
         }
-
-        // 每层遍历方向
-        // 为 true 时向右，false 时向左
-        boolean flag = true;
-
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
-        // while 循环控制从上向下⼀层层遍历
-        while(!queue.isEmpty()){
 
-            int levelSize = queue.size();
-            // 记录这⼀层的节点值
+        boolean flag = true;  // true从左到右遍历 false从右到做遍历
+        while (!queue.isEmpty()) {
+            int size = queue.size();
             LinkedList<Integer> level = new LinkedList<>();
-            // for 循环控制每⼀层从左向右遍历
-            for (int i = 0; i < levelSize; i++) {
-                TreeNode cur = queue.poll();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
                 if (flag) {
-                    level.addLast(cur.val);
+                    level.addLast(node.val);
                 } else {
-                    level.addFirst(cur.val);
+                    level.addFirst(node.val);
                 }
-
-                if (cur.left != null) {
-                    queue.offer(cur.left);
+                if (node.left != null) {
+                    queue.offer(node.left);
                 }
-                if (cur.right != null) {
-                    queue.offer(cur.right);
+                if (node.right != null) {
+                    queue.offer(node.right);
                 }
             }
-            // 改变方向
             flag = !flag;
-            res.add(level);
-
+            result.add(level);
         }
-
-        return res;
-
+        return result;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

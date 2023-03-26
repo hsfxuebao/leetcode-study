@@ -41,22 +41,22 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 广度优先搜索 | 二叉树 
 //
-// 👍 243, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 247, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
 //
-
-import common.TreeNode;
 
 import java.util.LinkedList;
 import java.util.Queue;
+
+import common.TreeNode;
 
 /**
  * 二叉树的完全性检验
  *
  * @author hsfxuebao
- * 2023-02-05 10:39:59 
+ * 2023-03-26 17:19:00 
  */
 class P958_CheckCompletenessOfABinaryTree{
     public static void main(String[] args) {
@@ -82,28 +82,29 @@ class P958_CheckCompletenessOfABinaryTree{
 class Solution {
     public boolean isCompleteTree(TreeNode root) {
 
-        boolean end = false;
-
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
+        boolean end = false; // 从这个开始后面应该都是null
 
         while (!queue.isEmpty()) {
 
-            TreeNode curNode = queue.poll();
-
-            if (curNode == null) {
-                end = true;
-            } else {
-                if (end) {
-                    return false;
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                if (node == null) {
+                    end = true;
+                } else {
+                    if (end) {
+                        return false;
+                    }
+                    queue.offer(node.left);
+                    queue.offer(node.right);
                 }
-                queue.offer(curNode.left);
-                queue.offer(curNode.right);
-
             }
 
         }
-      return true;
+        return true;
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

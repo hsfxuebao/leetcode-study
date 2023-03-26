@@ -36,24 +36,24 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 广度优先搜索 | 二叉树 
 //
-// 👍 647, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 671, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
 //
-
-import common.TreeNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import common.TreeNode;
+
 /**
  * 二叉树的层序遍历 II
  *
  * @author hsfxuebao
- * 2023-01-31 20:57:04 
+ * 2023-03-26 09:30:58 
  */
 class P107_BinaryTreeLevelOrderTraversalIi{
     public static void main(String[] args) {
@@ -77,37 +77,31 @@ class P107_BinaryTreeLevelOrderTraversalIi{
  * }
  */
 class Solution {
-
-    LinkedList<List<Integer>> res = new LinkedList<>();
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
-
-
+        LinkedList<List<Integer>> result = new LinkedList<>();
         if (root == null) {
-            return res;
+            return result;
         }
-
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
 
         while (!queue.isEmpty()) {
-            int levelSize = queue.size();
-            List<Integer> level = new ArrayList<>();
-            for (int i = 0; i < levelSize; i++) {
-                TreeNode cur = queue.poll();
-                level.add(cur.val);
+            int size = queue.size();
+            List<Integer> level = new LinkedList<>();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                level.add(node.val);
 
-                if (cur.left != null) {
-                    queue.offer(cur.left);
+                if (node.left != null) {
+                    queue.offer(node.left);
                 }
-                if (cur.right != null) {
-                    queue.offer(cur.right);
+                if (node.right != null) {
+                    queue.offer(node.right);
                 }
             }
-            // 把每一层 添加到 头部，就是自底向上的层序遍历
-            res.addFirst(level);
+            result.addFirst(level);
         }
-        return res;
-
+        return result;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

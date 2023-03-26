@@ -40,22 +40,23 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 深度优先搜索 | 广度优先搜索 | 二叉树 
 //
-// 👍 98, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 100, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
 //
-
-import common.TreeNode;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
+
+import common.TreeNode;
 
 /**
  * 最大层内元素和
  *
  * @author hsfxuebao
- * 2023-01-31 21:07:41 
+ * 2023-03-26 09:35:54 
  */
 class P1161_MaximumLevelSumOfABinaryTree{
     public static void main(String[] args) {
@@ -80,41 +81,36 @@ class P1161_MaximumLevelSumOfABinaryTree{
  */
 class Solution {
     public int maxLevelSum(TreeNode root) {
+
         if (root == null) {
             return 0;
         }
-
-        // 当前层数据和 最大的层数
-        int res = 0;
-        int maxSum = Integer.MIN_VALUE;
-        // 层数，从1开始
-        int depth = 1;
-
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
-
+        int level = 1;
+        int res = 0, maxSum = Integer.MIN_VALUE;
         while (!queue.isEmpty()) {
-            int levelSize = queue.size();
-
+            int size = queue.size();
             int levelSum = 0;
-            for (int i = 0; i < levelSize; i++) {
-                TreeNode cur = queue.poll();
-                levelSum += cur.val;
-                if (cur.left != null) {
-                    queue.offer(cur.left);
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                levelSum += node.val;
+                if (node.left != null) {
+                    queue.offer(node.left);
                 }
-                if (cur.right != null) {
-                    queue.offer(cur.right);
+                if (node.right != null) {
+                    queue.offer(node.right);
                 }
             }
+
             if (levelSum > maxSum) {
+                res = level;
                 maxSum = levelSum;
-                res = depth;
             }
-            // 层数加1
-            depth++;
+            level++;
         }
         return res;
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

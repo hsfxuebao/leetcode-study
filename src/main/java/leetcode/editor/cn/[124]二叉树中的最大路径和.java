@@ -35,7 +35,7 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 深度优先搜索 | 动态规划 | 二叉树 
 //
-// 👍 1878, 👎 0 
+// 👍 1894, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
@@ -47,7 +47,7 @@ import common.TreeNode;
  * 二叉树中的最大路径和
  *
  * @author hsfxuebao
- * 2023-03-15 09:38:07 
+ * 2023-03-26 17:46:58 
  */
 class P124_BinaryTreeMaximumPathSum{
     public static void main(String[] args) {
@@ -76,28 +76,19 @@ class Solution {
         if (root == null) {
             return 0;
         }
-        // 计算单边路径和时 顺便计算最大路径和
         oneSideMax(root);
         return res;
     }
 
-    // 定义，从根节点root为起点的最大单边路径和
     private int oneSideMax(TreeNode root) {
-
         if (root == null) {
             return 0;
         }
-        //
-        int leftMaxSum = Math.max(0, oneSideMax(root.left));
-        int rightMaxSum = Math.max(0, oneSideMax(root.right));
-
-        // 后续遍历位置  顺便更新最大路径和
-        int pathMaxSum = leftMaxSum + rightMaxSum + root.val;
-        res = Math.max(res, pathMaxSum);
-        // 实现函数定义，左右子树的最大单边路径和加上 根节点的值
-        // 就是从根节点root 为起点的最大单边路径和
-        return Math.max(leftMaxSum, rightMaxSum) + root.val;
-
+        // 有可能 左右子节点都是负数，此时 不要左右子节点
+        int leftVal = Math.max(0, oneSideMax(root.left));
+        int rightVal = Math.max(0, oneSideMax(root.right));
+        res = Math.max(res, leftVal + rightVal + root.val);
+        return Math.max(leftVal, rightVal) + root.val;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
