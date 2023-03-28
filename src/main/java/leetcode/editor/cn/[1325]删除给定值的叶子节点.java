@@ -59,7 +59,7 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 深度优先搜索 | 二叉树 
 //
-// 👍 102, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 104, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
@@ -71,7 +71,7 @@ import common.TreeNode;
  * 删除给定值的叶子节点
  *
  * @author hsfxuebao
- * 2023-03-16 21:42:18 
+ * 2023-03-27 21:41:20 
  */
 class P1325_DeleteLeavesWithAGivenValue{
     public static void main(String[] args) {
@@ -101,11 +101,14 @@ class Solution {
         }
         root.left = removeLeafNodes(root.left, target);
         root.right = removeLeafNodes(root.right, target);
-        // 后续遍历位置
-        if (root.val == target && root.left == null && root.right == null) {
+        // 后序位置  判断是否要删除自己
+        // 叶子节点 & 等于target
+        if (root.left == null && root.right == null && root.val == target) {
             return null;
         }
         return root;
+
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -38,7 +38,7 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 深度优先搜索 | 二叉树 
 //
-// 👍 757, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 758, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
@@ -50,7 +50,7 @@ import common.TreeNode;
  * 最长同值路径
  *
  * @author hsfxuebao
- * 2023-03-16 09:40:56 
+ * 2023-03-27 21:20:43 
  */
 class P687_LongestUnivaluePath{
     public static void main(String[] args) {
@@ -79,26 +79,25 @@ class Solution {
         if (root == null) {
             return res;
         }
-        maxLen(root, root.val);
+        maxLength(root, root.val);
         return res;
 
     }
 
-    // 定义：计算以 root 为根的这棵⼆叉树中，从 root 开始值为 parentVal 的最⻓树枝⻓
-    //度
-    private int maxLen(TreeNode root, int parentVal) {
-
+    private int maxLength(TreeNode root, long parentVal) {
         if (root == null) {
             return 0;
         }
-        int leftLen = maxLen(root.left, root.val);
-        int rightLen = maxLen(root.right, root.val);
-        // 更新res
-        res = Math.max(res, leftLen + rightLen);
+        int leftVal = maxLength(root.left, root.val);
+        int rightVal = maxLength(root.right, root.val);
+        res = Math.max(res, leftVal + rightVal);
+        // 当前节点的 最大同值路径
         if (root.val != parentVal) {
             return 0;
         }
-        return 1 + Math.max(leftLen, rightLen);
+        return Math.max(leftVal, rightVal) + 1;
+
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

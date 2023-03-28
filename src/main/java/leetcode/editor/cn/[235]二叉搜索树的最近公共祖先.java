@@ -32,8 +32,14 @@ package leetcode.editor.cn;
 // 所有节点的值都是唯一的。 
 // p、q 为不同节点且均存在于给定的二叉搜索树中。 
 // 
-// Related Topics 树 深度优先搜索 二叉搜索树 二叉树 
-// 👍 990 👎 0
+//
+// Related Topics树 | 深度优先搜索 | 二叉搜索树 | 二叉树 
+//
+// 👍 1048, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
 import common.TreeNode;
 
@@ -41,7 +47,7 @@ import common.TreeNode;
  * 二叉搜索树的最近公共祖先
  *
  * @author hsfxuebao
- * 2023-01-02 11:18:30 
+ * 2023-03-28 09:49:33 
  */
 class P235_LowestCommonAncestorOfABinarySearchTree{
     public static void main(String[] args) {
@@ -60,30 +66,26 @@ class P235_LowestCommonAncestorOfABinarySearchTree{
  */
 
 class Solution {
-
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        int minVal = Math.min(p.val, q.val);
-        int maxVal = Math.max(p.val, q.val);
-        return find(root, minVal, maxVal);
-    }
-
-    private TreeNode find(TreeNode root, int minVal, int maxVal) {
-
         if (root == null) {
             return null;
         }
+        int smallVal = p.val > q.val ? q.val : p.val;
+        int bigVal = p.val > q.val ? p.val : q.val;
+        return find(root, smallVal, bigVal);
+    }
 
-        // 当前值 大于 maxVal 去左子树查找
-        if (root.val > maxVal) {
-            return find(root.left, minVal, maxVal);
+    private TreeNode find(TreeNode root, int smallVal, int bigVal) {
+        if (root == null) {
+            return null;
         }
-        // 当前值 小于 minVal 去右子树查找
-        if (root.val < minVal) {
-            return find(root.right, minVal, maxVal);
+        if (root.val > bigVal) {
+            return find(root.left, smallVal, bigVal);
         }
-        // minVal <= root.val <= maxVal
+        if (root.val < smallVal) {
+            return find(root.right, smallVal, bigVal);
+        }
         return root;
-
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

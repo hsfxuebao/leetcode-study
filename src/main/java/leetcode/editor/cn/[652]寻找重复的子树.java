@@ -43,13 +43,11 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 深度优先搜索 | 哈希表 | 二叉树 
 //
-// 👍 673, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 674, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
 //
-
-
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,7 +60,7 @@ import common.TreeNode;
  * 寻找重复的子树
  *
  * @author hsfxuebao
- * 2023-03-25 16:05:54 
+ * 2023-03-27 21:50:08 
  */
 class P652_FindDuplicateSubtrees{
     public static void main(String[] args) {
@@ -86,30 +84,32 @@ class P652_FindDuplicateSubtrees{
  * }
  */
 class Solution {
-
-    // 记录 所有子树 出现的次数
-    Map<String, Integer> memo = new HashMap<>();
-    // 记录 重复的 子树
+    Map<String, Integer> memo  = new HashMap<>();
     List<TreeNode> result = new ArrayList<>();
-
     public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
+
+        if (root == null) {
+            return result;
+        }
         traverse(root);
         return result;
+
     }
 
     private String traverse(TreeNode root) {
         if (root == null) {
             return "#";
         }
-        String left = traverse(root.left);
-        String right = traverse(root.right);
-        String subTree = left + "," + right + "," + root.val;
-        Integer fre = memo.getOrDefault(subTree, 0);
-        if (fre == 1) {
+        String leftStr = traverse(root.left);
+        String rightStr = traverse(root.right);
+        // 后序位置 当前树的结构
+        String rootStr = leftStr +"," + rightStr + "," + root.val;
+        Integer rootVal = memo.getOrDefault(rootStr, 0);
+        if (rootVal == 1) {
             result.add(root);
         }
-        memo.put(subTree, fre+1);
-        return subTree;
+        memo.put(rootStr, rootVal + 1);
+        return rootStr;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

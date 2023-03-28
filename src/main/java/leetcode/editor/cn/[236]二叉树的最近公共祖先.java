@@ -8,7 +8,7 @@ package leetcode.editor.cn;
 // 
 //
 // 示例 1： 
-//
+// 
 // 
 //输入：root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
 //输出：3
@@ -16,7 +16,7 @@ package leetcode.editor.cn;
 // 
 //
 // 示例 2： 
-//
+// 
 // 
 //输入：root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4
 //输出：5
@@ -35,14 +35,20 @@ package leetcode.editor.cn;
 // 提示： 
 //
 // 
-// 树中节点数目在范围 [2, 105] 内。 
-// -109 <= Node.val <= 109 
+// 树中节点数目在范围 [2, 10⁵] 内。 
+// -10⁹ <= Node.val <= 10⁹ 
 // 所有 Node.val 互不相同 。 
 // p != q 
 // p 和 q 均存在于给定的二叉树中。 
 // 
-// Related Topics 树 深度优先搜索 二叉树 
-// 👍 2085 👎 0
+//
+// Related Topics树 | 深度优先搜索 | 二叉树 
+//
+// 👍 2207, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
 import common.TreeNode;
 
@@ -50,7 +56,7 @@ import common.TreeNode;
  * 二叉树的最近公共祖先
  *
  * @author hsfxuebao
- * 2023-01-02 10:45:49 
+ * 2023-03-28 09:14:30 
  */
 class P236_LowestCommonAncestorOfABinaryTree{
     public static void main(String[] args) {
@@ -68,30 +74,25 @@ class P236_LowestCommonAncestorOfABinaryTree{
  * }
  */
 class Solution {
-
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        return find(root, p, q);
-    }
 
-    private TreeNode find(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) {
             return null;
         }
+        return find(root, p.val, q.val);
+    }
 
-        // 找到了
-        if (root == p || root == q) {
+    private TreeNode find(TreeNode root, int val, int val1) {
+        if (root == null) {
+            return null;
+        }
+        if (root.val == val || root.val == val1) {
             return root;
         }
-
-        TreeNode leftNode = find(root.left, p, q);
-        TreeNode rightNode = find(root.right, p, q);
-        // 若左右子树 都不为null 当前节点为公共节点
+        TreeNode leftNode = find(root.left, val, val1);
+        TreeNode rightNode = find(root.right, val, val1);
         if (leftNode != null && rightNode != null) {
             return root;
-        }
-
-        if (leftNode == null && rightNode == null) {
-            return null;
         }
         return leftNode != null ? leftNode : rightNode;
     }

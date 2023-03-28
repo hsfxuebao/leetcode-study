@@ -22,28 +22,28 @@ class P1644_lowestCommonAncestor {
 
     class Solution {
 
-        boolean findP = false;
         boolean findQ = false;
+        boolean findP = false;
         TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-            TreeNode node = find(root, p, q);
-            if (findQ && findP) {
-                return node;
+            if (root == null) {
+                return null;
+            }
+            TreeNode treeNode = find(root, p, q);
+            if (findP && findQ) {
+                return treeNode;
             }
             return null;
         }
 
         // 需要遍历所有节点
         private TreeNode find(TreeNode root, TreeNode p, TreeNode q) {
-
             if (root == null) {
                 return null;
             }
 
-            // 左右子树
-            TreeNode left = find(root.left, p, q);
-            TreeNode right = find(root.right, p, q);
-            // 后序位置，判断当前节点是不是 LCA 节点
-            if (left != null && right != null) {
+            TreeNode leftNode = find(root.left, p, q);
+            TreeNode rightNode = find(root.right, p, q);
+            if (leftNode != null && rightNode != null) {
                 return root;
             }
 
@@ -56,7 +56,8 @@ class P1644_lowestCommonAncestor {
                 }
                 return root;
             }
-            return left != null ? left : right;
+            return leftNode != null ? leftNode : rightNode;
+
         }
     }
 

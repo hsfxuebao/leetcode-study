@@ -33,7 +33,7 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 深度优先搜索 | 广度优先搜索 | 二叉树 
 //
-// 👍 176, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 178, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
@@ -45,7 +45,7 @@ import common.TreeNode;
  * 单值二叉树
  *
  * @author hsfxuebao
- * 2023-03-17 21:22:23 
+ * 2023-03-27 21:44:41 
  */
 class P965_UnivaluedBinaryTree{
     public static void main(String[] args) {
@@ -69,27 +69,28 @@ class P965_UnivaluedBinaryTree{
  * }
  */
 class Solution {
-    boolean isUnival = true;
+    boolean res = true;
     public boolean isUnivalTree(TreeNode root) {
         if (root == null) {
-            return isUnival;
+            return res;
         }
-        traverse(root, root.val);
-        return isUnival;
+        isUnivalTree(root, root.val);
+        return res;
     }
 
-    private void traverse(TreeNode root, int val) {
-        if (root == null || !isUnival) {
+    private void isUnivalTree(TreeNode root, int target) {
+        if (root == null) {
             return;
         }
-        if (root.val != val) {
-            isUnival = false;
+        if (!res) {
             return;
         }
-        traverse(root.left, val);
-        traverse(root.right, val);
-
-
+        if (root.val != target) {
+            res = false;
+            return;
+        }
+        isUnivalTree(root.left, target);
+        isUnivalTree(root.right, target);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
