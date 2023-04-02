@@ -1,66 +1,77 @@
 package leetcode.editor.cn;
 
-//leetcode submit region begin(Prohibit modification and deletion)
+//给你一个整数 n ，求恰由 n 个节点组成且节点值从 1 到 n 互不相同的 二叉搜索树 有多少种？返回满足题意的二叉搜索树的种数。 
+//
+// 
+//
+// 示例 1： 
+// 
+// 
+//输入：n = 3
+//输出：5
+// 
+//
+// 示例 2： 
+//
+// 
+//输入：n = 1
+//输出：1
+// 
+//
+// 
+//
+// 提示： 
+//
+// 
+// 1 <= n <= 19 
+// 
+//
+// Related Topics树 | 二叉搜索树 | 数学 | 动态规划 | 二叉树 
+//
+// 👍 2176, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
-
-class Solution96 {
-
-    int[][] count;
+/**
+ * 不同的二叉搜索树
+ *
+ * @author hsfxuebao
+ * 2023-03-29 09:50:10 
+ */
+class P96_UniqueBinarySearchTrees{
+    public static void main(String[] args) {
+        Solution solution = new P96_UniqueBinarySearchTrees().new Solution();
+        
+    }  
+    //leetcode submit region begin(Prohibit modification and deletion)
+class Solution {
 
     public int numTrees(int n) {
-
         if (n <= 0) {
             return 0;
         }
-        // 初始化 都为0
-        count = new int[n + 1][n + 1];
-        return countV2(1, n);
+        return count(1, n);
     }
 
-    private int countV2(int left, int right) {
-        if (left > right) {
-            return 1;
-        }
-        // 从备忘录 中取数据
-        if (count[left][right] > 0) {
-            return count[left][right];
-        }
+        /* 计算闭区间 [lo, hi] 组成的 BST 个数 */
+        private int count(int left, int right) {
 
-        int res = 0;
-        for (int i = left; i <= right; i++) {
-            // i为值作为根节点root
-            // 左子树
-            int leftCnt = countV2(left, i - 1);
-            // 右子树
-            int rightCnt = countV2(i + 1, right);
-            res += leftCnt * rightCnt;
+            if (left > right) {
+                return 1;
+            }
+            int result = 0;
+            for (int i = left; i <= right; i++) {
+                // 以i 为根节点的
+                int leftNum = count(left, i - 1);
+                int rightNum = count(i+1, right);
+                // 左右子树的组合数乘积是 BST 的总数
+                result += leftNum * rightNum;
+            }
+            return result;
         }
-        // 记录到 备忘录中
-        count[left][right] = res;
-        return res;
-
-
     }
-
-    /**
-     * 从 闭区间 left 到right之间可能构造多少种二叉搜索树
-     * todo 会超时
-     */
-    private int count(int left, int right) {
-
-        if (left > right) {
-            return 1;
-        }
-        int res = 0;
-        for (int i = left; i <= right; i++) {
-            // i为值作为根节点root
-            // 左子树
-            int leftCnt = count(left, i - 1);
-            // 右子树
-            int rightCnt = count(i + 1, right);
-            res += leftCnt * rightCnt;
-        }
-        return res;
-    }
-}
 //leetcode submit region end(Prohibit modification and deletion)
+ 
+}

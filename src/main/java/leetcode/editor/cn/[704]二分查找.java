@@ -1,9 +1,9 @@
 package leetcode.editor.cn;
+
 //给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否
 //则返回 -1。 
 //
-// 
-//示例 1: 
+// 示例 1: 
 //
 // 输入: nums = [-1,0,3,5,9,12], target = 9
 //输出: 4
@@ -26,96 +26,49 @@ package leetcode.editor.cn;
 // n 将在 [1, 10000]之间。 
 // nums 的每个元素都将在 [-9999, 9999]之间。 
 // 
-// Related Topics 数组 二分查找 
-// 👍 1070 👎 0
+//
+// Related Topics数组 | 二分查找 
+//
+// 👍 1258, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
-
-import javax.swing.text.html.HTML.Tag;
-
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution704 {
-
-    /**
-     * 二分查找
-     */
+/**
+ * 二分查找
+ *
+ * @author hsfxuebao
+ * 2023-03-31 09:38:08 
+ */
+class P704_BinarySearch{
+    public static void main(String[] args) {
+        Solution solution = new P704_BinarySearch().new Solution();
+        
+    }  
+    //leetcode submit region begin(Prohibit modification and deletion)
+class Solution {
     public int search(int[] nums, int target) {
-        if (nums.length <= 0) {
-            return -1;
-        }
 
-        int left = 0, right = nums.length - 1;
+        int left = 0;
+        int right = nums.length;
 
-        while (left <= right) {
+        while (left < right) {
 
-            int mid = left + ((right - left) / 2);
-            if (nums[mid] < target) {
+            int mid = left + (right - left)/2;
+
+            if (nums[mid] > target) {
+                right = mid;
+            } else if (nums[mid] < target) {
                 left = mid + 1;
-            } else if (nums[mid] > target) {
-                right = mid - 1;
-            } else if (nums[mid] == target) {
+            } else {
                 return mid;
             }
-
         }
         return -1;
-    }
-    /**
-     * 二分查找，最左侧节点
-     */
-    public int searchLeft(int[] nums, int target) {
-        if (nums.length <= 0) {
-            return -1;
-        }
 
-        int left = 0, right = nums.length - 1;
-
-        while (left <= right) {
-
-            int mid = left + ((right - left) / 2);
-            if (nums[mid] < target) {
-                left = mid + 1;
-            } else if (nums[mid] > target) {
-                right = mid - 1;
-            } else if (nums[mid] == target) {
-                right = mid - 1;
-            }
-        }
-        // 判断left是否越界
-        if (left >= nums.length) {
-            return -1;
-        }
-
-        return nums[left] == target ? left : -1;
-    }
-
-    /**
-     * 二分查找，最右侧节点
-     */
-    public int searchRight(int[] nums, int target) {
-        if (nums.length <= 0) {
-            return -1;
-        }
-
-        int left = 0, right = nums.length - 1;
-
-        while (left <= right) {
-
-            int mid = left + ((right - left) / 2);
-            if (nums[mid] < target) {
-                left = mid + 1;
-            } else if (nums[mid] > target) {
-                right = mid - 1;
-            } else if (nums[mid] == target) {
-                left = mid + 1;
-            }
-        }
-
-        // 判断left是否越界
-        if (left - 1 < 0) {
-            return -1;
-        }
-
-        return nums[left - 1] == target ? left - 1 : -1;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
+ 
+}

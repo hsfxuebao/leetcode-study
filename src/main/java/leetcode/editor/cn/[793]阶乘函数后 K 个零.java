@@ -37,82 +37,79 @@ package leetcode.editor.cn;
 // 提示: 
 //
 // 
-// 0 <= k <= 109 
+// 0 <= k <= 10⁹ 
 // 
-// Related Topics 数学 二分查找 
-// 👍 195 👎 0
+//
+// Related Topics数学 | 二分查找 
+//
+// 👍 198, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
 /**
  * 阶乘函数后 K 个零
  *
  * @author hsfxuebao
- * 2023-01-12 10:34:22 
+ * 2023-04-02 16:07:53 
  */
 class P793_PreimageSizeOfFactorialZeroesFunction{
     public static void main(String[] args) {
         Solution solution = new P793_PreimageSizeOfFactorialZeroesFunction().new Solution();
-        solution.rightBound(2);
         
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int preimageSizeFZF(int k) {
-
         return (int)(rightBound(k) - leftBound(k) + 1);
 
     }
 
-        // 左侧边界
-        public long leftBound(int k) {
+        private long leftBound(long k) {
             long left = 0, right = Long.MAX_VALUE;
-            while (left < right) {
 
-                long mid = left + (right - left) /2;
+            while (left < right) {
+                long mid = left + (right - left)/2;
+
                 if (trailingZeroes(mid) > k) {
                     right = mid;
                 } else if (trailingZeroes(mid) < k) {
                     left = mid + 1;
-                } else {
+                } else if (trailingZeroes(mid) == k) {
                     right = mid;
                 }
-
             }
             return left;
         }
 
-        // 右侧边界
         private long rightBound(int k) {
-
             long left = 0, right = Long.MAX_VALUE;
+
             while (left < right) {
-                long mid = left + (right - left) /2;
+                long mid = left + (right - left)/2;
+
                 if (trailingZeroes(mid) > k) {
                     right = mid;
                 } else if (trailingZeroes(mid) < k) {
                     left = mid + 1;
-                } else if (trailingZeroes(mid) == k){
+                } else if (trailingZeroes(mid) == k) {
                     left = mid + 1;
                 }
             }
-            // 判断一下 left-1 是否越界
-            return left - 1;
+            return left -1;
         }
 
+        private long trailingZeroes(long n) {
+        long res = 0;
+        for (long i = n; i / 5 > 0; i = i / 5) {
 
-        /**
-         * 数字n 的阶乘末尾 0 的个数
-         */
-        public long trailingZeroes(long n) {
-            long res = 0;
-            long divisor = 5;
-            while (divisor <= n) {
-                res += n / divisor;
-                divisor *= 5;
-            }
-            return res;
-
+            res += i / 5;
         }
+        return res;
     }
+
+}
 //leetcode submit region end(Prohibit modification and deletion)
  
 }

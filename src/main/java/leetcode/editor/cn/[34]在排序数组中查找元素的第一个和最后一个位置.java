@@ -1,5 +1,6 @@
 package leetcode.editor.cn;
-//给你一个按照非递减顺序排列的整数数组 nums，和一个目标值 target。请你找出给定目标值在数组中的开始位置和结束位置。
+
+//给你一个按照非递减顺序排列的整数数组 nums，和一个目标值 target。请你找出给定目标值在数组中的开始位置和结束位置。 
 //
 // 如果数组中不存在目标值 target，返回 [-1, -1]。 
 //
@@ -30,70 +31,84 @@ package leetcode.editor.cn;
 // 提示： 
 //
 // 
-// 0 <= nums.length <= 105 
-// -109 <= nums[i] <= 109 
+// 0 <= nums.length <= 10⁵ 
+// -10⁹ <= nums[i] <= 10⁹ 
 // nums 是一个非递减数组 
-// -109 <= target <= 109 
+// -10⁹ <= target <= 10⁹ 
 // 
-// Related Topics 数组 二分查找 
-// 👍 2047 👎 0
+//
+// Related Topics数组 | 二分查找 
+//
+// 👍 2239, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
-
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution34 {
-
+/**
+ * 在排序数组中查找元素的第一个和最后一个位置
+ *
+ * @author hsfxuebao
+ * 2023-04-01 10:57:33 
+ */
+class P34_FindFirstAndLastPositionOfElementInSortedArray{
+    public static void main(String[] args) {
+        Solution solution = new P34_FindFirstAndLastPositionOfElementInSortedArray().new Solution();
+        
+    }  
+    //leetcode submit region begin(Prohibit modification and deletion)
+class Solution {
     public int[] searchRange(int[] nums, int target) {
-        return new int[]{searchLeft(nums, target), searchRight(nums, target)};
+
+        int leftIndex = leftBound(nums, target);
+        int rightIndex = rightBound(nums, target);
+        return new int[]{leftIndex, rightIndex};
+
     }
 
-    /**
-     * 二分查找，最左边元素
-     */
-    private int searchLeft(int[] nums, int target) {
+    public int leftBound(int[] nums, int target) {
 
-        int left = 0, right = nums.length - 1;
-        while (left <= right) {
-            int mid = left + ((right - left) >> 1);
+        int left = 0;
+        int right = nums.length;
+        while (left < right) {
+            int mid = left + (right - left)/2;
+            if (nums[mid] > target) {
+                right = mid;
+            } else if (nums[mid] < target) {
+                left = mid+1;
 
-            if (nums[mid] < target) {
-                left = mid + 1;
-            } else if (nums[mid] > target) {
-                right = mid - 1;
             } else if (nums[mid] == target) {
-                right = mid - 1;
+                right = mid;
             }
         }
-        // 越界情况
-        if (left >= nums.length) {
+        if (left >= nums.length || nums[left] != target) {
             return -1;
         }
-        return nums[left] == target ? left : -1;
-
+        return left;
     }
+        public int rightBound(int[] nums, int target) {
 
-    /**
-     * 二分查找，最右边元素
-     */
-    private int searchRight(int[] nums, int target) {
+            int left = 0;
+            int right = nums.length;
+            while (left < right) {
+                int mid = left + (right - left)/2;
+                if (nums[mid] > target) {
+                    right = mid;
+                } else if (nums[mid] < target) {
+                    left = mid+1;
 
-        int left = 0, right = nums.length - 1;
-
-        while (left <= right) {
-            int mid = left + ((right - left) >> 1);
-            if (nums[mid] < target) {
-                left = mid + 1;
-            } else if (nums[mid] > target) {
-                right = mid - 1;
-            } else if (nums[mid] == target) {
-                left = mid + 1;
+                } else if (nums[mid] == target) {
+                    left = mid + 1;
+                }
             }
+            if (left-1 < 0 || nums[left-1] != target) {
+                return -1;
+            }
+            return left -1;
         }
-        if (left - 1 < 0) {
-            return -1;
-        }
-        return nums[left - 1] == target ? left - 1 : -1;
-    }
 
 
 }
 //leetcode submit region end(Prohibit modification and deletion)
+ 
+}
