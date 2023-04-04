@@ -1,5 +1,6 @@
 package leetcode.editor.cn;
-//给你两个字符串 s1 和 s2 ，写一个函数来判断 s2 是否包含 s1 的排列。如果是，返回 true ；否则，返回 false 。
+
+//给你两个字符串 s1 和 s2 ，写一个函数来判断 s2 是否包含 s1 的排列。如果是，返回 true ；否则，返回 false 。 
 //
 // 换句话说，s1 的排列之一是 s2 的 子串 。 
 //
@@ -25,61 +26,77 @@ package leetcode.editor.cn;
 // 提示： 
 //
 // 
-// 1 <= s1.length, s2.length <= 104 
+// 1 <= s1.length, s2.length <= 10⁴ 
 // s1 和 s2 仅包含小写字母 
 // 
-// Related Topics 哈希表 双指针 字符串 滑动窗口 
-// 👍 809 👎 0
+//
+// Related Topics哈希表 | 双指针 | 字符串 | 滑动窗口 
+//
+// 👍 902, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-import java.awt.event.WindowStateListener;
-import java.util.HashMap;
-import java.util.Map;
-
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution567 {
-
+/**
+ * 字符串的排列
+ *
+ * @author hsfxuebao
+ * 2023-04-04 09:44:02 
+ */
+class P567_PermutationInString{
+    public static void main(String[] args) {
+        Solution solution = new P567_PermutationInString().new Solution();
+        
+    }  
+    //leetcode submit region begin(Prohibit modification and deletion)
+class Solution {
     public boolean checkInclusion(String s1, String s2) {
-
-        Map<Character, Integer> needs = new HashMap<>();
-        Map<Character, Integer> windows = new HashMap<>();
-        // 初始化needs
-        for (Character c : s1.toCharArray()) {
-            needs.put(c, needs.getOrDefault(c, 0) + 1);
+        List<Integer> result = new ArrayList<>();
+        int[] need = new int[26];
+        int[] window = new int[26];
+        Set<Character> needSet = new HashSet<>();
+        int valid = 0;
+        for (int i = 0; i < s1.length(); i++) {
+            char c = s1.charAt(i);
+            need[c - 'a']++;
+            needSet.add(c);
         }
 
         int left = 0, right = 0;
-        // 判断是否满足条件
-        int count = 0;
-
         while (right < s2.length()) {
-            char rightChar = s2.charAt(right);
+            char c = s2.charAt(right);
+            // 右移
             right++;
-
-            if (needs.containsKey(rightChar)) {
-                int num = windows.getOrDefault(rightChar, 0) + 1;
-                windows.put(rightChar, num);
-                if (num == needs.get(rightChar)) {
-                    count++;
+            // 更新窗口内数据
+            if (needSet.contains(c)) {
+                window[c - 'a']++;
+                if (window[c - 'a'] == need[c - 'a']) {
+                    valid++;
                 }
             }
 
-            // left指针 右移动
+            // 缩小窗口
             while (right - left >= s1.length()) {
-
-                // 判断是否满足条件
-                if (count == needs.size()) {
+                // 更新结果
+                if (valid == needSet.size()) {
                     return true;
                 }
 
-                char leftChar = s2.charAt(left);
+                char c1 = s2.charAt(left);
+                // 左移
                 left++;
-                if (needs.containsKey(leftChar)) {
-                    int num = windows.get(leftChar);
-                    if (num == needs.get(leftChar)) {
-                        count--;
+                // 更新窗口内数据
+                if (needSet.contains(c1)) {
+                    if (window[c1 - 'a'] == need[c1 - 'a']) {
+                        valid--;
                     }
-                    windows.put(leftChar, num - 1);
+                    window[c1 - 'a']--;
                 }
             }
         }
@@ -87,3 +104,5 @@ class Solution567 {
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
+ 
+}

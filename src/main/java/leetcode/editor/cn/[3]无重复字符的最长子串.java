@@ -1,5 +1,6 @@
 package leetcode.editor.cn;
-//给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
+
+//给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。 
 //
 // 
 //
@@ -33,43 +34,54 @@ package leetcode.editor.cn;
 // 提示： 
 //
 // 
-// 0 <= s.length <= 5 * 104 
+// 0 <= s.length <= 5 * 10⁴ 
 // s 由英文字母、数字、符号和空格组成 
 // 
-// Related Topics 哈希表 字符串 滑动窗口 
-// 👍 8486 👎 0
+//
+// Related Topics哈希表 | 字符串 | 滑动窗口 
+//
+// 👍 8984, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
-
-import java.util.HashMap;
-import java.util.Map;
-
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution3 {
-
+/**
+ * 无重复字符的最长子串
+ *
+ * @author hsfxuebao
+ * 2023-04-03 09:43:14 
+ */
+class P3_LongestSubstringWithoutRepeatingCharacters{
+    public static void main(String[] args) {
+        Solution solution = new P3_LongestSubstringWithoutRepeatingCharacters().new Solution();
+        
+    }  
+    //leetcode submit region begin(Prohibit modification and deletion)
+class Solution {
     public int lengthOfLongestSubstring(String s) {
 
-        // 存放窗口内的数据
-        Map<Character, Integer> windows = new HashMap<>();
-
         int left = 0, right = 0;
-        int maxLen = 0;
+
+        int[] window = new int[256];
+        int res = 0;
         while (right < s.length()) {
-            char rightChar = s.charAt(right);
+            // 右移窗口
+            char c = s.charAt(right);
+            window[c]++;
             right++;
-            // 更新窗口
-            windows.put(rightChar, windows.getOrDefault(rightChar, 0) + 1);
 
-            // left指针向右移动
-            while (windows.get(rightChar) > 1) {
-                char leftChar = s.charAt(left);
+            // 左移动窗口
+            while (window[c] > 1) {
+                char c1 = s.charAt(left);
+                window[c1]--;
                 left++;
-                // 更新窗口
-                windows.put(leftChar, windows.get(leftChar) - 1);
             }
-            maxLen = Math.max(maxLen, right - left);
-
+            res = Math.max(res, right - left);
         }
-        return maxLen;
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
+ 
+}
