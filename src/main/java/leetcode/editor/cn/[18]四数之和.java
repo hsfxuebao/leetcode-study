@@ -1,7 +1,7 @@
 package leetcode.editor.cn;
 
-//给你一个由 n 个整数组成的数组 nums ，和一个目标值 target 。请你找出并返回满足下述全部条件且不重复的四元组 [nums[a], nums[b
-//], nums[c], nums[d]] （若两个四元组元素一一对应，则认为两个四元组重复）： 
+//给你一个由 n 个整数组成的数组 nums ，和一个目标值 target 。请你找出并返回满足下述全部条件且不重复的四元组 [nums[a], nums[
+//b], nums[c], nums[d]] （若两个四元组元素一一对应，则认为两个四元组重复）： 
 //
 // 
 // 0 <= a, b, c, d < n 
@@ -33,82 +33,98 @@ package leetcode.editor.cn;
 //
 // 
 // 1 <= nums.length <= 200 
-// -109 <= nums[i] <= 109 
-// -109 <= target <= 109 
+// -10⁹ <= nums[i] <= 10⁹ 
+// -10⁹ <= target <= 10⁹ 
 // 
-// Related Topics 数组 双指针 排序 
-// 👍 1446 👎 0
-
+//
+// Related Topics数组 | 双指针 | 排序 
+//
+// 👍 1565, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution18 {
-
+/**
+ * 四数之和
+ *
+ * @author hsfxuebao
+ * 2023-04-11 09:27:32 
+ */
+class P18_FourSum{
+    public static void main(String[] args) {
+        Solution solution = new P18_FourSum().new Solution();
+        
+    }  
+    //leetcode submit region begin(Prohibit modification and deletion)
+class Solution {
     public List<List<Integer>> fourSum(int[] nums, int target) {
-
+        // 排序
         Arrays.sort(nums);
-        return nSumTarget(nums, 4, 0, target);
+        return nNumberSum(nums, 4, 0,  target);
 
     }
 
-    /**
-     * todo 一定注意 int型 越界的问题
-     * n数之和,至少2数之和,nums必须是排序好
-     */
-    public List<List<Integer>> nSumTarget(int[] nums, int n, int start, long target) {
+        /**
+         * n 数之和
+         * 注意 nums必须是排好序的
+         */
+        private List<List<Integer>> nNumberSum(int[] nums, int n, int startIndex, long target) {
 
-        int size = nums.length;
-        List<List<Integer>> result = new ArrayList<>();
-        if (n < 2 || size < n) {
+            List<List<Integer>> result = new ArrayList<>();
+            if (nums.length < 2 || nums.length < n) {
+                return result;
+            }
+            // base case n =2
+            if (n == 2) {
+                int left = startIndex, right = nums.length - 1;
+
+                while (left < right) {
+                    int leftNum = nums[left], rightNum = nums[right];
+                    if (leftNum + rightNum > target) {
+                        while (left < right && nums[right] == rightNum) {
+                            right--;
+                        }
+                    } else if (leftNum + rightNum < target) {
+                        while (left < right && nums[left] == leftNum) {
+                            left++;
+                        }
+                    } else {
+                        List<Integer> res = new ArrayList<>();
+                        res.add(leftNum);
+                        res.add(rightNum);
+                        result.add(res);
+                        while (left < right && nums[left] == leftNum) {
+                            left++;
+                        }
+                        while (left < right && nums[right] == rightNum) {
+                            right--;
+                        }
+                    }
+                }
+            } else {
+
+                for (int i = startIndex; i < nums.length; ) {
+                    int leftNum = nums[i];
+                    List<List<Integer>> lists = nNumberSum(nums, n - 1, i + 1, target - nums[i]);
+                    for (List<Integer> res : lists) {
+                        res.add(nums[i]);
+                        result.add(res);
+                    }
+
+                    // 跳过重复数值
+                    while (i < nums.length && nums[i] == leftNum) {
+                        i++;
+                    }
+                }
+            }
             return result;
         }
-
-        if (n == 2) {
-            int left = start, right = size - 1;
-            while (left < right) {
-
-                int leftNum = nums[left];
-                int rightNum = nums[right];
-                int sum = leftNum + rightNum;
-                if (sum < target) {
-                    while (left < right && nums[left] == leftNum) {
-                        left++;
-                    }
-                } else if (sum > target) {
-                    while (left < right && rightNum == nums[right]) {
-                        right--;
-                    }
-                } else if (sum == target) {
-                    result.add(new ArrayList<>(Arrays.asList(leftNum, rightNum)));
-                    while (left < right && nums[left] == leftNum) {
-                        left++;
-                    }
-                    while (left < right && rightNum == nums[right]) {
-                        right--;
-                    }
-                }
-            }
-        } else {
-            // n大于2 的情况
-            for (int i = start; i < size; ) {
-                int iNum = nums[i];
-                List<List<Integer>> resList = nSumTarget(nums, n - 1, i + 1, target - nums[i]);
-                for (List<Integer> res : resList) {
-                    res.add(iNum);
-                    result.add(res);
-                }
-
-                // 排除 重复的元素
-                while (i < size && nums[i] == iNum) {
-                    i++;
-                }
-            }
-        }
-        return result;
     }
-
-}
 //leetcode submit region end(Prohibit modification and deletion)
+ 
+}

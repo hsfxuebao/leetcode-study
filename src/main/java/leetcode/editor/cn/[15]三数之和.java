@@ -1,6 +1,7 @@
 package leetcode.editor.cn;
-//给你一个整数数组 nums ，判断是否存在三元组 [nums[i], nums[j], nums[k]] 满足 i != j、i != k 且 j != k
-// ，同时还满足 nums[i] + nums[j] + nums[k] == 0 。请 
+
+//给你一个整数数组 nums ，判断是否存在三元组 [nums[i], nums[j], nums[k]] 满足 i != j、i != k 且 j != 
+//k ，同时还满足 nums[i] + nums[j] + nums[k] == 0 。请 
 //
 // 你返回所有和为 0 且不重复的三元组。 
 //
@@ -45,81 +46,88 @@ package leetcode.editor.cn;
 //
 // 
 // 3 <= nums.length <= 3000 
-// -105 <= nums[i] <= 105 
+// -10⁵ <= nums[i] <= 10⁵ 
 // 
-// Related Topics 数组 双指针 排序 
-// 👍 5459 👎 0
-
+//
+// Related Topics数组 | 双指针 | 排序 
+//
+// 👍 5844, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
-
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution15 {
-
+/**
+ * 三数之和
+ *
+ * @author hsfxuebao
+ * 2023-04-10 21:29:47 
+ */
+class P15_ThreeSum{
+    public static void main(String[] args) {
+        Solution solution = new P15_ThreeSum().new Solution();
+        
+    }  
+    //leetcode submit region begin(Prohibit modification and deletion)
+class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
-        int numLen = nums.length;
-        if (numLen < 3) {
-           return result;
-        }
-
+        // 排序
         Arrays.sort(nums);
-
-        // 固定一个数，求 两个之和的所有可能结果
         for (int i = 0; i < nums.length;) {
-            int num = nums[i];
-            // 计算从i+1位置开始，和为0-num
-            List<List<Integer>> twoSumList = twoSumAll(nums, i + 1, -num);
-            for (List<Integer> res : twoSumList) {
-                res.add(num);
-                result.add(res);
+            int firstNum = nums[i];
+            List<List<Integer>> twoSumList = twoSum(nums, i + 1, -firstNum);
+            for (List<Integer> list:twoSumList) {
+                list.add(firstNum);
+                result.add(list);
             }
-            // 第一个数重复的情况
-            while (i < nums.length && nums[i] == num) {
+            while (i < nums.length && nums[i] == firstNum) {
                 i++;
             }
-
         }
         return result;
-
     }
 
-    public static List<List<Integer>> twoSumAll(int[] nums, int index, int target) {
 
-        List<List<Integer>> result = new ArrayList<>();
+        public List<List<Integer>> twoSum(int[] nums, int startIndex, int target) {
 
-        int left = index, right = nums.length - 1;
-        while (left < right) {
+            List<List<Integer>> result = new ArrayList<>();
+            int left = startIndex, right = nums.length - 1;
+            while (left < right) {
 
-            int leftNum = nums[left];
-            int rightNum = nums[right];
-            int sum = leftNum + rightNum;
-            if (sum < target) {
-                while (left < right && nums[left] == leftNum) {
-                    left++;
+                int leftNum = nums[left];
+                int rightNum = nums[right];
+                int sum = leftNum + rightNum;
+                if (sum < target) {
+                    while (left < right && nums[left] == leftNum) {
+                        left++;
+                    }
+                } else if (sum > target) {
+                    while (left < right && nums[right] == rightNum) {
+                        right--;
+                    }
+                } else if (sum == target) {
+                    List<Integer> res = new ArrayList<>();
+                    res.add(leftNum);
+                    res.add(rightNum);
+                    result.add(res);
+                    while (left < right && nums[right] == rightNum) {
+                        right--;
+                    }
+                    while (left < right && nums[left] == leftNum) {
+                        left++;
+                    }
                 }
-            } else if (sum > target) {
-                while (left < right && nums[right] == rightNum) {
-                    right--;
-                }
-            } else if (sum == target) {
-                List<Integer> res = new ArrayList<>();
-                res.add(leftNum);
-                res.add(rightNum);
-                result.add(res);
-                while (left < right && nums[left] == leftNum) {
-                    left++;
-                }
-                while (left < right && nums[right] == rightNum) {
-                    right--;
-                }
+
             }
+            return result;
         }
-        return result;
-    }
-
 }
 //leetcode submit region end(Prohibit modification and deletion)
+ 
+}

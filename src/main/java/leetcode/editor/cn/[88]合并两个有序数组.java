@@ -55,7 +55,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 双指针 | 排序 
 //
-// 👍 1704, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1821, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
@@ -65,7 +65,7 @@ package leetcode.editor.cn;
  * 合并两个有序数组
  *
  * @author hsfxuebao
- * 2023-01-15 16:52:01 
+ * 2023-04-12 09:44:14 
  */
 class P88_MergeSortedArray{
     public static void main(String[] args) {
@@ -76,29 +76,27 @@ class P88_MergeSortedArray{
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
 
-        // 两个指针分别初始化在两个数组的最后一个元素（类似拉链两端的锯齿）
-        int i = m -1;
-        int j = n - 1;
-
-        // 生成排序的结果（类似拉链的拉锁）
+        int num1Index = m - 1, num2Index = n - 1;
         int p = nums1.length - 1;
 
-        while (i >= 0 && j >= 0) {
-
-            if (nums1[i] >= nums2[j]) {
-                nums1[p] = nums1[i];
-                i--;
+        while (num1Index >= 0 && num2Index >= 0) {
+            if (nums1[num1Index] > nums2[num2Index]) {
+                nums1[p] = nums1[num1Index];
+                num1Index--;
             } else {
-                nums1[p] = nums2[j];
-                j--;
+                nums1[p] = nums2[num2Index];
+                num2Index--;
             }
             p--;
         }
-        while (j >= 0) {
-            nums1[p] = nums2[j];
-            j--;
+
+        // 只考虑nums2 是否还有没遍历完的数据
+        while (num2Index >= 0) {
+            nums1[p] = nums2[num2Index];
+            num2Index--;
             p--;
         }
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

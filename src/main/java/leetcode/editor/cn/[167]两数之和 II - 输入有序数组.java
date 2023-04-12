@@ -1,13 +1,14 @@
+package leetcode.editor.cn;
+
 //给你一个下标从 1 开始的整数数组 numbers ，该数组已按 非递减顺序排列 ，请你从数组中找出满足相加之和等于目标数 target 的两个数。如果设这
-//两个数分别是 numbers[index1] 和 numbers[index2] ，则 1 <= index1 < index2 <= numbers.leng
-//th 。 
+//两个数分别是 numbers[index1] 和 numbers[index2] ，则 1 <= index1 < index2 <= numbers.
+//length 。 
 //
 // 以长度为 2 的整数数组 [index1, index2] 的形式返回这两个整数的下标 index1 和 index2。 
 //
 // 你可以假设每个输入 只对应唯一的答案 ，而且你 不可以 重复使用相同的元素。 
 //
 // 你所设计的解决方案必须只使用常量级的额外空间。 
-// 
 //
 // 示例 1： 
 //
@@ -36,71 +37,57 @@
 // 提示： 
 //
 // 
-// 2 <= numbers.length <= 3 * 104 
+// 2 <= numbers.length <= 3 * 10⁴ 
 // -1000 <= numbers[i] <= 1000 
 // numbers 按 非递减顺序 排列 
 // -1000 <= target <= 1000 
 // 仅存在一个有效答案 
 // 
-// Related Topics 数组 双指针 二分查找 
-// 👍 937 👎 0
+//
+// Related Topics数组 | 双指针 | 二分查找 
+//
+// 👍 1026, 👎 0 
+//
+//
+//
+//
 
+/**
+ * 两数之和 II - 输入有序数组
+ *
+ * @author hsfxuebao
+ * 2023-04-10 21:15:41 
+ */
+class P167_TwoSumIiInputArrayIsSorted{
+    public static void main(String[] args) {
+        Solution solution = new P167_TwoSumIiInputArrayIsSorted().new Solution();
+        
+    }  
+    //leetcode submit region begin(Prohibit modification and deletion)
+class Solution {
+    public int[] twoSum(int[] numbers, int target) {
 
-
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution167 {
-
-    public int[] twoSum1(int[] nums, int target) {
-
-        int left = 0, right = nums.length - 1;
-
-        while (left < right) {
-
-            int sum = nums[left] + nums[right];
-
-            if (sum < target) {
-                left++;
-            } else if (sum > target) {
-                right--;
-            } else if (sum == target) {
-                return new int[]{left+1, right+1};
-            }
-        }
-        return null;
-    }
-
-    /**
-     * 两数之和  不包括重复数字
-     */
-    public int[] twoSum(int[] nums, int target) {
-
-        int left = 0, right = nums.length - 1;
+        int left = 0, right = numbers.length - 1;
 
         while (left < right) {
-            int leftNum = nums[left];
-            int rightNum = nums[right];
-            int sum =  leftNum + rightNum;
-
+            int leftNum = numbers[left];
+            int rightNum = numbers[right];
+            int sum = leftNum + rightNum;
             if (sum < target) {
-                while (left < right && nums[left] == leftNum) {
+                while (left < right && numbers[left] == leftNum) {
                     left++;
                 }
             } else if (sum > target) {
-                while (left < right && rightNum == nums[right]) {
+                while (left < right && numbers[right] == rightNum) {
                     right--;
                 }
             } else if (sum == target) {
-                int[] res = new int[]{left+1, right+1};
-                while (left < right && nums[left] == leftNum) {
-                    left++;
-                }
-                while (left < right && rightNum == nums[right]) {
-                    right--;
-                }
-                return res;
+                return new int[]{left + 1, right + 1};
             }
         }
         return null;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
+ 
+}

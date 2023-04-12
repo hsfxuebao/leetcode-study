@@ -42,21 +42,19 @@ package leetcode.editor.cn;
 //
 // Related Topics队列 | 数组 | 滑动窗口 | 单调队列 | 堆（优先队列） 
 //
-// 👍 2072, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 2231, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
 //
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * 滑动窗口最大值
  *
  * @author hsfxuebao
- * 2023-01-16 10:04:26 
+ * 2023-04-05 09:10:59 
  */
 class P239_SlidingWindowMaximum{
     public static void main(String[] args) {
@@ -65,66 +63,54 @@ class P239_SlidingWindowMaximum{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-
-        private MonotonicQueue windows = new MonotonicQueue();
     public int[] maxSlidingWindow(int[] nums, int k) {
+        int[] res = new int[nums.length - k +1];
 
-        List<Integer> res = new ArrayList<>();
+        MonotonicQueue window = new MonotonicQueue();
+        for (int i = 0; i < nums.length; i++) {
 
-        int n = nums.length;
-
-        for (int i = 0; i < n; i++) {
-
-            if (i < k - 1) {
-                //先填满窗口的前 k - 1
-                windows.push(nums[i]);
+            // 先填满窗口的 k-1
+            if (i < k-1) {
+                window.push(nums[i]);
             } else {
-                // 窗口向前滑动，加入新数字
-                windows.push(nums[i]);
-                // 记录当前窗口的最大值
-                res.add(windows.getMax());
-                // 移出旧数字
-                windows.pop(nums[i - k +1]);
-
+                // 窗口向前滑动 添加新数字
+                window.push(nums[i]);
+                // 记录 窗口内最大值
+                res[i-k+1] = window.getMax();
+                // 移除 旧数字
+                window.pop(nums[i-k+1]);
             }
         }
-        // 需要转成 int[] 数组再返回
-        int[] arr = new int[res.size()];
-        for (int i = 0; i < res.size(); i++) {
-            arr[i] = res.get(i);
-        }
-        return arr;
+
+        return res;
     }
 
-}
 
-    /**
-     * 单调队列的实现
-     */
-    class MonotonicQueue {
+        // 单调递减队列实现
+        class MonotonicQueue {
 
+            LinkedList<Integer> q = new LinkedList<>();
 
-        private LinkedList<Integer> maxQ = new LinkedList<>();
-
-        public void push(int value) {
-
-            while (!maxQ.isEmpty() && maxQ.getLast() < value) {
-                maxQ.removeLast();
+            public void push(int num) {
+                // 将 小于n 的数 全部删除
+                while (!q.isEmpty() && q.getLast() < num) {
+                    q.pollLast();
+                }
+                // 然后将n加入 尾部
+                q.addLast(num);
             }
-            maxQ.addLast(value);
-        }
 
-        public Integer getMax() {
-            return maxQ.getFirst();
-        }
-
-        public void pop(int value) {
-            if (maxQ.getFirst() == value) {
-                maxQ.removeFirst();
+            public int getMax() {
+                return q.getFirst();
             }
+
+            public void pop(int num) {
+                if (q.getFirst() == num) {
+                    q.pollFirst();
+                }
+            }
+
         }
-
-
 
     }
 //leetcode submit region end(Prohibit modification and deletion)

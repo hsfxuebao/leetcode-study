@@ -1,5 +1,6 @@
 package leetcode.editor.cn;
-//给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。
+
+//给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。 
 //
 // 不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并 原地 修改输入数组。 
 //
@@ -33,8 +34,8 @@ package leetcode.editor.cn;
 // 
 //输入：nums = [3,2,2,3], val = 3
 //输出：2, nums = [2,2]
-//解释：函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。你不需要考虑数组中超出新长度后面的元素。例如，函数返回的新长度为 2 ，而 num
-//s = [2,2,3,3] 或 nums = [2,2,0,0]，也会被视作正确答案。
+//解释：函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。你不需要考虑数组中超出新长度后面的元素。例如，函数返回的新长度为 2 ，而 
+//nums = [2,2,3,3] 或 nums = [2,2,0,0]，也会被视作正确答案。
 // 
 //
 // 示例 2： 
@@ -55,19 +56,32 @@ package leetcode.editor.cn;
 // 0 <= nums[i] <= 50 
 // 0 <= val <= 100 
 // 
-// Related Topics 数组 双指针 
-// 👍 1592 👎 0
+//
+// Related Topics数组 | 双指针 
+//
+// 👍 1735, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
-
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution27 {
-
+/**
+ * 移除元素
+ *
+ * @author hsfxuebao
+ * 2023-04-05 10:23:44 
+ */
+class P27_RemoveElement{
+    public static void main(String[] args) {
+        Solution solution = new P27_RemoveElement().new Solution();
+        
+    }  
+    //leetcode submit region begin(Prohibit modification and deletion)
+class Solution {
     public int removeElement(int[] nums, int val) {
-        if (nums.length <= 0) {
-            return 0;
-        }
-        // 定义快慢指针
+
         int slow = 0, fast = 0;
+
         while (fast < nums.length) {
 
             if (nums[fast] != val) {
@@ -80,3 +94,5 @@ class Solution27 {
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
+ 
+}

@@ -1,5 +1,6 @@
 package leetcode.editor.cn;
-//给你一个 升序排列 的数组 nums ，请你 原地 删除重复出现的元素，使每个元素 只出现一次 ，返回删除后数组的新长度。元素的 相对顺序 应该保持 一致
+
+//给你一个 升序排列 的数组 nums ，请你 原地 删除重复出现的元素，使每个元素 只出现一次 ，返回删除后数组的新长度。元素的 相对顺序 应该保持 一致 
 //。 
 //
 // 由于在某些语言中不能改变数组的长度，所以必须将结果放在数组nums的第一部分。更规范地说，如果在删除重复项之后有 k 个元素，那么 nums 的前 k 个
@@ -49,28 +50,40 @@ package leetcode.editor.cn;
 // 提示： 
 //
 // 
-// 1 <= nums.length <= 3 * 104 
-// -104 <= nums[i] <= 104 
+// 1 <= nums.length <= 3 * 10⁴ 
+// -10⁴ <= nums[i] <= 10⁴ 
 // nums 已按 升序 排列 
 // 
-// Related Topics 数组 双指针 
-// 👍 2961 👎 0
+//
+// Related Topics数组 | 双指针 
+//
+// 👍 3102, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
-
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution26 {
-
+/**
+ * 删除有序数组中的重复项
+ *
+ * @author hsfxuebao
+ * 2023-04-05 10:19:40 
+ */
+class P26_RemoveDuplicatesFromSortedArray{
+    public static void main(String[] args) {
+        Solution solution = new P26_RemoveDuplicatesFromSortedArray().new Solution();
+        
+    }  
+    //leetcode submit region begin(Prohibit modification and deletion)
+class Solution {
     public int removeDuplicates(int[] nums) {
-        if (nums.length <= 0) {
-            return 0;
-        }
-        // 定义一个快指针，慢指针
+
         int slow = 0, fast = 0;
 
         while (fast < nums.length) {
-
             if (nums[fast] != nums[slow]) {
-                nums[++slow] = nums[fast];
+                slow++;
+                nums[slow] = nums[fast];
             }
             fast++;
         }
@@ -78,3 +91,5 @@ class Solution26 {
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
+ 
+}
