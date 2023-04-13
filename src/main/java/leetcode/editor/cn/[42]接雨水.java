@@ -1,5 +1,6 @@
 package leetcode.editor.cn;
-//给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
+
+//给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。 
 //
 // 
 //
@@ -26,39 +27,82 @@ package leetcode.editor.cn;
 //
 // 
 // n == height.length 
-// 1 <= n <= 2 * 104 
-// 0 <= height[i] <= 105 
+// 1 <= n <= 2 * 10⁴ 
+// 0 <= height[i] <= 10⁵ 
 // 
-// Related Topics 栈 数组 双指针 动态规划 单调栈 
-// 👍 3979 👎 0
+//
+// Related Topics栈 | 数组 | 双指针 | 动态规划 | 单调栈 
+//
+// 👍 4263, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
+
+/**
+ * 接雨水
+ *
+ * @author hsfxuebao
+ * 2023-04-13 20:09:55 
+ */
+class P42_TrappingRainWater{
+    public static void main(String[] args) {
+        Solution solution = new P42_TrappingRainWater().new Solution();
+        
+    }  
+    //leetcode submit region begin(Prohibit modification and deletion)
+class Solution {
+
+        public int trap(int[] height) {
+
+            int result = 0;
+            int left = 0, right = height.length - 1;
+
+            int leftMax = Integer.MIN_VALUE, rightMax = Integer.MIN_VALUE;
+
+            while (left <= right) {
+                leftMax = Math.max(leftMax, height[left]);
+                rightMax = Math.max(rightMax, height[right]);
 
 
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution42 {
+                if (leftMax > rightMax) {
+                    result += Math.min(leftMax, rightMax) - height[right];
+                    right--;
+                } else {
+                    result += Math.min(leftMax, rightMax) - height[left];
+                    left++;
+                }
+            }
+            return result;
 
-    public int trap(int[] height) {
+        }
 
-        int len = height.length;
+        /**
+         * 时间复杂度0(n)
+         * @param height
+         * @return
+         */
+    public int trap1(int[] height) {
 
-        // 当前位置 向左看  最高的位置
-        int[] left = new int[len];
-        // 当前位置 向右看  最高的位置
-        int[] right = new int[len];
-        left[0] = height[0];
+        int[] leftMax = new int[height.length];
+        int[] rightMax = new int[height.length];
+        leftMax[0] = height[0];
         for (int i = 1; i < height.length; i++) {
-            left[i] = Math.max(left[i - 1], height[i]);
+            leftMax[i] = Math.max(leftMax[i-1], height[i]);
         }
-        right[len - 1] = height[len - 1];
-        for (int i = len - 2; i >= 0; i--) {
-            right[i] = Math.max(height[i], right[i+1]);
+        rightMax[height.length - 1] = height[height.length - 1];
+        for (int i = height.length - 2; i >= 0; i--) {
+            rightMax[i] = Math.max(rightMax[i+1], height[i]);
         }
 
-        // 计算可以盛水的面积
-        int res = 0;
-        for (int i = 0; i < len; i++) {
-            res += Math.min(left[i], right[i]) - height[i];
+        int result = 0;
+        for (int i = 0; i < height.length; i++) {
+            int minHeight = Math.min(leftMax[i], rightMax[i]);
+            result +=  minHeight - height[i];
         }
-        return res;
+        return result;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
+ 
+}

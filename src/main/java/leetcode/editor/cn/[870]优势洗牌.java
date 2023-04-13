@@ -1,4 +1,5 @@
 package leetcode.editor.cn;
+
 //给定两个大小相等的数组 nums1 和 nums2，nums1 相对于 nums2 的优势可以用满足 nums1[i] > nums2[i] 的索引 i 的
 //数目来描述。 
 //
@@ -25,73 +26,93 @@ package leetcode.editor.cn;
 // 提示： 
 //
 // 
-// 1 <= nums1.length <= 105 
+// 1 <= nums1.length <= 10⁵ 
 // nums2.length == nums1.length 
-// 0 <= nums1[i], nums2[i] <= 109 
+// 0 <= nums1[i], nums2[i] <= 10⁹ 
 // 
-// Related Topics 贪心 数组 双指针 排序 
-// 👍 353 👎 0
-
+//
+// Related Topics贪心 | 数组 | 双指针 | 排序 
+//
+// 👍 371, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution870 {
-
+/**
+ * 优势洗牌
+ *
+ * @author hsfxuebao
+ * 2023-04-13 20:39:12 
+ */
+class P870_AdvantageShuffle{
+    public static void main(String[] args) {
+        Solution solution = new P870_AdvantageShuffle().new Solution();
+        
+    }  
+    //leetcode submit region begin(Prohibit modification and deletion)
+class Solution {
     public int[] advantageCount(int[] nums1, int[] nums2) {
 
-
-
-        // 优先队列，排序nums2数组  降序
-        PriorityQueue<Number> pq = new PriorityQueue<Number>(
-                (Number num1, Number num2) -> {
-                    return num2.getValue() - num1.getValue();
-                });
-        // 对nums2排序
-        for (int i = 0; i < nums1.length; i++) {
-            pq.offer(new Number(i, nums2[i]));
-        }
-
-        // 对num1进行 升序
-        Arrays.sort(nums1);
-        // 记录 nums1的左右指针
-        // // nums1[left] 是最小值，nums1[right] 是最大值
-        int left = 0, right = nums1.length - 1;
-        int res[] = new int[nums1.length];
-        while (!pq.isEmpty()) {
-            Number number = pq.poll();
-            // value 是 nums2 中的最大值，index 是对应索引
-            int value = number.getValue();
-            int index = number.getIndex();
-
-            if (value < nums1[right]) {
-                // 如果 nums1[right] 能胜过 maxval，那就自己上
-                res[index] = nums1[right--];
-            } else {
-                // 否则用最小值混一下，养精蓄锐
-                res[index] = nums1[left++];
+        // 对nums2进行降序排序
+        PriorityQueue<Number> maxQ = new PriorityQueue<>(new Comparator<Number>() {
+            @Override
+            public int compare(Number o1, Number o2) {
+                return o2.getValue()  - o1.getValue();
             }
+        });
+
+
+        for (int i = 0; i < nums2.length; i++) {
+            maxQ.offer(new Number(i, nums2[i]));
         }
-        return res;
+
+        // 对nums1 升序
+        Arrays.sort(nums1);
+        int[]  result = new int[nums1.length];
+        int left = 0, right = nums1.length - 1;
+        while (!maxQ.isEmpty()) {
+            // nums2的最大值
+            Number maxNumber = maxQ.poll();
+            int maxVal = maxNumber.getValue();
+
+            // 先判断nums1的最大值是否大于maxVal 如果大于就上，不大于 就用最小值顶替
+            if (nums1[right] > maxVal) {
+                result[maxNumber.getIndex()] = nums1[right--];
+            } else {
+                result[maxNumber.getIndex()] = nums1[left++];
+            }
+
+        }
+        return result;
     }
+
 }
 
-class Number {
-    private int index;
-    private int value;
+    class Number{
 
-    public Number(int index, int value) {
-        this.index = index;
-        this.value = value;
-    }
+        public int index;  // 数组中的索引
+        public int value; // 数组中索引对应的值
 
-    public int getValue() {
-        return value;
+        public Number(int index, int value) {
+            this.index = index;
+            this.value = value;
+        }
+
+        public int getValue() {
+            return this.value;
+        }
+        public int getIndex() {
+            return this.index;
+        }
+
     }
-    public int getIndex() {
-        return index;
-    }
-}
 
 //leetcode submit region end(Prohibit modification and deletion)
+ 
+}
+
