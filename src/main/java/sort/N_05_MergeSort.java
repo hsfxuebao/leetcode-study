@@ -9,10 +9,13 @@ import java.util.Arrays;
  */
 public class N_05_MergeSort {
 
+
+	public static int[] temp;
 	public static void mergeSort(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;
 		}
+		temp = new int[arr.length];
 		mergeSort(arr, 0, arr.length - 1);
 	}
 
@@ -27,6 +30,7 @@ public class N_05_MergeSort {
 	}
 
 	public static void merge(int[] arr, int l, int m, int r) {
+
 		int[] help = new int[r - l + 1];
 		int i = 0;
 		int p1 = l;

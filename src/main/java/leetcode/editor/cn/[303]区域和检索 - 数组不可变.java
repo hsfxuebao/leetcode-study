@@ -1,5 +1,6 @@
 package leetcode.editor.cn;
-//给定一个整数数组 nums，处理以下类型的多个查询:
+
+//给定一个整数数组 nums，处理以下类型的多个查询: 
 //
 // 
 // 计算索引 left 和 right （包含 left 和 right）之间的 nums 元素的 和 ，其中 left <= right 
@@ -9,8 +10,8 @@ package leetcode.editor.cn;
 //
 // 
 // NumArray(int[] nums) 使用数组 nums 初始化对象 
-// int sumRange(int i, int j) 返回数组 nums 中索引 left 和 right 之间的元素的 总和 ，包含 left 和 ri
-//ght 两点（也就是 nums[left] + nums[left + 1] + ... + nums[right] ) 
+// int sumRange(int i, int j) 返回数组 nums 中索引 left 和 right 之间的元素的 总和 ，包含 left 和 
+//right 两点（也就是 nums[left] + nums[left + 1] + ... + nums[right] ) 
 // 
 //
 // 
@@ -36,32 +37,51 @@ package leetcode.editor.cn;
 // 提示： 
 //
 // 
-// 1 <= nums.length <= 104 
-// -105 <= nums[i] <= 105 
+// 1 <= nums.length <= 10⁴ 
+// -10⁵ <= nums[i] <= 10⁵ 
 // 0 <= i <= j < nums.length 
-// 最多调用 104 次 sumRange 方法 
+// 最多调用 10⁴ 次 sumRange 方法 
 // 
-// Related Topics 设计 数组 前缀和 
-// 👍 518 👎 0
+//
+// Related Topics设计 | 数组 | 前缀和 
+//
+// 👍 545, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
+/**
+ * 区域和检索 - 数组不可变
+ *
+ * @author hsfxuebao
+ * 2023-04-13 20:52:09 
+ */
+class P303_RangeSumQueryImmutable{
+    public static void main(String[] args) {
 
-//leetcode submit region begin(Prohibit modification and deletion)
+    }  
+    //leetcode submit region begin(Prohibit modification and deletion)
 class NumArray {
 
-    // 当前节点 以前所有节点的数字和（不包括当前节点）
-    private int[] preSum;
+        // 前缀和数组
+        int[] preSum;
 
     public NumArray(int[] nums) {
-
-        preSum = new int[nums.length + 1];
-        // 计算
+        preSum = new int[nums.length];
+        int res = 0;
         for (int i = 0; i < nums.length; i++) {
-            preSum[i+1] = preSum[i] + nums[i];
+            res += nums[i];
+            preSum[i] = res;
         }
+
     }
     
     public int sumRange(int left, int right) {
-        return preSum[right+1] - preSum[left];
+        if (left < 1) {
+            return preSum[right];
+        }
+        return preSum[right] - preSum[left - 1];
     }
 }
 
@@ -71,3 +91,5 @@ class NumArray {
  * int param_1 = obj.sumRange(left,right);
  */
 //leetcode submit region end(Prohibit modification and deletion)
+ 
+}
