@@ -1,8 +1,9 @@
 package leetcode.editor.cn;
-//这里有 n 个航班，它们分别从 1 到 n 进行编号。
+
+//这里有 n 个航班，它们分别从 1 到 n 进行编号。 
 //
-// 有一份航班预订表 bookings ，表中第 i 条预订记录 bookings[i] = [firsti, lasti, seatsi] 意味着在从 fi
-//rsti 到 lasti （包含 firsti 和 lasti ）的 每个航班 上预订了 seatsi 个座位。 
+// 有一份航班预订表 bookings ，表中第 i 条预订记录 bookings[i] = [firsti, lasti, seatsi] 意味着在从 
+//firsti 到 lasti （包含 firsti 和 lasti ）的 每个航班 上预订了 seatsi 个座位。 
 //
 // 请你返回一个长度为 n 的数组 answer，里面的元素是每个航班预定的座位总数。 
 //
@@ -40,35 +41,83 @@ package leetcode.editor.cn;
 // 提示： 
 //
 // 
-// 1 <= n <= 2 * 104 
-// 1 <= bookings.length <= 2 * 104 
+// 1 <= n <= 2 * 10⁴ 
+// 1 <= bookings.length <= 2 * 10⁴ 
 // bookings[i].length == 3 
 // 1 <= firsti <= lasti <= n 
-// 1 <= seatsi <= 104 
+// 1 <= seatsi <= 10⁴ 
 // 
-// Related Topics 数组 前缀和 
-// 👍 428 👎 0
+//
+// Related Topics数组 | 前缀和 
+//
+// 👍 456, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
-
-import common.Difference;
-
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution1109 {
-
+/**
+ * 航班预订统计
+ *
+ * @author hsfxuebao
+ * 2023-04-15 21:33:19 
+ */
+class P1109_CorporateFlightBookings{
+    public static void main(String[] args) {
+        Solution solution = new P1109_CorporateFlightBookings().new Solution();
+        
+    }  
+    //leetcode submit region begin(Prohibit modification and deletion)
+class Solution {
     public int[] corpFlightBookings(int[][] bookings, int n) {
 
         int[] nums = new int[n];
 
         Difference difference = new Difference(nums);
-        for (int[] update : bookings) {
-            int i = update[0] - 1;
-            int j = update[1] - 1;
-            int val = update[2];
+        for (int[] booking:bookings) {
+            int i = booking[0] -1;
+            int j = booking[1] - 1;
+            int val = booking[2];
             difference.increment(i, j, val);
         }
-        return difference.result();
+        return difference.getResult();
+
     }
 }
 
 
+    /**
+     * 差分数组工具类
+     */
+    class Difference {
+
+        private int[] diff;
+
+        public Difference(int[] nums) {
+            diff = new int[nums.length];
+            diff[0] = nums[0];
+            for (int i = 1; i < nums.length; i++) {
+                diff[i] = nums[i] - nums[i-1];
+            }
+        }
+        /* 给闭区间 [i, j] 增加 val（可以是负数）*/
+        public void increment(int i, int j, int val) {
+
+            diff[i] += val;
+            if (j + 1 < diff.length) {
+                diff[j+1] -= val;
+            }
+        }
+        public int[] getResult() {
+
+            int[] result = new int[diff.length];
+            result[0] = diff[0];
+            for (int i = 1; i < diff.length; i++) {
+                result[i] = diff[i] + result[i-1];
+            }
+            return result;
+        }
+    }
 //leetcode submit region end(Prohibit modification and deletion)
+ 
+}
