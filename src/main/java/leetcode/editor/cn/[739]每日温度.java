@@ -30,11 +30,17 @@ package leetcode.editor.cn;
 // 提示： 
 //
 // 
-// 1 <= temperatures.length <= 105 
+// 1 <= temperatures.length <= 10⁵ 
 // 30 <= temperatures[i] <= 100 
 // 
-// Related Topics 栈 数组 单调栈 
-// 👍 1369 👎 0
+//
+// Related Topics栈 | 数组 | 单调栈 
+//
+// 👍 1462, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
 import java.util.Stack;
 
@@ -42,7 +48,7 @@ import java.util.Stack;
  * 每日温度
  *
  * @author hsfxuebao
- * 2023-01-07 09:48:05 
+ * 2023-04-16 18:13:46 
  */
 class P739_DailyTemperatures{
     public static void main(String[] args) {
@@ -51,29 +57,50 @@ class P739_DailyTemperatures{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
+        public int[] dailyTemperatures1(int[] temperatures) {
+
+            int[] res = new int[temperatures.length];
+
+            // 这里放索引
+            Stack<Integer> stack = new Stack<>();
+            for (int i = temperatures.length - 1; i >= 0; i--) {
+
+                while (!stack.isEmpty() && temperatures[stack.peek()] <= temperatures[i]) {
+                    stack.pop();
+                }
+                res[i] = stack.isEmpty() ? 0 : stack.peek() - i;
+                stack.push(i);
+            }
+            return res;
+
+        }
+
     public int[] dailyTemperatures(int[] temperatures) {
-        return nextGreaterIndex(temperatures);
-    }
 
-    public int[] nextGreaterIndex(int[] nums) {
+        int[] res = new int[temperatures.length];
 
-        int[] res = new int[nums.length];
-        // 这里放元素索引，而不是元素
-        Stack<Integer> stack = new Stack<>();
-        /* 单调栈模板 */
-        for (int i = nums.length - 1; i >= 0; i--) {
+        Stack<NumberIndex> stack = new Stack<>();
+        for (int i = temperatures.length - 1; i >= 0; i--) {
 
-            while (!stack.isEmpty() && nums[stack.peek()] <= nums[i]) {
+            while (!stack.isEmpty() && stack.peek().value <= temperatures[i]) {
                 stack.pop();
             }
-            // 得到索引间距
-            res[i] = stack.isEmpty() ? 0 : (stack.peek() - i);
-            // 当前索引放入栈中
-            stack.push(i);
+            res[i] = stack.isEmpty() ? 0 : stack.peek().index - i;
+            stack.push(new NumberIndex(temperatures[i], i));
         }
         return res;
+
     }
 
+        class NumberIndex {
+            int value;
+            int index;
+            public NumberIndex(int value, int index) {
+                this.value = value;
+                this.index = index;
+            }
+        }
 }
 //leetcode submit region end(Prohibit modification and deletion)
  

@@ -4,8 +4,8 @@ package leetcode.editor.cn;
 //
 // 给你两个 没有重复元素 的数组 nums1 和 nums2 ，下标从 0 开始计数，其中nums1 是 nums2 的子集。 
 //
-// 对于每个 0 <= i < nums1.length ，找出满足 nums1[i] == nums2[j] 的下标 j ，并且在 nums2 确定 num
-//s2[j] 的 下一个更大元素 。如果不存在下一个更大元素，那么本次查询的答案是 -1 。 
+// 对于每个 0 <= i < nums1.length ，找出满足 nums1[i] == nums2[j] 的下标 j ，并且在 nums2 确定 
+//nums2[j] 的 下一个更大元素 。如果不存在下一个更大元素，那么本次查询的答案是 -1 。 
 //
 // 返回一个长度为 nums1.length 的数组 ans 作为答案，满足 ans[i] 是如上所述的 下一个更大元素 。 
 //
@@ -37,7 +37,7 @@ package leetcode.editor.cn;
 //
 // 
 // 1 <= nums1.length <= nums2.length <= 1000 
-// 0 <= nums1[i], nums2[i] <= 104 
+// 0 <= nums1[i], nums2[i] <= 10⁴ 
 // nums1和nums2中所有整数 互不相同 
 // nums1 中的所有整数同样出现在 nums2 中 
 // 
@@ -45,8 +45,14 @@ package leetcode.editor.cn;
 // 
 //
 // 进阶：你可以设计一个时间复杂度为 O(nums1.length + nums2.length) 的解决方案吗？ 
-// Related Topics 栈 数组 哈希表 单调栈 
-// 👍 906 👎 0
+//
+// Related Topics栈 | 数组 | 哈希表 | 单调栈 
+//
+// 👍 998, 👎 0 
+//
+//
+//
+//
 
 import java.util.HashMap;
 import java.util.Map;
@@ -56,7 +62,7 @@ import java.util.Stack;
  * 下一个更大元素 I
  *
  * @author hsfxuebao
- * 2023-01-06 21:08:26 
+ * 2023-04-16 18:06:55 
  */
 class P496_NextGreaterElementI{
     public static void main(String[] args) {
@@ -65,43 +71,39 @@ class P496_NextGreaterElementI{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-
-
-        private Map<Integer, Integer> map = new HashMap<>();
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
 
-        int[] result = new int[nums1.length];
-
-        //
-        nextGreaterElement(nums2);
-        for (int i = 0; i < nums1.length; i++) {
-            result[i] = map.get(nums1[i]);
+        int[] result = nextGreaterElement(nums2);
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < result.length; i++) {
+            map.put(nums2[i], result[i]);
         }
-        return result;
+
+        int[] res = new int[nums1.length];
+        for (int i = 0; i < nums1.length; i++) {
+            res[i] = map.get(nums1[i]);
+        }
+        return res;
 
     }
 
-        /**
-         * 计算该数据 当前位置 之后 比 当前位置数大于的数
-         */
-        public int[] nextGreaterElement(int[] nums) {
+        int[] nextGreaterElement(int[] nums) {
+            Stack<Integer> stack = new Stack<>();
 
             int[] res = new int[nums.length];
+            for (int i = nums.length - 1; i >= 0 ; i--) {
 
-            Stack<Integer> stack = new Stack<>();
-            // 从后向前遍历
-            for (int i = nums.length - 1; i >= 0; i--) {
-
-                while (!stack.isEmpty() && nums[i] >= stack.peek()) {
+                // 删除 前面比他小的元素
+                while (!stack.isEmpty() && stack.peek() <= nums[i]) {
                     stack.pop();
                 }
+
+                // nums[i] 身后的更大元素
                 res[i] = stack.isEmpty() ? -1 : stack.peek();
-                map.put(nums[i], res[i]);
                 stack.push(nums[i]);
             }
             return res;
         }
-
 
 }
 //leetcode submit region end(Prohibit modification and deletion)
