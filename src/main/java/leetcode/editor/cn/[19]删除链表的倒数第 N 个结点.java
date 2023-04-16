@@ -1,11 +1,11 @@
 package leetcode.editor.cn;
-import common.ListNode;
-//给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。
+
+//给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。 
 //
 // 
 //
 // 示例 1： 
-//
+// 
 // 
 //输入：head = [1,2,3,4,5], n = 2
 //输出：[1,2,3,5]
@@ -39,11 +39,29 @@ import common.ListNode;
 // 
 //
 // 进阶：你能尝试使用一趟扫描实现吗？ 
-// Related Topics 链表 双指针 
-// 👍 2330 👎 0
+//
+// Related Topics链表 | 双指针 
+//
+// 👍 2507, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
+import common.ListNode;
 
-//leetcode submit region begin(Prohibit modification and deletion)
+/**
+ * 删除链表的倒数第 N 个结点
+ *
+ * @author hsfxuebao
+ * 2023-04-16 09:26:49 
+ */
+class P19_RemoveNthNodeFromEndOfList{
+    public static void main(String[] args) {
+        Solution solution = new P19_RemoveNthNodeFromEndOfList().new Solution();
+        
+    }  
+    //leetcode submit region begin(Prohibit modification and deletion)
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -54,37 +72,35 @@ import common.ListNode;
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution19 {
+class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
-
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
-
-        // 先找到 倒数第n个节点的前一个节点，也就是倒数第n+1个节点
-        ListNode p = findNthFromEnd(dummy, n + 1);
-        // 删除倒数第n个节点
-        p.next = p.next.next;
+        // 找到 倒数第n+1节点
+        ListNode fromEnd = findFromEnd(dummy, n + 1);
+        fromEnd.next = fromEnd.next.next;
         return dummy.next;
     }
 
-    // 获取倒数第m个节点
-    public ListNode findNthFromEnd(ListNode head, int m) {
-        // p1指针
+    // 找到 倒数第k个节点
+    private ListNode findFromEnd(ListNode head, int k) {
+
         ListNode p1 = head, p2 = head;
 
-        // p1指针先走m
-        for (int i = 0; i < m; i++) {
+        // p1先走k步
+        for (int i = 0; i < k; i++) {
             p1 = p1.next;
         }
 
-        // p1,p2指针同时走n-k步，直到p1指针为null
+        // p1 和 p2 同时走 n - k 步
         while (p1 != null) {
-            p1 = p1.next;
+            p1 =p1.next;
             p2 = p2.next;
         }
-        // p2 现在指向第 n - k + 1 个节点，即倒数第 k 个节点
+        // 此时p2 指向 n-k-1，即倒数第k节点
         return p2;
     }
-
 }
 //leetcode submit region end(Prohibit modification and deletion)
+ 
+}
