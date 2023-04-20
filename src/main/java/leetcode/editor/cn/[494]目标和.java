@@ -67,7 +67,7 @@ class Solution {
          * 回溯算法
          */
         private int result = 0;
-        public int findTargetSumWays1(int[] nums, int target) {
+        public int findTargetSumWays(int[] nums, int target) {
             if (nums.length <= 0) {
                 return 0;
             }
@@ -75,18 +75,21 @@ class Solution {
             return result;
         }
         private void backtrack1(int[] nums, int i, int remind) {
+            // 终止条件
             if (i == nums.length) {
                 if (remind == 0) {
                     result++;
                 }
                 return;
             }
-            // 做选择
-            // 选择 加号
-            backtrack1(nums, i+1, remind - nums[i]);
+            // 选择 加号 和减号
+            // 加号
+            backtrack1(nums, i+1, remind-nums[i]);
 
-            // 选择减号
-            backtrack1(nums, i+1, remind + nums[i]);
+            // 减号
+            backtrack1(nums, i+1, remind+nums[i]);
+
+
         }
 
         /**
@@ -136,7 +139,7 @@ class Solution {
          * sum(A) = (target + sum(nums)) / 2，
          * 也就是把原问题转化成：nums 中存在几个子集 A，使得 A 中元素的和为 (target + sum(nums)) / 2？
          */
-        public int findTargetSumWays(int[] nums, int target) {
+        public int findTargetSumWays3(int[] nums, int target) {
             if (nums.length <= 0) {
                 return 0;
             }

@@ -10,15 +10,9 @@ package leetcode.editor.cn;
 // 实现 MedianFinder 类: 
 //
 // 
-// 
 // MedianFinder() 初始化 MedianFinder 对象。 
-// 
-// 
 // void addNum(int num) 将数据流中的整数 num 添加到数据结构中。 
-// 
-// 
-// double findMedian() 返回到目前为止所有元素的中位数。与实际答案相差 10-5 以内的答案将被接受。 
-// 
+// double findMedian() 返回到目前为止所有元素的中位数。与实际答案相差 10⁻⁵ 以内的答案将被接受。 
 // 
 //
 // 示例 1： 
@@ -41,63 +35,63 @@ package leetcode.editor.cn;
 // 提示: 
 //
 // 
-// -105 <= num <= 105 
+// -10⁵ <= num <= 10⁵ 
 // 在调用 findMedian 之前，数据结构中至少有一个元素 
-// 最多 5 * 104 次调用 addNum 和 findMedian 
+// 最多 5 * 10⁴ 次调用 addNum 和 findMedian 
 // 
-// Related Topics 设计 双指针 数据流 排序 堆（优先队列） 
-// 👍 787 👎 0
+//
+// Related Topics设计 | 双指针 | 数据流 | 排序 | 堆（优先队列） 
+//
+// 👍 817, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
 import java.util.PriorityQueue;
-import java.util.Queue;
 
 /**
  * 数据流的中位数
  *
  * @author hsfxuebao
- * 2023-01-04 19:23:22 
+ * 2023-04-17 09:33:58 
  */
 class P295_FindMedianFromDataStream{
     public static void main(String[] args) {
-        MedianFinder solution = new P295_FindMedianFromDataStream().new MedianFinder();
+
         
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class MedianFinder {
 
-        // 小顶堆，存的数都是大于堆顶
-        private Queue<Integer> largest;
-        // 大顶对，存的数都是小于堆顶
-        private Queue<Integer> small;
+        // 大顶堆
+        private PriorityQueue<Integer> large;
+        // 小顶堆
+        private PriorityQueue<Integer> small;
 
     public MedianFinder() {
-        largest = new PriorityQueue<>();
-        small = new PriorityQueue<>((a, b) -> {
-            return b - a;
-        });
+        large = new PriorityQueue<>((a,b) -> b-a);
+        small = new PriorityQueue<>();
     }
     
     public void addNum(int num) {
-
-        if (small.size() >= largest.size()) {
-            small.offer(num);
-            largest.offer(small.poll());
+        if (large.size() > small.size()) {
+            large.offer(num);
+            small.offer(large.poll());
         } else {
-            largest.offer(num);
-            small.offer(largest.poll());
+            small.offer(num);
+            large.offer(small.poll());
         }
-
     }
     
     public double findMedian() {
-        if (largest.size() > small.size()) {
-            return largest.peek();
-        }
-        if (largest.size() < small.size()) {
+        if (large.size() > small.size()) {
+            return large.peek();
+        } else if (large.size() < small.size()) {
             return small.peek();
+        } else {
+            return (large.peek() + small.peek())/2.0;
         }
-        // 相等的情况，去中间值
-        return (largest.peek() + small.peek()) / 2.0;
     }
 }
 
