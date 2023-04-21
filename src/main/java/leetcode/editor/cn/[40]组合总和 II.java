@@ -39,8 +39,14 @@ package leetcode.editor.cn;
 // 1 <= candidates[i] <= 50 
 // 1 <= target <= 30 
 // 
-// Related Topics 数组 回溯 
-// 👍 1196 👎 0
+//
+// Related Topics数组 | 回溯 
+//
+// 👍 1319, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,7 +57,7 @@ import java.util.List;
  * 组合总和 II
  *
  * @author hsfxuebao
- * 2022-12-30 10:00:36 
+ * 2023-04-21 09:58:15 
  */
 class P40_CombinationSumIi{
     public static void main(String[] args) {
@@ -59,47 +65,44 @@ class P40_CombinationSumIi{
         
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
+class Solution {
+        List<List<Integer>> result = new ArrayList<>();
+        LinkedList<Integer> track = new LinkedList<>();
 
         /**
-         * 回溯算法
-         * 路径 选择 结束条件
+         * 重复元素 不可复选
          */
-        private List<List<Integer>> res = new ArrayList<>();
-        public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-            // 排序 升序
-            Arrays.sort(candidates);
-            // 记录 路径
-            LinkedList<Integer> track = new LinkedList<>();
-            backtrack(candidates, 0, track, target);
-            return res;
-        }
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        // 排序
+        Arrays.sort(candidates);
+        backtrack(candidates, 0, target);
+        return result;
+    }
 
-        private void backtrack(int[] candidates, int start, LinkedList<Integer> track, int target) {
+        private void backtrack(int[] candidates, int start, int remind) {
 
-
-            if (target == 0) {
-                res.add(new ArrayList<>(track));
+            if (remind == 0) {
+                result.add(new LinkedList<>(track));
                 return;
             }
+            if (remind < 0) {
+                return;
+            }
+
             // 选择集
             for (int i = start; i < candidates.length; i++) {
-                // 剪枝 重复元素 只遍历第一个
+                // 剪枝逻辑，值相同的树枝，只遍历第一条
                 if (i > start && candidates[i] == candidates[i - 1]) {
                     continue;
                 }
-                // 不符合条件
-                if (target - candidates[i] < 0) {
-                    continue;
-                }
+
                 // 做选择
-                track.add(candidates[i]);
-                // 递归
-                backtrack(candidates, i+1, track, target - candidates[i]);
+                track.addLast(candidates[i]);
+                backtrack(candidates, i+1, remind- candidates[i]);
                 // 撤销选择
                 track.removeLast();
-
             }
+
 
         }
     }

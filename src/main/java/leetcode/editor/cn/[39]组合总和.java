@@ -72,24 +72,28 @@ class Solution {
         return res;
     }
 
-        private void backtrack(int[] candidates, int start, LinkedList<Integer> track, int target) {
-            // 结束条件
-            if (target == 0) {
-                res.add(new ArrayList<>(track));
+        private void backtrack(int[] candidates, int start, LinkedList<Integer> track, int remind) {
+
+
+            // 符合条件
+            if (remind == 0) {
+                res.add(new LinkedList<>(track));
                 return;
             }
+            // 终止条件 不满足条件
+            if (remind < 0) {
+                return;
+            }
+
             // 选择集
             for (int i = start; i < candidates.length; i++) {
-
-                if (target - candidates[i] < 0) {
-                    continue;
-                }
                 // 做选择
-                track.add(candidates[i]);
-                // todo 元素 可以被重复使用，递归使用i
-                backtrack(candidates, i, track, target - candidates[i]);
+                track.addLast(candidates[i]);
+                // todo  元素可重复使用
+                backtrack(candidates, i, track, remind - candidates[i]);
                 // 撤销选择
                 track.removeLast();
+
             }
 
         }

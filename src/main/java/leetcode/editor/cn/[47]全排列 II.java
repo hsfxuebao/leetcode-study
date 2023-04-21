@@ -63,31 +63,35 @@ class Solution {
     }
 
         private void backtrack(int[] nums, LinkedList<Integer> track, boolean[] used) {
-            // 结束条件
+
+            // 终止条件
             if (track.size() == nums.length) {
-                res.add(new ArrayList<>(track));
+                res.add(new LinkedList<>(track));
                 return;
             }
+
             // 选择集
             for (int i = 0; i < nums.length; i++) {
-                // 过滤，元素是否已经使用过
+
+                // 过滤 使用过的元素
                 if (used[i]) {
                     continue;
                 }
-                // 剪枝；对于重复元素，只有前一个元素使用过，后面的重复元素才可以使用
-                if (i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) {
+
+                // 剪枝逻辑  遇到重复的元素，前面的元素被使用了，才可以使用
+                if (i > 0 && nums[i] == nums[i - 1] && !used[i-1]) {
                     continue;
                 }
-
                 // 做选择
                 used[i] = true;
-                track.add(nums[i]);
+                track.addLast(nums[i]);
                 backtrack(nums, track, used);
                 // 撤销选择
-                track.removeLast();
                 used[i] = false;
+                track.removeLast();
 
             }
+
 
         }
     }

@@ -7,6 +7,8 @@ package leetcode.editor.cn;
 // 
 // 
 // 
+// 
+// 
 //
 // 示例 1： 
 //
@@ -30,10 +32,14 @@ package leetcode.editor.cn;
 // 1 <= nums.length <= 10 
 // -10 <= nums[i] <= 10 
 // 
-// 
-// 
-// Related Topics 位运算 数组 回溯 
-// 👍 990 👎 0
+//
+// Related Topics位运算 | 数组 | 回溯 
+//
+// 👍 1073, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,58 +50,46 @@ import java.util.List;
  * 子集 II
  *
  * @author hsfxuebao
- * 2022-12-30 09:46:14 
+ * 2023-04-21 09:50:26 
  */
 class P90_SubsetsIi{
     public static void main(String[] args) {
         Solution solution = new P90_SubsetsIi().new Solution();
         
-    }
-
+    }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-
-    /**
-     * 回溯算法
-     * 路径 选择 结束条件
-     */
-    private List<List<Integer>> res = new ArrayList<>();
-    public List<List<Integer>> subsetsWithDup(int[] nums) {
-
-        // 排序 升序
-        Arrays.sort(nums);
-        // 记录 路径
+        List<List<Integer>> result = new ArrayList<>();
         LinkedList<Integer> track = new LinkedList<>();
-        backtrack(nums, 0, track);
-        return res;
-
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        // 排序
+        Arrays.sort(nums);
+        backtrack(nums, 0);
+        return result;
     }
 
-    private void backtrack(int[] nums, int start, LinkedList<Integer> track) {
+        private void backtrack(int[] nums, int start) {
 
-        res.add(new ArrayList<>(track));
-        // 结束条件
-        if (track.size() == nums.length) {
-            return;
-        }
-        // 选择集
-        for (int i = start; i < nums.length; i++) {
-            // 剪枝, 值相同的相邻树枝，只遍历第一条
-            if (i > start && nums[i] == nums[i - 1]) {
-                continue;
+            result.add(new LinkedList<>(track));
+
+            // 选择集
+            for (int i = start; i < nums.length; i++) {
+
+                // 过滤 重复的元素
+                if (i > start && nums[i] == nums[i - 1]) {
+                    continue;
+                }
+
+                // 做选择
+                track.addLast(nums[i]);
+                backtrack(nums, i+1);
+                // 撤销选择
+                track.removeLast();
+
             }
 
-            // 选择
-            track.add(nums[i]);
-            // 递归
-            backtrack(nums, i+1, track);
-            // 撤销选择
-            track.removeLast();
-
         }
-
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
+ 
 }
-
