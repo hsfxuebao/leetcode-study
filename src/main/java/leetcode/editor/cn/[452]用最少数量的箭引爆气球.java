@@ -3,11 +3,10 @@ package leetcode.editor.cn;
 //有一些球形气球贴在一堵用 XY 平面表示的墙面上。墙面上的气球记录在整数数组 points ，其中points[i] = [xstart, xend] 表示
 //水平直径在 xstart 和 xend之间的气球。你不知道气球的确切 y 坐标。 
 //
-// 一支弓箭可以沿着 x 轴从不同点 完全垂直 地射出。在坐标 x 处射出一支箭，若有一个气球的直径的开始和结束坐标为 xstart，xend， 且满足 xs
-//tart ≤ x ≤ xend，则该气球会被 引爆 。可以射出的弓箭的数量 没有限制 。 弓箭一旦被射出之后，可以无限地前进。 
+// 一支弓箭可以沿着 x 轴从不同点 完全垂直 地射出。在坐标 x 处射出一支箭，若有一个气球的直径的开始和结束坐标为 xstart，xend， 且满足 
+//xstart ≤ x ≤ xend，则该气球会被 引爆 。可以射出的弓箭的数量 没有限制 。 弓箭一旦被射出之后，可以无限地前进。 
 //
 // 给你一个数组 points ，返回引爆所有气球所必须射出的 最小 弓箭数 。 
-// 
 //
 // 示例 1： 
 //
@@ -37,68 +36,69 @@ package leetcode.editor.cn;
 // 
 //
 // 
+// 
 //
 // 提示: 
 //
 // 
-// 1 <= points.length <= 105 
+// 1 <= points.length <= 10⁵ 
 // points[i].length == 2 
-// -231 <= xstart < xend <= 231 - 1 
+// -2³¹ <= xstart < xend <= 2³¹ - 1 
 // 
-// Related Topics 贪心 数组 排序 
-// 👍 712 👎 0
+//
+// Related Topics贪心 | 数组 | 排序 
+//
+// 👍 773, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  * 用最少数量的箭引爆气球
  *
  * @author hsfxuebao
- * 2023-01-01 10:04:16 
+ * 2023-04-22 08:39:52 
  */
 class P452_MinimumNumberOfArrowsToBurstBalloons{
     public static void main(String[] args) {
         Solution solution = new P452_MinimumNumberOfArrowsToBurstBalloons().new Solution();
-        int[][] points = {{-2147483646,-2147483645},{2147483646,2147483647}};
-        solution.findMinArrowShots(points);
+        
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int findMinArrowShots(int[][] points) {
-        return intervalSchedule(points);
-    }
-
         /**
-         * 无重叠区间个数
+         * 不相交 区间的个数
          */
-        public int intervalSchedule(int[][] intervals) {
-            if (intervals.length <= 0) {
-                return 0;
-            }
-            // 按结束时间 升序
-            // todo 减法可能会造成数据溢出
-            Arrays.sort(intervals, (int[] a, int[] b) -> {
-                if (a[1] > b[1]) {
+    public int findMinArrowShots(int[][] points) {
+
+        // 按照end 升序排序
+        Arrays.sort(points, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                if (o1[1] >= o2[1]) {
                     return 1;
-                } else if (a[1] == b[1]) {
-                    return 0;
                 } else {
                     return -1;
                 }
-            });
-
-            int res = 1;
-            int end = intervals[0][1];
-            for (int[] interval : intervals) {
-                int start = interval[0];
-                // todo 大于
-                if (start > end) {
-                    res++;
-                    end = interval[1];
-                }
             }
-            return res;
+        });
+        // 至少有一个区间不相交
+        int count = 1;
+        int end  = points[0][1];
+        for (int i = 1; i < points.length; i++) {
+            int[] point = points[i];
+            if (point[0] > end) {
+                end = point[1];
+                count++;
+            }
         }
+        return count;
+
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
  

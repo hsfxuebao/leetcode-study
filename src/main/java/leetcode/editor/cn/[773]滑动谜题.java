@@ -57,105 +57,102 @@ package leetcode.editor.cn;
 // 0 <= board[i][j] <= 5 
 // board[i][j] 中每个值都 不同 
 // 
-// Related Topics 广度优先搜索 数组 矩阵 
-// 👍 291 👎 0
-
+//
+// Related Topics广度优先搜索 | 数组 | 矩阵 
+//
+// 👍 301, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Set;
 
-
 /**
  * 滑动谜题
  *
  * @author hsfxuebao
- * 2022-12-30 20:52:07 
+ * 2023-04-21 20:54:09 
  */
 class P773_SlidingPuzzle{
     public static void main(String[] args) {
         Solution solution = new P773_SlidingPuzzle().new Solution();
-        int[][] board = {{1,2,3}, {4,0,5}};
-        solution.slidingPuzzle(board);
+        
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-        /**
-         * BFS
-         *
-         */
     public int slidingPuzzle(int[][] board) {
-        StringBuilder sb = new StringBuilder();
-        int m = board.length;
-        int n = board[0].length;
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                sb.append(board[i][j]);
-            }
-        }
-        String startStr = sb.toString();
-        String endStr = "123450";
 
-        Queue<String> queue = new LinkedList<>();
-        queue.offer(startStr);
-
-        // 记录使用过的数据
-        Set<String> visited = new HashSet<>();
-        visited.add(startStr);
-        int step = 0;
-
-        // 记录 0 位置 相邻的索引数（上下左右）
-        int[][] neighbor = {
+        // 可移动的位置
+        int[][] nextIndex = new int[][]{
                 {1,3},
                 {0,2,4},
                 {1,5},
                 {0,4},
                 {1,3,5},
                 {2,4}
-        };
+            };
+
+        StringBuilder startBuilder = new StringBuilder();
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                startBuilder.append(board[i][j]);
+            }
+        }
+
+        // 记录已走过的路 不走回头路
+        Set<String> visited = new HashSet<>();
+        visited.add(startBuilder.toString());
+
+        // 队列
+        Queue<String> queue = new LinkedList<>();
+        queue.offer(startBuilder.toString());
+        int step = 0;
+        String target = "123450";
 
         while (!queue.isEmpty()) {
 
             int levelSize = queue.size();
             for (int i = 0; i < levelSize; i++) {
-
-                String curStr = queue.poll();
-                if (endStr.equals(curStr)) {
+                String cur = queue.poll();
+                // 终止条件
+                if (target.equals(cur)) {
                     return step;
                 }
+                // 找到 0 对应的位置
+                int zeroIndex = getZeroIndex(cur);
+                for (int index : nextIndex[zeroIndex]) {
+                    String nextStr = swapIndex(cur.toCharArray(), zeroIndex, index);
+                    if (!visited.contains(nextStr)) {
+                        queue.offer(nextStr);
+                        visited.add(nextStr);
+                    }
+                }
 
-                // 查找那个位置是数字0
-                int zeroIndex = 0;
-                char[] chars = curStr.toCharArray();
-                for (; zeroIndex < endStr.length(); zeroIndex++) {
-                    if (chars[zeroIndex] == '0') {
-                        break;
-                    }
-                }
-                // 交换数字0 的 上下左右位置
-                int[] temp = neighbor[zeroIndex];
-                for (int index : temp) {
-                    // 交换位置 todo curStr必须是原来数组
-                    String swapStr = swap(curStr.toCharArray(), zeroIndex, index);
-                    if (!visited.contains(swapStr)) {
-                        queue.offer(swapStr);
-                        visited.add(swapStr);
-                    }
-                }
             }
-
             step++;
         }
         return -1;
     }
 
-        private String swap(char[] chars, int i, int j) {
-            char temp = chars[i];
-            chars[i] = chars[j];
-            chars[j] = temp;
-            return new String(chars);
+        private String swapIndex(char[] nums, int i, int j) {
+                char temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
+                return new String(nums);
+        }
 
+        private int getZeroIndex(String cur) {
+            char[] chars = cur.toCharArray();
+            for (int i = 0; i < chars.length; i++) {
+                if ('0' == chars[i]) {
+                    return i;
+                }
+            }
+            return 0;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -25,12 +25,11 @@ class P253_minMeetingRooms {
 
     class Solution {
         // 返回需要申请的会议室数量
-        int minMeetingRooms(int[][] meetings){
-            int m = meetings.length;
-            int[] start = new int[m];
-            int[] end = new int[m];
-            // 分别按照 start和end排序
-            for (int i = 0; i < m; i++) {
+        int minMeetingRooms(int[][] meetings) {
+            int n = meetings.length;
+            int[] start = new int[n];
+            int[] end = new int[n];
+            for (int i = 0; i < n; i++) {
                 start[i] = meetings[i][0];
                 end[i] = meetings[i][1];
             }
@@ -39,23 +38,22 @@ class P253_minMeetingRooms {
             Arrays.sort(start);
             Arrays.sort(end);
 
-            // 遇到 一个start,会议室数量加1，遇到end，会议室数量减1
+            // 双指针扫描
             int i = 0, j = 0;
             int count = 0;
-            int maxRes = 0;
-            // todo  条件
-            while (i < m && j < m) {
+            int res = 0;
+            while (i < n && j < n) {
 
                 if (start[i] < end[j]) {
                     count++;
                     i++;
                 } else {
-                    j++;
                     count--;
+                    j++;
                 }
-                maxRes = Math.max(maxRes, count);
+                res = Math.max(res, count);
             }
-            return maxRes;
+            return res;
         }
 
     }

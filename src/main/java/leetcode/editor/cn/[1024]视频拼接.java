@@ -2,8 +2,8 @@ package leetcode.editor.cn;
 
 //你将会获得一系列视频片段，这些片段来自于一项持续时长为 time 秒的体育赛事。这些片段可能有所重叠，也可能长度不一。 
 //
-// 使用数组 clips 描述所有的视频片段，其中 clips[i] = [starti, endi] 表示：某个视频片段开始于 starti 并于 endi
-// 结束。 
+// 使用数组 clips 描述所有的视频片段，其中 clips[i] = [starti, endi] 表示：某个视频片段开始于 starti 并于 
+//endi 结束。 
 //
 // 甚至可以对这些片段自由地再剪辑： 
 //
@@ -56,16 +56,23 @@ package leetcode.editor.cn;
 // 0 <= starti <= endi <= 100 
 // 1 <= time <= 100 
 // 
-// Related Topics 贪心 数组 动态规划 
-// 👍 307 👎 0
+//
+// Related Topics贪心 | 数组 | 动态规划 
+//
+// 👍 328, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  * 视频拼接
  *
  * @author hsfxuebao
- * 2023-01-01 10:26:35 
+ * 2023-04-22 08:47:13 
  */
 class P1024_VideoStitching{
     public static void main(String[] args) {
@@ -75,39 +82,34 @@ class P1024_VideoStitching{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int videoStitching(int[][] clips, int time) {
-        // 按start升序排序
-        Arrays.sort(clips, (int[] a, int[] b) -> {
-            if (a[0] > b[0]) {
-                return 1;
-            } else if (a[0] == b[0]) {
-                return 0;
-            } else {
-                return -1;
+        // 按start升序排序，若相同按end降序排序
+        Arrays.sort(clips, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return o1[0] == o2[0] ? o2[1] - o1[1]
+                        :o1[0] - o2[0];
             }
         });
-
-        // 记录选择的短视频个数
+        int curEnd = 0, nextEnd = 0;
+        int i = 0, n = clips.length;
         int count = 0;
-        int curEnd = 0;
-        int nextEnd = 0;
-        int m = clips.length;
-        int i = 0;
-        while (i < m && clips[i][0] <= curEnd) {
+        // 开始位置 小于 当前end
+        while (i < n && clips[i][0] <= curEnd) {
 
-            // 在第count个视频区间内 贪心选择下一个视频
-            while (i < m && clips[i][0] <= curEnd) {
+            // 贪心选择下一个视频
+            while (i < n && clips[i][0] <= curEnd) {
                 nextEnd = Math.max(nextEnd, clips[i][1]);
                 i++;
             }
-            // 数量+1
+            //
             count++;
             curEnd = nextEnd;
             if (curEnd >= time) {
                 return count;
             }
-
         }
         return -1;
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

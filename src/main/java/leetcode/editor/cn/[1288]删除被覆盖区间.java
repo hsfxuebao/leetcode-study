@@ -25,16 +25,23 @@ package leetcode.editor.cn;
 // 0 <= intervals[i][0] < intervals[i][1] <= 10^5 
 // 对于所有的 i != j：intervals[i] != intervals[j] 
 // 
-// Related Topics 数组 排序 
-// 👍 88 👎 0
+//
+// Related Topics数组 | 排序 
+//
+// 👍 96, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  * 删除被覆盖区间
  *
  * @author hsfxuebao
- * 2023-01-01 16:55:34 
+ * 2023-04-21 21:18:02 
  */
 class P1288_RemoveCoveredIntervals{
     public static void main(String[] args) {
@@ -44,12 +51,13 @@ class P1288_RemoveCoveredIntervals{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int removeCoveredIntervals(int[][] intervals) {
-        // 按start升序，若相等end降序 排序
-        Arrays.sort(intervals, (int[] a, int[] b) -> {
-            if (a[0] == b[0]) {
-                return b[1] - a[1];
-            } else {
-                return a[0] - b[0];
+
+        // 按照起点升序排序，若起点相同降序排序
+        Arrays.sort(intervals, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return o1[0] == o2[0] ? o2[1] - o1[1]
+                                      : o1[0] - o2[0];
             }
         });
 
@@ -57,25 +65,26 @@ class Solution {
         int left = intervals[0][0];
         int right = intervals[0][1];
         int count = 0;
-        for (int i = 1; i < intervals.length; i++) {
-            int[] curVal = intervals[i];
 
-            // 情况一，找到覆盖区间
-            if (left <= curVal[0] && curVal[1] <= right) {
+        for (int i = 1; i < intervals.length; i++) {
+            int[] nums = intervals[i];
+
+            // 1. 找到覆盖区间
+            if (left <= nums[0] && nums[1] <= right) {
                 count++;
             }
-            // 情况二 出现相交区间，合并
-            if (curVal[0] < right && right <= curVal[1]) {
-                right = curVal[1];
+            // 2. 合并区间
+            if (right >= nums[0] && right <= nums[1]) {
+               right = nums[1];
             }
-            // 情况三，不相交区间，更新起点和终点
-            if (right < curVal[0]) {
-                left = curVal[0];
-                right = curVal[1];
+            // 3. 两个不相交区间
+            if (right < nums[0]) {
+                left = nums[0];
+                right = nums[1];
             }
-
         }
         return intervals.length - count;
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

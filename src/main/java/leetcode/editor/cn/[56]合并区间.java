@@ -32,8 +32,11 @@ package leetcode.editor.cn;
 // Related Topics 数组 排序 
 // 👍 1753 👎 0
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
+
 
 import sun.awt.image.ImageWatched.Link;
 
@@ -56,22 +59,22 @@ class Solution {
             return a[0] - b[0];
         });
 
-        LinkedList<int[]> result = new LinkedList<>();
-        // 将第一个区间加入到
+        List<int[]> result = new ArrayList<>();
+        // 放入第一个数组
         result.add(intervals[0]);
 
         for (int i = 1; i < intervals.length; i++) {
-            int[] curVal = intervals[i];
-            // 获取 result 中 最后一个节点值
-            int[] last = result.getLast();
-            // 用当前值start 和 last中的end比较，看是否有相交
-            if (curVal[0] <= last[1]) {
-                // 取 end的最大值
-                last[1] = Math.max(last[1], curVal[1]);
+            int[] nums = intervals[i];
+            // 找到 result 中最后一个元素
+            int[] res = result.get(result.size() - 1);
+            // 两个区间相交，更新end值
+            if (nums[0] <= res[1]) {
+                res[1] = Math.max(nums[1], res[1]);
             } else {
-                // 处理下一个待合并区间
-                result.add(curVal);
+                // 新的一个区间
+                result.add(nums);
             }
+
         }
         return result.toArray(new int[0][0]);
     }
