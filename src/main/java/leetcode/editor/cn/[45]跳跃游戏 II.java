@@ -58,21 +58,18 @@ class Solution {
          * 每次 都取最大的
          */
     public int jump(int[] nums) {
-        int m = nums.length;
-        int count = 0;
-        // 每一跳的最大位置
+        int n = nums.length;
         int end = 0;
-        // 每一跳范围内，下一条的最远举例
         int farthest = 0;
-        // todo 不使用最后一点位置
-        for (int i = 0; i < m - 1; i++) {
-            farthest = Math.max(farthest, nums[i] + i);
+        int jump = 0;
+        for (int i = 0; i < n-1; i++) {
+            farthest = Math.max(farthest, i+nums[i]);
             if (i == end) {
-                count++;
                 end = farthest;
+                jump++;
             }
         }
-        return count;
+        return jump;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

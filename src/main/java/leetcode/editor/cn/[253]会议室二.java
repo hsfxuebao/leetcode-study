@@ -20,7 +20,9 @@ import java.util.Arrays;
 class P253_minMeetingRooms {
 
     public static void main(String[] args) {
-
+        int[][] intervals = {{0,30},{5,10},{15,20}};
+        Solution solution = new P253_minMeetingRooms().new Solution();
+        System.out.printf(String.valueOf(solution.minMeetingRooms(intervals)));
     }
 
     class Solution {
