@@ -45,16 +45,22 @@ package leetcode.editor.cn;
 // 提示： 
 //
 // 
-// 1 <= n <= 231 - 1 
+// 1 <= n <= 2³¹ - 1 
 // 
-// Related Topics 脑筋急转弯 数学 博弈 
-// 👍 647 👎 0
+//
+// Related Topics脑筋急转弯 | 数学 | 博弈 
+//
+// 👍 670, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
 /**
  * Nim 游戏
  *
  * @author hsfxuebao
- * 2023-01-10 09:41:51 
+ * 2023-04-22 18:08:41 
  */
 class P292_NimGame{
     public static void main(String[] args) {
@@ -64,7 +70,7 @@ class P292_NimGame{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public boolean canWinNim(int n) {
-        return n % 4 != 0;
+        return n % 4 > 0;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

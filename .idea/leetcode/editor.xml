@@ -267,6 +267,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1312]让字符串成为回文串的最少插入次数.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[1312]让字符串成为回文串的最少插入次数.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1312" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1312]让字符串成为回文串的最少插入次数.java" />
+              <option name="titleSlug" value="minimum-insertion-steps-to-make-a-string-palindrome" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1325]删除给定值的叶子节点.java">
           <value>
             <LeetcodeEditor>
@@ -429,6 +440,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[16]最接近的三数之和.java" />
               <option name="titleSlug" value="3sum-closest" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[174]地下城游戏.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[174]地下城游戏.md" />
+              <option name="frontendQuestionId" value="leetcode.cn174" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[174]地下城游戏.java" />
+              <option name="titleSlug" value="dungeon-game" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -696,6 +718,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[292]Nim 游戏.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[292]Nim 游戏.md" />
+              <option name="frontendQuestionId" value="leetcode.cn292" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[292]Nim 游戏.java" />
+              <option name="titleSlug" value="nim-game" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[295]数据流的中位数.java">
           <value>
             <LeetcodeEditor>
@@ -759,6 +792,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[315]计算右侧小于当前元素的个数.java" />
               <option name="titleSlug" value="count-of-smaller-numbers-after-self" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[319]灯泡开关.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[319]灯泡开关.md" />
+              <option name="frontendQuestionId" value="leetcode.cn319" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[319]灯泡开关.java" />
+              <option name="titleSlug" value="bulb-switcher" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -1048,6 +1092,28 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[509]斐波那契数.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[509]斐波那契数.md" />
+              <option name="frontendQuestionId" value="leetcode.cn509" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[509]斐波那契数.java" />
+              <option name="titleSlug" value="fibonacci-number" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[516]最长回文子序列.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[516]最长回文子序列.md" />
+              <option name="frontendQuestionId" value="leetcode.cn516" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[516]最长回文子序列.java" />
+              <option name="titleSlug" value="longest-palindromic-subsequence" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[518]零钱兑换 II.java">
           <value>
             <LeetcodeEditor>
@@ -1199,6 +1265,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[637]二叉树的层平均值.java" />
               <option name="titleSlug" value="average-of-levels-in-binary-tree" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[64]最小路径和.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[64]最小路径和.md" />
+              <option name="frontendQuestionId" value="leetcode.cn64" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[64]最小路径和.java" />
+              <option name="titleSlug" value="minimum-path-sum" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -1606,6 +1683,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[929]独特的电子邮件地址.java" />
               <option name="titleSlug" value="unique-email-addresses" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[931]下降路径最小和.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[931]下降路径最小和.md" />
+              <option name="frontendQuestionId" value="leetcode.cn931" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[931]下降路径最小和.java" />
+              <option name="titleSlug" value="minimum-falling-path-sum" />
             </LeetcodeEditor>
           </value>
         </entry>
