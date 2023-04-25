@@ -67,18 +67,14 @@ class Solution {
 
             int m = grid.length;
             int n = grid[0].length;
-
-            // 先把上下左右的岛屿淹没，不符合封闭岛屿的条件
+            // 先把四周的陆地 被 海水淹没
             for (int i = 0; i < m; i++) {
-                // 左边
                 dfs(grid, i, 0);
-                // 右边
                 dfs(grid, i, n-1);
+
             }
             for (int j = 0; j < n; j++) {
-                // 上边
                 dfs(grid, 0, j);
-                // 下边
                 dfs(grid, m-1, j);
             }
 
@@ -86,9 +82,7 @@ class Solution {
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n; j++) {
                     if (grid[i][j] == 0) {
-                        // 数量+1
                         res++;
-                        // 把周边岛屿也变成海水
                         dfs(grid, i, j);
                     }
                 }

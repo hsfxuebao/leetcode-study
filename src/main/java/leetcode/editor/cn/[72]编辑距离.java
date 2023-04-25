@@ -47,7 +47,7 @@ package leetcode.editor.cn;
 //
 // Related Topics字符串 | 动态规划 
 //
-// 👍 2758, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 2925, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
@@ -57,38 +57,41 @@ package leetcode.editor.cn;
  * 编辑距离
  *
  * @author hsfxuebao
- * 2023-02-05 09:43:22 
+ * 2023-04-24 09:42:34 
  */
 class P72_EditDistance{
     public static void main(String[] args) {
         Solution solution = new P72_EditDistance().new Solution();
-        solution.minDistance("horse", "ros");
+        
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int minDistance(String word1, String word2) {
-
         int m = word1.length();
         int n = word2.length();
-
+        // dp[i][j] 表示word1(0..i) word2(0..j) 最小编辑距离 从1开始
         int[][] dp = new int[m+1][n+1];
-        // base case
-        for (int i = 1; i < m+1; i++) {
+        // base case 第一行第一列
+        for (int i = 0; i <= m; i++) {
             dp[i][0] = i;
         }
-        for (int j = 1; j < n+1; j++) {
+        for (int j = 0; j <= n; j++) {
             dp[0][j] = j;
         }
 
-        for (int i = 1; i < m + 1; i++) {
-            for (int j = 1; j < n + 1; j++) {
-
-                if (word1.charAt(i - 1) == word2.charAt(j - 1)) {
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                // 相等
+                if (word1.charAt(i - 1) == word2.charAt(j-1)) {
                     dp[i][j] = dp[i - 1][j - 1];
                 } else {
                     dp[i][j] = Math.min(
-                            dp[i-1][j] + 1, Math.min(dp[i][j-1] + 1, dp[i-1][j-1] + 1)
-                    );
+                            Math.min(
+                                    dp[i][j-1],   // 插入
+                                    dp[i-1][j]        // 删除
+                            ),
+                            dp[i-1][j-1]          // 替换
+                     ) + 1;
                 }
             }
         }

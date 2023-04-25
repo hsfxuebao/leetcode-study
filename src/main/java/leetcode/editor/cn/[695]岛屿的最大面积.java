@@ -12,7 +12,7 @@ package leetcode.editor.cn;
 // 
 //
 // 示例 1： 
-//
+// 
 // 
 //输入：grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,
 //0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,
@@ -38,14 +38,20 @@ package leetcode.editor.cn;
 // 1 <= m, n <= 50 
 // grid[i][j] 为 0 或 1 
 // 
-// Related Topics 深度优先搜索 广度优先搜索 并查集 数组 矩阵 
-// 👍 899 👎 0
+//
+// Related Topics深度优先搜索 | 广度优先搜索 | 并查集 | 数组 | 矩阵 
+//
+// 👍 959, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
 /**
  * 岛屿的最大面积
  *
  * @author hsfxuebao
- * 2022-12-31 13:05:29 
+ * 2023-04-25 21:04:01 
  */
 class P695_MaxAreaOfIsland{
     public static void main(String[] args) {
@@ -58,35 +64,36 @@ class Solution {
         int m = grid.length;
         int n = grid[0].length;
 
-        int maxRes = 0;
-
+        int maxLand = 0;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if (grid[i][j] == 1) {
-                   maxRes = Math.max(maxRes, dfs(grid, i, j));
-                }
+                maxLand = Math.max(maxLand, dfs(grid, i, j));
             }
         }
-        return maxRes;
+        return maxLand;
     }
 
-        private int dfs(int[][] grid, int i, int j) {
 
-            if (i < 0 || i >= grid.length
-                    || j < 0 || j >= grid[0].length) {
-                return 0;
-            }
-            if (grid[i][j] == 0) {
-                return 0;
-            }
-            grid[i][j] = 0;
-            return dfs(grid, i - 1, j)
-                    + dfs(grid, i + 1, j)
-                    + dfs(grid, i, j-1)
-                    + dfs(grid, i, j+1)
-                    +1;
+    public int dfs(int[][] grid, int i, int j) {
+
+        if (i < 0 || i >= grid.length
+                || j < 0 || j >= grid[0].length) {
+            return 0;
         }
+        // 如果是海水返回
+        if (grid[i][j] == 0) {
+            return 0;
+        }
+
+        grid[i][j] = 0;
+        return dfs(grid, i+1, j) +
+            dfs(grid, i-1, j) +
+            dfs(grid, i, j+1) +
+            dfs(grid, i, j-1) + 1;
+
+
     }
+}
 //leetcode submit region end(Prohibit modification and deletion)
  
 }

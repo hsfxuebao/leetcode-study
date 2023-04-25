@@ -36,6 +36,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1020]飞地的数量.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[1020]飞地的数量.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1020" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1020]飞地的数量.java" />
+              <option name="titleSlug" value="number-of-enclaves" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1024]视频拼接.java">
           <value>
             <LeetcodeEditor>
@@ -231,6 +242,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[124]二叉树中的最大路径和.java" />
               <option name="titleSlug" value="binary-tree-maximum-path-sum" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1254]统计封闭岛屿的数目.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[1254]统计封闭岛屿的数目.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1254" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1254]统计封闭岛屿的数目.java" />
+              <option name="titleSlug" value="number-of-closed-islands" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -476,6 +498,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1905]统计子岛屿.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[1905]统计子岛屿.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1905" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1905]统计子岛屿.java" />
+              <option name="titleSlug" value="count-sub-islands" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[198]打家劫舍.java">
           <value>
             <LeetcodeEditor>
@@ -506,6 +539,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1]两数之和.java" />
               <option name="titleSlug" value="two-sum" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[200]岛屿数量.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[200]岛屿数量.md" />
+              <option name="frontendQuestionId" value="leetcode.cn200" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[200]岛屿数量.java" />
+              <option name="titleSlug" value="number-of-islands" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -1320,6 +1364,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[687]最长同值路径.java" />
               <option name="titleSlug" value="longest-univalue-path" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[695]岛屿的最大面积.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[695]岛屿的最大面积.md" />
+              <option name="frontendQuestionId" value="leetcode.cn695" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[695]岛屿的最大面积.java" />
+              <option name="titleSlug" value="max-area-of-island" />
             </LeetcodeEditor>
           </value>
         </entry>
