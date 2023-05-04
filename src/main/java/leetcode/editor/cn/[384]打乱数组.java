@@ -35,12 +35,18 @@ package leetcode.editor.cn;
 //
 // 
 // 1 <= nums.length <= 50 
-// -106 <= nums[i] <= 106 
+// -10⁶ <= nums[i] <= 10⁶ 
 // nums 中的所有元素都是 唯一的 
-// 最多可以调用 104 次 reset 和 shuffle 
+// 最多可以调用 10⁴ 次 reset 和 shuffle 
 // 
-// Related Topics 数组 数学 随机化 
-// 👍 318 👎 0
+//
+// Related Topics数组 | 数学 | 随机化 
+//
+// 👍 334, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
 import java.util.Arrays;
 import java.util.Random;
@@ -49,7 +55,7 @@ import java.util.Random;
  * 打乱数组
  *
  * @author hsfxuebao
- * 2023-01-11 21:29:12 
+ * 2023-04-26 09:25:29 
  */
 class P384_ShuffleAnArray{
     public static void main(String[] args) {
@@ -59,39 +65,33 @@ class P384_ShuffleAnArray{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 
-        private int[] nums;
-
+        int[] nums;
 
     public Solution(int[] nums) {
         this.nums = nums;
     }
     
     public int[] reset() {
-        return this.nums;
+        return nums;
     }
-
-        /**
-         * 洗牌算法
-         */
+    
     public int[] shuffle() {
-
-        int n = nums.length;
-        int[] copy = Arrays.copyOf(nums, n);
+        int[] copy = Arrays.copyOf(nums, nums.length);
+        int n = copy.length;
         for (int i = 0; i < n; i++) {
 
-            int randomIndex = i + new Random().nextInt(n - i);
-            swap(copy, i, randomIndex);
+            int random = i + new Random().nextInt(n-i);
+            swap(copy, i, random);
         }
         return copy;
-
     }
 
-        private void swap(int[] nums, int i, int randomIndex) {
-            int temp = nums[i];
-            nums[i] = nums[randomIndex];
-            nums[randomIndex] = temp;
-        }
+    public void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
+}
 
 /**
  * Your Solution object will be instantiated and called as such:

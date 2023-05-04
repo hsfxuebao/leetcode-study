@@ -7,6 +7,8 @@ package leetcode.editor.cn;
 // 
 // 
 // 
+// 
+// 
 //
 // 示例 1 ： 
 //
@@ -34,20 +36,24 @@ package leetcode.editor.cn;
 // 提示： 
 //
 // 
-// 1 <= nums.length <= 3 * 104 
-// -3 * 104 <= nums[i] <= 3 * 104 
+// 1 <= nums.length <= 3 * 10⁴ 
+// -3 * 10⁴ <= nums[i] <= 3 * 10⁴ 
 // 除了某个元素只出现一次以外，其余每个元素均出现两次。 
 // 
-// 
-// 
-// Related Topics 位运算 数组 
-// 👍 2703 👎 0
+//
+// Related Topics位运算 | 数组 
+//
+// 👍 2849, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
 /**
  * 只出现一次的数字
  *
  * @author hsfxuebao
- * 2023-01-09 09:38:20 
+ * 2023-05-04 15:20:59 
  */
 class P136_SingleNumber{
     public static void main(String[] args) {
@@ -56,16 +62,13 @@ class P136_SingleNumber{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-        /**
-         * 异或运算
-         */
     public int singleNumber(int[] nums) {
 
-        int number = 0;
-        for (int num : nums) {
-            number ^= num;
+        int res = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            res = res ^ nums[i];
         }
-        return number;
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
