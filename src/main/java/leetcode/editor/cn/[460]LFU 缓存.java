@@ -71,6 +71,7 @@ package leetcode.editor.cn;
 
 import java.util.HashMap;
 import java.util.LinkedHashSet;
+import java.util.Map;
 
 /**
  * LFU 缓存
@@ -86,109 +87,98 @@ class P460_LfuCache{
     //leetcode submit region begin(Prohibit modification and deletion)
 class LFUCache {
 
-        // key 到 val 的映射，我们后文称为 KV 表
-        HashMap<Integer, Integer> keyToVal;
-        // key 到 freq 的映射，我们后文称为 KF 表
-        HashMap<Integer, Integer> keyToFreq;
-        // freq 到 key 列表的映射，我们后文称为 FK 表
-        HashMap<Integer, LinkedHashSet<Integer>> freqToKeys;
-        // 记录最小的频次
-        int minFreq;
-        // 记录 LFU 缓存的最大容量
-        int cap;
+        // key2val 的映射   kv
+        private Map<Integer, Integer> keyToVal;
+        // key2freq key对应频率的映射  kf表
+        private Map<Integer, Integer> keyToFreq;
+
+        // freq 对应的key的表  fk表
+        private Map<Integer, LinkedHashSet<Integer>> freqToKeys;
+
+        // 最小频率
+        private int minFreq;
+
+        // 容量
+        private int cap;
+
 
         public LFUCache(int capacity) {
-            keyToVal = new HashMap<Integer, Integer>();
-            keyToFreq = new HashMap<Integer, Integer>();
-            freqToKeys = new HashMap<Integer, LinkedHashSet<Integer>>();
-            this.cap = capacity;
-            this.minFreq = 0;
+            keyToVal = new HashMap<>();
+            keyToFreq = new HashMap<>();
+            freqToKeys = new HashMap<>();
+            minFreq = 0;
+            cap = capacity;
         }
 
         public int get(int key) {
             if (!keyToVal.containsKey(key)) {
                 return -1;
             }
-            // 增加 key 对应的 freq
+            // 提高key 的频率
             increaseFreq(key);
             return keyToVal.get(key);
+
         }
 
 
         public void put(int key, int value) {
-            if (this.cap <= 0) return;
-
-            /* 若 key 已存在，修改对应的 val 即可 */
+            // key 存在，修改value的值 ，提高key频率
             if (keyToVal.containsKey(key)) {
-                keyToVal.put(key, value);
-                // key 对应的 freq 加一
+                // 提高key的频率
                 increaseFreq(key);
+                // 更改 key对应的value值
+                keyToVal.put(key, value);
                 return;
             }
-
-            /* key 不存在，需要插入 */
-            /* 容量已满的话需要淘汰一个 freq 最小的 key */
-            if (this.cap <= keyToVal.size()) {
+            // key 不存在 增加key
+            if (keyToVal.size() >= cap) {
+                // 删除访问频率最小的key
                 removeMinFreqKey();
             }
-
-            /* 插入 key 和 val，对应的 freq 为 1 */
-            // 插入 KV 表
             keyToVal.put(key, value);
-            // 插入 KF 表
             keyToFreq.put(key, 1);
-            // 插入 FK 表
-            freqToKeys.putIfAbsent(1, new LinkedHashSet<Integer>());
+            freqToKeys.putIfAbsent(1, new LinkedHashSet<>());
             freqToKeys.get(1).add(key);
-            // 插入新 key 后最小的 freq 肯定是 1
             this.minFreq = 1;
-
         }
 
         /**
          * 删除最少访问的元素
          */
         private void removeMinFreqKey() {
-            // freq 最小的 key 列表
-            LinkedHashSet<Integer> keyList = freqToKeys.get(this.minFreq);
-            // 其中最先被插入的那个 key 就是该被淘汰的 key
-            int deletedKey = keyList.iterator().next();
-            /* 更新 FK 表 */
-            keyList.remove(deletedKey);
-            if (keyList.isEmpty()) {
-                freqToKeys.remove(this.minFreq);
-                // 问：这里需要更新 minFreq 的值吗？
-            }
-            /* 更新 KV 表 */
+            LinkedHashSet<Integer> minFreqKeys = freqToKeys.get(this.minFreq);
+            Integer deletedKey = minFreqKeys.iterator().next();
             keyToVal.remove(deletedKey);
-            /* 更新 KF 表 */
             keyToFreq.remove(deletedKey);
+            minFreqKeys.remove(deletedKey);
+            if (minFreqKeys.isEmpty()) {
+                freqToKeys.remove(this.minFreq);
+            }
         }
+
+
 
         /**
          * 增加 key 对应的 freq
          */
         private void increaseFreq(int key) {
 
-            int freq = keyToFreq.get(key);
-            /* 更新 KF 表 */
-            keyToFreq.put(key, freq + 1);
-            /* 更新 FK 表 */
-            // 将 key 从 freq 对应的列表中删除
-            freqToKeys.get(freq).remove(key);
-            // 将 key 加入 freq + 1 对应的列表中
-            freqToKeys.putIfAbsent(freq + 1, new LinkedHashSet<>());
-            freqToKeys.get(freq + 1).add(key);
-            // 如果 freq 对应的列表空了，移除这个 freq
-            if (freqToKeys.get(freq).isEmpty()) {
-                freqToKeys.remove(freq);
-                // 如果这个 freq 恰好是 minFreq，更新 minFreq
-                if (freq == this.minFreq) {
-                    this.minFreq++;
+            Integer oldFreq = keyToFreq.get(key);
+            keyToFreq.put(key, oldFreq+1);
+
+            // 删除oldFreq 对应的key
+            LinkedHashSet<Integer> oldFreqKeys = freqToKeys.get(oldFreq);
+            oldFreqKeys.remove(key);
+            if (oldFreqKeys.isEmpty()) {
+                freqToKeys.remove(oldFreq);
+                if (this.minFreq == oldFreq) {
+                    minFreq++;
                 }
             }
-
+            freqToKeys.putIfAbsent(oldFreq + 1, new LinkedHashSet<>());
+            freqToKeys.get(oldFreq+1).add(key);
         }
+
 
 }
 
