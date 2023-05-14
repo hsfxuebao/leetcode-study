@@ -40,6 +40,8 @@ package leetcode.editor.cn;
 //
 //
 
+import java.util.Arrays;
+
 /**
  * 多数元素
  *
@@ -53,8 +55,40 @@ class P169_MajorityElement{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int majorityElement(int[] nums) {
 
+
+
+        /**
+         * 时间复杂度 o(n)
+         * 空间复杂度 o(1)
+         */
+        public int majorityElement1(int[] nums) {
+            // 寻找的众数
+            int target = 0;
+            // 计数器（类比带电粒子例子中的带电性）
+            int count = 0;
+
+            for (int i = 0; i < nums.length; i++) {
+                if (count == 0) {
+                    target = nums[i];
+                    count = 1;
+                } else if (target == nums[i]) {
+                    count++;
+                } else {
+                    count--;
+                }
+            }
+            return target;
+
+        }
+
+        /**
+         * 时间复杂度 o(n*logn)
+         * 空间复杂度
+         */
+    public int majorityElement(int[] nums) {
+        Arrays.sort(nums);
+        return nums[nums.length /2];
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
