@@ -25,8 +25,14 @@ package leetcode.editor.cn;
 // 
 // 1 <= n <= 8 
 // 
-// Related Topics 字符串 动态规划 回溯 
-// 👍 3009 👎 0
+//
+// Related Topics字符串 | 动态规划 | 回溯 
+//
+// 👍 3229, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +41,7 @@ import java.util.List;
  * 括号生成
  *
  * @author hsfxuebao
- * 2022-12-31 18:45:20 
+ * 2023-05-19 09:54:48 
  */
 class P22_GenerateParentheses{
     public static void main(String[] args) {
@@ -45,44 +51,51 @@ class P22_GenerateParentheses{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 
-        private List<String> res = new ArrayList<>();
+        List<String> result = new ArrayList<>();
+
     public List<String> generateParenthesis(int n) {
-        // 记录 路径
-        StringBuilder track = new StringBuilder();
-        backtrack(n, n, track);
-        return res;
+        if (n < 0) {
+            return result;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        backtrack(n, n, sb);
+        return result;
     }
 
         /**
          *
-         * @param left 左括号的数量
-         * @param right 右括号的数量
-         * @param track 当前字符串
+         * @param left 左括号剩余的数量
+         * @param right 右括号剩余的数量
+         * @param sb
          */
-        private void backtrack(int left, int right, StringBuilder track) {
+        private void backtrack(int left, int right, StringBuilder sb) {
 
-            // 不合法 直接返回
+            // 非法
             if (left < 0 || right < 0) {
                 return;
             }
-            // 剩下的 左括号的数量  小于  有括号的数量  非法
-            if (right < left) {
+            // 非法，左括号的数量必须大于等于有括号的数量
+            // 剩余的左括号的数量 小于 有括号的数量
+            if (left > right) {
                 return;
             }
             if (left == 0 && right == 0) {
-                res.add(track.toString());
+                result.add(sb.toString());
                 return;
             }
 
-            // 左括号
-            track.append("(");
-            backtrack(left-1, right, track);
-            track.deleteCharAt(track.length() - 1);
 
-            // 右括号
-            track.append(")");
-            backtrack(left, right-1, track);
-            track.deleteCharAt(track.length() - 1);
+            // 选择集
+            sb.append("(");
+            backtrack(left-1, right, sb);
+            sb.deleteCharAt(sb.length() - 1);
+
+            sb.append(")");
+            backtrack(left, right-1, sb);
+            sb.deleteCharAt(sb.length() - 1);
+
+
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
