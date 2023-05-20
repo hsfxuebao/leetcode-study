@@ -619,6 +619,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[187]重复的DNA序列.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[187]重复的DNA序列.md" />
+              <option name="frontendQuestionId" value="leetcode.cn187" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[187]重复的DNA序列.java" />
+              <option name="titleSlug" value="repeated-dna-sequences" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[188]买卖股票的最佳时机 IV.java">
           <value>
             <LeetcodeEditor>
