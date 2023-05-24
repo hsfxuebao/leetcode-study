@@ -1,5 +1,8 @@
 package leetcode.editor.cn;
-//给你一个字符串 s，找到 s 中最长的回文子串。
+
+//给你一个字符串 s，找到 s 中最长的回文子串。 
+//
+// 如果字符串的反序与原始字符串相同，则该字符串称为回文字符串。 
 //
 // 
 //
@@ -26,40 +29,55 @@ package leetcode.editor.cn;
 // 1 <= s.length <= 1000 
 // s 仅由数字和英文字母组成 
 // 
-// Related Topics 字符串 动态规划 
-// 👍 5962 👎 0
+//
+// Related Topics字符串 | 动态规划 
+//
+// 👍 6502, 👎 0 
+//
+//
+//
+//
 
-
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution5 {
+/**
+ * 最长回文子串
+ *
+ * @author hsfxuebao
+ * 2023-05-21 18:29:19 
+ */
+class P5_LongestPalindromicSubstring{
+    public static void main(String[] args) {
+        Solution solution = new P5_LongestPalindromicSubstring().new Solution();
+        
+    }  
+    //leetcode submit region begin(Prohibit modification and deletion)
+class Solution {
     public String longestPalindrome(String s) {
 
-        String resultStr = "";
-
+        String res = "";
         for (int i = 0; i < s.length(); i++) {
-            // 以i 为中心的 回文串
-            String leftStr = palindrome(s, i, i);
-            resultStr = resultStr.length() > leftStr.length()
-                    ? resultStr : leftStr;
-            // 以i i+1为中心的回文串
-            String rightStr = palindrome(s, i, i + 1);
-            resultStr = resultStr.length() > rightStr.length()
-                        ? resultStr : rightStr;
 
+            // 已 i 为中心的 最长回文子串
+            String res1 = palindrome(s, i, i);
+            // 以 i，i+1 为中心的最长回文子串
+            String res2 = palindrome(s, i, i+1);
+            res = res1.length() > res.length() ? res1 : res;
+            res = res2.length() > res.length() ? res2 : res;
         }
-        return resultStr;
+        return res;
+
 
     }
 
-    public String palindrome(String s, int left, int right) {
+        private String palindrome(String s, int left, int right) {
 
-        while (left >= 0 && right < s.length()
-                && s.charAt(left) == s.charAt(right)) {
-            left--;
-            right++;
+            while (left >= 0 && right < s.length()
+                    && s.charAt(left) == s.charAt(right)) {
+                left--;
+                right++;
+            }
+            return s.substring(left+1, right);
         }
-        return s.substring(left+1, right);
-
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
+ 
+}

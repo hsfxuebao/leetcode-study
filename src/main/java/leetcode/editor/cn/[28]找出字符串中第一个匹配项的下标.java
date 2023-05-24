@@ -67,7 +67,7 @@ class Solution {
             int R = 256;
             // 计算R ^(L-1)的值
             long RL = 1;
-            for (int i = 1; i <= L-1; i++) {
+            for (int i = 0; i < L-1; i++) {
                 RL = (RL * R) % Q;
             }
 

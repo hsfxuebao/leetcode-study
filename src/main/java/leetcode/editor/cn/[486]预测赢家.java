@@ -61,48 +61,39 @@ class P486_PredictTheWinner{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public boolean PredictTheWinner(int[] nums) {
-
         int n = nums.length;
-        // dp[i][j].fir = x 表示对于 piles[i...j] 这部分石头堆，先手能获得的最高分数为 x
-        // dp[i][j].sec = x 表示对于 piles[i...j] 这部分石头堆，后手能获得的最高分数为 x
+
+        // 定义：dp[i][j].fir 从i到j先手获得的分数 dp[i][j].sec 后手获得的分数
         Pair[][] dp = new Pair[n][n];
-        // 初始化dp数组
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
+            for (int j = i; j < n; j++) {
                 dp[i][j] = new Pair(0, 0);
             }
         }
 
-        // 状态转移方程    先拿左边，第二次拿就变成后手了， 先拿右边
-        // dp[i][j].fir = max(piles[i]+ dp[i+1][j], dp[i][j-1]+piles[j])
-        // 若先手拿左边，                       先手拿右边
-        // dp[i][j].sec = dp[i+1][j].fir  或 dp[i][j-1].fir;
-
-        // base case i==j 的情况
+        // base case i==j 的时候
         for (int i = 0; i < n; i++) {
             dp[i][i].fir = nums[i];
             dp[i][i].sec = 0;
         }
 
-        for (int i = n-2; i >= 0 ; i--) {
+        // 状态转移方程
+        for (int i = n-2; i >= 0; i--) {
             for (int j = i+1; j < n; j++) {
-                // 先手拿左边
-                int left = nums[i] + dp[i+1][j].sec;
-                // 先手拿右边
-                int right = nums[j] + dp[i][j-1].sec;
-
-                // 判断大小
+               int left = nums[i] + dp[i+1][j].sec;
+               int right = nums[j] + dp[i][j-1].sec;
                 if (left >= right) {
                     dp[i][j].fir = left;
-                    dp[i][j].sec = dp[i + 1][j].fir;
+                    dp[i][j].sec = dp[i+1][j].fir;
                 } else {
                     dp[i][j].fir = right;
                     dp[i][j].sec = dp[i][j-1].fir;
                 }
+
             }
         }
-
         return dp[0][n-1].fir >= dp[0][n-1].sec;
+
     }
 
 
