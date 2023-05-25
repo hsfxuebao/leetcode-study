@@ -355,6 +355,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[131]分割回文串.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[131]分割回文串.md" />
+              <option name="frontendQuestionId" value="leetcode.cn131" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[131]分割回文串.java" />
+              <option name="titleSlug" value="palindrome-partitioning" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1325]删除给定值的叶子节点.java">
           <value>
             <LeetcodeEditor>
@@ -1947,6 +1958,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[797]所有可能的路径.java" />
               <option name="titleSlug" value="all-paths-from-source-to-target" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[79]单词搜索.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[79]单词搜索.md" />
+              <option name="frontendQuestionId" value="leetcode.cn79" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[79]单词搜索.java" />
+              <option name="titleSlug" value="word-search" />
             </LeetcodeEditor>
           </value>
         </entry>
