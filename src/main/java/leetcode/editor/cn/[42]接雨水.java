@@ -48,31 +48,34 @@ package leetcode.editor.cn;
 class P42_TrappingRainWater{
     public static void main(String[] args) {
         Solution solution = new P42_TrappingRainWater().new Solution();
-        
+        int[] height = new int[]{4,2,0,3,2,5};
+        solution.trap(height);
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 
+        /**
+         * 时间复杂度 o(logn)
+         * @param height
+         * @return
+         */
         public int trap(int[] height) {
 
+            int leftMax = 0,rightMax = 0;
             int result = 0;
-            int left = 0, right = height.length - 1;
-
-            int leftMax = Integer.MIN_VALUE, rightMax = Integer.MIN_VALUE;
-
-            while (left <= right) {
-                leftMax = Math.max(leftMax, height[left]);
+            int left = 0, right = height.length-1;
+            while (left < right) {
                 rightMax = Math.max(rightMax, height[right]);
-
-
+                leftMax = Math.max(leftMax, height[left]);
                 if (leftMax > rightMax) {
-                    result += Math.min(leftMax, rightMax) - height[right];
+                    result += rightMax - height[right];
                     right--;
                 } else {
-                    result += Math.min(leftMax, rightMax) - height[left];
+                    result += leftMax - height[left];
                     left++;
                 }
             }
+
             return result;
 
         }
@@ -83,22 +86,35 @@ class Solution {
          * @return
          */
     public int trap1(int[] height) {
+        int n = height.length;
+        
+        // 表示0-i 之间最大值
+        int[] leftMax = new int[n];
+        // 表示i-n 之间的最大值
+        int[] rightMax = new int[n];
+        int left = 0;
+        for (int i = 0; i < n; i++) {
 
-        int[] leftMax = new int[height.length];
-        int[] rightMax = new int[height.length];
-        leftMax[0] = height[0];
-        for (int i = 1; i < height.length; i++) {
-            leftMax[i] = Math.max(leftMax[i-1], height[i]);
+            if (height[i] > left) {
+                leftMax[i] = height[i];
+                left = height[i];
+            } else {
+                leftMax[i] = left;
+            }
         }
-        rightMax[height.length - 1] = height[height.length - 1];
-        for (int i = height.length - 2; i >= 0; i--) {
-            rightMax[i] = Math.max(rightMax[i+1], height[i]);
+        int right = 0;
+        for (int i = n-1; i >= 0; i--) {
+            if (height[i] > right) {
+                rightMax[i] = height[i];
+                right = height[i];
+            } else {
+                rightMax[i] = right;
+            }
         }
 
         int result = 0;
-        for (int i = 0; i < height.length; i++) {
-            int minHeight = Math.min(leftMax[i], rightMax[i]);
-            result +=  minHeight - height[i];
+        for (int i = 0; i < n; i++) {
+            result += Math.min(leftMax[i], rightMax[i]) - height[i];
         }
         return result;
     }

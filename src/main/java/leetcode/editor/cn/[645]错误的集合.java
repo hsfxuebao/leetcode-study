@@ -28,49 +28,54 @@ package leetcode.editor.cn;
 // 提示： 
 //
 // 
-// 2 <= nums.length <= 104 
-// 1 <= nums[i] <= 104 
+// 2 <= nums.length <= 10⁴ 
+// 1 <= nums[i] <= 10⁴ 
 // 
-// Related Topics 位运算 数组 哈希表 排序 
-// 👍 308 👎 0
+//
+// Related Topics位运算 | 数组 | 哈希表 | 排序 
+//
+// 👍 331, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
 /**
  * 错误的集合
  *
  * @author hsfxuebao
- * 2023-01-11 16:57:16 
+ * 2023-05-28 08:50:04 
  */
 class P645_SetMismatch{
     public static void main(String[] args) {
         Solution solution = new P645_SetMismatch().new Solution();
-        int[] nums = {2,2};
-        solution.findErrorNums(nums);
+        
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-
     public int[] findErrorNums(int[] nums) {
 
-        int n = nums.length;
-        int dup = 0;
-        for (int i = 0; i < n; i++) {
+        // 重复的元素
+        int dup = -1;
 
+        for (int i = 0; i < nums.length; i++) {
             int index = Math.abs(nums[i]) - 1;
+            // 出现重复的元素
             if (nums[index] < 0) {
-                dup = Math.abs(nums[i]);
+                dup = index + 1;
             } else {
                 nums[index] *= -1;
             }
         }
 
-        int miss = 0;
-        for (int i = 0; i < n; i++) {
+        // 找到未出现的数字
+        int mis = -1;
+        for (int i = 0; i < nums.length; i++) {
             if (nums[i] > 0) {
-                miss = i + 1;
+                mis = i+1;
             }
-
         }
-        return new int[]{dup, miss};
+        return new int[]{dup, mis};
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

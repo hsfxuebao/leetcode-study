@@ -58,6 +58,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1025]除数博弈.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[1025]除数博弈.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1025" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1025]除数博弈.java" />
+              <option name="titleSlug" value="divisor-game" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[102]二叉树的层序遍历.java">
           <value>
             <LeetcodeEditor>
@@ -949,6 +960,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[263]丑数.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[263]丑数.md" />
+              <option name="frontendQuestionId" value="leetcode.cn263" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[263]丑数.java" />
+              <option name="titleSlug" value="ugly-number" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[26]删除有序数组中的重复项.java">
           <value>
             <LeetcodeEditor>
@@ -1697,6 +1719,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[645]错误的集合.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[645]错误的集合.md" />
+              <option name="frontendQuestionId" value="leetcode.cn645" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[645]错误的集合.java" />
+              <option name="titleSlug" value="set-mismatch" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[64]最小路径和.java">
           <value>
             <LeetcodeEditor>
@@ -1738,6 +1771,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[658]找到 K 个最接近的元素.java" />
               <option name="titleSlug" value="find-k-closest-elements" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[659]分割数组为连续子序列.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[659]分割数组为连续子序列.md" />
+              <option name="frontendQuestionId" value="leetcode.cn659" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[659]分割数组为连续子序列.java" />
+              <option name="titleSlug" value="split-array-into-consecutive-subsequences" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -2222,6 +2266,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[965]单值二叉树.java" />
               <option name="titleSlug" value="univalued-binary-tree" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[969]煎饼排序.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[969]煎饼排序.md" />
+              <option name="frontendQuestionId" value="leetcode.cn969" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[969]煎饼排序.java" />
+              <option name="titleSlug" value="pancake-sorting" />
             </LeetcodeEditor>
           </value>
         </entry>
