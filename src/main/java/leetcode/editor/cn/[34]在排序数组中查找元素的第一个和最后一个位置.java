@@ -66,45 +66,51 @@ class Solution {
 
     }
 
+    // 左侧边界
     public int leftBound(int[] nums, int target) {
 
-        int left = 0;
-        int right = nums.length;
-        while (left < right) {
-            int mid = left + (right - left)/2;
-            if (nums[mid] > target) {
-                right = mid;
+        int left = 0, right = nums.length - 1;
+
+        while (left <= right) {
+
+            int mid = left + (right - left) /2;
+            if (nums[mid] == target) {
+                right = mid - 1;
+            } else if (nums[mid] > target) {
+                right = mid-1;
             } else if (nums[mid] < target) {
                 left = mid+1;
-
-            } else if (nums[mid] == target) {
-                right = mid;
             }
         }
-        if (left >= nums.length || nums[left] != target) {
+        // 越界情况
+        if (left >= nums.length) {
             return -1;
         }
-        return left;
-    }
-        public int rightBound(int[] nums, int target) {
+        return nums[left] == target ? left : -1;
 
-            int left = 0;
-            int right = nums.length;
-            while (left < right) {
-                int mid = left + (right - left)/2;
-                if (nums[mid] > target) {
-                    right = mid;
+    }
+
+        // 右侧边界
+        public int rightBound(int[] nums, int target) {
+            int left = 0, right = nums.length - 1;
+
+            while (left <= right) {
+
+                int mid = left + (right - left) /2;
+                if (nums[mid] == target) {
+                    left = mid + 1;
+                } else if (nums[mid] > target) {
+                    right = mid-1;
                 } else if (nums[mid] < target) {
                     left = mid+1;
-
-                } else if (nums[mid] == target) {
-                    left = mid + 1;
                 }
             }
-            if (left-1 < 0 || nums[left-1] != target) {
+            // 越界情况
+            if (right < 0) {
                 return -1;
             }
-            return left -1;
+            return nums[right] == target ? right : -1;
+
         }
 
 

@@ -1169,6 +1169,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[337]打家劫舍 III.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[337]打家劫舍 III.md" />
+              <option name="frontendQuestionId" value="leetcode.cn337" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[337]打家劫舍 III.java" />
+              <option name="titleSlug" value="house-robber-iii" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[34]在排序数组中查找元素的第一个和最后一个位置.java">
           <value>
             <LeetcodeEditor>
@@ -1389,6 +1400,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[454]四数相加 II.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[454]四数相加 II.md" />
+              <option name="frontendQuestionId" value="leetcode.cn454" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[454]四数相加 II.java" />
+              <option name="titleSlug" value="4sum-ii" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[45]跳跃游戏 II.java">
           <value>
             <LeetcodeEditor>
@@ -1529,6 +1551,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[509]斐波那契数.java" />
               <option name="titleSlug" value="fibonacci-number" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[50]Pow(x, n).java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[50]Pow(x, n).md" />
+              <option name="frontendQuestionId" value="leetcode.cn50" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[50]Pow(x, n).java" />
+              <option name="titleSlug" value="powx-n" />
             </LeetcodeEditor>
           </value>
         </entry>

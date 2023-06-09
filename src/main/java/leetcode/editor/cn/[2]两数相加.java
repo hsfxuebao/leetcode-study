@@ -75,34 +75,36 @@ class P2_AddTwoNumbers{
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 
-        // 虚拟头节点
         ListNode dummy = new ListNode(-1);
-        ListNode p1 = l1, p2 = l2, p3 = dummy;
-        // 进位
-        int carry = 0;
+        ListNode p3 = dummy;
+        ListNode p1 = l1, p2 = l2;
+        int index = 0;
 
-        while (p1 != null || p2 != null || carry > 0) {
-            // 当前数值和,先加上上一次的进位
-            int val = carry;
+        while (p1 != null || p2 != null || index > 0) {
+
+            int sum = 0;
             if (p1 != null) {
-                val += p1.val;
+                sum += p1.val;
                 p1 = p1.next;
             }
 
             if (p2 != null) {
-                val += p2.val;
+                sum += p2.val;
                 p2 = p2.next;
             }
-            // 计算进位
-            carry = val / 10;
-            // 计算当前的数值
-            val = val % 10;
 
-            p3.next = new ListNode(val);
+            // 加上上一次的进位
+            sum += index;
+
+            // 计算当前数值和进位
+            int currentVal = sum % 10;
+            index = sum / 10;
+            p3.next = new ListNode(currentVal);
             p3 = p3.next;
         }
-        return dummy.next;
 
+
+        return dummy.next;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

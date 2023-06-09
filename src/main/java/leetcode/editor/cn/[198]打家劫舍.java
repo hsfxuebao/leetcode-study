@@ -58,10 +58,9 @@ class Solution {
         int m = nums.length;
         int[] dp = new int[m+2];
 
+        for (int i = 2; i < dp.length; i++) {
 
-        for (int i = 2; i < m+2; i++) {
-            // 抢 不抢  取最大值
-            dp[i] = Math.max(dp[i-2]+nums[i-2], dp[i-1]);
+            dp[i] = Math.max(dp[i-2] + nums[i-2], dp[i-1]);
         }
         return dp[m+1];
     }

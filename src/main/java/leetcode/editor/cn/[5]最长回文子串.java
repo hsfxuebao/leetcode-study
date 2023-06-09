@@ -56,12 +56,10 @@ class Solution {
         String res = "";
         for (int i = 0; i < s.length(); i++) {
 
-            // 已 i 为中心的 最长回文子串
-            String res1 = palindrome(s, i, i);
-            // 以 i，i+1 为中心的最长回文子串
-            String res2 = palindrome(s, i, i+1);
-            res = res1.length() > res.length() ? res1 : res;
-            res = res2.length() > res.length() ? res2 : res;
+            String one = palindrome(s, i, i);
+            String two = palindrome(s, i, i+1);
+            String result = one.length() >= two.length() ? one : two;
+            res = res.length() >= result.length() ? res : result;
         }
         return res;
 

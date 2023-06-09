@@ -77,20 +77,17 @@ class Solution {
          */
     public int pick(int target) {
 
-        int res = 0;
-        int cnt = 0;
+        int cnt = 0, result = 0;
         for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == target) {
+                cnt++;
+                if (random.nextInt(cnt) == 0) {
+                    result = i;
+                }
 
-            if (target != nums[i]) {
-                continue;
             }
-            cnt++;
-            if (0 == random.nextInt(cnt)) {
-                res = i;
-            }
-            
         }
-        return res;
+        return result;
     }
 }
 
