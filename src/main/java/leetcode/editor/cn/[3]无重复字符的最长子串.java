@@ -46,6 +46,9 @@ package leetcode.editor.cn;
 //
 //
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 无重复字符的最长子串
  *
@@ -59,27 +62,36 @@ class P3_LongestSubstringWithoutRepeatingCharacters{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+        /**
+         * 滑动窗口
+         * @param s
+         * @return
+         */
     public int lengthOfLongestSubstring(String s) {
 
+        // 存储窗口内的字符
+        int[] window = new int[256];
         int left = 0, right = 0;
 
-        int[] window = new int[256];
-        int res = 0;
+        int result = 0;
+
         while (right < s.length()) {
-            // 右移窗口
+
+            // 向右移动窗口
             char c = s.charAt(right);
             window[c]++;
             right++;
 
-            // 左移动窗口
+            // left向右移动窗口
             while (window[c] > 1) {
-                char c1 = s.charAt(left);
-                window[c1]--;
+                char d = s.charAt(left);
+                window[d]--;
                 left++;
             }
-            res = Math.max(res, right - left);
+            // 更新结果
+            result = Math.max(result, right - left);
         }
-        return res;
+        return result;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

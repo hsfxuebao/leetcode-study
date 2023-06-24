@@ -29,8 +29,14 @@ package leetcode.editor.cn;
 // 1 <= nums.length <= 8 
 // -10 <= nums[i] <= 10 
 // 
-// Related Topics 数组 回溯 
-// 👍 1254 👎 0
+//
+// Related Topics数组 | 回溯 
+//
+// 👍 1386, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+//
+//
+//
+//
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,7 +47,7 @@ import java.util.List;
  * 全排列 II
  *
  * @author hsfxuebao
- * 2022-12-30 10:12:27 
+ * 2023-06-23 10:49:56 
  */
 class P47_PermutationsIi{
     public static void main(String[] args) {
@@ -50,48 +56,46 @@ class P47_PermutationsIi{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    private List<List<Integer>> res = new ArrayList<>();
-    public List<List<Integer>> permuteUnique(int[] nums) {
-        // 排序
-        Arrays.sort(nums);
-        // 记录 路径
+        /**
+         * 有重复元素 不可复选
+         */
+        List<List<Integer>> res = new ArrayList<>();
         LinkedList<Integer> track = new LinkedList<>();
-        // 当前元素 是否被使用过
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        Arrays.sort(nums);
         boolean[] used = new boolean[nums.length];
-        backtrack(nums, track, used);
+        backtrack(nums, used);
         return res;
     }
 
-        private void backtrack(int[] nums, LinkedList<Integer> track, boolean[] used) {
+        private void backtrack(int[] nums, boolean[] used) {
 
-            // 终止条件
             if (track.size() == nums.length) {
-                res.add(new LinkedList<>(track));
+                res.add(new ArrayList<>(track));
                 return;
             }
 
             // 选择集
             for (int i = 0; i < nums.length; i++) {
 
-                // 过滤 使用过的元素
                 if (used[i]) {
                     continue;
                 }
-
-                // 剪枝逻辑  遇到重复的元素，前面的元素被使用了，才可以使用
-                if (i > 0 && nums[i] == nums[i - 1] && !used[i-1]) {
+                // 新添加的剪枝逻辑，固定相同的元素在排列中的相对位置
+                if (i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) {
                     continue;
                 }
-                // 做选择
-                used[i] = true;
+
+                // 选择
                 track.addLast(nums[i]);
-                backtrack(nums, track, used);
+                used[i] = true;
+                // 递归
+                backtrack(nums, used);
                 // 撤销选择
-                used[i] = false;
                 track.removeLast();
+                used[i] = false;
 
             }
-
 
         }
     }

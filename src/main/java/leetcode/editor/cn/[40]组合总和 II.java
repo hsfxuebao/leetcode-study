@@ -75,36 +75,41 @@ class Solution {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         // 排序
         Arrays.sort(candidates);
-        backtrack(candidates, 0, target);
+        backtrack(candidates, target, 0);
         return result;
     }
 
-        private void backtrack(int[] candidates, int start, int remind) {
-
+        private void backtrack(int[] candidates, int remind, int start) {
+            // 符合条件
             if (remind == 0) {
-                result.add(new LinkedList<>(track));
+                result.add(new ArrayList<>(track));
                 return;
             }
+            // 终止条件
             if (remind < 0) {
                 return;
             }
 
             // 选择集
             for (int i = start; i < candidates.length; i++) {
-                // 剪枝逻辑，值相同的树枝，只遍历第一条
+
+                //剪枝逻辑
                 if (i > start && candidates[i] == candidates[i - 1]) {
                     continue;
                 }
-
-                // 做选择
+                // 选择
                 track.addLast(candidates[i]);
-                backtrack(candidates, i+1, remind- candidates[i]);
+                // 递归
+                backtrack(candidates, remind - candidates[i], i+1);
                 // 撤销选择
                 track.removeLast();
+
             }
 
 
         }
+
+
     }
 //leetcode submit region end(Prohibit modification and deletion)
  

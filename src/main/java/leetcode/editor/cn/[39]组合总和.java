@@ -65,38 +65,42 @@ class Solution {
 
     private List<List<Integer>> res = new ArrayList<>();
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        // 记录路径
-        LinkedList<Integer> track = new LinkedList<>();
-        // 递归
-        backtrack(candidates, 0, track, target);
+
+        // 路径
+        List<Integer> track = new ArrayList<>();
+        backtrack(candidates, track, target, 0, 0);
         return res;
+
     }
 
-        private void backtrack(int[] candidates, int start, LinkedList<Integer> track, int remind) {
+        /**
+         * 回溯
+         */
+        private void backtrack(int[] candidates, List<Integer> track, int target, int sum, int start) {
 
-
-            // 符合条件
-            if (remind == 0) {
-                res.add(new LinkedList<>(track));
+            // 终止条件
+            if (sum > target) {
                 return;
             }
-            // 终止条件 不满足条件
-            if (remind < 0) {
+            // 符合条件
+            if (sum == target) {
+                res.add(new ArrayList<>(track));
                 return;
             }
 
             // 选择集
             for (int i = start; i < candidates.length; i++) {
-                // 做选择
-                track.addLast(candidates[i]);
-                // todo  元素可重复使用
-                backtrack(candidates, i, track, remind - candidates[i]);
-                // 撤销选择
-                track.removeLast();
 
+                // 选择
+                track.add(candidates[i]);
+                // 递归
+                backtrack(candidates, track, target, sum+candidates[i], i);
+                // 撤销选择
+                track.remove(track.size() - 1);
             }
 
         }
+
 
     }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -61,22 +61,26 @@ class Solution {
          */
         public int trap(int[] height) {
 
-            int leftMax = 0,rightMax = 0;
-            int result = 0;
-            int left = 0, right = height.length-1;
-            while (left < right) {
-                rightMax = Math.max(rightMax, height[right]);
-                leftMax = Math.max(leftMax, height[left]);
+            int n = height.length;
+            int left = 0, right = n - 1;
+            int leftMax = 0, rightMax = 0;
+            int res = 0;
+            while (left <= right) {
+
+                leftMax = Math.max(height[left], leftMax);
+                rightMax = Math.max(height[right], rightMax);
+
                 if (leftMax > rightMax) {
-                    result += rightMax - height[right];
+
+                    res += rightMax - height[right];
                     right--;
+
                 } else {
-                    result += leftMax - height[left];
+                    res += leftMax - height[left];
                     left++;
                 }
             }
-
-            return result;
+            return res;
 
         }
 
@@ -85,38 +89,32 @@ class Solution {
          * @param height
          * @return
          */
-    public int trap1(int[] height) {
+    public int trap3(int[] height) {
         int n = height.length;
-        
-        // 表示0-i 之间最大值
+
+        // 表示0-i之间的最大值
         int[] leftMax = new int[n];
         // 表示i-n 之间的最大值
         int[] rightMax = new int[n];
+
         int left = 0;
         for (int i = 0; i < n; i++) {
-
-            if (height[i] > left) {
-                leftMax[i] = height[i];
-                left = height[i];
-            } else {
-                leftMax[i] = left;
-            }
+            left = Math.max(left, height[i]);
+            leftMax[i] = left;
         }
+
         int right = 0;
         for (int i = n-1; i >= 0; i--) {
-            if (height[i] > right) {
-                rightMax[i] = height[i];
-                right = height[i];
-            } else {
-                rightMax[i] = right;
-            }
+            right = Math.max(right, height[i]);
+            rightMax[i] = right;
         }
 
-        int result = 0;
+        // 计算最大
+        int res = 0;
         for (int i = 0; i < n; i++) {
-            result += Math.min(leftMax[i], rightMax[i]) - height[i];
+            res += Math.min(leftMax[i], rightMax[i]) - height[i];
         }
-        return result;
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

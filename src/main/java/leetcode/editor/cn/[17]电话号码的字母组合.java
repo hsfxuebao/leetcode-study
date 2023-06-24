@@ -49,6 +49,9 @@ package leetcode.editor.cn;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import com.sun.deploy.util.StringUtils;
+
 /**
  * 电话号码的字母组合
  *
@@ -63,47 +66,44 @@ class P17_LetterCombinationsOfAPhoneNumber{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 
+        List<String> res = new ArrayList<>();
+        String[] map = new String[]{"", "","abc","def","ghi","jkl",
+                "mno","pqrs","tuv","wxyz"};
 
-        public List<String> res = new ArrayList<>();
-        public String[] mapping = new String[]{"","","abc","def",
-                "ghi","jkl","mno","pqrs","tuv","wxyz"};
+
         /**
          * 回溯算法
          */
-    public List<String> letterCombinations(String digits) {
+        public List<String> letterCombinations(String digits) {
 
-        if (digits.isEmpty()) {
+            if (digits.isEmpty()) {
+                return res;
+            }
+            StringBuilder sb = new StringBuilder();
+            backtrack(digits, 0, sb);
             return res;
         }
 
-        StringBuilder track = new StringBuilder();
-        backtrack(digits, 0, track);
-        return res;
-    }
+        private void backtrack(String digits, int start, StringBuilder sb) {
 
-        private void backtrack(String digits, int start, StringBuilder track) {
 
-            // 终止条件
-            if (track.length() == digits.length()) {
-                res.add(track.toString());
+            if (start == digits.length()) {
+                res.add(sb.toString());
                 return;
             }
 
             // 选择集
-            for (int i = start; i < digits.length(); i++) {
-                char c = digits.charAt(i);
-                // 字符c 对应可选择的字母集
-                char[] chs = mapping[c - '0'].toCharArray();
-                for (char ch : chs) {
-                    // 选择
-                    track.append(ch);
-                    // 递归
-                    backtrack(digits, i+1, track);
-                    // 撤销选择
-                    track.deleteCharAt(track.length()-1);
-                }
+            String selectStr = map[digits.charAt(start) - '0'];
+            for (int i = 0; i < selectStr.length(); i++) {
+                // 选择
+                sb.append(selectStr.charAt(i));
+                // 下一个
+                backtrack(digits, start+1, sb);
+                // 撤销选择
+                sb.deleteCharAt(sb.length()-1);
             }
         }
+
     }
 //leetcode submit region end(Prohibit modification and deletion)
  

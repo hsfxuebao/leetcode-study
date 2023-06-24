@@ -60,17 +60,23 @@ class Solution {
     public int maxArea(int[] height) {
 
         int left = 0, right = height.length - 1;
-        int maxArea = Integer.MIN_VALUE;
+
+        int maxArea = 0;
         while (left < right) {
 
-            maxArea = Math.max(maxArea, (right - left)* Math.min(height[left], height[right]));
-            if (height[left] > height[right]) {
+            int leftNum = height[left];
+            int rightNum = height[right];
+            int curArea = Math.min(leftNum, rightNum)* (right - left);
+            maxArea = Math.max(curArea, maxArea);
+
+            if (leftNum >= rightNum) {
                 right--;
             } else {
                 left++;
             }
         }
         return maxArea;
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

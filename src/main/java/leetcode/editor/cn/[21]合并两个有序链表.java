@@ -70,34 +70,28 @@ class P21_MergeTwoSortedLists{
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
 
-        // 虚拟头结点
         ListNode dummy = new ListNode(-1);
-        ListNode p = list1, q = list2, m = dummy;
 
-        while (p != null && q != null) {
+        ListNode p1 = list1, p2 = list2, p = dummy;
 
-            if (p.val > q.val) {
-                m.next = q;
-                q = q.next;
+        while (p1 != null && p2 != null) {
+
+            if (p1.val <= p2.val) {
+                p.next = p1;
+                p1 = p1.next;
             } else {
-                m.next = p;
-                p = p.next;
+                p.next = p2;
+                p2 = p2.next;
             }
-            m = m.next;
-        }
-
-        while (p != null) {
-            m.next = p;
             p = p.next;
-            m = m.next;
         }
-        while (q != null) {
-            m.next = q;
-            q = q.next;
-            m = m.next;
+        if (p1 != null) {
+            p.next = p1;
+        }
+        if (p2 != null) {
+            p.next = p2;
         }
         return dummy.next;
-
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
