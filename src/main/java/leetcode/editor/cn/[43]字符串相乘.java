@@ -52,31 +52,35 @@ class Solution {
     public String multiply(String num1, String num2) {
 
         int m = num1.length(), n = num2.length();
-        int[] res = new int[m+n];
+        int[] num = new int[m+n];
+        // 从个位开始 一次做乘法运算
         for (int i = m-1; i >= 0; i--) {
             for (int j = n-1; j >= 0; j--) {
-                int p1 = i+j, p2 = i+j+1;
-                // 计算当前位置的乘法运算
-                int mul = (num1.charAt(i) - '0') * (num2.charAt(j) - '0');
-                // 计算对应位置的和
-                int sum = mul + res[p2];
 
-                res[p2] = sum % 10;
-                res[p1] += sum / 10;
+                // 计算乘法结果
+                int result = (num1.charAt(i)- '0') * (num2.charAt(j) - '0');
+                // 低位
+                int p2 = i+j+1;
+                int p1 = i+j;
+                int sum = num[p2] + result;
+                num[p2] = sum % 10;
+                num[p1] = num[p1] + sum / 10;
+
             }
         }
-
-        // 将res前面的0 排除掉
+        // 去除掉 前面是0 的位置
         int i = 0;
-        while (i < res.length && res[i] == 0) {
+        while (i < num.length && num[i] == 0) {
             i++;
         }
         StringBuilder sb = new StringBuilder();
-        for (; i < res.length; i++) {
-            sb.append(res[i]);
+        // 将数组中数字 转成10进制数字
+        for (; i < num.length; i++) {
+            sb.append(num[i]);
         }
-
         return sb.toString().length() > 0 ? sb.toString() : "0";
+        
+        
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

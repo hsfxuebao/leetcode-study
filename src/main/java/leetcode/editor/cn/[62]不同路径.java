@@ -71,29 +71,32 @@ class P62_UniquePaths{
 class Solution {
 
         /**
-         * 动态规划 状态  base 选择
+         * 动态规划 状态  base 选择 二维dp
          */
     public int uniquePaths(int m, int n) {
+        if (m == 1 && n == 1) {
+            return 1;
+        }
 
+        // 以dp(i,j) 到右下角有多少种路径
         int[][] dp = new int[m][n];
 
         // base case
-        // 第一行
-        for (int i = 0; i < n; i++) {
-            dp[0][i] = 1;
+        // 最后一行
+        for (int j = 0; j < n-1; j++) {
+            dp[m-1][j] = 1;
         }
-        // 第一列
-        for (int i = 0; i < m; i++) {
-            dp[i][0] = 1;
+        // 最后一列
+        for (int i = 0; i < m-1; i++) {
+            dp[i][n-1] = 1;
         }
-        //
-        for (int i = 1; i < m; i++) {
-            for (int j = 1; j < n; j++) {
-                dp[i][j] = dp[i-1][j] + dp[i][j-1];
+        // 状态转移方程
+        for (int i = m-2; i >= 0; i--) {
+            for (int j = n-2; j >= 0; j--) {
+                dp[i][j] = dp[i+1][j] + dp[i][j+1];
             }
         }
-
-        return dp[m-1][n-1];
+        return dp[0][0];
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -58,15 +58,17 @@ class Solution {
          * 每次 都取最大的
          */
     public int jump(int[] nums) {
-        int n = nums.length;
-        int end = 0;
-        int farthest = 0;
+        int m = nums.length;
+
+        // 跳跃的次数
         int jump = 0;
-        for (int i = 0; i < n-1; i++) {
-            farthest = Math.max(farthest, i+nums[i]);
-            if (i == end) {
-                end = farthest;
+        int farthest = 0;
+        int end = 0;
+        for (int i = 0; i < m-1; i++) {
+            farthest = Math.max(farthest, i+ nums[i]);
+            if (end == i) {
                 jump++;
+                end = farthest;
             }
         }
         return jump;

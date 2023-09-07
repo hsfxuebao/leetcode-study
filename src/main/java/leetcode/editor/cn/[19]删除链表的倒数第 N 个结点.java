@@ -86,41 +86,22 @@ class Solution {
 
     // 找到 倒数第k个节点
     private ListNode findFromEnd(ListNode head, int k) {
-
         ListNode p1 = head, p2 = head;
 
-        // 先让p1走 k个节点
+        // p1节点先走K步
         for (int i = 0; i < k; i++) {
             p1 = p1.next;
         }
-
-        // p1,p2同时走 p1不为null为止
+        // p1和p2节点同时走，p1节点为null
         while (p1 != null) {
-
             p1 = p1.next;
             p2 = p2.next;
-
         }
-        return p2;
 
-    }
-
-    // 返回链表的倒数第 k 个节点
-    ListNode findFromEnd1(ListNode head, int k) {
-        ListNode p1 = head;
-        // p1 先走 k 步
-        for (int i = 0; i < k; i++) {
-            p1 = p1.next;
-        }
-        ListNode p2 = head;
-        // p1 和 p2 同时走 n - k 步
-        while (p1 != null) {
-            p2 = p2.next;
-            p1 = p1.next;
-        }
-        // p2 现在指向第 n - k 个节点
         return p2;
     }
+
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
  

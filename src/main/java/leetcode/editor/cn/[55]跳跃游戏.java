@@ -50,17 +50,16 @@ class P55_JumpGame{
 class Solution {
     public boolean canJump(int[] nums) {
 
+        int m = nums.length;
+        // 可以跳到最远的位置
         int farthest = 0;
-
-        for (int i = 0; i < nums.length-1; i++) {
+        for (int i = 0; i < m - 1; i++) {
             farthest = Math.max(farthest, i+nums[i]);
-            // 遇到 0
             if (farthest <= i) {
                 return false;
             }
         }
-        return farthest >= nums.length - 1;
-
+        return farthest >= m-1;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

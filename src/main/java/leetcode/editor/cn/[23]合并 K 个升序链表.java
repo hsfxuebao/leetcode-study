@@ -53,7 +53,9 @@ package leetcode.editor.cn;
 //
 //
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 
 import common.ListNode;
@@ -83,30 +85,36 @@ class P23_MergeKSortedLists{
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
 
-        if (lists.length == 0) return null;
-        // 虚拟头结点
-        ListNode dummy = new ListNode(-1);
-        ListNode p = dummy;
-        // 优先级队列，最小堆
-        PriorityQueue<ListNode> pq = new PriorityQueue<>(
-                lists.length, (a, b)->(a.val - b.val));
-        // 将 k 个链表的头结点加入最小堆
-        for (ListNode head : lists) {
-            if (head != null)
-                pq.add(head);
+        if (lists.length == 0) {
+            return null;
         }
 
-        while (!pq.isEmpty()) {
-            // 获取最小节点，接到结果链表中
-            ListNode node = pq.poll();
-            p.next = node;
-            if (node.next != null) {
-                pq.add(node.next);
+        Queue<ListNode> queue = new PriorityQueue<>(new Comparator<ListNode>() {
+            @Override
+            public int compare(ListNode o1, ListNode o2) {
+                return o1.val - o2.val;
             }
-            // p 指针不断前进
+        });
+
+        // 将列表 头结点放到 小根堆中
+        for (ListNode node : lists) {
+            if (node != null) {
+                queue.add(node);
+            }
+        }
+
+        ListNode dummy = new ListNode(-1), p = dummy;
+        while (!queue.isEmpty()) {
+
+            ListNode poll = queue.poll();
+            p.next = new ListNode(poll.val);
             p = p.next;
+            if (poll.next != null) {
+                queue.add(poll.next);
+            }
         }
         return dummy.next;
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

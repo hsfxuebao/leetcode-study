@@ -64,24 +64,28 @@ class P53_MaximumSubarray{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+        /**
+         * 一维dp
+         */
     public int maxSubArray(int[] nums) {
-        if (nums == null || nums.length == 0) {
-            return 0;
-        }
 
-        // 一维dp  以i为结尾的最大子数组和
+        // 以i 结尾的 最大数组和
         int[] dp = new int[nums.length];
+        // base case
         dp[0] = nums[0];
         for (int i = 1; i < nums.length; i++) {
-            dp[i] = Math.max(nums[i], dp[i-1]+nums[i]);
+            dp[i] = Math.max(nums[i], dp[i-1] + nums[i]);
         }
 
-        int res = Integer.MIN_VALUE;
+        // 最大值
+        int maxSum = Integer.MIN_VALUE;
         for (int i = 0; i < dp.length; i++) {
-            res = Math.max(res, dp[i]);
+            maxSum = Math.max(maxSum, dp[i]);
         }
-        return res;
+        return maxSum;
     }
+
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
  

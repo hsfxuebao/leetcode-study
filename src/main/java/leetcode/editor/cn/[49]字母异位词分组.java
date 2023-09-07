@@ -44,6 +44,7 @@ package leetcode.editor.cn;
 //
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,30 +64,32 @@ class P49_GroupAnagrams{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
-
-        // 分组的映射
-        Map<String, List<String>> code2Group = new HashMap<>();
-
+        Map<String, List<String>> group = new HashMap<>();
         for (String str : strs) {
-            // 对字符串进行编码
-            String encode = encode1(str);
-            // 将编码后相同的字符串  放到一块
-            code2Group.putIfAbsent(encode, new ArrayList<>());
-            code2Group.get(encode).add(str);
+            // 对str进行编码
+            String encode = encode(str);
+            group.putIfAbsent(encode, new ArrayList<>());
+            group.get(encode).add(str);
         }
 
-        return code2Group.values().stream().collect(Collectors.toList());
+        // 返回结果
+
+        List<List<String>> collect = group.values().stream().collect(Collectors.toList());
+        return collect;
+
     }
 
-        private String encode1(String str) {
-            char[] codeStr = new char[26];
-            char[] chars = str.toCharArray();
-            for (int i = 0; i < chars.length; i++) {
-                codeStr[chars[i] - 'a']++;
-            }
-            return new String(codeStr);
+        private String encode(String str) {
 
+            char[] count = new char[26];
+            for (char c : str.toCharArray()) {
+                int index = c - 'a';
+                count[index]++;
+            }
+            return new String(count);
         }
+
+
     }
 //leetcode submit region end(Prohibit modification and deletion)
  

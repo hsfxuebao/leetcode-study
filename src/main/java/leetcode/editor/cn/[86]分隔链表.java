@@ -67,8 +67,7 @@ class Solution {
 
         ListNode minDummy = new ListNode(-1);
         ListNode maxDummy = new ListNode(-1);
-        ListNode p1 = minDummy, p2 = maxDummy;
-        ListNode p = head;
+        ListNode p1 = minDummy, p2 = maxDummy, p = head;
         while (p != null) {
 
             if (p.val >= x) {
@@ -78,12 +77,13 @@ class Solution {
                 p1.next = p;
                 p1 = p1.next;
             }
-            // todo 断开原链表中的每个节点的 next 指针
+
+            // 断开p之后的节点
             ListNode temp = p.next;
             p.next = null;
             p = temp;
         }
-        // 合并
+        // 链接2个链表
         p1.next = maxDummy.next;
         return minDummy.next;
 

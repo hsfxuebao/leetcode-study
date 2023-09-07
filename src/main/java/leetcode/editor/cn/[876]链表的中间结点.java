@@ -47,7 +47,7 @@ import common.ListNode;
  * @author hsfxuebao
  * 2023-04-16 09:34:42 
  */
-class P876_MiddleOfTheLinkedList{
+class  P876_MiddleOfTheLinkedList{
     public static void main(String[] args) {
         Solution solution = new P876_MiddleOfTheLinkedList().new Solution();
         
@@ -66,11 +66,13 @@ class P876_MiddleOfTheLinkedList{
 class Solution {
     public ListNode middleNode(ListNode head) {
 
+        // 快慢指针
         ListNode slow = head, fast = head;
 
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
+
         }
         return slow;
     }

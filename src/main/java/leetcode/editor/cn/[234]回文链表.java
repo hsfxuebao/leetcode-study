@@ -64,45 +64,53 @@ class P234_PalindromeLinkedList{
  * }
  */
 class Solution {
+
+
+    // 找到链表中间的节点，反转 中间节点之后的节点
     public boolean isPalindrome(ListNode head) {
 
-        // 找到链表的中间
+        // 快慢指针 找到链表中间的节点
         ListNode slow = head, fast = head;
 
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
-        if (fast != null) {
-           slow = slow.next;
-        }
-        // 反转链表
-        ListNode right = reverse1(slow);
-        ListNode left = head;
-        while (right != null) {
 
-            if (left.val != right.val) {
+        // 判断链表是 奇数/偶数，若是偶数，不用动
+        // 奇数 需要将slow后移一个节点
+        if (fast != null) {
+            // 奇数
+            slow = slow.next;
+        }
+        // 将slow后的节点 反转
+        ListNode reverse = reverse(slow);
+        slow = head;
+        // 判断节点
+        while (reverse != null) {
+            if (reverse.val != slow.val) {
                 return false;
             }
-            left = left.next;
-            right = right.next;
-
+            reverse = reverse.next;
+            slow = slow.next;
         }
+
         return true;
+
 
     }
 
-    private ListNode reverse1(ListNode slow) {
+    // 反转链表
+    private ListNode reverse(ListNode slow) {
 
-        ListNode pre = null, cur = slow;
+       ListNode pre = null, cur = slow;
         while (cur != null) {
             ListNode next = cur.next;
             cur.next = pre;
-            pre =cur;
+            pre = cur;
             cur = next;
         }
         return pre;
-
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

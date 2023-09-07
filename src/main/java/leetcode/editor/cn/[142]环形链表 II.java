@@ -92,8 +92,9 @@ class P142_LinkedListCycleIi{
 public class Solution {
     public ListNode detectCycle(ListNode head) {
 
-        ListNode slow = head, fast = head;
+        // 先判断是否有环，如果没有环，返回false
 
+        ListNode slow = head, fast = head;
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
@@ -101,18 +102,19 @@ public class Solution {
                 break;
             }
         }
+
         if (fast == null || fast.next == null) {
             return null;
         }
 
-        // 有环，寻找环的起点  // 重新指向头结点
         slow = head;
-        // 快慢指针同步前进，相交点就是环起点
+        // 此时 快慢指针同时走，相遇点就是环的起点
         while (slow != fast) {
             slow = slow.next;
             fast = fast.next;
         }
         return slow;
+
     }
 
 }

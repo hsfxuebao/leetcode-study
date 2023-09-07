@@ -48,36 +48,39 @@ package leetcode.editor.cn;
  * @author hsfxuebao
  * 2023-04-02 09:53:03 
  */
-class P74_SearchA2dMatrix{
+class P74_SearchA2dMatrix {
     public static void main(String[] args) {
         Solution solution = new P74_SearchA2dMatrix().new Solution();
-        
-    }  
-    //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public boolean searchMatrix(int[][] matrix, int target) {
-        int m = matrix.length, n = matrix[0].length;
-        // 二维矩阵  转成一维数组
-        int left = 0, right = m*n;
-        while (left < right) {
-            int mid = left + (right - left)/2;
-            if (getNumber(mid, matrix) == target) {
-                return true;
-            } else if (getNumber(mid, matrix) > target) {
-                right = mid;
-            } else if (getNumber(mid, matrix) < target) {
-                left = mid + 1;
-            }
-        }
-        return false;
+
     }
+
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public boolean searchMatrix(int[][] matrix, int target) {
+            int m = matrix.length, n = matrix[0].length;
+            int left = 0, right = m * n - 1;
+
+            while (left <= right) {
+
+                int mid = left + (right - left) / 2;
+                int curVal = getNumber(mid, matrix);
+                if (curVal > target) {
+                    right = mid - 1;
+                } else if (curVal < target) {
+                    left = mid + 1;
+                } else if (curVal == target) {
+                    return true;
+                }
+
+            }
+            return false;
+        }
 
         private int getNumber(int mid, int[][] matrix) {
             int m = matrix.length, n = matrix[0].length;
-            int row = mid / n, col = mid % n;
-            return matrix[row][col];
+            return matrix[mid/n][mid % n];
         }
+
     }
 //leetcode submit region end(Prohibit modification and deletion)
- 
 }
