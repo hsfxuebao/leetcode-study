@@ -56,7 +56,6 @@ class P283_MoveZeroes{
 class Solution {
     public void moveZeroes(int[] nums) {
         int slow = 0, fast = 0;
-
         while (fast < nums.length) {
             if (nums[fast] != 0) {
                 nums[slow] = nums[fast];
@@ -64,9 +63,12 @@ class Solution {
             }
             fast++;
         }
+        // 将 slow到最后的数据都置为0
         for (int i = slow; i < nums.length; i++) {
             nums[i] = 0;
         }
+
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
