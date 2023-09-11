@@ -52,6 +52,8 @@ package leetcode.editor.cn;
 //
 //
 
+import java.util.EnumSet;
+
 /**
  * 两数之和 II - 输入有序数组
  *
@@ -72,18 +74,20 @@ class Solution {
         while (left < right) {
             int leftNum = numbers[left];
             int rightNum = numbers[right];
-            int sum = leftNum + rightNum;
-            if (sum < target) {
-                while (left < right && numbers[left] == leftNum) {
-                    left++;
-                }
-            } else if (sum > target) {
+            int sum =  leftNum + rightNum;
+            if (sum > target) {
                 while (left < right && numbers[right] == rightNum) {
                     right--;
                 }
+            } else if (sum < target) {
+                while (left < right && numbers[left] == leftNum) {
+                    left++;
+                }
+
             } else if (sum == target) {
-                return new int[]{left + 1, right + 1};
+                return new int[]{left+1, right+1};
             }
+
         }
         return null;
     }

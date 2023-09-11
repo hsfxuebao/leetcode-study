@@ -52,24 +52,30 @@ class P5_LongestPalindromicSubstring{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String longestPalindrome(String s) {
+        String result = "";
+        char[] chars = s.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            // 以i为中心，以i,i+1 为中心
+            String palindrome = palindrome(s, i, i);
+            if (palindrome.length() > result.length()) {
+                result = palindrome;
+            }
 
-        String res = "";
-        for (int i = 0; i < s.length(); i++) {
+            String palindrome1 = palindrome(s, i, i + 1);
+            if (palindrome1.length() > result.length()) {
+                result = palindrome1;
+            }
 
-            String one = palindrome(s, i, i);
-            String two = palindrome(s, i, i+1);
-            String result = one.length() >= two.length() ? one : two;
-            res = res.length() >= result.length() ? res : result;
         }
-        return res;
-
+        return result;
 
     }
 
+        // 回文串
         private String palindrome(String s, int left, int right) {
 
             while (left >= 0 && right < s.length()
-                    && s.charAt(left) == s.charAt(right)) {
+                && s.charAt(left) == s.charAt(right)) {
                 left--;
                 right++;
             }

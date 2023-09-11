@@ -74,23 +74,22 @@ class Solution {
 
             int left = 0, right = nums.length - 1;
             while (left <= right) {
-                int mid = left + (right - left) /2;
 
-                if (nums[mid] == target) {
-                    right = mid - 1;
-                } else if (nums[mid] > target) {
+                int mid = left + (right - left)/2;
+                if (nums[mid] > target) {
                     right = mid - 1;
                 } else if (nums[mid] < target) {
                     left = mid + 1;
+                } else if (nums[mid] == target) {
+                    right = mid - 1;
                 }
 
             }
-
-            // 越界判断
-            if (left >= nums.length) {
+            // 越界情况
+            if (left < 0 || left >= nums.length) {
                 return -1;
             }
-            // 判断是否等于目标值
+            // 判断是否等于target
             return nums[left] == target ? left : -1;
 
         }
@@ -98,26 +97,24 @@ class Solution {
          * 左侧边界
          */
         private int rightBound(int[] nums, int target) {
-
             int left = 0, right = nums.length - 1;
             while (left <= right) {
-                int mid = left + (right - left) /2;
 
-                if (nums[mid] == target) {
-                    left = mid + 1;
-                } else if (nums[mid] > target) {
+                int mid = left + (right - left) /2;
+                if (nums[mid] > target) {
                     right = mid - 1;
                 } else if (nums[mid] < target) {
+                    left = mid + 1;
+                } else if (nums[mid] == target) {
                     left = mid + 1;
                 }
 
             }
-
-            // 越界判断
-            if (right < 0) {
+            // 越界情况
+            if (right < 0 || right >= nums.length) {
                 return -1;
             }
-            // 判断是否等于目标值
+            // 判断是否等于target
             return nums[right] == target ? right : -1;
 
         }
