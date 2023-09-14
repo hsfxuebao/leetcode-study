@@ -42,19 +42,17 @@ package leetcode.editor.cn;
 //
 // Related Topics双指针 | 字符串 | 动态规划 
 //
-// 👍 819, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 937, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
 //
-
-import sun.security.krb5.internal.CredentialsUtil;
 
 /**
  * 判断子序列
  *
  * @author hsfxuebao
- * 2023-04-02 15:31:05 
+ * 2023-09-13 19:19:08 
  */
 class P392_IsSubsequence{
     public static void main(String[] args) {
@@ -64,10 +62,9 @@ class P392_IsSubsequence{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public boolean isSubsequence(String s, String t) {
-
         int sIndex = 0, tIndex = 0;
         while (sIndex < s.length() && tIndex < t.length()) {
-            if (t.charAt(tIndex) == s.charAt(sIndex)) {
+            if (s.charAt(sIndex) == t.charAt(tIndex)) {
                 sIndex++;
             }
             tIndex++;

@@ -64,64 +64,41 @@ class Solution {
         /**
          * 二维dp
          */
-    public int coinChange1(int[] coins, int amount) {
+    public int coinChange(int[] coins, int amount) {
 
-        int m = coins.length;
-        // 定义 dp[i][j] 第i个零钱，凑成金额j,最少的数量
-        int[][] dp = new int[m+1][amount+1];
-        // 因为求最小值，所以默认里面都是最大值
-        for (int i = 0; i <= m; i++) {
+        // dp[i][j] 表示第i面值的金额，凑成金额j，需要最少硬币数
+        int[][] dp = new int[coins.length+1][amount+1];
+        // 全部填充 amount+1的数值，若dp[i][j] = amount+1，表示凑不成改金额
+        for (int i = 0; i <= coins.length; i++) {
             Arrays.fill(dp[i], amount+1);
         }
-        // base case j=0时 数量为1
-        for (int i = 0; i <= m; i++) {
+        // base case j=0时，dp[i][0] = 0
+        for (int i = 0; i <= coins.length; i++) {
             dp[i][0] = 0;
         }
-        for (int i = 1; i <= m; i++) {
+
+        for (int i = 1; i <= coins.length; i++) {
             for (int j = 1; j <= amount; j++) {
+
+                // 可以拿 coins[i]对应的金额面值
                 if (j - coins[i - 1] >= 0) {
-
-                    // 拿 与 不拿 取最小值
-                    dp[i][j] = Math.min(dp[i-1][j], dp[i][j-coins[i-1]] + 1);
-
+                    // min(拿，不拿)
+                    // 可以重复拿
+                    dp[i][j] = Math.min(dp[i-1][j], dp[i][j-coins[i-1]]+1);
                 } else {
-                    // 不拿
+
                     dp[i][j] = dp[i-1][j];
+
                 }
 
             }
         }
-        return dp[m][amount] == amount+1 ? -1 : dp[m][amount];
+        return dp[coins.length][amount] == amount+1 ? -1 : dp[coins.length][amount];
 
     }
 
 
-        /**
-         * 一维dp
-         */
-        public int coinChange(int[] coins, int amount) {
 
-            int m = coins.length;
-            // 定义 dp[i][j] 第i个零钱，凑成金额j,最少的数量
-            int[] dp = new int[amount+1];
-            // 因为求最小值，所以默认里面都是最大值
-            Arrays.fill(dp, amount+1);
-            // base case
-            dp[0] = 0;
-
-            for (int i = 1; i <= m; i++) {
-                for (int j = 1; j <= amount; j++) {
-                    if (j - coins[i - 1] >= 0) {
-                        // 拿 与 不拿 取最小值
-                        dp[j] = Math.min(dp[j], dp[j-coins[i-1]] + 1);
-
-                    }
-
-                }
-            }
-            return dp[amount] == amount+1 ? -1 : dp[amount];
-
-        }
 }
 //leetcode submit region end(Prohibit modification and deletion)
  

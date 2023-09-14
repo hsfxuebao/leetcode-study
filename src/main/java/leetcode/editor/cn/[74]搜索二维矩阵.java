@@ -1,11 +1,13 @@
 package leetcode.editor.cn;
 
-//编写一个高效的算法来判断 m x n 矩阵中，是否存在一个目标值。该矩阵具有如下特性： 
+//给你一个满足下述两条属性的 m x n 整数矩阵： 
 //
 // 
-// 每行中的整数从左到右按升序排列。 
+// 每行中的整数从左到右按非递减顺序排列。 
 // 每行的第一个整数大于前一行的最后一个整数。 
 // 
+//
+// 给你一个整数 target ，如果 target 在矩阵中，返回 true ；否则，返回 false 。 
 //
 // 
 //
@@ -36,7 +38,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 二分查找 | 矩阵 
 //
-// 👍 787, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 841, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
@@ -46,41 +48,40 @@ package leetcode.editor.cn;
  * 搜索二维矩阵
  *
  * @author hsfxuebao
- * 2023-04-02 09:53:03 
+ * 2023-09-11 21:29:10 
  */
-class P74_SearchA2dMatrix {
+class P74_SearchA2dMatrix{
     public static void main(String[] args) {
         Solution solution = new P74_SearchA2dMatrix().new Solution();
-
-    }
-
+        
+    }  
     //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public boolean searchMatrix(int[][] matrix, int target) {
-            int m = matrix.length, n = matrix[0].length;
-            int left = 0, right = m * n - 1;
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
 
-            while (left <= right) {
+        // 将二维数组 转换成一维数组
+        // row = 位置 / 列的长度， col = 位置 % 列的长度
+        int colLen = matrix[0].length;
+        int rowLen = matrix.length;
 
-                int mid = left + (right - left) / 2;
-                int curVal = getNumber(mid, matrix);
-                if (curVal > target) {
-                    right = mid - 1;
-                } else if (curVal < target) {
-                    left = mid + 1;
-                } else if (curVal == target) {
-                    return true;
-                }
+        int left = 0, right = rowLen * colLen - 1;
+        while (left <= right) {
 
+            int mid = left + (right - left)/2;
+            int row = mid / colLen;
+            int col = mid % colLen;
+            if (matrix[row][col] == target) {
+                return true;
+            } else if (matrix[row][col] > target) {
+                right = mid - 1;
+            } else if (matrix[row][col] < target) {
+                left = mid + 1;
             }
-            return false;
         }
-
-        private int getNumber(int mid, int[][] matrix) {
-            int m = matrix.length, n = matrix[0].length;
-            return matrix[mid/n][mid % n];
-        }
+        return false;
 
     }
+}
 //leetcode submit region end(Prohibit modification and deletion)
+ 
 }

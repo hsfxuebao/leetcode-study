@@ -61,7 +61,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 二分查找 
 //
-// 👍 528, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 557, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
@@ -71,7 +71,7 @@ package leetcode.editor.cn;
  * 在 D 天内送达包裹的能力
  *
  * @author hsfxuebao
- * 2023-04-02 18:24:17 
+ * 2023-09-14 11:32:43 
  */
 class P1011_CapacityToShipPackagesWithinDDays{
     public static void main(String[] args) {
@@ -81,46 +81,45 @@ class P1011_CapacityToShipPackagesWithinDDays{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int shipWithinDays(int[] weights, int days) {
-        // 变量x 最低运载能力  f(x)使用x运载能力，需要多少天才能把货物运完
-        // left表示  最少运载能力，每天货物的最小值
-        int left = 0;
-        int right = 1;
-        for (int weight: weights) {
+
+
+        // 二分，左侧边界
+        int left = 0, right = 0;
+        // 最小运载能力为 单次最大货物，最大运载能力为所有货物一次运输完
+        for (int weight : weights) {
             left = Math.max(left, weight);
             right += weight;
         }
-
-        // 左侧边界
-        while (left < right) {
-
+        while (left <= right) {
             int mid = left + (right - left)/2;
-            if (f(weights, mid) > days) {
-                left = mid +1;
-            } else {
-                right = mid;
+            if (needDays(weights, mid) > days) {
+                left = mid + 1;
+            } else if (needDays(weights, mid) < days) {
+                right = mid - 1;
+
+            } else if (needDays(weights, mid) == days) {
+                right = mid - 1;
             }
         }
+
         return left;
     }
 
-        private int f(int[] weights, int mid) {
-            int days = 0;
-            for (int i = 0; i < weights.length; ) {
-
-                int cap = mid;
-                // 尽可能多装货物
-                while (i < weights.length) {
-                    if (cap < weights[i]) {
-                        break;
-                    }
-                    cap -= weights[i];
-                    i++;
+        // 单次运载能力
+        private int needDays(int[] weights, int mid) {
+            // 按顺序运输
+            int days = 1;
+            int cap = mid;
+            for (int weight : weights) {
+                if (cap - weight < 0) {
+                    days++;
+                    cap = mid;
                 }
-                days++;
+                cap = cap - weight;
             }
             return days;
-        }
 
+        }
     }
 //leetcode submit region end(Prohibit modification and deletion)
  

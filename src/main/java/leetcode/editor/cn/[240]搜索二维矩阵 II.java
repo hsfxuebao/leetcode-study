@@ -62,17 +62,14 @@ class P240_SearchA2dMatrixIi{
 class Solution {
 
     public boolean searchMatrix(int[][] matrix, int target) {
-        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+        if (matrix == null) {
             return false;
         }
 
-        int rowLen = matrix.length;
-        int colLen = matrix[0].length;
+        // 初始化在 右上角，大于target 往下移动，小于target往左移动
+        int row = 0, col = matrix[0].length - 1;
+        while (row < matrix.length && col >= 0) {
 
-        // 从右上角 开始遍历
-        int row = 0, col = colLen - 1;
-
-        while (row < rowLen && col >= 0) {
             if (matrix[row][col] == target) {
                 return true;
             } else if (matrix[row][col] > target) {
@@ -80,6 +77,7 @@ class Solution {
             } else if (matrix[row][col] < target) {
                 row++;
             }
+
         }
         return false;
     }

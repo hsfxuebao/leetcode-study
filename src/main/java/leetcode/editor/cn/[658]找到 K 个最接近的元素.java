@@ -39,15 +39,12 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 双指针 | 二分查找 | 排序 | 滑动窗口 | 堆（优先队列） 
 //
-// 👍 483, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 508, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
 //
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -55,7 +52,7 @@ import java.util.List;
  * 找到 K 个最接近的元素
  *
  * @author hsfxuebao
- * 2023-04-02 15:47:34 
+ * 2023-09-13 19:21:49 
  */
 class P658_FindKClosestElements{
     public static void main(String[] args) {
@@ -66,41 +63,45 @@ class P658_FindKClosestElements{
 class Solution {
     public List<Integer> findClosestElements(int[] arr, int k, int x) {
 
-
-
-        int p = leftBound(arr, x);
-        int left = p -1, right = p;
-
+        // 找到最左侧元素对应的index
+        int index = leftBound(arr, x);
+        // 两边都是开区间
+        int left = index - 1, right = index;
         LinkedList<Integer> result = new LinkedList<>();
-        while (right - left - 1 < k) {
+        while (right - left -1 < k) {
+
+            // 边界条件
             if (left == -1) {
                 result.addLast(arr[right]);
                 right++;
             } else if (right == arr.length) {
                 result.addFirst(arr[left]);
                 left--;
-            } else if (x - arr[left] > arr[right] - x) {
+            } else if (Math.abs((arr[left] - x)) > Math.abs(arr[right] - x)) {
                 result.addLast(arr[right]);
                 right++;
+
             } else {
                 result.addFirst(arr[left]);
                 left--;
             }
         }
+
         return result;
     }
 
-        private int leftBound(int[] nums, int target) {
-            int left = 0, right = nums.length;
-            while (left < right) {
-                int mid = left + (right - left)/2;
+        private int leftBound(int[] arr, int target) {
 
-                if (nums[mid] > target) {
-                    right = mid;
-                } else if (nums[mid] < target) {
-                    left = mid + 1;
-                } else if (nums[mid] == target) {
-                    right = mid;
+            int left = 0, right = arr.length - 1;
+            while (left <= right) {
+
+                int mid = left + (right - left)/2;
+                if (arr[mid] > target) {
+                    right = mid - 1;
+                } else if (arr[mid] < target) {
+                    left = mid +1;
+                } else if (arr[mid] == target) {
+                    right = mid - 1;
                 }
             }
             return left;

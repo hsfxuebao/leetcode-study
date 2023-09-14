@@ -34,7 +34,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 二分查找 | 动态规划 | 排序 
 //
-// 👍 884, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 949, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
@@ -47,83 +47,97 @@ import java.util.Comparator;
  * 俄罗斯套娃信封问题
  *
  * @author hsfxuebao
- * 2023-04-02 10:03:37 
+ * 2023-09-13 14:33:29 
  */
 class P354_RussianDollEnvelopes{
     public static void main(String[] args) {
         Solution solution = new P354_RussianDollEnvelopes().new Solution();
-        
+        int[][] res = {{4,5},{4,6},{6,7},{2,3},{1,1},{1,1}};
+        int len = solution.maxEnvelopes(res);
+
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int maxEnvelopes(int[][] envelopes) {
-
-        // 先按宽度 升序排序，若相同按高度降序排序
+        // 按宽度升序排序，若宽度相等，按高度降序排序
         Arrays.sort(envelopes, new Comparator<int[]>() {
             @Override
             public int compare(int[] o1, int[] o2) {
                 return o1[0] == o2[0]
-                        ? o2[1] - o1[1] : o1[0] - o2[0];
+                        ? o2[1] - o1[1]
+                        : o1[0] - o2[0];
             }
         });
 
-        // 对高度维度 求 最长递增子序列
+        // 对高度 最长递增子序列
         int[] height = new int[envelopes.length];
         for (int i = 0; i < envelopes.length; i++) {
             height[i] = envelopes[i][1];
         }
-            // 动态规划解法
-//        return lengOfLIS(height);
-        // 二分查找解法
+
         return lengOfLIS2(height);
 
     }
+        private int lengOfLIS(int[] height) {
+            int[] result = new int[height.length + 1];
+            // 牌堆数
+            int size = 0;
 
-        // 找 最左侧边界
+            for (int i = 0; i < height.length; i++) {
+                // 对于每个数 在result中找到对应的位置
+                int target = height[i];
+
+                int left = 0, right = size;
+                while (left < right) {
+
+                    int mid = left + (right - left)/2;
+                    if (result[mid] == target) {
+                        right = mid;
+                    } else if (result[mid] > target) {
+                        right = mid;
+                    } else if (result[mid] < target) {
+                        left = mid + 1;
+                    }
+                }
+                // 对left 进行判断
+                if (left == size) {
+                    size++;
+                }
+                result[left] = target;
+            }
+            return size;
+
+        }
         private int lengOfLIS2(int[] height) {
 
-            int[] top = new int[height.length+1];
+            int[] result = new int[height.length + 1];
             // 牌堆数
-            int piles = 0;
-            for (int i = 0; i < height.length; i++) {
+            // 初始化0的位置
+            result[0] = height[0];
+            int size = 1;
+
+            for (int i = 1; i < height.length; i++) {
+                // 对于每个数 在result中找到对应的位置
+                int left = 0, right = size - 1;
                 int target = height[i];
-                int left = 0, right = piles;
+                while (left <= right) {
 
-                while (left < right) {
                     int mid = left + (right - left)/2;
-                    if (top[mid] > target) {
-                        right = mid;
-                    } else if (top[mid] < target) {
+                    if (result[mid] == target) {
+                        right = mid - 1;
+                    } else if (result[mid] > target) {
+                        right = mid - 1;
+                    } else if (result[mid] < target) {
                         left = mid + 1;
-                    } else {
-                        right = mid;
                     }
                 }
-                if (left == piles) {
-                    // 堆数 +1
-                    piles++;
+                // 对left 进行判断
+                if (left == size) {
+                    size++;
                 }
-                top[left] = target;
+                result[left] = target;
             }
-            return piles;
-        }
-
-        // 动态规划
-        private int lengOfLIS(int[] height) {
-            int[] dp = new int[height.length];
-            Arrays.fill(dp, 1);
-            for (int i = 0; i < height.length; i++) {
-                for (int j = 0; j < i; j++) {
-                    if (height[i] > height[j]) {
-                        dp[i] = Math.max(dp[i], dp[j] + 1);
-                    }
-                }
-            }
-            int res = 0;
-            for (int i = 0; i < dp.length; i++) {
-                res = Math.max(res, dp[i]);
-            }
-            return res;
+            return size;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

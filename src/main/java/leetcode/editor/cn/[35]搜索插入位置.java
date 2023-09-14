@@ -60,9 +60,11 @@ class P35_SearchInsertPosition{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
+        //
     public int searchInsert(int[] nums, int target) {
 
-        int left = 0, right = nums.length - 1;;
+       int left = 0, right = nums.length - 1;
         while (left <= right) {
 
             int mid = left + (right - left)/2;
@@ -73,10 +75,8 @@ class Solution {
             } else if (nums[mid] == target) {
                 right = mid - 1;
             }
-
         }
         return left;
-
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

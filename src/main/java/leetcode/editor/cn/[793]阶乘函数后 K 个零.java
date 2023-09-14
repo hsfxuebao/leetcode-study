@@ -42,7 +42,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数学 | 二分查找 
 //
-// 👍 198, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 208, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
@@ -52,21 +52,18 @@ package leetcode.editor.cn;
  * 阶乘函数后 K 个零
  *
  * @author hsfxuebao
- * 2023-04-02 16:07:53 
+ * 2023-09-14 10:16:58 
  */
 class P793_PreimageSizeOfFactorialZeroesFunction{
     public static void main(String[] args) {
         Solution solution = new P793_PreimageSizeOfFactorialZeroesFunction().new Solution();
-        
+        int result = solution.preimageSizeFZF(5);
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int preimageSizeFZF(int k) {
-        return (int)(rightBound(k) - leftBound(k) + 1);
 
-    }
 
-        private long leftBound(long k) {
+        private long leftBound1(long k) {
             long left = 0, right = Long.MAX_VALUE;
 
             while (left < right) {
@@ -83,7 +80,7 @@ class Solution {
             return left;
         }
 
-        private long rightBound(int k) {
+        private long rightBound1(int k) {
             long left = 0, right = Long.MAX_VALUE;
 
             while (left < right) {
@@ -101,15 +98,69 @@ class Solution {
         }
 
         private long trailingZeroes(long n) {
-        long res = 0;
-        for (long i = n; i / 5 > 0; i = i / 5) {
+            long res = 0;
+            for (long i = n; i / 5 > 0; i = i / 5) {
 
-            res += i / 5;
+                res += i / 5;
+            }
+            return res;
         }
-        return res;
-    }
 
-}
+
+        public int preimageSizeFZF(int k) {
+            return (int)(rightBound(k) - leftBound(k) + 1);
+        }
+
+    // 左侧边界对数的数值
+    private long leftBound(int target) {
+
+        long left = 0, right = Long.MAX_VALUE;
+
+        while (left <= right) {
+            long mid = left + (right - left)/2;
+            if (zeroNum(mid) > target) {
+                right = mid - 1;
+            } else if (zeroNum(mid) < target) {
+                left = mid + 1;
+            } else if (zeroNum(mid) == target) {
+                right = mid - 1;
+            }
+        }
+        return left;
+    }
+        // 右侧边界对数的数值
+        private long rightBound(int target) {
+
+            long left = 0, right = Long.MAX_VALUE;
+
+            while (left <= right) {
+                long mid = left + (right - left)/2;
+                if (zeroNum(mid) > target) {
+                    right = mid -1;
+                } else if (zeroNum(mid) < target) {
+                    left = mid + 1;
+                } else if (zeroNum(mid) == target) {
+                    left = mid + 1;
+                }
+            }
+            return right;
+        }
+
+
+        // 数值num阶乘之后 0 的个数
+        private long zeroNum(long num) {
+
+            long res = 0;
+
+            while (num > 0) {
+                res += num /5;
+                num = num /5;
+            }
+            return res;
+        }
+
+
+    }
 //leetcode submit region end(Prohibit modification and deletion)
  
 }
