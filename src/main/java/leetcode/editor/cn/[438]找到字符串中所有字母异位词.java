@@ -38,137 +38,78 @@ package leetcode.editor.cn;
 //
 // Related Topics哈希表 | 字符串 | 滑动窗口 
 //
-// 👍 1136, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1281, 👎 0 
 //
 //
 //
 //
-
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * 找到字符串中所有字母异位词
  *
  * @author hsfxuebao
- * 2023-04-03 21:19:32 
+ * 2023-09-14 20:09:46 
  */
 class P438_FindAllAnagramsInAString{
     public static void main(String[] args) {
         Solution solution = new P438_FindAllAnagramsInAString().new Solution();
-        
+
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-        /**
-         * 使用一维数组
-         */
-        public List<Integer> findAnagrams(String s, String p) {
-            List<Integer> result = new ArrayList<>();
-            int[] need = new int[26];
-            int[] window = new int[26];
-            Set<Character> needSet = new HashSet<>();
-            int valid = 0;
-            for (int i = 0; i < p.length(); i++) {
-                char c = p.charAt(i);
-                need[c - 'a']++;
-                needSet.add(c);
-            }
+    public List<Integer> findAnagrams(String s, String p) {
 
-            int left = 0, right = 0;
-            while (right < s.length()) {
-                char c = s.charAt(right);
-                // 右移
-                right++;
-                // 更新窗口内数据
-                if (needSet.contains(c)) {
-                    window[c - 'a']++;
-                    if (window[c - 'a'] == need[c - 'a']) {
-                        valid++;
-                    }
-                }
-
-                // 缩小窗口
-                while (right - left >= p.length()) {
-                    // 更新结果
-                    if (valid == needSet.size()) {
-                        result.add(left);
-                    }
-
-                    char c1 = s.charAt(left);
-                    // 左移
-                    left++;
-                    // 更新窗口内数据
-                    if (needSet.contains(c1)) {
-                        if (window[c1 - 'a'] == need[c1 - 'a']) {
-                            valid--;
-                        }
-                        window[c1 - 'a']--;
-                    }
-                }
-            }
-            return result;
-        }
-
-        /**
-         * 使用map
-         */
-    public List<Integer> findAnagrams1(String s, String p) {
-
-        List<Integer> result = new ArrayList<>();
-
-        // 只有小写字母
+        // 需要的字符
         Map<Character, Integer> needMap = new HashMap<>();
         Map<Character, Integer> windowsMap = new HashMap<>();
-        // windows中的每个字母 和need 中字母数量一样 +1
+        // 记录数量
         int valid = 0;
+        // 记录结果
+        List<Integer> result = new ArrayList<>();
         for (int i = 0; i < p.length(); i++) {
-            char c = p.charAt(i);
-            Integer oldVal = needMap.getOrDefault(c, 0);
-            needMap.put(c, oldVal + 1);
+            char ch = p.charAt(i);
+            needMap.put(ch, needMap.getOrDefault(ch, 0)+1);
         }
 
+        // 活动窗口
         int left = 0, right = 0;
         while (right < s.length()) {
-            char c = s.charAt(right);
-            // 右移
+            char ch = s.charAt(right);
             right++;
-            // 更新数据
-            if (needMap.containsKey(c)) {
-                Integer windowOldVal = windowsMap.getOrDefault(c, 0);
-                windowsMap.put(c, windowOldVal + 1);
-                Integer needOldVal = needMap.getOrDefault(c, 0);
-                if (needOldVal.equals(windowOldVal + 1)) {
+            if (needMap.containsKey(ch)) {
+                int oldVal = windowsMap.getOrDefault(ch, 0);
+                windowsMap.put(ch, oldVal+1);
+                // todo 包装类型比较大小
+                if (needMap.get(ch).equals(oldVal + 1)) {
                     valid++;
                 }
             }
 
-
-            // 左移
             while (right - left >= p.length()) {
-                // 满足条件
+
                 if (valid == needMap.size()) {
                     result.add(left);
                 }
-                char c1 = s.charAt(left);
-                // 左移
+                char c = s.charAt(left);
                 left++;
-                // 更新窗口数据
-                Integer oldVal = windowsMap.get(c1);
-                if (needMap.containsKey(c1)) {
-                    if (oldVal.equals(needMap.get(c1))) {
+                // 更新窗口
+                if (needMap.containsKey(c)) {
+                    Integer oldVal = windowsMap.get(c);
+                    if (needMap.get(c).equals(oldVal)) {
                         valid--;
                     }
-                    windowsMap.put(c1, oldVal -1);
+                    windowsMap.put(c, oldVal-1);
                 }
             }
+
         }
         return result;
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

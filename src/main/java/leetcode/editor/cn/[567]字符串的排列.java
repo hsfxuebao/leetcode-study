@@ -32,22 +32,20 @@ package leetcode.editor.cn;
 //
 // Related Topics哈希表 | 双指针 | 字符串 | 滑动窗口 
 //
-// 👍 902, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 956, 👎 0 
 //
 //
 //
 //
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 字符串的排列
  *
  * @author hsfxuebao
- * 2023-04-04 09:44:02 
+ * 2023-09-14 20:39:47 
  */
 class P567_PermutationInString{
     public static void main(String[] args) {
@@ -57,49 +55,48 @@ class P567_PermutationInString{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public boolean checkInclusion(String s1, String s2) {
-        List<Integer> result = new ArrayList<>();
-        int[] need = new int[26];
-        int[] window = new int[26];
-        Set<Character> needSet = new HashSet<>();
+
+        // need的子串
+        Map<Character, Integer> needMap = new HashMap<>();
+        Map<Character, Integer> windowsMap = new HashMap<>();
         int valid = 0;
         for (int i = 0; i < s1.length(); i++) {
-            char c = s1.charAt(i);
-            need[c - 'a']++;
-            needSet.add(c);
+            char ch = s1.charAt(i);
+            int oldVal = needMap.getOrDefault(ch, 0);
+            needMap.put(ch, oldVal+1);
         }
 
         int left = 0, right = 0;
         while (right < s2.length()) {
-            char c = s2.charAt(right);
-            // 右移
+
+            char ch = s2.charAt(right);
             right++;
-            // 更新窗口内数据
-            if (needSet.contains(c)) {
-                window[c - 'a']++;
-                if (window[c - 'a'] == need[c - 'a']) {
+            if (needMap.containsKey(ch)) {
+                int oldVal = windowsMap.getOrDefault(ch, 0);
+                windowsMap.put(ch, oldVal+1);
+                if (needMap.get(ch).equals(oldVal + 1)) {
                     valid++;
                 }
             }
 
-            // 缩小窗口
-            while (right - left >= s1.length()) {
-                // 更新结果
-                if (valid == needSet.size()) {
+
+            while (right - left == s1.length()) {
+                if (valid == needMap.size()) {
                     return true;
                 }
-
-                char c1 = s2.charAt(left);
-                // 左移
+                char chs = s2.charAt(left);
                 left++;
-                // 更新窗口内数据
-                if (needSet.contains(c1)) {
-                    if (window[c1 - 'a'] == need[c1 - 'a']) {
+                if (needMap.containsKey(chs)) {
+                    int oldVal = windowsMap.get(chs);
+                    if (needMap.get(chs).equals(oldVal)) {
                         valid--;
                     }
-                    window[c1 - 'a']--;
+                    windowsMap.put(chs, oldVal-1);
                 }
+
             }
         }
+
         return false;
     }
 }

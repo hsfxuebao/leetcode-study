@@ -42,19 +42,21 @@ package leetcode.editor.cn;
 //
 // Related Topics队列 | 数组 | 滑动窗口 | 单调队列 | 堆（优先队列） 
 //
-// 👍 2231, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 2509, 👎 0 
 //
 //
 //
 //
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * 滑动窗口最大值
  *
  * @author hsfxuebao
- * 2023-04-05 09:10:59 
+ * 2023-09-14 21:08:34 
  */
 class P239_SlidingWindowMaximum{
     public static void main(String[] args) {
@@ -64,55 +66,54 @@ class P239_SlidingWindowMaximum{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
-        int[] res = new int[nums.length - k +1];
 
-        MonotonicQueue window = new MonotonicQueue();
+        MonotonicQueue monotonicQueue = new MonotonicQueue();
+        List<Integer> result = new ArrayList<>();
+        int left = 0, right = 0;
+
+
         for (int i = 0; i < nums.length; i++) {
-
-            // 先填满窗口的 k-1
-            if (i < k-1) {
-                window.push(nums[i]);
+            if (i < k - 1) {
+                monotonicQueue.push(nums[i]);
             } else {
-                // 窗口向前滑动 添加新数字
-                window.push(nums[i]);
-                // 记录 窗口内最大值
-                res[i-k+1] = window.getMax();
-                // 移除 旧数字
-                window.pop(nums[i-k+1]);
+                monotonicQueue.push(nums[i]);
+                result.add(monotonicQueue.max());
+                monotonicQueue.pop(nums[i-k+1]);
             }
         }
 
+        int[] res = new int[result.size()];
+        for (int i = 0; i < result.size(); i++) {
+            res[i] = result.get(i);
+        }
         return res;
     }
 
 
-        // 单调递减队列实现
-        class MonotonicQueue {
+        public class MonotonicQueue {
 
-            LinkedList<Integer> q = new LinkedList<>();
+            LinkedList<Integer> queue = new LinkedList();
 
             public void push(int num) {
-                // 将 小于n 的数 全部删除
-                while (!q.isEmpty() && q.getLast() < num) {
-                    q.pollLast();
-                }
-                // 然后将n加入 尾部
-                q.addLast(num);
-            }
 
-            public int getMax() {
-                return q.getFirst();
+                while (!queue.isEmpty() && queue.getLast() < num) {
+                    queue.removeLast();
+                }
+                queue.addLast(num);
             }
 
             public void pop(int num) {
-                if (q.getFirst() == num) {
-                    q.pollFirst();
+                if (num == queue.getFirst()) {
+                    queue.removeFirst();
                 }
             }
+            public int max() {
+                return queue.getFirst();
+            }
+
 
         }
-
-    }
+}
 //leetcode submit region end(Prohibit modification and deletion)
  
 }

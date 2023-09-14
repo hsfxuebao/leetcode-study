@@ -11,8 +11,10 @@ package leetcode.editor.cn;
 // 
 // 
 //
-// 给你由整数组成的山脉数组 arr ，返回任何满足 arr[0] < arr[1] < ... arr[i - 1] < arr[i] > arr[i + 
-//1] > ... > arr[arr.length - 1] 的下标 i 。 
+// 给你由整数组成的山脉数组 arr ，返回满足 arr[0] < arr[1] < ... arr[i - 1] < arr[i] > arr[i + 1]
+// > ... > arr[arr.length - 1] 的下标 i 。 
+//
+// 你必须设计并实现时间复杂度为 O(log(n)) 的解决方案。 
 //
 // 
 //
@@ -37,37 +39,19 @@ package leetcode.editor.cn;
 //输出：1
 // 
 //
-// 示例 4： 
-//
-// 
-//输入：arr = [3,4,5,1]
-//输出：2
-// 
-//
-// 示例 5： 
-//
-// 
-//输入：arr = [24,69,100,99,79,78,67,36,26,19]
-//输出：2
-// 
-//
 // 
 //
 // 提示： 
 //
 // 
-// 3 <= arr.length <= 10⁴ 
+// 3 <= arr.length <= 10⁵ 
 // 0 <= arr[i] <= 10⁶ 
 // 题目数据保证 arr 是一个山脉数组 
 // 
 //
-// 
-//
-// 进阶：很容易想到时间复杂度 O(n) 的解决方案，你可以设计一个 O(log(n)) 的解决方案吗？ 
-//
 // Related Topics数组 | 二分查找 
 //
-// 👍 344, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 371, 👎 0 
 //
 //
 //
@@ -77,7 +61,7 @@ package leetcode.editor.cn;
  * 山脉数组的峰顶索引
  *
  * @author hsfxuebao
- * 2023-04-02 17:46:10 
+ * 2023-09-14 19:41:11 
  */
 class P852_PeakIndexInAMountainArray{
     public static void main(String[] args) {
@@ -87,19 +71,14 @@ class P852_PeakIndexInAMountainArray{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int peakIndexInMountainArray(int[] arr) {
-
-        int left = 0;
-        int right = arr.length;
-
-        while (left < right) {
-
+        int left = 0, right = arr.length - 1;
+        while (left <= right) {
             int mid = left + (right - left)/2;
             if (arr[mid] > arr[mid + 1]) {
-                right = mid;
+                right = mid -1;
             } else {
                 left = mid + 1;
             }
-
         }
         return left;
     }

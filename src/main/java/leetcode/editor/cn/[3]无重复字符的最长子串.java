@@ -40,20 +40,17 @@ package leetcode.editor.cn;
 //
 // Related Topics哈希表 | 字符串 | 滑动窗口 
 //
-// 👍 8984, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 9623, 👎 0 
 //
 //
 //
 //
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 无重复字符的最长子串
  *
  * @author hsfxuebao
- * 2023-04-03 09:43:14 
+ * 2023-09-14 19:46:13 
  */
 class P3_LongestSubstringWithoutRepeatingCharacters{
     public static void main(String[] args) {
@@ -62,36 +59,31 @@ class P3_LongestSubstringWithoutRepeatingCharacters{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-        /**
-         * 滑动窗口
-         * @param s
-         * @return
-         */
     public int lengthOfLongestSubstring(String s) {
-
-        // 存储窗口内的字符
-        int[] window = new int[256];
+        int sLen = s.length();
+        int[] windows = new int[256];
+        int res = 0;
+        // 滑动窗口
         int left = 0, right = 0;
-
-        int result = 0;
-
-        while (right < s.length()) {
-
-            // 向右移动窗口
-            char c = s.charAt(right);
-            window[c]++;
+        while (right < sLen) {
+            // 右指针 向右移动
+            char ch = s.charAt(right);
             right++;
+            // 窗口内的更新操作
+            windows[ch]++;
 
-            // left向右移动窗口
-            while (window[c] > 1) {
-                char d = s.charAt(left);
-                window[d]--;
+            // 左指针 向右移动
+            while (windows[ch] > 1) {
+                char chs = s.charAt(left);
+                windows[chs]--;
                 left++;
             }
-            // 更新结果
-            result = Math.max(result, right - left);
+            // 更新
+            res = Math.max(res, right - left);
+
         }
-        return result;
+
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
