@@ -64,16 +64,13 @@ class Solution {
         int maxArea = 0;
         while (left < right) {
 
-            int leftNum = height[left];
-            int rightNum = height[right];
-            int curArea = Math.min(leftNum, rightNum)* (right - left);
-            maxArea = Math.max(curArea, maxArea);
-
-            if (leftNum >= rightNum) {
+            maxArea = Math.max(maxArea, Math.min(height[left], height[right]) * (right - left));
+            if (height[left] >= height[right]) {
                 right--;
             } else {
                 left++;
             }
+
         }
         return maxArea;
 

@@ -63,12 +63,10 @@ class Solution {
             }
             fast++;
         }
-        // 将 slow到最后的数据都置为0
+
         for (int i = slow; i < nums.length; i++) {
             nums[i] = 0;
         }
-
-
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

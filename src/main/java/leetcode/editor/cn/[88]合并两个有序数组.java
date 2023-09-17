@@ -61,6 +61,8 @@ package leetcode.editor.cn;
 //
 //
 
+import jdk.nashorn.internal.ir.WhileNode;
+
 /**
  * 合并两个有序数组
  *
@@ -76,25 +78,21 @@ class P88_MergeSortedArray{
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
 
-        int num1Index = m - 1, num2Index = n - 1;
-        int p = nums1.length - 1;
+        //
+        int nums1Index = m -1, nums2Index = n -1;
+        int index = m + n - 1;
+        while (nums1Index >= 0 && nums2Index >= 0) {
 
-        while (num1Index >= 0 && num2Index >= 0) {
-            if (nums1[num1Index] > nums2[num2Index]) {
-                nums1[p] = nums1[num1Index];
-                num1Index--;
+            if (nums2[nums2Index] > nums1[nums1Index]) {
+                nums1[index--] = nums2[nums2Index];
+                nums2Index--;
             } else {
-                nums1[p] = nums2[num2Index];
-                num2Index--;
+                nums1[index--] = nums1[nums1Index];
+                nums1Index--;
             }
-            p--;
         }
-
-        // 只考虑nums2 是否还有没遍历完的数据
-        while (num2Index >= 0) {
-            nums1[p] = nums2[num2Index];
-            num2Index--;
-            p--;
+        while (nums2Index >= 0) {
+            nums1[index--] = nums2[nums2Index--];
         }
 
     }

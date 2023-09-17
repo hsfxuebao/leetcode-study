@@ -43,15 +43,15 @@ class P_Offer_21_DiaoZhengShuZuShunXuShiQiShuWeiYuOuShuQianMianLcof{
 class Solution {
         public int[] exchange(int[] nums) {
 
-            int slow = 0, fast = 0;
-
+           int slow = 0, fast = 0;
             while (fast < nums.length) {
 
-                if (nums[fast] % 2 != 0) {
-                    // fase 是奇数  位置互换
-                    int temp = nums[fast];
-                    nums[fast] = nums[slow];
-                    nums[slow] = temp;
+                // fast 是奇数
+                if (nums[fast]%2 == 1) {
+                    // 互换位置
+                    int temp = nums[slow];
+                    nums[slow] = nums[fast];
+                    nums[fast] = temp;
                     slow++;
                 }
                 fast++;

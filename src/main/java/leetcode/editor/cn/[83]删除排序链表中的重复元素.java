@@ -67,10 +67,9 @@ class Solution {
             return null;
         }
         ListNode slow = head, fast = head;
-
         while (fast != null) {
 
-            if (fast.val != slow.val) {
+            if (slow.val != fast.val) {
                 slow.next = fast;
                 slow = slow.next;
             }
@@ -78,7 +77,6 @@ class Solution {
         }
         slow.next = null;
         return head;
-
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

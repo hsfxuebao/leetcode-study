@@ -42,7 +42,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 双指针 | 排序 
 //
-// 👍 785, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 884, 👎 0 
 //
 //
 //
@@ -52,7 +52,7 @@ package leetcode.editor.cn;
  * 有序数组的平方
  *
  * @author hsfxuebao
- * 2023-04-13 09:41:08 
+ * 2023-09-15 19:12:42 
  */
 class P977_SquaresOfASortedArray{
     public static void main(String[] args) {
@@ -62,26 +62,28 @@ class P977_SquaresOfASortedArray{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] sortedSquares(int[] nums) {
-
         int left = 0, right = nums.length - 1;
         int[] result = new int[nums.length];
-        int resultIndex = nums.length - 1;
-
+        int index = nums.length - 1;
         while (left <= right) {
-
-            int leftSqu = Math.abs(nums[left]) * Math.abs(nums[left]);
-            int rightSqu = Math.abs(nums[right]) * Math.abs(nums[right]);
-            if (leftSqu > rightSqu) {
-                result[resultIndex--] = leftSqu;
+            int leftPow = powSum(nums[left]);
+            int rightPow = powSum(nums[right]);
+            if (leftPow > rightPow) {
+                result[index--] = leftPow;
                 left++;
             } else {
-                result[resultIndex--] = rightSqu;
+                result[index--] = rightPow;
                 right--;
             }
+
         }
         return result;
     }
-}
+
+        private int powSum(int num) {
+            return Math.abs(num) * Math.abs(num);
+        }
+    }
 //leetcode submit region end(Prohibit modification and deletion)
  
 }

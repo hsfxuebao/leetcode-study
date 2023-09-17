@@ -75,65 +75,12 @@ class Solution {
          * 注意 nums必须是排好序的
          */
         private List<List<Integer>> nNumberSum(int[] nums, int n, int startIndex, long target) {
-
-//            List<List<Integer>> result = new ArrayList<>();
-//            if (nums.length < 2 || nums.length < n) {
-//                return result;
-//            }
-//            // base case n =2
-//            if (n == 2) {
-//                int left = startIndex, right = nums.length - 1;
-//
-//                while (left < right) {
-//                    int leftNum = nums[left], rightNum = nums[right];
-//                    if (leftNum + rightNum > target) {
-//                        while (left < right && nums[right] == rightNum) {
-//                            right--;
-//                        }
-//                    } else if (leftNum + rightNum < target) {
-//                        while (left < right && nums[left] == leftNum) {
-//                            left++;
-//                        }
-//                    } else {
-//                        List<Integer> res = new ArrayList<>();
-//                        res.add(leftNum);
-//                        res.add(rightNum);
-//                        result.add(res);
-//                        while (left < right && nums[left] == leftNum) {
-//                            left++;
-//                        }
-//                        while (left < right && nums[right] == rightNum) {
-//                            right--;
-//                        }
-//                    }
-//                }
-//            } else {
-//
-//                for (int i = startIndex; i < nums.length; ) {
-//                    int leftNum = nums[i];
-//                    List<List<Integer>> lists = nNumberSum(nums, n - 1, i + 1, target - nums[i]);
-//                    for (List<Integer> res : lists) {
-//                        res.add(nums[i]);
-//                        result.add(res);
-//                    }
-//
-//                    // 跳过重复数值
-//                    while (i < nums.length && nums[i] == leftNum) {
-//                        i++;
-//                    }
-//                }
-//            }
-//            return result;
             List<List<Integer>> result = new ArrayList<>();
-            if (nums.length < 2 || nums.length < n) {
-                return result;
-            }
 
-            // base case n=2
+            // 两数之和 base
             if (n == 2) {
 
-                int left = startIndex, right = nums.length - 1;
-
+                int left = startIndex, right = nums.length -1;
                 while (left < right) {
                     int leftNum = nums[left];
                     int rightNum = nums[right];
@@ -146,42 +93,37 @@ class Solution {
                         while (left < right && nums[left] == leftNum) {
                             left++;
                         }
-                    } else if (sum == target) {
-                        List<Integer> list = new ArrayList<>();
-                        list.add(leftNum);
-                        list.add(rightNum);
-                        result.add(list);
-
-                        while (left < right && nums[left] == leftNum) {
-                            left++;
-                        }
+                    } else {
+                        List<Integer> res = new ArrayList<>();
+                        res.add(leftNum);
+                        res.add(rightNum);
+                        result.add(res);
                         while (left < right && nums[right] == rightNum) {
                             right--;
+                        }
+                        while (left < right && nums[left] == leftNum) {
+                            left++;
                         }
                     }
                 }
 
             } else {
-                // n > 2
-
-                // 选择集
+                // n数之和
                 for (int i = startIndex; i < nums.length; ) {
-                    // 选择
                     int num = nums[i];
-                    // 递归
-                    List<List<Integer>> resList = nNumberSum(nums, n - 1, i + 1, target - num);
-                    //
-                    for (List<Integer> list : resList) {
-                        list.add(num);
-                        result.add(list);
+                    List<List<Integer>> lists = nNumberSum(nums, n - 1, i + 1, target - num);
+                    for (List<Integer> list : lists) {
+                        List<Integer> res = new ArrayList<>();
+                        res.add(num);
+                        res.addAll(list);
+                        result.add(res);
                     }
-                    // 重复的数据
+                    // 跳过相同数
                     while (i < nums.length && nums[i] == num) {
                         i++;
                     }
                 }
             }
-
             return result;
         }
     }

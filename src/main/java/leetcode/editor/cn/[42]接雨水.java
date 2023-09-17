@@ -61,26 +61,21 @@ class Solution {
          */
         public int trap(int[] height) {
 
-            int n = height.length;
-            int left = 0, right = n - 1;
+            int left = 0, right = height.length - 1;
             int leftMax = 0, rightMax = 0;
-            int res = 0;
+            int result = 0;
             while (left <= right) {
-
-                leftMax = Math.max(height[left], leftMax);
-                rightMax = Math.max(height[right], rightMax);
-
-                if (leftMax > rightMax) {
-
-                    res += rightMax - height[right];
+                leftMax = Math.max(leftMax, height[left]);
+                rightMax = Math.max(rightMax, height[right]);
+                if (leftMax >= rightMax) {
+                    result += rightMax - height[right];
                     right--;
-
                 } else {
-                    res += leftMax - height[left];
+                    result += leftMax - height[left];
                     left++;
                 }
             }
-            return res;
+            return result;
 
         }
 
@@ -89,32 +84,28 @@ class Solution {
          * @param height
          * @return
          */
-    public int trap3(int[] height) {
+    public int trap1(int[] height) {
         int n = height.length;
-
-        // 表示0-i之间的最大值
-        int[] leftMax = new int[n];
-        // 表示i-n 之间的最大值
-        int[] rightMax = new int[n];
-
-        int left = 0;
-        for (int i = 0; i < n; i++) {
-            left = Math.max(left, height[i]);
-            leftMax[i] = left;
+        // 左侧最大高度，包括当前节点
+        int[] leftMaxHeight = new int[height.length];
+        // 右侧最大高度，包括当前节点
+        int[] rightMaxHeight = new int[height.length];
+        int leftMax = 0;
+        for (int i = 0; i < height.length; i++) {
+            leftMax = Math.max(leftMax, height[i]);
+            leftMaxHeight[i] = leftMax;
         }
-
-        int right = 0;
-        for (int i = n-1; i >= 0; i--) {
-            right = Math.max(right, height[i]);
-            rightMax[i] = right;
+        int rightMax = 0;
+        for (int i = height.length - 1; i >= 0; i--) {
+            rightMax = Math.max(rightMax, height[i]);
+            rightMaxHeight[i] = rightMax;
         }
-
-        // 计算最大
-        int res = 0;
-        for (int i = 0; i < n; i++) {
-            res += Math.min(leftMax[i], rightMax[i]) - height[i];
+        // 计算接雨水的面积
+        int result = 0;
+        for (int i = 0; i < height.length; i++) {
+            result += Math.min(leftMaxHeight[i], rightMaxHeight[i]) - height[i];
         }
-        return res;
+       return result;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

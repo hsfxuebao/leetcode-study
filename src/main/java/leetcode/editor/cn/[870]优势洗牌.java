@@ -42,6 +42,7 @@ package leetcode.editor.cn;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 /**
  * 优势洗牌
@@ -59,32 +60,30 @@ class Solution {
     public int[] advantageCount(int[] nums1, int[] nums2) {
 
         // 对nums2进行降序排序
-        PriorityQueue<Number> maxQ = new PriorityQueue<>(new Comparator<Number>() {
+        Queue<Number> queue = new PriorityQueue<>(new Comparator<Number>() {
             @Override
             public int compare(Number o1, Number o2) {
-                return o2.getValue()  - o1.getValue();
+                return o2.getValue() - o1.getValue();
             }
         });
-
-
         for (int i = 0; i < nums2.length; i++) {
-            maxQ.offer(new Number(i, nums2[i]));
+            queue.offer(new Number(i, nums2[i]));
         }
-
-        // 对nums1 升序
+        // nums1升序排序
         Arrays.sort(nums1);
-        int[]  result = new int[nums1.length];
         int left = 0, right = nums1.length - 1;
-        while (!maxQ.isEmpty()) {
-            // nums2的最大值
-            Number maxNumber = maxQ.poll();
-            int maxVal = maxNumber.getValue();
+        int[] result = new int[nums1.length];
+        while (!queue.isEmpty()) {
+            Number number = queue.poll();
+            int index = number.getIndex();
+            int maxVal = number.getValue();
 
-            // 先判断nums1的最大值是否大于maxVal 如果大于就上，不大于 就用最小值顶替
             if (nums1[right] > maxVal) {
-                result[maxNumber.getIndex()] = nums1[right--];
+                result[index] = nums1[right];
+                right--;
             } else {
-                result[maxNumber.getIndex()] = nums1[left++];
+                result[index] = nums1[left];
+                left++;
             }
 
         }
