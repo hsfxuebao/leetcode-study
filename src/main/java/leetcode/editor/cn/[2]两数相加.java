@@ -76,34 +76,26 @@ class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 
         ListNode dummy = new ListNode(-1);
-        ListNode p3 = dummy;
-        ListNode p1 = l1, p2 = l2;
-        int index = 0;
-
-        while (p1 != null || p2 != null || index > 0) {
+        ListNode p1 = dummy, p2 = l1, p3 = l2;
+        int high = 0;
+        while (p2 != null || p3 != null || high > 0) {
 
             int sum = 0;
-            if (p1 != null) {
-                sum += p1.val;
-                p1 = p1.next;
-            }
-
             if (p2 != null) {
                 sum += p2.val;
                 p2 = p2.next;
             }
 
-            // 加上上一次的进位
-            sum += index;
-
-            // 计算当前数值和进位
-            int currentVal = sum % 10;
-            index = sum / 10;
-            p3.next = new ListNode(currentVal);
-            p3 = p3.next;
+            if (p3 != null) {
+                sum += p3.val;
+                p3 = p3.next;
+            }
+            sum += high;
+            // 计算新的进制和数字
+            high = sum / 10;
+            p1.next = new ListNode((sum % 10));
+            p1 = p1.next;
         }
-
-
         return dummy.next;
     }
 }

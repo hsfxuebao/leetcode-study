@@ -58,7 +58,7 @@ package leetcode.editor.cn;
 //
 // Related Topics哈希表 | 链表 | 双指针 
 //
-// 👍 2079, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 2327, 👎 0 
 //
 //
 //
@@ -70,7 +70,7 @@ import common.ListNode;
  * 环形链表 II
  *
  * @author hsfxuebao
- * 2023-04-16 09:40:01 
+ * 2023-09-18 10:44:02 
  */
 class P142_LinkedListCycleIi{
     public static void main(String[] args) {
@@ -92,30 +92,39 @@ class P142_LinkedListCycleIi{
 public class Solution {
     public ListNode detectCycle(ListNode head) {
 
-        // 先判断是否有环，如果没有环，返回false
+        if (head == null) {
+            return null;
+        }
 
+        ListNode slow = head, fast = head;
+        // 先找到 快慢指针 相遇点
+        ListNode cycleHead = hasCycle(head);
+        if (cycleHead == null) {
+            return null;
+        }
+
+
+        while (slow != cycleHead) {
+            slow = slow.next;
+            cycleHead = cycleHead.next;
+        }
+        return slow;
+
+    }
+
+    public ListNode hasCycle(ListNode head) {
         ListNode slow = head, fast = head;
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
             if (slow == fast) {
-                break;
+                return slow;
             }
         }
-
-        if (fast == null || fast.next == null) {
-            return null;
-        }
-
-        slow = head;
-        // 此时 快慢指针同时走，相遇点就是环的起点
-        while (slow != fast) {
-            slow = slow.next;
-            fast = fast.next;
-        }
-        return slow;
-
+        return null;
     }
+
+
 
 }
 //leetcode submit region end(Prohibit modification and deletion)

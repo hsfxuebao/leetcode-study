@@ -133,7 +133,6 @@ public class Solution {
             } else {
                 p1 = p1.next;
             }
-
             if (p2 == null) {
                 p2 = headA;
             } else {
@@ -141,7 +140,6 @@ public class Solution {
             }
         }
         return p1;
-
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
