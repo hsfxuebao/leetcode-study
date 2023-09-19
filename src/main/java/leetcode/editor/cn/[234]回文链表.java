@@ -69,34 +69,28 @@ class Solution {
     // 找到链表中间的节点，反转 中间节点之后的节点
     public boolean isPalindrome(ListNode head) {
 
-        // 快慢指针 找到链表中间的节点
+        // 快慢指针 找到中间节点，奇数中间，偶数偏右节点
         ListNode slow = head, fast = head;
-
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
 
-        // 判断链表是 奇数/偶数，若是偶数，不用动
-        // 奇数 需要将slow后移一个节点
         if (fast != null) {
             // 奇数
             slow = slow.next;
         }
-        // 将slow后的节点 反转
+        // 反转slow链表
         ListNode reverse = reverse(slow);
-        slow = head;
-        // 判断节点
-        while (reverse != null) {
-            if (reverse.val != slow.val) {
+        ListNode p2 = reverse, p1 = head;
+        while (p2 != null) {
+            if (p2.val != p1.val) {
                 return false;
             }
-            reverse = reverse.next;
-            slow = slow.next;
+            p2 = p2.next;
+            p1 = p1.next;
         }
-
         return true;
-
 
     }
 

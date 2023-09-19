@@ -1,6 +1,6 @@
 package leetcode.editor.cn;
-import common.ListNode;
-//给你链表的头节点 head ，每 k 个节点一组进行翻转，请你返回修改后的链表。
+
+//给你链表的头节点 head ，每 k 个节点一组进行翻转，请你返回修改后的链表。 
 //
 // k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么请将最后剩余的节点保持原有顺序。 
 //
@@ -9,7 +9,7 @@ import common.ListNode;
 // 
 //
 // 示例 1： 
-//
+// 
 // 
 //输入：head = [1,2,3,4,5], k = 2
 //输出：[2,1,4,3,5]
@@ -39,11 +39,29 @@ import common.ListNode;
 //
 // 
 // 
-// Related Topics 递归 链表 
-// 👍 1864 👎 0
+//
+// Related Topics递归 | 链表 
+//
+// 👍 2167, 👎 0 
+//
+//
+//
+//
 
+import common.ListNode;
 
-//leetcode submit region begin(Prohibit modification and deletion)
+/**
+ * K 个一组翻转链表
+ *
+ * @author hsfxuebao
+ * 2023-09-19 16:44:01 
+ */
+class P25_ReverseNodesInKGroup{
+    public static void main(String[] args) {
+        Solution solution = new P25_ReverseNodesInKGroup().new Solution();
+        
+    }  
+    //leetcode submit region begin(Prohibit modification and deletion)
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -54,61 +72,46 @@ import common.ListNode;
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-class Solution25 {
-
+class Solution {
     public ListNode reverseKGroup(ListNode head, int k) {
+
         if (head == null) {
             return null;
         }
-        // 区间[a,b) 包含k个待反转的元素
-        ListNode a,b;
-        a = b = head;
+        // 区间[left,right) 左闭右开 包含待反转的元素
+        ListNode left = head, right = head;
         for (int i = 0; i < k; i++) {
-            if (b == null) {
+            // 不够k个 不需要反转
+            if (right == null) {
                 return head;
             }
-            b = b.next;
+            right = right.next;
         }
 
-        // 找到a,b 区间的节点了，反转前k个元素
-        ListNode newHead = reverse(a, b);
-        // 递归反转后续链表 并链接起来
-        a.next = reverseKGroup(b, k);
-        return newHead;
+        // 反转前 k个元素
+        ListNode node = reverse1(left, right);
+        // 递归反转后续链表并 连接起来
+        left.next = reverseKGroup(right, k);
+        return node;
 
     }
 
-    /**
-     * 反转 区间[a, b) 的元素，注意是左闭右开
-     * 返回头节点
-     */
-    public ListNode reverse(ListNode a, ListNode b) {
-        ListNode pre = null, cur = a, next = a;
-        while (cur != b) {
-            next = cur.next;
-            cur.next = pre;
-            pre = cur;
-            cur = next;
-        }
-        return pre;
-    }
+    // 从left到right反转，返回头结点
+    private ListNode reverse1(ListNode left, ListNode right) {
 
-    /**
-     * 反转 以head头节点的链表，返回头结点
-     */
-    public ListNode reverse(ListNode head) {
-        ListNode pre = null, cur = head, next = head;
-        while (cur != null) {
+        ListNode pre = null, cur = left, next = left;
+        while (cur != right) {
             next = cur.next;
-            // 逐个节点反转
+
             cur.next = pre;
-            // 更新指针的位置
             pre = cur;
+
             cur = next;
 
         }
         return pre;
     }
-
 }
 //leetcode submit region end(Prohibit modification and deletion)
+ 
+}
