@@ -83,32 +83,26 @@ class P1541_MinimumInsertionsToBalanceAParenthesesString{
 class Solution {
     public int minInsertions(String s) {
 
+        // 已经增加的括号数
         int res = 0;
+        // 统计需要增加的括号数
         int count = 0;
 
         for (int i = 0; i < s.length(); i++) {
             char ch = s.charAt(i);
             if (ch == '(') {
-                // 一个左括号需要2个右括号
                 count += 2;
-                // count 如果是奇数，需要增加一个右括号
+                // 奇数
                 if (count % 2 == 1) {
-                    // 增加一个右括号
                     res++;
                     count--;
                 }
-
             } else {
                 count--;
-                // 等于-1 表示 右括号多
                 if (count == -1) {
-                    // 增加一个左括号
                     res++;
-                    // 增加一个左括号 需要2个右括号
                     count = 1;
                 }
-
-
             }
         }
         return res+count;

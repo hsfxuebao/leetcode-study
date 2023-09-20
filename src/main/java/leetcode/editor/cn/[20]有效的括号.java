@@ -44,7 +44,7 @@ package leetcode.editor.cn;
 //
 // Related Topics栈 | 字符串 
 //
-// 👍 3915, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 4172, 👎 0 
 //
 //
 //
@@ -56,7 +56,7 @@ import java.util.Stack;
  * 有效的括号
  *
  * @author hsfxuebao
- * 2023-05-12 09:46:02 
+ * 2023-09-20 16:43:37 
  */
 class P20_ValidParentheses{
     public static void main(String[] args) {
@@ -66,38 +66,35 @@ class P20_ValidParentheses{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public boolean isValid(String s) {
-
         Stack<Character> stack = new Stack<>();
-
         for (int i = 0; i < s.length(); i++) {
             char ch = s.charAt(i);
             if (ch == '(' || ch == '{' || ch == '[') {
                 stack.push(ch);
             } else {
-                // 拿出stack中的字符进行比较
-                if (stack.isEmpty() || stack.pop() != getLeftChar(ch)) {
+                // 找到对应的括号
+                if (stack.isEmpty() || getLeft(ch) != stack.pop()) {
                     return false;
                 }
             }
-
         }
         return stack.isEmpty();
     }
 
-        private char getLeftChar(Character ch) {
+    public char getLeft(char ch) {
 
-            if (')' == ch) {
-                return '(';
-            } else if (']' == ch) {
-                return '[';
-            } else {
-                return  '{';
-            }
-
+        if (ch == ')') {
+            return '(';
         }
-
-
+        if (ch == '}') {
+            return '{';
+        }
+        if (ch == ']') {
+            return '[';
+        }
+        return ' ';
     }
+}
 //leetcode submit region end(Prohibit modification and deletion)
  
 }

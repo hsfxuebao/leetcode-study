@@ -42,56 +42,90 @@ package leetcode.editor.cn;
 //
 // Related Topics设计 | 双指针 | 数据流 | 排序 | 堆（优先队列） 
 //
-// 👍 817, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 875, 👎 0 
 //
 //
 //
 //
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 /**
  * 数据流的中位数
  *
  * @author hsfxuebao
- * 2023-04-17 09:33:58 
+ * 2023-09-20 17:47:15 
  */
 class P295_FindMedianFromDataStream{
     public static void main(String[] args) {
-
+//        Solution solution = new P295_FindMedianFromDataStream().new Solution();
         
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class MedianFinder {
 
-        // 大顶堆
-        private PriorityQueue<Integer> large;
-        // 小顶堆
-        private PriorityQueue<Integer> small;
 
+        // 小顶堆
+        Queue<Integer> minQueue = new PriorityQueue<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1 - o2;
+            }
+        });
+        // 大顶堆
+        Queue<Integer> maxQueue = new PriorityQueue<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o2 - o1;
+            }
+        });
     public MedianFinder() {
-        large = new PriorityQueue<>((a,b) -> b-a);
-        small = new PriorityQueue<>();
     }
     
     public void addNum(int num) {
-        if (large.size() > small.size()) {
-            large.offer(num);
-            small.offer(large.poll());
+        if (minQueue.size() >= maxQueue.size()) {
+            minQueue.offer(num);
+            maxQueue.offer(minQueue.poll());
         } else {
-            small.offer(num);
-            large.offer(small.poll());
+            maxQueue.offer(num);
+            minQueue.offer(maxQueue.poll());
         }
+
+//        if (maxQueue.isEmpty()) {
+//            maxQueue.offer(num);
+//            return;
+//        }
+//
+//        int maxVal = maxQueue.peek();
+//        if (maxVal > num) {
+//            maxQueue.offer(num);
+//        } else {
+//            minQueue.offer(num);
+//        }
+//
+//        // 平衡两个队列的大小
+//        if (maxQueue.size()-minQueue.size() >= 2) {
+//            minQueue.offer(maxQueue.poll());
+//        } else if (minQueue.size()-maxQueue.size() >= 2) {
+//            maxQueue.offer(minQueue.poll());
+//        }
     }
     
     public double findMedian() {
-        if (large.size() > small.size()) {
-            return large.peek();
-        } else if (large.size() < small.size()) {
-            return small.peek();
-        } else {
-            return (large.peek() + small.peek())/2.0;
+        if (minQueue.size() > maxQueue.size()) {
+            return minQueue.peek();
         }
+        if (maxQueue.size() > minQueue.size()) {
+            return maxQueue.peek();
+        }
+
+        if (minQueue.size() > 0 && maxQueue.size() > 0
+            && minQueue.size() == maxQueue.size()) {
+            return (double) (minQueue.peek() + maxQueue.peek())/2.0;
+        }
+        return 0.0;
     }
 }
 

@@ -64,21 +64,17 @@ class P921_MinimumAddToMakeParenthesesValid{
 class Solution {
     public int minAddToMakeValid(String s) {
 
-        // 需要增加左括号的数量
+       // 需要左括号的数量
         int res = 0;
-        // 统计左括号的数量（遇到右括号就减1）
+        // 需要有括号的数量
         int count = 0;
-
         for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c == '(') {
+                count += 1;
 
-            char ch = s.charAt(i);
-            // 遇到左括号+1
-            if (ch == '(') {
-                count++;
             } else {
-                // 遇到右括号 减1
                 count--;
-                // count =-1 表示右括号多，此时需要增加一个左括号
                 if (count == -1) {
                     res++;
                     count = 0;
