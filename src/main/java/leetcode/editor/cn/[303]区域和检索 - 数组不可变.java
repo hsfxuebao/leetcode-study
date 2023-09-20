@@ -45,7 +45,7 @@ package leetcode.editor.cn;
 //
 // Related Topics设计 | 数组 | 前缀和 
 //
-// 👍 545, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 572, 👎 0 
 //
 //
 //
@@ -55,33 +55,35 @@ package leetcode.editor.cn;
  * 区域和检索 - 数组不可变
  *
  * @author hsfxuebao
- * 2023-04-13 20:52:09 
+ * 2023-09-19 19:16:23 
  */
 class P303_RangeSumQueryImmutable{
     public static void main(String[] args) {
-
+//        Solution solution = new P303_RangeSumQueryImmutable().new Solution();
+        
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class NumArray {
 
-        // 前缀和数组
+
+        // 当前节点的前缀和，包括当前节点
         int[] preSum;
 
     public NumArray(int[] nums) {
         preSum = new int[nums.length];
-        int res = 0;
-        for (int i = 0; i < nums.length; i++) {
-            res += nums[i];
-            preSum[i] = res;
+
+        preSum[0] = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            preSum[i] = preSum[i-1] + nums[i];
+
         }
 
     }
     
     public int sumRange(int left, int right) {
-        if (left < 1) {
-            return preSum[right];
-        }
-        return preSum[right] - preSum[left - 1];
+
+        return left == 0 ? preSum[right]
+                         : preSum[right] - preSum[left - 1];
     }
 }
 

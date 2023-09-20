@@ -37,7 +37,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 前缀和 | 排序 | 模拟 | 堆（优先队列） 
 //
-// 👍 239, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 275, 👎 0 
 //
 //
 //
@@ -47,7 +47,7 @@ package leetcode.editor.cn;
  * 拼车
  *
  * @author hsfxuebao
- * 2023-04-15 21:46:42 
+ * 2023-09-20 10:03:12 
  */
 class P1094_CarPooling{
     public static void main(String[] args) {
@@ -57,57 +57,59 @@ class P1094_CarPooling{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public boolean carPooling(int[][] trips, int capacity) {
-        int[] nums = new int[1001];
+        int[] nums = new int[10001];
         Difference difference = new Difference(nums);
-        for (int[] trip:trips) {
-            int i = trip[1];
-            int j = trip[2] - 1;
-            int val = trip[0];
-            difference.increment(i, j, val);
+        for (int i = 0; i < trips.length; i++) {
+            int left = trips[i][1];
+            int right = trips[i][2] - 1;
+
+            difference.incr(left, right, trips[i][0]);
         }
         int[] result = difference.getResult();
-        for (Integer res : result) {
-            if (res > capacity) {
+        for (int j = 0; j < result.length; j++) {
+            if (result[j] > capacity) {
                 return false;
             }
         }
         return true;
+
     }
+
+
+        public class Difference {
+
+            int[] diff;
+
+            public Difference(int[] nums) {
+                diff = new int[nums.length];
+                diff[0] = nums[0];
+                for (int i = 1; i < nums.length; i++) {
+                    diff[i] = nums[i] - nums[i-1];
+                }
+            }
+
+            // 针对[i,j] 闭区间增加val
+            public void incr(int i, int j, int val) {
+
+                diff[i] += val;
+                if (j + 1 < diff.length) {
+                    diff[j+1] -= val;
+                }
+            }
+
+            public int[] getResult() {
+                int[] result = new int[diff.length];
+                result[0] = diff[0];
+                for (int i = 1; i < diff.length; i++) {
+                    result[i] = diff[i] + result[i-1];
+                }
+                return result;
+            }
+
+        }
+
+
 }
-
-    /**
-     * 差分数组工具类
-     */
-    class Difference {
-
-        private int[] diff;
-
-        public Difference(int[] nums) {
-            diff = new int[nums.length];
-            diff[0] = nums[0];
-            for (int i = 1; i < nums.length; i++) {
-                diff[i] = nums[i] - nums[i-1];
-            }
-        }
-        /* 给闭区间 [i, j] 增加 val（可以是负数）*/
-        public void increment(int i, int j, int val) {
-
-            diff[i] += val;
-            if (j + 1 < diff.length) {
-                diff[j+1] -= val;
-            }
-        }
-        public int[] getResult() {
-
-            int[] result = new int[diff.length];
-            result[0] = diff[0];
-            for (int i = 1; i < diff.length; i++) {
-                result[i] = diff[i] + result[i-1];
-            }
-            return result;
-        }
-    }
-
 //leetcode submit region end(Prohibit modification and deletion)
  
 }

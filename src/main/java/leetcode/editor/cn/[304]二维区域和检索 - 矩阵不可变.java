@@ -54,7 +54,7 @@ package leetcode.editor.cn;
 //
 // Related Topics设计 | 数组 | 矩阵 | 前缀和 
 //
-// 👍 486, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 514, 👎 0 
 //
 //
 //
@@ -64,37 +64,36 @@ package leetcode.editor.cn;
  * 二维区域和检索 - 矩阵不可变
  *
  * @author hsfxuebao
- * 2023-04-13 21:06:42 
+ * 2023-09-19 19:28:42 
  */
 class P304_RangeSumQuery2dImmutable{
     public static void main(String[] args) {
-
+//        Solution solution = new P304_RangeSumQuery2dImmutable().new Solution();
+        
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class NumMatrix {
 
+        // 前缀和数组
         int[][] preSum;
     public NumMatrix(int[][] matrix) {
+        int row = matrix.length;
+        int col = matrix[0].length;
+        preSum = new int[row+1][col+1];
 
-        int m = matrix.length, n = matrix[0].length;
-        if (m <= 0 && n <= 0) {
-            return;
-        }
-
-        preSum = new int[m+1][n+1];
-
-        // 初始化
-        preSum[0][0] = 0;
-
-        for (int i = 1; i <= m; i++) {
-            for (int j = 1; j <= n; j++) {
-                preSum[i][j] = preSum[i-1][j] + preSum[i][j-1] - preSum[i-1][j-1] + matrix[i-1][j-1];
+        for (int i = 1; i <= row; i++) {
+            for (int j = 1; j <= col; j++) {
+                preSum[i][j] = matrix[i-1][j-1] + preSum[i-1][j]
+                        + preSum[i][j-1] - preSum[i-1][j-1];
             }
+            
         }
+        
     }
     
     public int sumRegion(int row1, int col1, int row2, int col2) {
-        return preSum[row2+1][col2+1] - preSum[row1][col2+1] - preSum[row2+1][col1] +preSum[row1][col1];
+        return preSum[row2+1][col2+1] - preSum[row1][col2+1]
+                - preSum[row2+1][col1] + preSum[row1][col1];
     }
 }
 
