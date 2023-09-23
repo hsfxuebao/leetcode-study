@@ -120,39 +120,40 @@ class Solution {
         if (root == null) {
             return false;
         }
-
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
-
-        // 记录奇数偶数层
-        boolean even = true;
-
+        // true偶层数
+        boolean flag = true;
         while (!queue.isEmpty()) {
+
             int levelSize = queue.size();
-            // 记录前一个节点，判断是否递增 还是 递减
-            int pre = even ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+            int preNodeVal = flag ? Integer.MIN_VALUE : Integer.MAX_VALUE;
             for (int i = 0; i < levelSize; i++) {
-                TreeNode cur = queue.poll();
-                if (even) {
-                    if (cur.val <= pre || cur.val % 2 == 0) {
+                TreeNode node = queue.poll();
+                int curVal = node.val;
+                if (flag) {
+                    if (curVal % 2 == 0
+                        || curVal <= preNodeVal) {
                         return false;
                     }
 
                 } else {
-                    if (cur.val >= pre || cur.val % 2 == 1) {
+                    if (curVal % 2 == 1
+                            || curVal >= preNodeVal) {
                         return false;
                     }
                 }
-                pre = cur.val;
-                if (cur.left != null) {
-                    queue.offer(cur.left);
+                preNodeVal = curVal;
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
                 }
 
-                if (cur.right != null) {
-                    queue.offer(cur.right);
-                }
             }
-            even = !even;
+            flag = !flag;
+
         }
 
         return true;

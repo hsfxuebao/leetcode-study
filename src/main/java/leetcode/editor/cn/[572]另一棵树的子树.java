@@ -79,11 +79,13 @@ class Solution {
             return subRoot == null;
         }
 
-        // 以root为节点是否 和subRoot相同
+        // 当前节点
         if (isSamTree(root, subRoot)) {
             return true;
         }
-        return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+        // 左右子节点
+        return isSubtree(root.left, subRoot)
+                || isSubtree(root.right, subRoot);
 
     }
 

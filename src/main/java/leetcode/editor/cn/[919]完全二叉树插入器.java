@@ -49,26 +49,27 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 广度优先搜索 | 设计 | 二叉树 
 //
-// 👍 148, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 159, 👎 0 
 //
 //
 //
 //
-
-import common.TreeNode;
 
 import java.util.LinkedList;
 import java.util.Queue;
+
+
+import common.TreeNode;
 
 /**
  * 完全二叉树插入器
  *
  * @author hsfxuebao
- * 2023-02-05 10:20:50 
+ * 2023-09-23 09:06:42 
  */
 class P919_CompleteBinaryTreeInserter{
     public static void main(String[] args) {
-//        CBTInserter solution = new P919_CompleteBinaryTreeInserter().new CBTInserter();
+//        Solution solution = new P919_CompleteBinaryTreeInserter().new Solution();
         
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -89,48 +90,47 @@ class P919_CompleteBinaryTreeInserter{
  */
 class CBTInserter {
 
-    // 根节点
-    private TreeNode root;
-    // 记录那些元素可以 左右子节点都是null
-    private Queue<TreeNode> queue = new LinkedList<>();
+    TreeNode root;
+    // 记录可以左节点或 右节点可以插入数据的节点
+    Queue<TreeNode> queue = new LinkedList<>();
 
     public CBTInserter(TreeNode root) {
-
         this.root = root;
+        // 层序遍历找到可以插入数据的节点
 
-        // 层序遍历
         Queue<TreeNode> temp = new LinkedList<>();
         temp.offer(root);
-
         while (!temp.isEmpty()) {
-            TreeNode curNode = temp.poll();
-            if (curNode.left != null) {
-                temp.offer(curNode.left);
-            }
-            if (curNode.right != null) {
-                temp.offer(curNode.right);
-            }
+            int levelSize = temp.size();
 
-            // 如果左右子节点都是null
-            if (curNode.left == null || curNode.right == null) {
-                queue.offer(curNode);
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode poll = temp.poll();
+                if (poll.left != null) {
+                    temp.offer(poll.left);
+                }
+                if (poll.right != null) {
+                    temp.offer(poll.right);
+                }
+                // 左节点 或右节点为空
+                if (poll.left == null || poll.right == null) {
+                    queue.offer(poll);
+                }
             }
         }
+
     }
     
     public int insert(int val) {
-        TreeNode newNode = new TreeNode(val);
-        TreeNode parentNode = queue.peek();
-        if (parentNode.left == null) {
-            parentNode.left = newNode;
-        } else if (parentNode.right == null) {
-            parentNode.right = newNode;
-            // poll 这个节点左右子树 都是有值的，弹出队列
+        TreeNode node = queue.peek();
+        TreeNode treeNode = new TreeNode(val);
+        if (node.left == null) {
+            node.left = treeNode;
+        } else if (node.right == null) {
+            node.right = treeNode;
             queue.poll();
         }
-        // 将newNode 节点 加入到 队列中
-        queue.offer(newNode);
-        return parentNode.val;
+        queue.offer(treeNode);
+        return node.val;
     }
     
     public TreeNode get_root() {

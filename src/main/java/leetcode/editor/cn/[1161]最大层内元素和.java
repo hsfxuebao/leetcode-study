@@ -46,6 +46,7 @@ package leetcode.editor.cn;
 //
 //
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -88,11 +89,13 @@ class Solution {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         int level = 1;
-        int res = 0, maxSum = Integer.MIN_VALUE;
+        int maxSumLevel = Integer.MIN_VALUE;
+        int maxSum = Integer.MIN_VALUE;
         while (!queue.isEmpty()) {
-            int size = queue.size();
+
+            int levelSize = queue.size();
             int levelSum = 0;
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i < levelSize; i++) {
                 TreeNode node = queue.poll();
                 levelSum += node.val;
                 if (node.left != null) {
@@ -101,15 +104,18 @@ class Solution {
                 if (node.right != null) {
                     queue.offer(node.right);
                 }
-            }
 
+            }
+            // 更新结果值
             if (levelSum > maxSum) {
-                res = level;
+                maxSumLevel = level;
                 maxSum = levelSum;
+
             }
             level++;
         }
-        return res;
+
+        return maxSumLevel;
 
     }
 }

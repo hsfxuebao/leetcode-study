@@ -77,35 +77,40 @@ class P103_BinaryTreeZigzagLevelOrderTraversal{
  * }
  */
 class Solution {
+
+    List<List<Integer>> result = new ArrayList<>();
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> result = new ArrayList<>();
         if (root == null) {
             return result;
         }
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
-
-        boolean flag = true;  // true从左到右遍历 false从右到做遍历
+        // 从左到右 遍历
+        boolean flag = true;
         while (!queue.isEmpty()) {
-            int size = queue.size();
-            LinkedList<Integer> level = new LinkedList<>();
-            for (int i = 0; i < size; i++) {
+
+            int levelSize = queue.size();
+            LinkedList<Integer> levelList = new LinkedList<>();
+            for (int i = 0; i < levelSize; i++) {
                 TreeNode node = queue.poll();
                 if (flag) {
-                    level.addLast(node.val);
+                    levelList.addLast(node.val);
                 } else {
-                    level.addFirst(node.val);
+                    levelList.addFirst(node.val);
                 }
+
                 if (node.left != null) {
                     queue.offer(node.left);
                 }
                 if (node.right != null) {
                     queue.offer(node.right);
                 }
+
             }
             flag = !flag;
-            result.add(level);
+            result.add(levelList);
         }
+
         return result;
     }
 }

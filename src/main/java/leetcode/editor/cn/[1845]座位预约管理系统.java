@@ -65,7 +65,7 @@ import java.util.Queue;
  */
 class P1845_SeatReservationManager{
     public static void main(String[] args) {
-        Solution solution = new P1845_SeatReservationManager().new Solution();
+//        Solution solution = new P1845_SeatReservationManager().new Solution();
         
     }  
     //leetcode submit region begin(Prohibit modification and deletion)

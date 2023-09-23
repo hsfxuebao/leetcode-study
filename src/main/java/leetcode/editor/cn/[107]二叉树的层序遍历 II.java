@@ -86,11 +86,12 @@ class Solution {
         queue.offer(root);
 
         while (!queue.isEmpty()) {
-            int size = queue.size();
-            List<Integer> level = new LinkedList<>();
-            for (int i = 0; i < size; i++) {
+
+            int levelSize = queue.size();
+            List<Integer> levelList = new ArrayList<>();
+            for (int i = 0; i < levelSize; i++) {
                 TreeNode node = queue.poll();
-                level.add(node.val);
+                levelList.add(node.val);
 
                 if (node.left != null) {
                     queue.offer(node.left);
@@ -98,9 +99,11 @@ class Solution {
                 if (node.right != null) {
                     queue.offer(node.right);
                 }
+
             }
-            result.addFirst(level);
+            result.addFirst(levelList);
         }
+
         return result;
     }
 }

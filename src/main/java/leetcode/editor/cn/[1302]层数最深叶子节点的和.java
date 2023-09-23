@@ -74,28 +74,29 @@ class Solution {
         if (root == null) {
             return 0;
         }
-
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
-        // 记录最后一层叶子节点的数量和
-        int sum = 0;
+        int result = Integer.MIN_VALUE;
         while (!queue.isEmpty()) {
 
             int levelSize = queue.size();
-            sum = 0;
+            int levelSum = 0;
             for (int i = 0; i < levelSize; i++) {
-                TreeNode cur = queue.poll();
-                sum += cur.val;
-                if (cur.left != null) {
-                    queue.offer(cur.left);
+                TreeNode node = queue.poll();
+                levelSum += node.val;
+                if (node.left != null) {
+                    queue.offer(node.left);
                 }
-                if (cur.right != null) {
-                    queue.offer(cur.right);
+                if (node.right != null) {
+                    queue.offer(node.right);
                 }
+
             }
+            result = levelSum;
 
         }
-        return sum;
+
+        return result;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
