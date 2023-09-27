@@ -103,19 +103,19 @@ class Solution {
         if (root == null) {
             return new Result(null, 0);
         }
-        // 左右子节点
-        Result leftNode = maxDepth(root.left);
-        Result rightNode = maxDepth(root.right);
 
-        // 当左右子节点的最大深度相同时，这个根节点就是最近公共祖先
-        //
-        if (leftNode.depth == rightNode.depth) {
-            return new Result(root, leftNode.depth+1);
+        Result left = maxDepth(root.left);
+        Result right = maxDepth(root.right);
+
+        // 若 左右子树的深度一样， 当前节点为最小子树的节点
+        if (left.depth == right.depth) {
+            return new Result(root, left.depth + 1);
         }
-        // 左右子树 最大深度不同时，最近公共祖先在 depth较大的 那个里面
-        Result res = leftNode.depth > rightNode.depth ? leftNode : rightNode;
+
+        Result res = left.depth > right.depth ? left : right;
         res.depth++;
         return res;
+
     }
 
     class Result {

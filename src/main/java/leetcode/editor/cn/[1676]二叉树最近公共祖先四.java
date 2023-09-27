@@ -48,7 +48,7 @@ class P1676_lowestCommonAncestor {
             if (nodeSet.contains(root.val)) {
                 return root;
             }
-            // 左右字数
+            // 左右子树
             TreeNode left = find(root.left, nodeSet);
             TreeNode right = find(root.right, nodeSet);
             if (left != null && right != null) {

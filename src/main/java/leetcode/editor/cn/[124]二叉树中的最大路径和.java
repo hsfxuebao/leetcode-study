@@ -1,7 +1,7 @@
 package leetcode.editor.cn;
 
-//路径 被定义为一条从树中任意节点出发，沿父节点-子节点连接，达到任意节点的序列。同一个节点在一条路径序列中 至多出现一次 。该路径 至少包含一个 节点，且不
-//一定经过根节点。 
+//二叉树中的 路径 被定义为一条节点序列，序列中每对相邻节点之间都存在一条边。同一个节点在一条路径序列中 至多出现一次 。该路径 至少包含一个 节点，且不一定
+//经过根节点。 
 //
 // 路径和 是路径中各节点值的总和。 
 //
@@ -35,7 +35,7 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 深度优先搜索 | 动态规划 | 二叉树 
 //
-// 👍 1894, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 2063, 👎 0 
 //
 //
 //
@@ -47,7 +47,7 @@ import common.TreeNode;
  * 二叉树中的最大路径和
  *
  * @author hsfxuebao
- * 2023-03-26 17:46:58 
+ * 2023-09-26 10:44:57 
  */
 class P124_BinaryTreeMaximumPathSum{
     public static void main(String[] args) {
@@ -71,24 +71,25 @@ class P124_BinaryTreeMaximumPathSum{
  * }
  */
 class Solution {
-    int res = Integer.MIN_VALUE;
+
+    // 分解问题
+    int maxPathSum = Integer.MIN_VALUE;
     public int maxPathSum(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
-        oneSideMax(root);
-        return res;
+        traceback(root);
+        return maxPathSum;
     }
 
-    private int oneSideMax(TreeNode root) {
+    // 递归
+    // 返回root为节点 的单边最大和
+    private int traceback(TreeNode root) {
         if (root == null) {
             return 0;
         }
-        // 有可能 左右子节点都是负数，此时 不要左右子节点
-        int leftVal = Math.max(0, oneSideMax(root.left));
-        int rightVal = Math.max(0, oneSideMax(root.right));
-        res = Math.max(res, leftVal + rightVal + root.val);
-        return Math.max(leftVal, rightVal) + root.val;
+        int leftMaxSum = Math.max(0, traceback(root.left));
+        int rightMaxSum = Math.max(0, traceback(root.right));
+        maxPathSum = Math.max(maxPathSum, root.val+leftMaxSum+rightMaxSum);
+        return Math.max(leftMaxSum, rightMaxSum) + root.val;
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

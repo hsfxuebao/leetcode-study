@@ -79,12 +79,16 @@ class Solution {
         if (root == null) {
             return null;
         }
+        // 节点值太大 向左查找
         if (root.val > bigVal) {
             return find(root.left, smallVal, bigVal);
         }
+        // 节点值太小  向右查找
         if (root.val < smallVal) {
             return find(root.right, smallVal, bigVal);
         }
+        // val1 <= root.val <= val2
+        // 则当前节点就是最近公共祖先
         return root;
     }
 }

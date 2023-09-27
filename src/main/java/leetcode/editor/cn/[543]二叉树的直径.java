@@ -79,12 +79,12 @@ class Solution {
         if (root == null) {
             return 0;
         }
-        int leftDepth = maxDepth(root.left);
-        int rightDepth = maxDepth(root.right);
-        // 更新最大深度
-        maxDiameter = Math.max(maxDiameter, leftDepth + rightDepth);
-        return Math.max(leftDepth, rightDepth) + 1;
+        int leftDep = maxDepth(root.left);
+        int rightDep = maxDepth(root.right);
 
+        int curDep = leftDep + rightDep;
+        maxDiameter = Math.max(curDep, maxDiameter);
+        return Math.max(leftDep, rightDep) + 1;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

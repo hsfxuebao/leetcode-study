@@ -1,6 +1,6 @@
 package leetcode.editor.cn;
 
-//给你二叉树的根节点 root ，返回它节点值的 前序 遍历。 
+//给你一棵二叉树的根节点 root ，返回其节点值的 后序遍历 。 
 //
 // 
 //
@@ -8,7 +8,7 @@ package leetcode.editor.cn;
 // 
 // 
 //输入：root = [1,null,2,3]
-//输出：[1,2,3]
+//输出：[3,2,1]
 // 
 //
 // 示例 2： 
@@ -25,26 +25,12 @@ package leetcode.editor.cn;
 //输出：[1]
 // 
 //
-// 示例 4： 
-// 
-// 
-//输入：root = [1,2]
-//输出：[1,2]
-// 
-//
-// 示例 5： 
-// 
-// 
-//输入：root = [1,null,2]
-//输出：[1,2]
-// 
-//
 // 
 //
 // 提示： 
 //
 // 
-// 树中节点数目在范围 [0, 100] 内 
+// 树中节点的数目在范围 [0, 100] 内 
 // -100 <= Node.val <= 100 
 // 
 //
@@ -54,7 +40,7 @@ package leetcode.editor.cn;
 //
 // Related Topics栈 | 树 | 深度优先搜索 | 二叉树 
 //
-// 👍 1142, 👎 0 
+// 👍 1098, 👎 0 
 //
 //
 //
@@ -67,14 +53,14 @@ import java.util.List;
 import common.TreeNode;
 
 /**
- * 二叉树的前序遍历
+ * 二叉树的后序遍历
  *
  * @author hsfxuebao
- * 2023-09-23 16:10:25 
+ * 2023-09-25 20:50:07 
  */
-class P144_BinaryTreePreorderTraversal{
+class P145_BinaryTreePostorderTraversal{
     public static void main(String[] args) {
-        Solution solution = new P144_BinaryTreePreorderTraversal().new Solution();
+        Solution solution = new P145_BinaryTreePostorderTraversal().new Solution();
         
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -94,12 +80,10 @@ class P144_BinaryTreePreorderTraversal{
  * }
  */
 class Solution {
-    // 递归，遍历
+    // 递归
     List<Integer> result = new ArrayList<>();
-    public List<Integer> preorderTraversal1(TreeNode root) {
-        if (root == null) {
-            return result;
-        }
+    public List<Integer> postorderTraversal1(TreeNode root) {
+
         traceback(root);
         return result;
     }
@@ -108,24 +92,28 @@ class Solution {
         if (root == null) {
             return;
         }
-        // 前序位置
-        result.add(root.val);
         traceback(root.left);
         traceback(root.right);
+        result.add(root.val);
     }
 
-    // 动态规划  分解子问题
-    public List<Integer> preorderTraversal(TreeNode root) {
+    /**
+     * 分解子问题
+     */
+    public List<Integer> postorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();
         if (root == null) {
             return res;
         }
+        List<Integer> leftList = postorderTraversal(root.left);
+        res.addAll(leftList);
+        List<Integer> rightList = postorderTraversal(root.right);
+        res.addAll(rightList);
         res.add(root.val);
-        res.addAll(preorderTraversal(root.left));
-        res.addAll(preorderTraversal(root.right));
-
-        return res;
+        return result;
     }
+
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
  

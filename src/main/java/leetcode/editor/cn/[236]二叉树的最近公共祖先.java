@@ -44,11 +44,13 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 深度优先搜索 | 二叉树 
 //
-// 👍 2207, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 2462, 👎 0 
 //
 //
 //
 //
+
+
 
 import common.TreeNode;
 
@@ -56,7 +58,7 @@ import common.TreeNode;
  * 二叉树的最近公共祖先
  *
  * @author hsfxuebao
- * 2023-03-28 09:14:30 
+ * 2023-09-27 16:00:40 
  */
 class P236_LowestCommonAncestorOfABinaryTree{
     public static void main(String[] args) {
@@ -75,26 +77,30 @@ class P236_LowestCommonAncestorOfABinaryTree{
  */
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-
         if (root == null) {
             return null;
         }
-        return find(root, p.val, q.val);
+        return find(root, p, q);
     }
 
-    private TreeNode find(TreeNode root, int val, int val1) {
+    // 返回 p和q节点的 公共祖先
+    private TreeNode find(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) {
             return null;
         }
-        if (root.val == val || root.val == val1) {
+        // 若有一个值相等，返回当前值
+        if (root.val == p.val || root.val == q.val) {
             return root;
         }
-        TreeNode leftNode = find(root.left, val, val1);
-        TreeNode rightNode = find(root.right, val, val1);
-        if (leftNode != null && rightNode != null) {
+
+        TreeNode left = find(root.left, p, q);
+        TreeNode right = find(root.right, p, q);
+        // 左右子树 都不为null 返回root节点
+        if (left != null && right != null) {
             return root;
         }
-        return leftNode != null ? leftNode : rightNode;
+
+        return left == null ? right : left;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -77,15 +77,36 @@ class P226_InvertBinaryTree{
  */
 class Solution {
 
-    public TreeNode invertTree(TreeNode root) {
+    // 分解子问题，以root为根节点 二叉树翻转，返回翻转后的二叉树的根节点
+    public TreeNode invertTree1(TreeNode root) {
         if (root == null) {
             return null;
         }
-        TreeNode leftNode = invertTree(root.left);
-        TreeNode rightNode = invertTree(root.right);
+        TreeNode leftNode = invertTree1(root.left);
+        TreeNode rightNode = invertTree1(root.right);
         root.left = rightNode;
         root.right = leftNode;
         return root;
+    }
+
+    // 递归
+    public TreeNode invertTree(TreeNode root) {
+        trackback(root);
+        return root;
+    }
+
+    private void trackback(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        // 更换左右节点
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+
+        trackback(root.left);
+        trackback(root.right);
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

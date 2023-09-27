@@ -115,13 +115,14 @@ class Solution {
         if (node1 == null || node2 == null) {
             return;
         }
-        // 前序位置
-        // 将当前的两个节点 连接
+
+        // 链接2个节点
         node1.next = node2;
-        // 将相同父节点 连接
+
+        // 链接相同父节点的
         connect(node1.left, node1.right);
         connect(node2.left, node2.right);
-        // 跨越父节点的 连接
+        // 链接不同节点的
         connect(node1.right, node2.left);
     }
 }
