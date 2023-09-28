@@ -53,7 +53,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 动态规划 
 //
-// 👍 1056, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1164, 👎 0 
 //
 //
 //
@@ -63,7 +63,7 @@ package leetcode.editor.cn;
  * 零钱兑换 II
  *
  * @author hsfxuebao
- * 2023-04-18 20:53:25 
+ * 2023-09-28 08:28:34 
  */
 class P518_CoinChangeIi{
     public static void main(String[] args) {
@@ -78,54 +78,48 @@ class Solution {
          * @param coins
          * @return
          */
-    public int change1(int amount, int[] coins) {
-        int len = coins.length;
-        // i 从 1 开始
-        // 定义dp[i][j] 表示对于前i个零钱，总钱数为j,最大有多少种兑换方式
-        int[][] dp = new int[len+1][amount+1];
+    public int change(int amount, int[] coins) {
+
+        // dp:
+        int[][] dp = new int[coins.length+1][amount+1];
+
         // base case
-        for (int i = 0; i <= len; i++) {
+        for (int i = 0; i < dp.length; i++) {
             dp[i][0] = 1;
         }
-
-        for (int i = 1; i <= len; i++) {
-            for (int j = 1; j <= amount; j++) {
-                if (j - coins[i - 1] >= 0) {
-                    // 不拿 和 拿 相加
-                    // 拿 由于钱 是有重复的，所以可以重复拿第i个钱数
-                    dp[i][j] = dp[i-1][j] + dp[i][j-coins[i-1]];
-                } else {
-                    // 不拿
+        for (int i = 1; i < coins.length + 1; i++) {
+            for (int j = 0; j < amount+1; j++) {
+                if (j - coins[i - 1] < 0) {
+                    // 不要
                     dp[i][j] = dp[i-1][j];
+                } else {
+                    // 要与不要  加和
+                    dp[i][j] = dp[i-1][j] + dp[i][j - coins[i-1]];
                 }
             }
         }
-        return dp[len][amount];
-
+        return dp[coins.length][amount];
     }
 
         /**
          * 一维dp
          */
-        public int change(int amount, int[] coins) {
-            int len = coins.length;
-            // i 从 1 开始
-            // 定义dp[i][j] 表示对于前i个零钱，总钱数为j,最大有多少种兑换方式
+        public int change1(int amount, int[] coins) {
+            // dp:
             int[] dp = new int[amount+1];
+
             // base case
             dp[0] = 1;
+            for (int i = 1; i < coins.length + 1; i++) {
 
-            for (int i = 1; i <= len; i++) {
-                for (int j = 1; j <= amount; j++) {
+                for (int j = 1; j < amount+1; j++) {
+
                     if (j - coins[i - 1] >= 0) {
-                        // 不拿 和 拿 相加
-                        // 拿 由于钱 是有重复的，所以可以重复拿第i个钱数
                         dp[j] = dp[j] + dp[j-coins[i-1]];
                     }
                 }
             }
             return dp[amount];
-
         }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -30,7 +30,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 动态规划 
 //
-// 👍 1722, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1890, 👎 0 
 //
 //
 //
@@ -40,7 +40,7 @@ package leetcode.editor.cn;
  * 分割等和子集
  *
  * @author hsfxuebao
- * 2023-04-18 20:36:49 
+ * 2023-09-28 08:59:24 
  */
 class P416_PartitionEqualSubsetSum{
     public static void main(String[] args) {
@@ -49,79 +49,39 @@ class P416_PartitionEqualSubsetSum{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    public boolean canPartition(int[] nums) {
 
-        /**
-         * 0-1背包问题，二维dp
-         */
-    public boolean canPartition1(int[] nums) {
-        if (nums == null || nums.length == 0) {
+        if (nums == null || nums.length < 2) {
             return false;
         }
-        int len = nums.length;
+        // 求和 看能否整除
         int sum = 0;
-        for (int i = 0; i < len; i++) {
-            sum += nums[i];
+        for (int num : nums) {
+            sum += num;
         }
-        // 奇数 返回false
-        if (sum % 2 != 0) {
+        if (sum % 2 == 1) {
             return false;
         }
+        int target = sum / 2;
 
-        // 定义dp[i][j] 表示对于前i个数据，能否凑成和未j  i从1开始
-        boolean[][] dp = new boolean[len+1][sum/2+1];
-        // base case j=0时 都为true
-        for (int i = 0; i <= len; i++) {
+
+        boolean[][] dp = new boolean[nums.length+1][target+1];
+        // base case
+        for (int i = 0; i <= nums.length; i++) {
             dp[i][0] = true;
         }
 
-
-        for (int i = 1; i <= len; i++) {
-            for (int j = 1; j <= sum/2; j++) {
-                if (j - nums[i-1] < 0) {
-                    dp[i][j] = dp[i - 1][j];
+        for (int i = 1; i <= nums.length; i++) {
+            for (int j = 0; j <= target; j++) {
+                if (j - nums[i - 1] >= 0) {
+                    dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i - 1]];
                 } else {
-                    // 拿与不拿
-                    dp[i][j] = dp[i-1][j] || dp[i-1][j-nums[i-1]];
+                    dp[i][j] = dp[i - 1][j];
                 }
             }
         }
-        return dp[len][sum/2];
+        return dp[nums.length][target];
     }
-
-        /**
-         * 一维dp
-         */
-        public boolean canPartition(int[] nums) {
-            if (nums == null || nums.length == 0) {
-                return false;
-            }
-            int len = nums.length;
-            int sum = 0;
-            for (int i = 0; i < len; i++) {
-                sum += nums[i];
-            }
-            // 奇数 返回false
-            if (sum % 2 != 0) {
-                return false;
-            }
-
-            // 定义dp[i][j] 表示对于前i个数据，能否凑成和未j  i从1开始
-            boolean[] dp = new boolean[sum/2+1];
-            // base case j=0时 都为true
-            dp[0] = true;
-
-            for (int i = 1; i <= len; i++) {
-                for (int j = sum/2; j >= 0; j--) {
-                    if (j - nums[i-1] >= 0) {
-                        // 拿与不拿
-                        dp[j] = dp[j] || dp[j-nums[i-1]];
-                    }
-                }
-            }
-            return dp[sum/2];
-
-        }
-
 }
 //leetcode submit region end(Prohibit modification and deletion)
  
