@@ -65,39 +65,37 @@ class P200_NumberOfIslands{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int numIslands(char[][] grid) {
-        int m = grid.length;
-        int n = grid[0].length;
+       int row = grid.length;
+       int col = grid[0].length;
 
-        int res = 0;
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
+       int num = 0;
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
                 if (grid[i][j] == '1') {
-                    dfs(grid, i, j);
-                    res++;
+                    // 将i,j 四周假设都被水淹没
+                    dfs(grid, i ,j);
+                    num++;
                 }
             }
         }
-        return res;
+        return num;
     }
 
     public void dfs(char[][] grid, int i, int j) {
-
-        if (i < 0 || i >= grid.length
-                || j < 0 || j >= grid[0].length) {
+        if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length) {
             return;
         }
-        // 已经是 海水了
+
+        // 感染
         if (grid[i][j] == '0') {
             return;
         }
-
-        // 变成海水
         grid[i][j] = '0';
-        // 遍历 上下左右四个位置
-        dfs(grid, i+1, j);
+        // 上下左右
         dfs(grid, i-1, j);
-        dfs(grid, i, j+1);
+        dfs(grid, i+1, j);
         dfs(grid, i, j-1);
+        dfs(grid, i, j+1);
     }
 
 

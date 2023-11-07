@@ -59,49 +59,46 @@ class P1905_CountSubIslands{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int countSubIslands(int[][] grid1, int[][] grid2) {
-        int m = grid1.length;
-        int n = grid1[0].length;
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
+        int row = grid1.length;
+        int col = grid1[0].length;
+
+        // grid2 中为1 但是grid1为0 需要将grid2中相关联的全部置为0
+        // 然后统计 grid2中的子岛屿数量
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
                 if (grid2[i][j] == 1 && grid1[i][j] == 0) {
-                    // 淹没掉
                     dfs(grid2, i, j);
                 }
             }
         }
-
-        int res = 0;
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
+        int count = 0;
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
                 if (grid2[i][j] == 1) {
-                    res++;
                     dfs(grid2, i, j);
+                    count++;
                 }
             }
         }
-        return res;
+        return count;
     }
 
-    public void dfs(int[][] grid, int i, int j) {
-        if (i < 0 || i >= grid.length
-                || j < 0 || j >= grid[0].length) {
-            return;
-        }
-        // 如果是海水返回
-        if (grid[i][j] == 0) {
-            return;
-        }
+        private void dfs(int[][] grid, int i, int j) {
 
-        grid[i][j] = 0;
-        dfs(grid, i+1, j);
-        dfs(grid, i-1, j);
-        dfs(grid, i, j+1);
-        dfs(grid, i, j-1);
-
+            if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length) {
+                return;
+            }
+            if (grid[i][j] == 0) {
+                return;
+            }
+            grid[i][j] = 0;
+            dfs(grid, i+1, j);
+            dfs(grid, i-1, j);
+            dfs(grid, i, j+1);
+            dfs(grid, i, j-1);
+        }
 
     }
-
-}
 //leetcode submit region end(Prohibit modification and deletion)
  
 }

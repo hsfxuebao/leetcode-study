@@ -29,36 +29,42 @@ class P694_numDistinctIslands {
          * @return
          */
         int numDistinctIslands(int[][] grid) {
-            int m = grid.length, n = grid[0].length;
-            Set<String> set = new HashSet<>();
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    StringBuilder sb = new StringBuilder();
-                    dfs(grid, i, j, sb, 100);
-                    set.add(sb.toString());
+            int row = grid.length;
+            int col = grid[0].length;
+
+            // 可去重
+            HashSet<String> sets = new HashSet<>();
+            for (int i = 0; i < row; i++) {
+                for (int j = 0; j < col; j++) {
+                    if (grid[i][j] == 1) {
+                        StringBuilder sb = new StringBuilder();
+                        dfs(grid, i, j, 999, sb);
+                        sets.add(sb.toString());
+                    }
                 }
             }
-            return set.size();
+            return sets.size();
         }
-        void dfs(int[][] grid, int i, int j, StringBuilder sb, int dir) {
-            int m = grid.length, n = grid[0].length;
-            if (i < 0 || j < 0 || i >= m || j >= n
-                    || grid[i][j] == 0) {
+
+        private void dfs(int[][] grid, int i, int j, int dir, StringBuilder sb) {
+            if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length) {
                 return;
             }
-            // 被海水淹没
+            if (grid[i][j] == 0) {
+                return;
+            }
             grid[i][j] = 0;
 
-            // 进入的位置
             sb.append(dir).append(",");
-            dfs(grid, i-1, j, sb, 1); // 上
-            dfs(grid, i+1, j, sb, 2); // 下
-            dfs(grid, i, j-1, sb, 3); // 左
-            dfs(grid, i, j+1, sb, 4); // 右
-            // 离开的位置
+            // 上下左右
+            dfs(grid, i-1, j, 1, sb);
+            dfs(grid, i+1, j, 2, sb);
+            dfs(grid, i, j-1, 3, sb);
+            dfs(grid, i, j+1, 4, sb);
             sb.append(-dir).append(",");
 
         }
+
     }
 }
 

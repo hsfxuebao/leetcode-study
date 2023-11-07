@@ -65,50 +65,54 @@ class P1254_NumberOfClosedIslands{
 class Solution {
         public int closedIsland(int[][] grid) {
 
-            int m = grid.length;
-            int n = grid[0].length;
-            // 先把四周的陆地 被 海水淹没
-            for (int i = 0; i < m; i++) {
+            int row = grid.length;
+            int col = grid[0].length;
+
+
+            // 先淹没四周
+            // 左边的第一列
+            for (int i = 0; i < row; i++) {
                 dfs(grid, i, 0);
-                dfs(grid, i, n-1);
-
+                dfs(grid, i, col-1);
             }
-            for (int j = 0; j < n; j++) {
+
+            // 第一行
+            for (int j = 0; j < col; j++) {
                 dfs(grid, 0, j);
-                dfs(grid, m-1, j);
+                dfs(grid, row-1, j);
+
             }
 
-            int res = 0;
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
+            int count = 0;
+            for (int i = 1; i < row; i++) {
+                for (int j = 1; j < col; j++) {
                     if (grid[i][j] == 0) {
-                        res++;
                         dfs(grid, i, j);
+                        count++;
                     }
                 }
             }
-            return res;
+            return count;
         }
 
         private void dfs(int[][] grid, int i, int j) {
-            // 越界
-            if (i < 0 || i >= grid.length
-                    || j < 0 || j >= grid[0].length) {
+            if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length) {
                 return;
             }
-            // 如果是海水，直接返回
+            // 当前位置是海水
             if (grid[i][j] == 1) {
                 return;
             }
-            // 变成海水
             grid[i][j] = 1;
-            // 上下左右 遍历
-            dfs(grid, i - 1, j);
-            dfs(grid, i + 1, j);
-            dfs(grid, i, j-1);
+            dfs(grid, i+1, j);
+            dfs(grid, i-1, j);
             dfs(grid, i, j+1);
+            dfs(grid, i, j-1);
+
         }
-}
+
+
+    }
 //leetcode submit region end(Prohibit modification and deletion)
  
 }
