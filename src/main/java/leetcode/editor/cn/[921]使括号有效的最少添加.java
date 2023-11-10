@@ -64,24 +64,22 @@ class P921_MinimumAddToMakeParenthesesValid{
 class Solution {
     public int minAddToMakeValid(String s) {
 
-       // 需要左括号的数量
-        int res = 0;
-        // 需要有括号的数量
-        int count = 0;
+       // 记录左括号数量
+        int leftNum = 0;
+        int result = 0;
         for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            if (c == '(') {
-                count += 1;
-
+            Character ch = s.charAt(i);
+            if (ch == '(') {
+                leftNum++;
             } else {
-                count--;
-                if (count == -1) {
-                    res++;
-                    count = 0;
+                if (leftNum <= 0) {
+                    result++;
+                } else {
+                    leftNum--;
                 }
             }
         }
-        return res + count;
+        return leftNum+result;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

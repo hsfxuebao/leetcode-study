@@ -54,13 +54,13 @@ class Solution {
         List<String> result = new ArrayList<>();
 
     public List<String> generateParenthesis(int n) {
-        if (n < 0) {
+        if (n <= 0) {
             return result;
         }
-
         StringBuilder sb = new StringBuilder();
         backtrack(n, n, sb);
         return result;
+
     }
 
         /**
@@ -71,31 +71,26 @@ class Solution {
          */
         private void backtrack(int left, int right, StringBuilder sb) {
 
-            // 非法
-            if (left < 0 || right < 0) {
+            // 非法情况
+            if (left < 0 || right < 0 || right < left) {
                 return;
             }
-            // 非法，左括号的数量必须大于等于有括号的数量
-            // 剩余的左括号的数量 小于 有括号的数量
-            if (left > right) {
-                return;
-            }
+            // 结束条件
             if (left == 0 && right == 0) {
                 result.add(sb.toString());
                 return;
             }
 
-
-            // 选择集
+            // 选择集，选择，撤销选择
+            // 选择左括号
             sb.append("(");
             backtrack(left-1, right, sb);
-            sb.deleteCharAt(sb.length() - 1);
+            sb.deleteCharAt(sb.length()-1);
 
+            // 选择右括号
             sb.append(")");
             backtrack(left, right-1, sb);
-            sb.deleteCharAt(sb.length() - 1);
-
-
+            sb.deleteCharAt(sb.length()-1);
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -67,66 +67,58 @@ class P224_BasicCalculator{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int calculate(String s) {
-
         Queue<Character> queue = new LinkedList<>();
-        for (char ch : s.toCharArray()) {
-            queue.offer(ch);
+        for (int i = 0; i < s.length(); i++) {
+            queue.offer(s.charAt(i));
         }
+
         return helper(queue);
     }
 
+
+        // 计算
         private int helper(Queue<Character> queue) {
-
-
-            Stack<Integer> numStack = new Stack<>();
-            // 默认第一个数是 加号
+            Stack<Integer> stack = new Stack<>();
+            int num = 0;
             char sign = '+';
-            int number = 0;
-            while (!queue.isEmpty()) {
 
+            while (!queue.isEmpty()) {
                 Character ch = queue.poll();
                 if (Character.isDigit(ch)) {
-                    number = 10 * number + (ch - '0');
+                    num = num * 10 + (ch - '0');
                 }
-                // 遇到左括号 开始进行递归计算
                 if (ch == '(') {
-                    number =  helper(queue);
+                    num = helper(queue);
                 }
-                if ((!Character.isDigit(ch) && ch != ' ') || queue.isEmpty()) {
 
-                    switch (sign) {
-                        case '+':
-                            numStack.push(number);
-                            break;
-                        case '-':
-                            numStack.push(-number);
-                            break;
-                        case '*' :
-                            numStack.push(numStack.pop()*number);
-                            break;
-                        case '/' :
-                            numStack.push(numStack.pop() / number);
-                            break;
-                        default:
-                            break;
+                if ((!Character.isDigit(ch) && ch != ' ')
+                        || queue.isEmpty()) {
+
+                    if (sign == '+') {
+                        stack.push(num);
                     }
-                    // 更新当前的符号
+                    if (sign == '-') {
+                        stack.push(-num);
+                    }
+                    if (sign == '*') {
+                        stack.push(stack.pop() * num);
+                    }
+                    if (sign == '/') {
+                        stack.push(stack.pop() / num);
+                    }
+                    num = 0;
                     sign = ch;
-                    number = 0;
-
                 }
-                // 遇到右括号 返回
                 if (ch == ')') {
                     break;
                 }
-
             }
-            int sum = 0;
-            while (!numStack.isEmpty()) {
-                sum += numStack.pop();
+            // 求和计算
+            int  res = 0;
+            while (!stack.isEmpty()) {
+                res += stack.pop();
             }
-
-            return sum;
+            return res;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

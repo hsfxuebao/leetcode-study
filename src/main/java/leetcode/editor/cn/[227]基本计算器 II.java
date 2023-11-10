@@ -71,53 +71,44 @@ class P227_BasicCalculatorIi{
 class Solution {
     public int calculate(String s) {
 
-        Stack<Integer> numStack = new Stack<>();
 
-        int number = 0;
-
-        // num 数字前的 运算符号
+        Stack<Integer> stack = new Stack<>();
+        int num = 0;
         char sign = '+';
+
         for (int i = 0; i < s.length(); i++) {
-
-            Character ch = s.charAt(i);
-//            // todo 不能放在这里，末尾有空格，这里不行
-//            if (ch == ' ') {
-//                continue;
-//            }
+            char ch = s.charAt(i);
             if (Character.isDigit(ch)) {
-                number = number * 10 + (ch - '0');
+                num = num * 10 + (ch - '0');
             }
-            // 运算符号
-            if ((!Character.isDigit(ch) && ch != ' ') || i == s.length() - 1) {
+            if ((!Character.isDigit(ch) && ch != ' ')
+                    || i == s.length() - 1) {
 
-                switch (sign) {
-                    case '+':
-                        numStack.push(number);
-                        break;
-                    case '-':
-                        numStack.push(-number);
-                        break;
-                    case '*' :
-                        numStack.push(numStack.pop()*number);
-                        break;
-                    case '/' :
-                        numStack.push(numStack.pop() / number);
-                        break;
-                    default:
-                        break;
+                if (sign == '+') {
+                    stack.push(num);
                 }
-                // 更新当前的符号
+                if (sign == '-') {
+                    stack.push(-num);
+                }
+                if (sign == '*') {
+                    stack.push(stack.pop() * num);
+                }
+                if (sign == '/') {
+                    stack.push(stack.pop() / num);
+                }
+
+                // 更新num 和符号sign
+                num = 0;
                 sign = ch;
-                number = 0;
             }
         }
-        // 对 numStack进行计算
-        int sum = 0;
-        while (!numStack.isEmpty()) {
-            sum += numStack.pop();
-        }
 
-        return sum;
+        // 计算数值
+        int res = 0;
+        while (!stack.isEmpty()) {
+            res += stack.pop();
+        }
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

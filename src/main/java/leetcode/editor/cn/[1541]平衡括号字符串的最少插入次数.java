@@ -83,29 +83,31 @@ class P1541_MinimumInsertionsToBalanceAParenthesesString{
 class Solution {
     public int minInsertions(String s) {
 
-        // 已经增加的括号数
-        int res = 0;
-        // 统计需要增加的括号数
+        // 统计需要增加的右括号数
         int count = 0;
+        int result = 0;
 
         for (int i = 0; i < s.length(); i++) {
             char ch = s.charAt(i);
             if (ch == '(') {
                 count += 2;
-                // 奇数
+                // count是奇数，遇到了一个右括号
                 if (count % 2 == 1) {
-                    res++;
+                    // 增加一个右括号
+                    result++;
                     count--;
                 }
+
             } else {
                 count--;
                 if (count == -1) {
-                    res++;
+                    // 增加一个左括号
+                    result++;
                     count = 1;
                 }
             }
         }
-        return res+count;
+        return result + count;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

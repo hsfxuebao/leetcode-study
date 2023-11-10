@@ -66,14 +66,14 @@ class P20_ValidParentheses{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public boolean isValid(String s) {
+
         Stack<Character> stack = new Stack<>();
         for (int i = 0; i < s.length(); i++) {
             char ch = s.charAt(i);
             if (ch == '(' || ch == '{' || ch == '[') {
                 stack.push(ch);
             } else {
-                // 找到对应的括号
-                if (stack.isEmpty() || getLeft(ch) != stack.pop()) {
+                if (stack.isEmpty() || getRightChar(stack.pop()) != ch) {
                     return false;
                 }
             }
@@ -81,20 +81,18 @@ class Solution {
         return stack.isEmpty();
     }
 
-    public char getLeft(char ch) {
+        private Character getRightChar(char ch) {
+            if (ch == '(') {
+                return ')';
+            } else if (ch == '{') {
+                return '}';
+            } else if (ch == '['){
+                return ']';
+            }
+            return ' ';
+        }
 
-        if (ch == ')') {
-            return '(';
-        }
-        if (ch == '}') {
-            return '{';
-        }
-        if (ch == ']') {
-            return '[';
-        }
-        return ' ';
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
  
 }

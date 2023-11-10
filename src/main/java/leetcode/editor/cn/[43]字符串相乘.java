@@ -50,36 +50,35 @@ class P43_MultiplyStrings{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String multiply(String num1, String num2) {
-
-        int m = num1.length(), n = num2.length();
-        int[] num = new int[m+n];
-        // 从个位开始 一次做乘法运算
-        for (int i = m-1; i >= 0; i--) {
-            for (int j = n-1; j >= 0; j--) {
-
-                // 计算乘法结果
-                int result = (num1.charAt(i)- '0') * (num2.charAt(j) - '0');
-                // 低位
-                int p2 = i+j+1;
-                int p1 = i+j;
-                int sum = num[p2] + result;
-                num[p2] = sum % 10;
-                num[p1] = num[p1] + sum / 10;
-
+        int num1Len = num1.length();
+        int num2Len = num2.length();
+        int[] res = new int[num1Len+num2Len];
+        for (int i = num1Len-1; i >= 0; i--) {
+            for (int j = num2Len-1; j >= 0; j--) {
+                int mul = (num1.charAt(i)-'0') * (num2.charAt(j)-'0');
+//                int p1 = i+j, p2 = i+j+1;
+//                int sum = cal + res[p2];
+//                res[p2] = sum % 10;
+//                res[p1] += sum /10;
+                // 乘积在 res 对应的索引位置
+                int p1 = i + j, p2 = i + j + 1;
+                // 叠加到 res 上
+                int sum = mul + res[p2];
+                res[p2] = sum % 10;
+                res[p1] += sum / 10;
             }
         }
-        // 去除掉 前面是0 的位置
+
+        //
+        StringBuilder sb = new StringBuilder();
         int i = 0;
-        while (i < num.length && num[i] == 0) {
+        while (i < res.length && res[i] == 0) {
             i++;
         }
-        StringBuilder sb = new StringBuilder();
-        // 将数组中数字 转成10进制数字
-        for (; i < num.length; i++) {
-            sb.append(num[i]);
+        for (int j = i; j < res.length; j++) {
+            sb.append(res[j]);
         }
-        return sb.toString().length() > 0 ? sb.toString() : "0";
-        
+        return sb.toString().length() == 0 ? "0" : sb.toString();
         
     }
 }
