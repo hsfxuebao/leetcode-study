@@ -44,7 +44,7 @@ package leetcode.editor.cn;
 //
 // Related Topics递归 | 链表 
 //
-// 👍 3348, 👎 0 
+// 👍 3417, 👎 0 
 //
 //
 //
@@ -56,7 +56,7 @@ import common.ListNode;
  * 反转链表
  *
  * @author hsfxuebao
- * 2023-09-19 11:19:20 
+ * 2023-11-13 09:59:29 
  */
 class P206_ReverseLinkedList{
     public static void main(String[] args) {
@@ -78,35 +78,38 @@ class Solution {
     public ListNode reverseList(ListNode head) {
 
         // 迭代
-//        return reverseInter(head);
+//        return reverseIteration(head);
         // 递归
-        return reverseRec(head);
+        return reverseRecur(head);
+
     }
 
-    private ListNode reverseRec(ListNode head) {
+    private ListNode reverseRecur(ListNode head) {
 
         if (head == null || head.next == null) {
             return head;
         }
-        ListNode last = reverseRec(head.next);
+
+        ListNode last = reverseRecur(head.next);
         head.next.next = head;
         head.next = null;
         return last;
-
     }
 
-    private ListNode reverseInter(ListNode head) {
+    private ListNode reverseIteration(ListNode head) {
 
-        ListNode pre = null, cur = head, next = head;
+        ListNode cur = head, next = head, pre = null;
+
         while (cur != null) {
             next = cur.next;
-
             cur.next = pre;
-            pre = cur;
 
+            // 更新
+            pre = cur;
             cur = next;
         }
         return pre;
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

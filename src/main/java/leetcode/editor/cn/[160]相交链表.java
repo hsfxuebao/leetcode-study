@@ -90,7 +90,7 @@ package leetcode.editor.cn;
 //
 // Related Topics哈希表 | 链表 | 双指针 
 //
-// 👍 2067, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 2287, 👎 0 
 //
 //
 //
@@ -102,7 +102,7 @@ import common.ListNode;
  * 相交链表
  *
  * @author hsfxuebao
- * 2023-04-16 09:44:50 
+ * 2023-11-11 10:12:31 
  */
 class P160_IntersectionOfTwoLinkedLists{
     public static void main(String[] args) {
@@ -124,22 +124,24 @@ class P160_IntersectionOfTwoLinkedLists{
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
 
-       ListNode p1 = headA, p2 = headB;
+        ListNode p1 = headA, p2 = headB;
 
         while (p1 != p2) {
 
-            if (p1 == null) {
-                p1 = headB;
-            } else {
+            if (p1 != null) {
                 p1 = p1.next;
+            } else{
+                p1 = headB;
             }
-            if (p2 == null) {
-                p2 = headA;
-            } else {
+
+            if (p2 != null) {
                 p2 = p2.next;
+            } else {
+                p2 = headA;
             }
         }
-        return p1;
+
+        return p1 != null ? p1 : null;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

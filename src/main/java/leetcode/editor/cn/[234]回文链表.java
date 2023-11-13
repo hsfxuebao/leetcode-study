@@ -33,7 +33,7 @@ package leetcode.editor.cn;
 //
 // Related Topics栈 | 递归 | 链表 | 双指针 
 //
-// 👍 1667, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1817, 👎 0 
 //
 //
 //
@@ -45,7 +45,7 @@ import common.ListNode;
  * 回文链表
  *
  * @author hsfxuebao
- * 2023-04-16 11:03:12 
+ * 2023-11-13 17:36:55 
  */
 class P234_PalindromeLinkedList{
     public static void main(String[] args) {
@@ -64,27 +64,24 @@ class P234_PalindromeLinkedList{
  * }
  */
 class Solution {
-
-
-    // 找到链表中间的节点，反转 中间节点之后的节点
     public boolean isPalindrome(ListNode head) {
 
-        // 快慢指针 找到中间节点，奇数中间，偶数偏右节点
-        ListNode slow = head, fast = head;
+        ListNode fast = head, slow = head;
+        // 找到中间节点，奇数为中间，偶数 为 靠右的节点
         while (fast != null && fast.next != null) {
-            slow = slow.next;
             fast = fast.next.next;
+            slow = slow.next;
+        }
+        // 奇数情况
+        if (fast != null) {
+            slow = slow.next;
         }
 
-        if (fast != null) {
-            // 奇数
-            slow = slow.next;
-        }
-        // 反转slow链表
-        ListNode reverse = reverse(slow);
-        ListNode p2 = reverse, p1 = head;
+        // 反转slow 到 最后的链表
+        ListNode preNode = reverseIcur(slow);
+        ListNode p1 = head, p2 = preNode;
         while (p2 != null) {
-            if (p2.val != p1.val) {
+            if (p1.val != p2.val) {
                 return false;
             }
             p2 = p2.next;
@@ -94,12 +91,12 @@ class Solution {
 
     }
 
-    // 反转链表
-    private ListNode reverse(ListNode slow) {
+    // 反转链表，返回头结点
+    private ListNode reverseIcur(ListNode head) {
 
-       ListNode pre = null, cur = slow;
+        ListNode pre = null, cur = head, next = head;
         while (cur != null) {
-            ListNode next = cur.next;
+            next = cur.next;
             cur.next = pre;
             pre = cur;
             cur = next;

@@ -55,7 +55,7 @@ package leetcode.editor.cn;
 //
 // Related Topics哈希表 | 链表 | 双指针 
 //
-// 👍 1821, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 2044, 👎 0 
 //
 //
 //
@@ -67,7 +67,7 @@ import common.ListNode;
  * 环形链表
  *
  * @author hsfxuebao
- * 2023-04-16 09:38:05 
+ * 2023-11-11 10:08:41 
  */
 class P141_LinkedListCycle{
     public static void main(String[] args) {
@@ -90,7 +90,9 @@ public class Solution {
     public boolean hasCycle(ListNode head) {
 
         ListNode slow = head, fast = head;
+
         while (fast != null && fast.next != null) {
+
             slow = slow.next;
             fast = fast.next.next;
             if (fast == slow) {

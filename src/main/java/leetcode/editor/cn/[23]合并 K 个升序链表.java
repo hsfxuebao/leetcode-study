@@ -47,7 +47,7 @@ package leetcode.editor.cn;
 //
 // Related Topics链表 | 分治 | 堆（优先队列） | 归并排序 
 //
-// 👍 2408, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 2692, 👎 0 
 //
 //
 //
@@ -64,7 +64,7 @@ import common.ListNode;
  * 合并 K 个升序链表
  *
  * @author hsfxuebao
- * 2023-04-16 09:08:51 
+ * 2023-11-11 09:55:19 
  */
 class P23_MergeKSortedLists{
     public static void main(String[] args) {
@@ -85,10 +85,10 @@ class P23_MergeKSortedLists{
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
 
-        if (lists.length == 0) {
-            return null;
-        }
+        ListNode dummy = new ListNode(-1);
+        ListNode p1 = dummy;
 
+        // 小顶堆  从大到小排序
         Queue<ListNode> queue = new PriorityQueue<>(new Comparator<ListNode>() {
             @Override
             public int compare(ListNode o1, ListNode o2) {
@@ -96,22 +96,22 @@ class Solution {
             }
         });
 
-        // 将列表 头结点放到 小根堆中
-        for (ListNode node : lists) {
-            if (node != null) {
-                queue.add(node);
+        for (int i = 0; i < lists.length; i++) {
+            if (lists[i] != null) {
+                queue.offer(lists[i]);
             }
         }
 
-        ListNode dummy = new ListNode(-1), p = dummy;
         while (!queue.isEmpty()) {
 
             ListNode poll = queue.poll();
-            p.next = new ListNode(poll.val);
-            p = p.next;
+            // 将弹出来的下一个节点放到队列中
             if (poll.next != null) {
                 queue.add(poll.next);
             }
+            p1.next = new ListNode(poll.val);
+            p1 = p1.next;
+
         }
         return dummy.next;
 

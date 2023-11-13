@@ -45,7 +45,7 @@ package leetcode.editor.cn;
 //
 // Related Topics深度优先搜索 | 广度优先搜索 | 并查集 | 数组 | 矩阵 
 //
-// 👍 2161, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 2346, 👎 0 
 //
 //
 //
@@ -55,7 +55,7 @@ package leetcode.editor.cn;
  * 岛屿数量
  *
  * @author hsfxuebao
- * 2023-04-25 09:24:05 
+ * 2023-11-12 10:19:35 
  */
 class P200_NumberOfIslands{
     public static void main(String[] args) {
@@ -65,41 +65,44 @@ class P200_NumberOfIslands{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int numIslands(char[][] grid) {
-       int row = grid.length;
-       int col = grid[0].length;
 
-       int num = 0;
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
+        if (grid == null) {
+            return 0;
+        }
+        int res = 0;
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
                 if (grid[i][j] == '1') {
-                    // 将i,j 四周假设都被水淹没
-                    dfs(grid, i ,j);
-                    num++;
+                    dfs(grid, i, j);
+                    res++;
                 }
             }
         }
-        return num;
+        return res;
+
     }
 
-    public void dfs(char[][] grid, int i, int j) {
-        if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length) {
-            return;
-        }
+        private void dfs(char[][] grid, int i, int j) {
 
-        // 感染
-        if (grid[i][j] == '0') {
-            return;
+            // 非法
+            if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length) {
+                return;
+            }
+            if (grid[i][j] == '0') {
+                return;
+            }
+
+            grid[i][j] = '0';
+
+            // 上下左右
+            dfs(grid, i+1, j);
+            dfs(grid, i-1, j);
+            dfs(grid, i, j-1);
+            dfs(grid, i, j+1);
+
+
         }
-        grid[i][j] = '0';
-        // 上下左右
-        dfs(grid, i-1, j);
-        dfs(grid, i+1, j);
-        dfs(grid, i, j-1);
-        dfs(grid, i, j+1);
     }
-
-
-}
 //leetcode submit region end(Prohibit modification and deletion)
  
 }

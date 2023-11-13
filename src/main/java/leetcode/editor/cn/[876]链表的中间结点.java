@@ -33,7 +33,7 @@ package leetcode.editor.cn;
 //
 // Related Topics链表 | 双指针 
 //
-// 👍 862, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 956, 👎 0 
 //
 //
 //
@@ -45,9 +45,9 @@ import common.ListNode;
  * 链表的中间结点
  *
  * @author hsfxuebao
- * 2023-04-16 09:34:42 
+ * 2023-11-13 17:33:53 
  */
-class  P876_MiddleOfTheLinkedList{
+class P876_MiddleOfTheLinkedList{
     public static void main(String[] args) {
         Solution solution = new P876_MiddleOfTheLinkedList().new Solution();
         
@@ -66,13 +66,11 @@ class  P876_MiddleOfTheLinkedList{
 class Solution {
     public ListNode middleNode(ListNode head) {
 
-        // 快慢指针
-        ListNode slow = head, fast = head;
 
+        ListNode fast = head, slow = head;
         while (fast != null && fast.next != null) {
-            slow = slow.next;
             fast = fast.next.next;
-
+            slow = slow.next;
         }
         return slow;
     }

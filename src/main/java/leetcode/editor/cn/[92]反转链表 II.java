@@ -36,7 +36,7 @@ package leetcode.editor.cn;
 //
 // Related Topics链表 
 //
-// 👍 1650, 👎 0 
+// 👍 1684, 👎 0 
 //
 //
 //
@@ -48,7 +48,7 @@ import common.ListNode;
  * 反转链表 II
  *
  * @author hsfxuebao
- * 2023-09-19 16:32:44 
+ * 2023-11-13 10:16:21 
  */
 class P92_ReverseLinkedListIi{
     public static void main(String[] args) {
@@ -68,45 +68,79 @@ class P92_ReverseLinkedListIi{
  */
 class Solution {
     public ListNode reverseBetween(ListNode head, int left, int right) {
-        return reverseBetweenRecursion(head, left, right);
+
+        // 递归
+//        return reverseBetweenRec(head, left, right);
+        // 迭代
+        return reverseBetweenIter(head, left, right);
     }
 
+    private ListNode reverseBetweenIter(ListNode head, int left, int right) {
 
-    /**
-     * 递归实现，反转从left到right
-     */
-    private ListNode reverseBetweenRecursion(ListNode head, int left, int right) {
-
-        if (left == 1) {
-            return reverseNRecursion(head, right);
+        ListNode leftNode = null, rightNode = null,leftPre = null, rightPre = null;
+        int nodeNum = 1;
+        ListNode cur = head;
+        while (cur != null && nodeNum <= right+1) {
+            if (nodeNum == left - 1) {
+                leftPre = cur;
+            }
+            if (nodeNum == left) {
+                leftNode = cur;
+            }
+            if (nodeNum == right+1) {
+                rightNode = cur;
+            }
+            cur = cur.next;
+            nodeNum++;
         }
-        //
-        ListNode last = reverseBetween(head.next, left - 1, right - 1);
-        head.next = last;
-        return head;
 
+        // 迭代反转链表 左闭右开
+        ListNode newHead = reverseIter(leftNode, rightNode);
+        leftNode.next = rightNode;
+        if (leftPre != null) {
+            leftPre.next = newHead;
+            return head;
+        }
+        return newHead;
     }
 
-    // todo 后驱节点
+    // 迭代反转a到b，返回头结点,注意 左闭右开[a,b)
+    private ListNode reverseIter(ListNode a, ListNode b) {
+
+        ListNode pre = null, next = null, cur = a;
+        while (cur != b) {
+            next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return pre;
+    }
+
+    private ListNode reverseBetweenRec(ListNode head, int left, int right) {
+        if (left == 1) {
+            return reverseRec(head, right);
+        }
+        head.next = reverseBetweenRec(head.next, left-1, right-1);
+        return head;
+    }
+
+    // 反转链表的前n个节点，返回新的头节点
     ListNode successor = null;
-    /**
-     * 递归实现  反转前n个节点的链表
-     * 反转以head为起点的前n个节点，返回新的头节点
-     */
-    private ListNode reverseNRecursion(ListNode head, int n) {
+    private ListNode reverseRec(ListNode head, int n) {
 
         if (n == 1) {
-            // n+1节点
+            // 记录第 n + 1 个节点
             successor = head.next;
             return head;
         }
-
-        //
-        ListNode last = reverseNRecursion(head.next, n - 1);
+        // 以 head.next 为起点，反转前n-1节点
+        ListNode last = reverseRec(head.next, n - 1);
         head.next.next = head;
         head.next = successor;
         return last;
     }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
  

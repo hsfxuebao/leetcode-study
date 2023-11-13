@@ -42,7 +42,7 @@ package leetcode.editor.cn;
 //
 // Related Topics递归 | 链表 
 //
-// 👍 2167, 👎 0 
+// 👍 2221, 👎 0 
 //
 //
 //
@@ -54,7 +54,7 @@ import common.ListNode;
  * K 个一组翻转链表
  *
  * @author hsfxuebao
- * 2023-09-19 16:44:01 
+ * 2023-11-13 11:10:27 
  */
 class P25_ReverseNodesInKGroup{
     public static void main(String[] args) {
@@ -75,39 +75,30 @@ class P25_ReverseNodesInKGroup{
 class Solution {
     public ListNode reverseKGroup(ListNode head, int k) {
 
-        if (head == null) {
-            return null;
-        }
-        // 区间[left,right) 左闭右开 包含待反转的元素
-        ListNode left = head, right = head;
+
+        ListNode a = head, b = head;
         for (int i = 0; i < k; i++) {
-            // 不够k个 不需要反转
-            if (right == null) {
-                return head;
+            if (b == null) {
+               return head;
             }
-            right = right.next;
+            b = b.next;
         }
-
-        // 反转前 k个元素
-        ListNode node = reverse1(left, right);
-        // 递归反转后续链表并 连接起来
-        left.next = reverseKGroup(right, k);
-        return node;
-
+        // 反转
+        ListNode newHead = reverseIter(a, b);
+        // 递归调用
+        a.next = reverseKGroup(b, k);
+        return newHead;
     }
 
-    // 从left到right反转，返回头结点
-    private ListNode reverse1(ListNode left, ListNode right) {
+    // 迭代反转链表，返回头结点，前闭后开[a,b)
+    private ListNode reverseIter(ListNode a, ListNode b) {
 
-        ListNode pre = null, cur = left, next = left;
-        while (cur != right) {
+        ListNode cur = a, next = null, pre = null;
+        while (cur != b) {
             next = cur.next;
-
             cur.next = pre;
             pre = cur;
-
             cur = next;
-
         }
         return pre;
     }

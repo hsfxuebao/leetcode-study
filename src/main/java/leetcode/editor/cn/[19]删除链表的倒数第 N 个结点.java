@@ -42,7 +42,7 @@ package leetcode.editor.cn;
 //
 // Related Topics链表 | 双指针 
 //
-// 👍 2682, 👎 0 
+// 👍 2727, 👎 0 
 //
 //
 //
@@ -54,7 +54,7 @@ import common.ListNode;
  * 删除链表的倒数第 N 个结点
  *
  * @author hsfxuebao
- * 2023-09-18 11:18:38 
+ * 2023-11-13 14:27:32 
  */
 class P19_RemoveNthNodeFromEndOfList{
     public static void main(String[] args) {
@@ -75,27 +75,30 @@ class P19_RemoveNthNodeFromEndOfList{
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
 
+        // 防止出现空指针
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
-        ListNode x = findFromEnd(dummy, n + 1);
-        x.next = x.next.next;
+        // 找到要删除节点的前一个节点
+        ListNode preNode = findN(dummy, n + 1);
+        preNode.next = preNode.next.next;
         return dummy.next;
     }
 
-    // 找到 倒数 第k个节点
-    public ListNode findFromEnd(ListNode head, int k) {
-        ListNode p1 = head, p2 = head;
-        // fast 先走n步
-        for (int i = 0; i < k; i++) {
-            p1 = p1.next;
-        }
+    // 查找倒数第n个节点，并返回
+    private ListNode findN(ListNode head, int n) {
 
-        // 快慢指针同步走
-        while (p1 != null) {
-            p1 = p1.next;
-            p2 = p2.next;
+        ListNode fast = head, slow = head;
+        // 快指针先走n
+        for (int i = 0; i < n; i++) {
+            fast = fast.next;
         }
-        return p2;
+        // 快慢指针同时走
+        while (fast != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        return slow;
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

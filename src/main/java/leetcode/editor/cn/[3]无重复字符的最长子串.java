@@ -40,7 +40,7 @@ package leetcode.editor.cn;
 //
 // Related Topics哈希表 | 字符串 | 滑动窗口 
 //
-// 👍 9623, 👎 0 
+// 👍 9777, 👎 0 
 //
 //
 //
@@ -50,7 +50,7 @@ package leetcode.editor.cn;
  * 无重复字符的最长子串
  *
  * @author hsfxuebao
- * 2023-09-14 19:46:13 
+ * 2023-11-10 19:45:04 
  */
 class P3_LongestSubstringWithoutRepeatingCharacters{
     public static void main(String[] args) {
@@ -60,29 +60,30 @@ class P3_LongestSubstringWithoutRepeatingCharacters{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-        int sLen = s.length();
+        int len = s.length();
+        int left = 0, right = 0;
+        // 记录字符值
         int[] windows = new int[256];
         int res = 0;
-        // 滑动窗口
-        int left = 0, right = 0;
-        while (right < sLen) {
-            // 右指针 向右移动
+
+        while (right < len) {
+
+            // 记录当前的数据
             char ch = s.charAt(right);
-            right++;
-            // 窗口内的更新操作
             windows[ch]++;
 
-            // 左指针 向右移动
+            // 向右滑动窗口
+            right++;
+
+            // 左指针 移动
             while (windows[ch] > 1) {
-                char chs = s.charAt(left);
-                windows[chs]--;
+                char leftCh = s.charAt(left);
+                windows[leftCh]--;
                 left++;
             }
-            // 更新
-            res = Math.max(res, right - left);
-
+            // 记录无重复最大值
+            res = Math.max(res, right-left);
         }
-
         return res;
     }
 }

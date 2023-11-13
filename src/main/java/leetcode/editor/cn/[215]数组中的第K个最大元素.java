@@ -32,20 +32,21 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 分治 | 快速选择 | 排序 | 堆（优先队列） 
 //
-// 👍 2140, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 2343, 👎 0 
 //
 //
 //
 //
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
-import java.util.Random;
+import java.util.Queue;
 
 /**
  * 数组中的第K个最大元素
  *
  * @author hsfxuebao
- * 2023-04-15 19:44:09 
+ * 2023-11-11 09:37:54 
  */
 class P215_KthLargestElementInAnArray{
     public static void main(String[] args) {
@@ -54,82 +55,27 @@ class P215_KthLargestElementInAnArray{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    public int findKthLargest(int[] nums, int k) {
 
-        /**
-         * 快速选择排序
-         */
-        public int findKthLargest(int[] nums, int k) {
-
-            if (nums == null || nums.length == 0 || nums.length < k) {
-                return -1;
-            }
-
-            // 倒数k换成  正数 第几个数
-            k = nums.length - k;
-
-            shuffle(nums);
-            int left = 0, right = nums.length - 1;
-            while (left <= right) {
-
-                int p = parition(nums, left, right);
-                if (p > k) {
-                    right = p - 1;
-                } else if (p < k) {
-                    left = p + 1;
-                } else {
-                    return nums[p];
-                }
-            }
-            return -1;
+        if (nums == null || nums.length <= 0) {
+            return 0;
         }
-
-        private int parition(int[] nums, int lo, int hi) {
-            int number = nums[lo];
-            int left = lo+1, right = hi;
-            while (left <= right) {
-
-                while (left < hi && nums[left] <= number) {
-                    left++;
-                }
-                while (right > lo && nums[right] > number) {
-                    right--;
-                }
-                if (left >= right) {
-                    break;
-                }
-                swap(nums, left, right);
+        // 从大到小 排序 默认从大到小排序
+        Queue<Integer> queue = new PriorityQueue<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1 - o2;
             }
-            swap(nums, lo, right);
-            return right;
-        }
-        private void shuffle(int[] nums) {
-            int n = nums.length;
-            for (int i = 0; i < nums.length; i++) {
-                int p = i+ new Random().nextInt(n - i);
-                swap(nums, i, p);
-            }
-        }
-        private void swap(int[] nums, int i, int j) {
-                int temp = nums[i];
-                nums[i] = nums[j];
-                nums[j] = temp;
-        }
-
-
-        /**
-         * 优先队列 小顶堆
-         */
-    public int findKthLargest1(int[] nums, int k) {
-        PriorityQueue<Integer> queue = new PriorityQueue<>();
+        });
 
         for (int i = 0; i < nums.length; i++) {
             queue.offer(nums[i]);
             if (queue.size() > k) {
                 queue.poll();
             }
-
         }
         return queue.peek();
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

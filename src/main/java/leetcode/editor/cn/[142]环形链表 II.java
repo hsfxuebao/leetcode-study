@@ -58,7 +58,7 @@ package leetcode.editor.cn;
 //
 // Related Topics哈希表 | 链表 | 双指针 
 //
-// 👍 2327, 👎 0 
+// 👍 2387, 👎 0 
 //
 //
 //
@@ -70,7 +70,7 @@ import common.ListNode;
  * 环形链表 II
  *
  * @author hsfxuebao
- * 2023-09-18 10:44:02 
+ * 2023-11-13 11:43:45 
  */
 class P142_LinkedListCycleIi{
     public static void main(String[] args) {
@@ -95,37 +95,28 @@ public class Solution {
         if (head == null) {
             return null;
         }
-
-        ListNode slow = head, fast = head;
-        // 先找到 快慢指针 相遇点
-        ListNode cycleHead = hasCycle(head);
-        if (cycleHead == null) {
-            return null;
-        }
-
-
-        while (slow != cycleHead) {
-            slow = slow.next;
-            cycleHead = cycleHead.next;
-        }
-        return slow;
-
-    }
-
-    public ListNode hasCycle(ListNode head) {
-        ListNode slow = head, fast = head;
+        // 快慢指针
+        ListNode fast = head, slow = head;
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
             if (slow == fast) {
-                return slow;
+                break;
             }
         }
-        return null;
+        // 判断是否 有相交的节点
+        if (fast == null || fast.next == null) {
+            return null;
+        }
+
+        slow = head;
+        while (slow != fast) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        return fast;
+
     }
-
-
-
 }
 //leetcode submit region end(Prohibit modification and deletion)
  
