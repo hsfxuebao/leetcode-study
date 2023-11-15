@@ -36,7 +36,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 动态规划 
 //
-// 👍 2967, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 3280, 👎 0 
 //
 //
 //
@@ -46,7 +46,7 @@ package leetcode.editor.cn;
  * 买卖股票的最佳时机
  *
  * @author hsfxuebao
- * 2023-05-15 19:54:12 
+ * 2023-11-14 19:17:15 
  */
 class P121_BestTimeToBuyAndSellStock{
     public static void main(String[] args) {
@@ -55,38 +55,50 @@ class P121_BestTimeToBuyAndSellStock{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-        /**
-         * 二维dp
-         */
-    public int maxProfit1(int[] prices) {
-        int[][] dp = new int[prices.length][2];
 
-        // base case
-        dp[0][0] = 0;
-        dp[0][1] = -prices[0];
 
-        for (int i = 1; i < prices.length; i++) {
+    public int maxProfit(int[] prices) {
 
-            dp[i][0] = Math.max(dp[i-1][0], dp[i-1][1] + prices[i]);
-            dp[i][1] = Math.max(dp[i-1][1], - prices[i]);
-        }
-        return dp[prices.length - 1][0];
+        int maxProfit = 0;
+        // 一维数组
+//        maxProfit = maxProfitMap(prices);
+        maxProfit = maxProfitDp(prices);
+        return maxProfit;
     }
-        /**
-         * 一维dp
-         */
-        public int maxProfit(int[] prices) {
 
-            // base case
-            int dp_i_0 = 0;
-            int dp_i_1 = -prices[0];
+        // 二维dp
+        private int maxProfitDp(int[] prices) {
 
-            for (int i = 1; i < prices.length; i++) {
-                dp_i_0 = Math.max(dp_i_0, dp_i_1 + prices[i]);
-                dp_i_1 = Math.max(dp_i_1, -prices[i]);
+            // i表示天数，j表示当前状态，1表示持有，0未持有
+            int[][] dp = new int[prices.length][2];
+            for (int i = 0; i < prices.length; i++) {
+                if (i == 0) {
+                    dp[i][0] = 0;
+                    dp[i][1] = -prices[i];
+                } else {
+                    dp[i][0] = Math.max(dp[i-1][0], dp[i-1][1] + prices[i]);
+                    dp[i][1] = Math.max(dp[i-1][1], -prices[i]);
+                }
             }
-            return dp_i_0;
+            return dp[prices.length-1][0];
 
+        }
+
+        private int maxProfitMap(int[] prices) {
+            // 记录i 以后最大的值
+            int[] maxPrice = new int[prices.length];
+
+            int max = Integer.MIN_VALUE;
+            for (int i = prices.length - 1; i >= 0; i--) {
+                max = Math.max(max, prices[i]);
+                maxPrice[i] = max;
+            }
+            int res = 0;
+            for (int i = 0; i < prices.length; i++) {
+                res = Math.max(res, maxPrice[i] - prices[i]);
+            }
+
+            return res;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

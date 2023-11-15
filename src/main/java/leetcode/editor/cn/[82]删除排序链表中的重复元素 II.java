@@ -30,7 +30,7 @@ package leetcode.editor.cn;
 //
 // Related Topics链表 | 双指针 
 //
-// 👍 1183, 👎 0 
+// 👍 1205, 👎 0 
 //
 //
 //
@@ -42,7 +42,7 @@ import common.ListNode;
  * 删除排序链表中的重复元素 II
  *
  * @author hsfxuebao
- * 2023-09-19 11:01:44 
+ * 2023-11-14 09:00:59 
  */
 class P82_RemoveDuplicatesFromSortedListIi{
     public static void main(String[] args) {
@@ -62,28 +62,29 @@ class P82_RemoveDuplicatesFromSortedListIi{
  */
 class Solution {
     public ListNode deleteDuplicates(ListNode head) {
+        if (head == null) {
+            return null;
+        }
 
         ListNode dummy = new ListNode(-1);
-        ListNode p1 = dummy, p2 = head;
-        while (p2 != null) {
-            if (p2.next != null && p2.val == p2.next.val) {
+        ListNode p = dummy, q = head;
+        while (q != null) {
 
-                // 发现重复节点，跳过重复节点
-                while (p2.next != null && p2.val == p2.next.val) {
-                    p2 = p2.next;
+            // 有重复的元素
+            if (q.next != null && q.val == q.next.val) {
+                // 跳过重复的元素
+                while (q.next != null && q.val == q.next.val) {
+                    q = q.next;
                 }
-                // 此时 p2 跳过了当前节点的重复节点
-                p2 = p2.next;
-                // 不过下一节点也可能重复，等下一轮while循环判断
-
+                q = q.next;
             } else {
-                // 当前节点和下一个节点不相等
-                ListNode p2Next = p2.next;
-                p1.next = p2;
-                p1 = p1.next;
-                // 断开p2节点后面的所有节点
-                p2.next = null;
-                p2 = p2Next;
+                // 无重复的元素
+                ListNode next = q.next;
+                // 断开链接
+                q.next = null;
+                p.next = q;
+                p = p.next;
+                q = next;
             }
 
         }

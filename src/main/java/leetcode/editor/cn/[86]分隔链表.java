@@ -32,7 +32,7 @@ package leetcode.editor.cn;
 //
 // Related Topics链表 | 双指针 
 //
-// 👍 698, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 781, 👎 0 
 //
 //
 //
@@ -44,7 +44,7 @@ import common.ListNode;
  * 分隔链表
  *
  * @author hsfxuebao
- * 2023-04-16 08:58:06 
+ * 2023-11-14 09:05:19 
  */
 class P86_PartitionList{
     public static void main(String[] args) {
@@ -65,27 +65,23 @@ class P86_PartitionList{
 class Solution {
     public ListNode partition(ListNode head, int x) {
 
-        ListNode minDummy = new ListNode(-1);
-        ListNode maxDummy = new ListNode(-1);
-        ListNode p1 = minDummy, p2 = maxDummy, p = head;
+        ListNode smallNode = new ListNode(-1);
+        ListNode bigNode = new ListNode(-1);
+        ListNode smallHead = smallNode, bigHead = bigNode, p = head;
         while (p != null) {
-
             if (p.val >= x) {
-                p2.next = p;
-                p2 = p2.next;
+                bigHead.next = new ListNode(p.val);
+                bigHead = bigHead.next;
             } else {
-                p1.next = p;
-                p1 = p1.next;
+                smallHead.next = new ListNode(p.val);
+                smallHead = smallHead.next;
             }
-
-            // 断开p之后的节点
-            ListNode temp = p.next;
-            p.next = null;
-            p = temp;
+            p = p.next;
         }
-        // 链接2个链表
-        p1.next = maxDummy.next;
-        return minDummy.next;
+
+        // 链接两个链表
+        smallHead.next = bigNode.next;
+        return smallNode.next;
 
     }
 }

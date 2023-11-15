@@ -47,12 +47,13 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 哈希表 
 //
-// 👍 16774, 👎 0 
+// 👍 17951, 👎 0 
 //
 //
 //
 //
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,7 +61,7 @@ import java.util.Map;
  * 两数之和
  *
  * @author hsfxuebao
- * 2023-04-10 21:13:35 
+ * 2023-11-15 10:00:40 
  */
 class P1_TwoSum{
     public static void main(String[] args) {
@@ -69,19 +70,41 @@ class P1_TwoSum{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        Map<Integer, Integer> value2Index = new HashMap<>();
 
-        for (int i = 0; i < nums.length; i++) {
-            int searchValue = target - nums[i];
-            if (value2Index.containsKey(searchValue)) {
-                Integer index = value2Index.get(searchValue);
-                return new int[]{index, i};
+        /**
+         * 双指针
+         * 需要记录原始数据 的索引
+         */
+        public int[] twoSum1(int[] nums, int target) {
+            Arrays.sort(nums);
+            int left = 0, right = nums.length - 1;
+            while (left < right) {
+                int sum = nums[left] + nums[right];
+                if (sum > target) {
+                    right--;
+                } else if (sum < target) {
+                    left++;
+                } else if (sum == target) {
+                    // 返回排序前的索引
+                    return new int[]{left, right};
+                }
             }
-            value2Index.put(nums[i], i);
+            return null;
         }
 
-
+        /**
+         * 时间复杂度o(n) 空间复杂度o(n)
+         */
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> num2IndexMap = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (num2IndexMap.containsKey(target - nums[i])) {
+                Integer index = num2IndexMap.get(target - nums[i]);
+                return new int[]{index, i};
+            } else {
+                num2IndexMap.put(nums[i], i);
+            }
+        }
         return null;
     }
 }
