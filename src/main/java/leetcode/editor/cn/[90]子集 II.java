@@ -35,7 +35,7 @@ package leetcode.editor.cn;
 //
 // Related Topics位运算 | 数组 | 回溯 
 //
-// 👍 1116, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1170, 👎 0 
 //
 //
 //
@@ -50,7 +50,7 @@ import java.util.List;
  * 子集 II
  *
  * @author hsfxuebao
- * 2023-06-23 10:35:19 
+ * 2023-11-16 20:12:47 
  */
 class P90_SubsetsIi{
     public static void main(String[] args) {
@@ -59,35 +59,29 @@ class P90_SubsetsIi{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-        /**
-         * 有重复元素 不可复选
-         */
         List<List<Integer>> res = new ArrayList<>();
-        LinkedList<Integer> track = new LinkedList<>();
     public List<List<Integer>> subsetsWithDup(int[] nums) {
-
+        // 排序
         Arrays.sort(nums);
-        backtrack(nums, 0);
+        // 路径
+        LinkedList<Integer> track = new LinkedList<>();
+        //
+        backtrack(nums, 0, track);
         return res;
-
     }
 
-        private void backtrack(int[] nums, int start) {
-
+        private void backtrack(int[] nums, int startIndex, LinkedList<Integer> track) {
             res.add(new ArrayList<>(track));
 
-            // 选择集
-            for (int i = start; i < nums.length; i++) {
+            for (int i = startIndex; i < nums.length; i++) {
 
-                // 剪枝逻辑，去除重复的元素
-                if (i > start && nums[i] == nums[i - 1]) {
+                // 跳过重复的数据
+                if (i > startIndex && nums[i] == nums[i - 1]) {
                     continue;
                 }
-
                 // 选择
-                track.addLast(nums[i]);
-                // 递归
-                backtrack(nums, i+1);
+                track.add(nums[i]);
+                backtrack(nums, i+1, track);
                 // 撤销选择
                 track.removeLast();
 

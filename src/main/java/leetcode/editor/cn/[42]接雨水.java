@@ -33,7 +33,7 @@ package leetcode.editor.cn;
 //
 // Related Topics栈 | 数组 | 双指针 | 动态规划 | 单调栈 
 //
-// 👍 4263, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 4853, 👎 0 
 //
 //
 //
@@ -43,71 +43,79 @@ package leetcode.editor.cn;
  * 接雨水
  *
  * @author hsfxuebao
- * 2023-04-13 20:09:55 
+ * 2023-11-16 15:46:12 
  */
 class P42_TrappingRainWater{
     public static void main(String[] args) {
         Solution solution = new P42_TrappingRainWater().new Solution();
-        int[] height = new int[]{4,2,0,3,2,5};
-        solution.trap(height);
+        
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 
-        /**
-         * 时间复杂度 o(logn)
-         * @param height
-         * @return
-         */
-        public int trap(int[] height) {
 
+
+
+    public int trap(int[] height) {
+
+        if (height == null || height.length <= 1) {
+            return 0;
+        }
+
+        // 时间复杂度o(n)
+//        return trap1(height);
+
+        // 时间复杂度o(logn)
+        return trap2(height);
+    }
+
+        private int trap2(int[] height) {
             int left = 0, right = height.length - 1;
-            int leftMax = 0, rightMax = 0;
-            int result = 0;
-            while (left <= right) {
-                leftMax = Math.max(leftMax, height[left]);
+
+            int leftMax = 0;
+            int rightMax = 0;
+            int res = 0;
+            while (left < right) {
+
+                leftMax = Math.max(leftMax,height[left]);
                 rightMax = Math.max(rightMax, height[right]);
                 if (leftMax >= rightMax) {
-                    result += rightMax - height[right];
+                    res += rightMax - height[right];
                     right--;
                 } else {
-                    result += leftMax - height[left];
+                    res += leftMax - height[left];
                     left++;
                 }
             }
-            return result;
-
+            return res;
         }
 
-        /**
-         * 时间复杂度0(n)
-         * @param height
-         * @return
-         */
-    public int trap1(int[] height) {
-        int n = height.length;
-        // 左侧最大高度，包括当前节点
-        int[] leftMaxHeight = new int[height.length];
-        // 右侧最大高度，包括当前节点
-        int[] rightMaxHeight = new int[height.length];
-        int leftMax = 0;
-        for (int i = 0; i < height.length; i++) {
-            leftMax = Math.max(leftMax, height[i]);
-            leftMaxHeight[i] = leftMax;
+        private int trap1(int[] height) {
+
+            // 当前位置左边最高，右边最高，取最小值
+            int[] leftMax = new int[height.length];
+            int[] rightMax = new int[height.length];
+            int len = height.length;
+            int leftRes = 0;
+            for (int i = 0; i < len; i++) {
+                leftRes = Math.max(leftRes, height[i]);
+                leftMax[i] = leftRes;
+            }
+
+            int rightRes = 0;
+            for (int i = len - 1; i >= 0; i--) {
+               rightRes = Math.max(rightRes, height[i]);
+               rightMax[i] = rightRes;
+            }
+
+            int res = 0;
+            for (int i = 0; i < len; i++) {
+                res += Math.min(leftMax[i], rightMax[i]) - height[i];
+            }
+            return res;
+
         }
-        int rightMax = 0;
-        for (int i = height.length - 1; i >= 0; i--) {
-            rightMax = Math.max(rightMax, height[i]);
-            rightMaxHeight[i] = rightMax;
-        }
-        // 计算接雨水的面积
-        int result = 0;
-        for (int i = 0; i < height.length; i++) {
-            result += Math.min(leftMaxHeight[i], rightMaxHeight[i]) - height[i];
-        }
-       return result;
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
  
 }

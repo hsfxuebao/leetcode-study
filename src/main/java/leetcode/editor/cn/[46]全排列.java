@@ -37,13 +37,14 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 回溯 
 //
-// 👍 2585, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 2747, 👎 0 
 //
 //
 //
 //
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -51,7 +52,7 @@ import java.util.List;
  * 全排列
  *
  * @author hsfxuebao
- * 2023-06-23 10:41:12 
+ * 2023-11-16 16:15:14 
  */
 class P46_Permutations{
     public static void main(String[] args) {
@@ -60,20 +61,24 @@ class P46_Permutations{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-        /**
-         * 无重复元素 可复选
-         */
+
         List<List<Integer>> res = new ArrayList<>();
-        LinkedList<Integer> track = new LinkedList<>();
     public List<List<Integer>> permute(int[] nums) {
 
+        if (nums == null || nums.length <= 0) {
+            return res;
+        }
+        // 排序
+        Arrays.sort(nums);
+        // 路径
+        LinkedList<Integer> track = new LinkedList<>();
+        // 是否使用过
         boolean[] used = new boolean[nums.length];
-        backtrack(nums, used);
+        permute(nums, track, used);
         return res;
-
     }
 
-        private void backtrack(int[] nums, boolean[] used) {
+        private void permute(int[] nums, LinkedList<Integer> track, boolean[] used) {
             // 终止条件
             if (track.size() == nums.length) {
                 res.add(new ArrayList<>(track));
@@ -88,11 +93,10 @@ class Solution {
                 // 选择
                 used[i] = true;
                 track.addLast(nums[i]);
-                // 递归
-                backtrack(nums, used);
+                permute(nums, track, used);
                 // 撤销选择
                 track.removeLast();
-                used[i] = false;
+                used[i]= false;
             }
 
         }

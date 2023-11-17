@@ -37,7 +37,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 哈希表 
 //
-// 👍 1825, 👎 0 
+// 👍 1982, 👎 0 
 //
 //
 //
@@ -47,7 +47,7 @@ package leetcode.editor.cn;
  * 缺失的第一个正数
  *
  * @author hsfxuebao
- * 2023-05-21 09:21:11 
+ * 2023-11-17 09:49:11 
  */
 class P41_FirstMissingPositive{
     public static void main(String[] args) {
@@ -58,29 +58,39 @@ class P41_FirstMissingPositive{
 class Solution {
     public int firstMissingPositive(int[] nums) {
 
-        int n = nums.length;
-        // 对于数组中的负数 改成n+1
-        for (int i = 0; i < n; i++) {
+        int len = nums.length;
+        // 现将负数和0 设置为 len+1;
+        for (int i = 0; i < len; i++) {
             if (nums[i] <= 0) {
-                nums[i] = n+1;
+                nums[i] = len+1;
             }
         }
+        // 遍历数组，将nums[i] 对应的index 设置为负数
+        for (int i = 0; i < len; i++) {
+            int num = Math.abs(nums[i]);
+            int index = num - 1;
+            if (index < len) {
+                nums[index] = - Math.abs(nums[index]);
+            }
 
-        // 对于nums[i] 数值，以index为索引
-        for (int i = 0; i < n; i++) {
-            int index = Math.abs(nums[i]);
-            if (index <= n) {
-                nums[index-1] = -Math.abs(nums[index-1]);
-            }
         }
-        // 遍历，第一个大于0的数就是要找的第一个确实的正整数
-        for (int i = 0; i < n; i++) {
+        // 遍历，找到 第一个大于0 的整数
+        for (int i = 0; i < len; i++) {
             if (nums[i] > 0) {
                 return i+1;
             }
         }
+        return len+1;
 
-        return n+1;
+
+    }
+
+    private void swap(int[] nums, int i, int j) {
+
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

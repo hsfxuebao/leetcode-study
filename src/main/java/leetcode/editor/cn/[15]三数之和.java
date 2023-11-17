@@ -76,58 +76,59 @@ class P15_ThreeSum{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
-
-        // 对数组进行排序
+        List<List<Integer>> res = new ArrayList<>();
+        // 排序
         Arrays.sort(nums);
-        // 固定一个数，求两数之和
         for (int i = 0; i < nums.length; ) {
             int num = nums[i];
-            // 求两数之和
-            List<List<Integer>> lists = twoSum(nums, i + 1, 0 - num);
+            // 两数之和
+            List<List<Integer>> lists = twoSum(nums, i + 1, -num);
             for (List<Integer> list : lists) {
-                List<Integer> res = new ArrayList<>();
-                res.add(num);
-                res.addAll(list);
-                result.add(res);
+                list.add(num);
+                res.add(list);
             }
-
-            // 等于num 跳过
+            // 跳过重复的元素
             while (i < nums.length && nums[i] == num) {
                 i++;
             }
         }
-       return result;
+        return res;
 
     }
 
 
+        /**
+         * 两数之和 不重复
+         */
         public List<List<Integer>> twoSum(int[] nums, int startIndex, int target) {
-        List<List<Integer>> result = new ArrayList<>();
+
+            List<List<Integer>> result = new ArrayList<>();
             int left = startIndex, right = nums.length - 1;
             while (left < right) {
-
                 int leftNum = nums[left];
                 int rightNum = nums[right];
                 int sum = leftNum + rightNum;
                 if (sum > target) {
-                    while (left < right && nums[right] == rightNum) {
+                    while (right > startIndex && nums[right] == rightNum) {
                         right--;
                     }
                 } else if (sum < target) {
-                    while (left < right && nums[left] == leftNum) {
+                    while (left < nums.length && nums[left] == leftNum) {
                         left++;
                     }
-                } else {
+                } else if (sum == target) {
+
+                    // 加入到结果中
                     List<Integer> res = new ArrayList<>();
                     res.add(leftNum);
                     res.add(rightNum);
                     result.add(res);
-                    while (left < right && nums[left] == leftNum) {
-                        left++;
-                    }
-                    while (left < right && nums[right] == rightNum) {
+                    // 跳过重复的元素
+                    while (right > startIndex && nums[right] == rightNum) {
                         right--;
+                    }
+                    while (left < nums.length && nums[left] == leftNum) {
+                        left++;
                     }
                 }
             }

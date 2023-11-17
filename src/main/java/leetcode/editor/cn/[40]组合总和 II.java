@@ -80,12 +80,13 @@ class Solution {
     }
 
         private void backtrack(int[] candidates, int remind, int start) {
-            // 符合条件
+
+            // 符合条件，加到结果中
             if (remind == 0) {
                 result.add(new ArrayList<>(track));
                 return;
             }
-            // 终止条件
+            // 不用在往后查找了
             if (remind < 0) {
                 return;
             }

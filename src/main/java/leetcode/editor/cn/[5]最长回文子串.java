@@ -32,7 +32,7 @@ package leetcode.editor.cn;
 //
 // Related Topics字符串 | 动态规划 
 //
-// 👍 6502, 👎 0 
+// 👍 6929, 👎 0 
 //
 //
 //
@@ -42,7 +42,7 @@ package leetcode.editor.cn;
  * 最长回文子串
  *
  * @author hsfxuebao
- * 2023-05-21 18:29:19 
+ * 2023-11-16 15:58:12 
  */
 class P5_LongestPalindromicSubstring{
     public static void main(String[] args) {
@@ -52,36 +52,37 @@ class P5_LongestPalindromicSubstring{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String longestPalindrome(String s) {
-        String result = "";
-        char[] chars = s.toCharArray();
-        for (int i = 0; i < chars.length; i++) {
-            // 以i为中心，以i,i+1 为中心
-            String palindrome = palindrome(s, i, i);
-            if (palindrome.length() > result.length()) {
-                result = palindrome;
-            }
 
-            String palindrome1 = palindrome(s, i, i + 1);
-            if (palindrome1.length() > result.length()) {
-                result = palindrome1;
-            }
+        String res = "";
+        for (int i = 0; i < s.length(); i++) {
 
+            String palindrome1 = palindrome(s, i, i);
+            String palindrome2 = palindrome(s, i, i + 1);
+            if (palindrome1.length() > res.length()) {
+                res = palindrome1;
+            }
+            if (palindrome2.length() > res.length()) {
+                res = palindrome2;
+            }
         }
-        return result;
-
+        return res;
     }
 
-        // 回文串
-        private String palindrome(String s, int left, int right) {
+    // 返回最长回文子串
+        private String palindrome(String s, int i, int j) {
 
+            int left = i, right = j;
             while (left >= 0 && right < s.length()
-                && s.charAt(left) == s.charAt(right)) {
+                    && s.charAt(left) == s.charAt(right)) {
                 left--;
                 right++;
             }
             return s.substring(left+1, right);
         }
-    }
+
+
+
+}
 //leetcode submit region end(Prohibit modification and deletion)
  
 }

@@ -37,7 +37,7 @@ package leetcode.editor.cn;
 //
 // Related Topics回溯 
 //
-// 👍 1357, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1537, 👎 0 
 //
 //
 //
@@ -51,7 +51,7 @@ import java.util.List;
  * 组合
  *
  * @author hsfxuebao
- * 2023-04-21 09:36:45 
+ * 2023-11-16 19:41:39 
  */
 class P77_Combinations{
     public static void main(String[] args) {
@@ -60,38 +60,32 @@ class P77_Combinations{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-
-        /**
-         * 无重复元素  组合问题
-         */
-        List<List<Integer>> result = new ArrayList<>();
-        LinkedList<Integer> track = new LinkedList<>();
+        List<List<Integer>> res = new ArrayList<>();
     public List<List<Integer>> combine(int n, int k) {
 
-        int[] nums = new int[n];
-        for (int i = 0; i < n; i++) {
-            nums[i] = i+1;
-        }
+        // 路径
+        LinkedList<Integer> track = new LinkedList<>();
+        backtrack(1, n, k, track);
+        return res;
 
-        backtrack(nums, 0, k);
-        return result;
     }
 
-        private void backtrack(int[] nums, int start, int k) {
+        private void backtrack(int startIndex, int n, int k, LinkedList<Integer> track) {
 
-            // 终止条件
             if (track.size() == k) {
-                result.add(new LinkedList<>(track));
+                res.add(new ArrayList<>(track));
                 return;
             }
 
             // 选择集
-            for (int i = start; i < nums.length; i++) {
-                // 做选择
-                track.addLast(nums[i]);
-                backtrack(nums, i+1, k);
+            for (int i = startIndex; i <= n; i++) {
+                // 选择
+                track.add(i);
+                // 递归
+                backtrack(i+1, n, k, track);
                 // 撤销选择
                 track.removeLast();
+
             }
 
         }

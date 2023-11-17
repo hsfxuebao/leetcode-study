@@ -52,7 +52,8 @@ import java.util.List;
 class P47_PermutationsIi{
     public static void main(String[] args) {
         Solution solution = new P47_PermutationsIi().new Solution();
-        
+        int[] nums = new int[]{1,1,2};
+        solution.permuteUnique(nums);
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
@@ -82,7 +83,7 @@ class Solution {
                     continue;
                 }
                 // 新添加的剪枝逻辑，固定相同的元素在排列中的相对位置
-                if (i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) {
+                if (i > 0 && nums[i] == nums[i - 1] && !used[i-1]) {
                     continue;
                 }
 

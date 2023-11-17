@@ -36,7 +36,7 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 广度优先搜索 | 二叉树 
 //
-// 👍 1623, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1844, 👎 0 
 //
 //
 //
@@ -47,13 +47,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+
 import common.TreeNode;
 
 /**
  * 二叉树的层序遍历
  *
  * @author hsfxuebao
- * 2023-03-26 09:14:42 
+ * 2023-11-16 19:23:52 
  */
 class P102_BinaryTreeLevelOrderTraversal{
     public static void main(String[] args) {
@@ -77,36 +78,34 @@ class P102_BinaryTreeLevelOrderTraversal{
  * }
  */
 class Solution {
-
-    List<List<Integer>> result = new ArrayList<>();
     public List<List<Integer>> levelOrder(TreeNode root) {
-
+        List<List<Integer>> res = new ArrayList<>();
         if (root == null) {
-            return result;
+            return res;
         }
+
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
 
         while (!queue.isEmpty()) {
 
             int levelSize = queue.size();
-            List<Integer> levelList = new ArrayList<>();
+            ArrayList<Integer> levelRes = new ArrayList<>();
             for (int i = 0; i < levelSize; i++) {
                 TreeNode node = queue.poll();
-                levelList.add(node.val);
-
+                levelRes.add(node.val);
                 if (node.left != null) {
                     queue.offer(node.left);
                 }
                 if (node.right != null) {
                     queue.offer(node.right);
                 }
-
             }
-            result.add(levelList);
-        }
+            res.add(levelRes);
 
-        return result;
+        }
+        return res;
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

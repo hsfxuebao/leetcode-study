@@ -64,20 +64,20 @@ import java.util.Queue;
  * @author hsfxuebao
  * 2023-09-18 14:40:11 
  */
-class P1201_UglyNumberIii{
+class P1201_UglyNumberIii {
     public static void main(String[] args) {
         Solution solution = new P1201_UglyNumberIii().new Solution();
-        
-    }  
+
+    }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+    class Solution {
         public int nthUglyNumber(int n, int a, int b, int c) {
-           return 0;
+            return 0;
         }
 
 
-
-
 //leetcode submit region end(Prohibit modification and deletion)
- 
+
+    }
 }

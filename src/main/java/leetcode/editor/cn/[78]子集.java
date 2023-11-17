@@ -32,7 +32,7 @@ package leetcode.editor.cn;
 //
 // Related Topics位运算 | 数组 | 回溯 
 //
-// 👍 2066, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 2190, 👎 0 
 //
 //
 //
@@ -46,7 +46,7 @@ import java.util.List;
  * 子集
  *
  * @author hsfxuebao
- * 2023-06-23 10:30:46 
+ * 2023-11-16 19:30:43 
  */
 class P78_Subsets{
     public static void main(String[] args) {
@@ -55,31 +55,32 @@ class P78_Subsets{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-
-        /**
-         * 无重复元素 不可复选
-         */
         List<List<Integer>> res = new ArrayList<>();
-        LinkedList<Integer> track = new LinkedList<>();
     public List<List<Integer>> subsets(int[] nums) {
-        backtrack(nums, 0);
+        if (nums == null || nums.length <= 0) {
+            return res;
+        }
+        // 路径
+        LinkedList<Integer> track = new LinkedList<>();
+        backtrack(nums,0, track);
         return res;
-
     }
 
-        private void backtrack(int[] nums, int start) {
+        private void backtrack(int[] nums, int startIndex, LinkedList<Integer> track) {
 
-            // 放到集合中
+            // 加入到
             res.add(new ArrayList<>(track));
+            if (track.size() == nums.length) {
+                return;
+            }
 
             // 选择集
-            for (int i = start; i < nums.length; i++) {
+            for (int i = startIndex; i < nums.length; i++) {
 
                 // 选择
-                track.addLast(nums[i]);
-
+                track.add(nums[i]);
                 // 递归
-                backtrack(nums, i+1);
+                backtrack(nums, i+1, track);
                 // 撤销选择
                 track.removeLast();
             }
