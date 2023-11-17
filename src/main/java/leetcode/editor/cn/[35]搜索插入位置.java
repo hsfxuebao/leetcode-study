@@ -40,7 +40,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 二分查找 
 //
-// 👍 1963, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 2204, 👎 0 
 //
 //
 //
@@ -50,35 +50,39 @@ package leetcode.editor.cn;
  * 搜索插入位置
  *
  * @author hsfxuebao
- * 2023-04-02 09:39:26 
+ * 2023-11-17 20:35:23 
  */
 class P35_SearchInsertPosition{
     public static void main(String[] args) {
         Solution solution = new P35_SearchInsertPosition().new Solution();
-        int[] nums = new int[]{1,3,5,6};
-        solution.searchInsert(nums, 2);
+        
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-
-        //
     public int searchInsert(int[] nums, int target) {
 
-       int left = 0, right = nums.length - 1;
-        while (left <= right) {
+        // 搜索左侧边界的二分查找
+        return searchInsert1(nums, target);
 
-            int mid = left + (right - left)/2;
-            if (nums[mid] > target) {
-                right = mid - 1;
-            } else if (nums[mid] < target) {
-                left = mid + 1;
-            } else if (nums[mid] == target) {
-                right = mid - 1;
-            }
-        }
-        return left;
     }
-}
+
+        private int searchInsert1(int[] nums, int target) {
+
+            int left = 0, right = nums.length - 1;
+            while (left <= right) {
+                int mid = left + (right - left)/2;
+                if (nums[mid] > target) {
+                    right = mid -1;
+                } else if (nums[mid] < target) {
+                    left = mid + 1;
+                } else if (nums[mid] == target) {
+                    right = mid-1;
+                }
+            }
+
+            return left;
+        }
+    }
 //leetcode submit region end(Prohibit modification and deletion)
  
 }

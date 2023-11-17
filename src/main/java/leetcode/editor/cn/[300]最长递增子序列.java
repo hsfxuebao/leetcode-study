@@ -46,19 +46,17 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 二分查找 | 动态规划 
 //
-// 👍 3149, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 3469, 👎 0 
 //
 //
 //
 //
-
-import java.util.Arrays;
 
 /**
  * 最长递增子序列
  *
  * @author hsfxuebao
- * 2023-04-17 19:19:42 
+ * 2023-11-17 20:10:31 
  */
 class P300_LongestIncreasingSubsequence{
     public static void main(String[] args) {
@@ -67,71 +65,43 @@ class P300_LongestIncreasingSubsequence{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    public int lengthOfLIS(int[] nums) {
 
-        /**
-         * 纸牌堆算法
-         * 最长递增子序列
-         * 时间复杂度 o(n*logn)
-         * 空间复杂度 o(n)
-         */
-        public int lengthOfLIS(int[] nums) {
-            if (nums == null || nums.length == 0) {
-                return 0;
-            }
 
-            int[] temp = new int[nums.length];
-            int cap = 0;
-            for (int i = 0; i < nums.length; i++) {
-                int num = nums[i];
-                // 搜索左侧边界的 二分查找
-                int left = 0, right = cap;
-                while (left < right) {
+        // 二分查找
+        return lengthOfLIS1(nums);
+    }
 
-                    int mid = left + (right - left)/2;
-                    if (temp[mid] > num) {
-                        right = mid;
-                    } else if (temp[mid] < num) {
+        // 二分查找
+        private int lengthOfLIS1(int[] nums) {
+            int[] top = new int[nums.length];
+            // 初始化长度为1
+            top[0] = nums[0];
+            int index = 1;
+            // 对于数组中的每一个值
+            for (int i = 1; i < nums.length; i++) {
+                int target = nums[i];
+                int left = 0, right = index -1;
+                // 最左侧
+                while (left <= right) {
+                    int mid = left + (right - left) /2;
+                    if (top[mid] > target) {
+                        right = mid -1;
+                    } else if (top[mid] < target) {
                         left = mid + 1;
-                    } else {
-                        right = mid;
+                    } else if (top[mid] == target) {
+                        right = mid - 1;
                     }
                 }
-                if (left == cap) {
-                    cap++;
+                // 越界
+                if (left == index) {
+                    index++;
                 }
-                temp[left] = num;
+                top[left] = target;
             }
-            return cap;
-
+            return index;
         }
-        /**
-         * 最长递增子序列
-         * 时间复杂度 o(n^2)
-         * 空间复杂度 o(n)
-         */
-    public int lengthOfLIS1(int[] nums) {
-
-        if (nums == null || nums.length == 0) {
-            return 0;
-        }
-        int[] result = new int[nums.length];
-        Arrays.fill(result, 1);
-
-        for (int i = 1; i < nums.length; i++) {
-            for (int j = 0; j < i; j++) {
-                if (nums[i] > nums[j]) {
-                    result[i] = Math.max(result[i], result[j]+1);
-                }
-            }
-        }
-
-        int res = Integer.MIN_VALUE;
-        for (int i = 0; i < result.length; i++) {
-            res = Math.max(res, result[i]);
-        }
-        return res;
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
  
 }

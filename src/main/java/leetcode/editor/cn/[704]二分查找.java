@@ -29,7 +29,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 二分查找 
 //
-// 👍 1258, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1489, 👎 0 
 //
 //
 //
@@ -39,7 +39,7 @@ package leetcode.editor.cn;
  * 二分查找
  *
  * @author hsfxuebao
- * 2023-03-31 09:38:08 
+ * 2023-11-17 20:30:11 
  */
 class P704_BinarySearch{
     public static void main(String[] args) {
@@ -50,19 +50,29 @@ class P704_BinarySearch{
 class Solution {
     public int search(int[] nums, int target) {
 
-        int left = 0, right = nums.length - 1;
+//        int left = 0, right = nums.length - 1;
+//        while (left <= right) {
+//            int mid = left + (right - left)/2;
+//            if (nums[mid] > target) {
+//                right = mid - 1;
+//            } else if (nums[mid] < target) {
+//                left = mid+1;
+//            } else if (nums[mid] == target) {
+//                return mid;
+//            }
+//        }
+//        return -1;
 
-        while (left <= right) {
-
+        int left = 0, right = nums.length;
+        while (left < right) {
             int mid = left + (right - left)/2;
             if (nums[mid] > target) {
-                right = mid - 1;
+                right = mid;
             } else if (nums[mid] < target) {
-                left = left + 1;
+                left = mid + 1;
             } else if (nums[mid] == target) {
                 return mid;
             }
-
         }
         return -1;
     }

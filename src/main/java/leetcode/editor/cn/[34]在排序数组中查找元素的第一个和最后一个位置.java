@@ -39,7 +39,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 二分查找 
 //
-// 👍 2239, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 2540, 👎 0 
 //
 //
 //
@@ -49,7 +49,7 @@ package leetcode.editor.cn;
  * 在排序数组中查找元素的第一个和最后一个位置
  *
  * @author hsfxuebao
- * 2023-04-01 10:57:33 
+ * 2023-11-17 20:40:25 
  */
 class P34_FindFirstAndLastPositionOfElementInSortedArray{
     public static void main(String[] args) {
@@ -60,67 +60,51 @@ class P34_FindFirstAndLastPositionOfElementInSortedArray{
 class Solution {
     public int[] searchRange(int[] nums, int target) {
 
-        int leftBound = leftBound(nums, target);
-        int rightBound = rightBound(nums, target);
-        return new int[]{leftBound, rightBound};
-
+        return new int[]{searchInsertLeft(nums, target), searchInsertRight(nums, target)};
 
     }
 
-        /**
-         * 左侧边界
-         */
-        private int leftBound(int[] nums, int target) {
+
+
+        // 搜索左侧边界
+        private int searchInsertLeft(int[] nums, int target) {
 
             int left = 0, right = nums.length - 1;
             while (left <= right) {
-
                 int mid = left + (right - left)/2;
                 if (nums[mid] > target) {
-                    right = mid - 1;
+                    right = mid -1;
                 } else if (nums[mid] < target) {
                     left = mid + 1;
                 } else if (nums[mid] == target) {
-                    right = mid - 1;
+                    right = mid-1;
                 }
-
             }
-            // 越界情况
-            if (left < 0 || left >= nums.length) {
+            if (left == nums.length) {
                 return -1;
             }
-            // 判断是否等于target
             return nums[left] == target ? left : -1;
-
         }
-        /**
-         * 左侧边界
-         */
-        private int rightBound(int[] nums, int target) {
+        // 搜索右侧边界
+        private int searchInsertRight(int[] nums, int target) {
+
             int left = 0, right = nums.length - 1;
             while (left <= right) {
-
-                int mid = left + (right - left) /2;
+                int mid = left + (right - left)/2;
                 if (nums[mid] > target) {
-                    right = mid - 1;
+                    right = mid -1;
                 } else if (nums[mid] < target) {
                     left = mid + 1;
                 } else if (nums[mid] == target) {
-                    left = mid + 1;
+                    left = mid+1;
                 }
-
             }
-            // 越界情况
-            if (right < 0 || right >= nums.length) {
+            if (right < 0) {
                 return -1;
             }
-            // 判断是否等于target
             return nums[right] == target ? right : -1;
-
         }
-
-
-    }
+}
 //leetcode submit region end(Prohibit modification and deletion)
  
 }

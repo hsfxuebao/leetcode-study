@@ -43,19 +43,17 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 分治 | 动态规划 
 //
-// 👍 6013, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 6411, 👎 0 
 //
 //
 //
 //
-
-import java.beans.PropertyEditorSupport;
 
 /**
  * 最大子数组和
  *
  * @author hsfxuebao
- * 2023-04-18 09:37:14 
+ * 2023-11-17 16:55:40 
  */
 class P53_MaximumSubarray{
     public static void main(String[] args) {
@@ -64,28 +62,21 @@ class P53_MaximumSubarray{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-        /**
-         * 一维dp
-         */
     public int maxSubArray(int[] nums) {
-
-        // 以i 结尾的 最大数组和
+        // 以i结尾的最大连续
         int[] dp = new int[nums.length];
-        // base case
         dp[0] = nums[0];
         for (int i = 1; i < nums.length; i++) {
-            dp[i] = Math.max(nums[i], dp[i-1] + nums[i]);
+            // 要 前面的 或 不要前面的 取最大值
+            dp[i] = Math.max(nums[i], nums[i]+dp[i-1]);
         }
-
-        // 最大值
-        int maxSum = Integer.MIN_VALUE;
+        // 遍历 取最大值
+        int res = Integer.MIN_VALUE;
         for (int i = 0; i < dp.length; i++) {
-            maxSum = Math.max(maxSum, dp[i]);
+            res = Math.max(res, dp[i]);
         }
-        return maxSum;
+        return res;
     }
-
-
 }
 //leetcode submit region end(Prohibit modification and deletion)
  
