@@ -37,7 +37,7 @@ package leetcode.editor.cn;
 //
 // Related Topics回溯 
 //
-// 👍 1537, 👎 0 
+// 👍 1542, 👎 0 
 //
 //
 //
@@ -51,7 +51,7 @@ import java.util.List;
  * 组合
  *
  * @author hsfxuebao
- * 2023-11-16 19:41:39 
+ * 2023-11-19 10:36:16 
  */
 class P77_Combinations{
     public static void main(String[] args) {
@@ -60,17 +60,15 @@ class P77_Combinations{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
         List<List<Integer>> res = new ArrayList<>();
     public List<List<Integer>> combine(int n, int k) {
-
-        // 路径
         LinkedList<Integer> track = new LinkedList<>();
-        backtrack(1, n, k, track);
+        backtrack(n, 1, track, k);
         return res;
-
     }
 
-        private void backtrack(int startIndex, int n, int k, LinkedList<Integer> track) {
+        private void backtrack(int n, int startIndex, LinkedList<Integer> track, int k) {
 
             if (track.size() == k) {
                 res.add(new ArrayList<>(track));
@@ -79,17 +77,13 @@ class Solution {
 
             // 选择集
             for (int i = startIndex; i <= n; i++) {
-                // 选择
                 track.add(i);
-                // 递归
-                backtrack(i+1, n, k, track);
-                // 撤销选择
+                backtrack(n, i+1, track, k);
                 track.removeLast();
-
             }
 
         }
-    }
+}
 //leetcode submit region end(Prohibit modification and deletion)
  
 }

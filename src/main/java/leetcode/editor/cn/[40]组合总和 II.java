@@ -42,7 +42,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 回溯 
 //
-// 👍 1319, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1480, 👎 0 
 //
 //
 //
@@ -55,9 +55,10 @@ import java.util.List;
 
 /**
  * 组合总和 II
+ * 有重复元素  不可复选  组合
  *
  * @author hsfxuebao
- * 2023-04-21 09:58:15 
+ * 2023-11-19 10:41:56 
  */
 class P40_CombinationSumIi{
     public static void main(String[] args) {
@@ -66,52 +67,38 @@ class P40_CombinationSumIi{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-        List<List<Integer>> result = new ArrayList<>();
-        LinkedList<Integer> track = new LinkedList<>();
-
-        /**
-         * 重复元素 不可复选
-         */
+        List<List<Integer>> res = new ArrayList<>();
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         // 排序
         Arrays.sort(candidates);
-        backtrack(candidates, target, 0);
-        return result;
+        LinkedList<Integer> track = new LinkedList<>();
+        backtrack(candidates, 0, track, target);
+        return res;
+
     }
 
-        private void backtrack(int[] candidates, int remind, int start) {
+        private void backtrack(int[] candidates, int startIndex, LinkedList<Integer> track, int target) {
 
-            // 符合条件，加到结果中
-            if (remind == 0) {
-                result.add(new ArrayList<>(track));
+            if (target == 0) {
+                res.add(new ArrayList<>(track));
                 return;
             }
-            // 不用在往后查找了
-            if (remind < 0) {
+            if (target < 0) {
                 return;
             }
 
             // 选择集
-            for (int i = start; i < candidates.length; i++) {
-
-                //剪枝逻辑
-                if (i > start && candidates[i] == candidates[i - 1]) {
+            for (int i = startIndex; i < candidates.length; i++) {
+                if (i > startIndex && candidates[i - 1] == candidates[i]) {
                     continue;
                 }
-                // 选择
-                track.addLast(candidates[i]);
-                // 递归
-                backtrack(candidates, remind - candidates[i], i+1);
-                // 撤销选择
+                track.add(candidates[i]);
+                backtrack(candidates, i+1, track, target-candidates[i]);
                 track.removeLast();
-
             }
 
-
         }
-
-
-    }
+}
 //leetcode submit region end(Prohibit modification and deletion)
  
 }

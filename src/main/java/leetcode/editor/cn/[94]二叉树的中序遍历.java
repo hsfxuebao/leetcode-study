@@ -40,23 +40,23 @@ package leetcode.editor.cn;
 //
 // Related Topics栈 | 树 | 深度优先搜索 | 二叉树 
 //
-// 👍 1672, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1973, 👎 0 
 //
 //
 //
 //
-
-import common.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
+import common.TreeNode;
+
 /**
  * 二叉树的中序遍历
  *
  * @author hsfxuebao
- * 2023-01-30 16:42:38 
+ * 2023-11-17 21:17:02 
  */
 class P94_BinaryTreeInorderTraversal{
     public static void main(String[] args) {
@@ -80,45 +80,39 @@ class P94_BinaryTreeInorderTraversal{
  * }
  */
 class Solution {
-
-    /**
-     * 中序遍历  分解子问题
-     */
+    List<Integer> res = new ArrayList<>();
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<>();
-        if (root == null) {
-            return res;
-        }
-        res.addAll(inorderTraversal(root.left));
-        res.add(root.val);
-        res.addAll(inorderTraversal(root.right));
-        return res;
+
+        // 递归
+//        inorderTraversalRec(root);
+//        return res;
+
+        // 分解子问题
+        return inorderTraversalIt(root);
     }
 
-    List<Integer> inOrder = new ArrayList<>();
-    public List<Integer> inorderTraversal1(TreeNode root) {
-
+    private List<Integer> inorderTraversalIt(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
         if (root == null) {
-            return inOrder;
+            return result;
         }
-        traverse(root);
-        return inOrder;
+        result.addAll(inorderTraversalIt(root.left));
+        result.add(root.val);
+        result.addAll(inorderTraversalIt(root.right));
+        return result;
     }
 
-    /**
-     * 中序遍历  递归
-     */
-    private void traverse(TreeNode root) {
+    private void inorderTraversalRec(TreeNode root) {
 
         if (root == null) {
             return;
         }
 
         // 左子树
-        traverse(root.left);
-        inOrder.add(root.val);
+        inorderTraversalRec(root.left);
+        res.add(root.val);
         // 右子树
-        traverse(root.right);
+        inorderTraversalRec(root.right);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

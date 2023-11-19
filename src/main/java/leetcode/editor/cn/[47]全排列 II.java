@@ -32,12 +32,13 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 回溯 
 //
-// 👍 1386, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1497, 👎 0 
 //
 //
 //
 //
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -45,31 +46,28 @@ import java.util.List;
 
 /**
  * 全排列 II
- *
+ * 有重复元素 不可复选 全排列
  * @author hsfxuebao
- * 2023-06-23 10:49:56 
+ * 2023-11-19 10:52:16 
  */
 class P47_PermutationsIi{
     public static void main(String[] args) {
         Solution solution = new P47_PermutationsIi().new Solution();
-        int[] nums = new int[]{1,1,2};
-        solution.permuteUnique(nums);
+        
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-        /**
-         * 有重复元素 不可复选
-         */
         List<List<Integer>> res = new ArrayList<>();
-        LinkedList<Integer> track = new LinkedList<>();
     public List<List<Integer>> permuteUnique(int[] nums) {
+        // 排序
         Arrays.sort(nums);
+        LinkedList<Integer> track = new LinkedList<>();
         boolean[] used = new boolean[nums.length];
-        backtrack(nums, used);
+        backtrack(nums, 0, track, used);
         return res;
     }
 
-        private void backtrack(int[] nums, boolean[] used) {
+        private void backtrack(int[] nums, int startIndex, LinkedList<Integer> track, boolean[] used) {
 
             if (track.size() == nums.length) {
                 res.add(new ArrayList<>(track));
@@ -78,28 +76,21 @@ class Solution {
 
             // 选择集
             for (int i = 0; i < nums.length; i++) {
-
                 if (used[i]) {
                     continue;
                 }
-                // 新添加的剪枝逻辑，固定相同的元素在排列中的相对位置
-                if (i > 0 && nums[i] == nums[i - 1] && !used[i-1]) {
+                if (i > 0 && nums[i] == nums[i-1] && !used[i-1]) {
                     continue;
                 }
-
-                // 选择
-                track.addLast(nums[i]);
+                track.add(nums[i]);
                 used[i] = true;
-                // 递归
-                backtrack(nums, used);
-                // 撤销选择
+                backtrack(nums, i+1, track, used);
                 track.removeLast();
                 used[i] = false;
-
             }
 
         }
-    }
+}
 //leetcode submit region end(Prohibit modification and deletion)
  
 }

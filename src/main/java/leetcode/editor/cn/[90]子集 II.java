@@ -50,7 +50,7 @@ import java.util.List;
  * 子集 II
  *
  * @author hsfxuebao
- * 2023-11-16 20:12:47 
+ * 2023-11-19 10:27:57 
  */
 class P90_SubsetsIi{
     public static void main(String[] args) {
@@ -60,31 +60,31 @@ class P90_SubsetsIi{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
         List<List<Integer>> res = new ArrayList<>();
-    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        // 有重复元素 不能复选  子集
+    public List<List<Integer>> backtrack(int[] nums) {
+
         // 排序
         Arrays.sort(nums);
-        // 路径
         LinkedList<Integer> track = new LinkedList<>();
-        //
         backtrack(nums, 0, track);
         return res;
+
     }
 
         private void backtrack(int[] nums, int startIndex, LinkedList<Integer> track) {
+
+            //
             res.add(new ArrayList<>(track));
 
+            // 选择集
             for (int i = startIndex; i < nums.length; i++) {
-
-                // 跳过重复的数据
-                if (i > startIndex && nums[i] == nums[i - 1]) {
+                // 跳过重复的元素
+                if (i > startIndex && nums[i - 1] == nums[i]) {
                     continue;
                 }
-                // 选择
                 track.add(nums[i]);
                 backtrack(nums, i+1, track);
-                // 撤销选择
                 track.removeLast();
-
             }
 
         }

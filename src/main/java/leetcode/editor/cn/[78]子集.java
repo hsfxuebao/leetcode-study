@@ -32,7 +32,7 @@ package leetcode.editor.cn;
 //
 // Related Topics位运算 | 数组 | 回溯 
 //
-// 👍 2190, 👎 0 
+// 👍 2191, 👎 0 
 //
 //
 //
@@ -46,7 +46,7 @@ import java.util.List;
  * 子集
  *
  * @author hsfxuebao
- * 2023-11-16 19:30:43 
+ * 2023-11-19 10:33:44 
  */
 class P78_Subsets{
     public static void main(String[] args) {
@@ -56,37 +56,29 @@ class P78_Subsets{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
         List<List<Integer>> res = new ArrayList<>();
+
+        // 无重复元素 不可复选 子集
     public List<List<Integer>> subsets(int[] nums) {
-        if (nums == null || nums.length <= 0) {
-            return res;
-        }
-        // 路径
         LinkedList<Integer> track = new LinkedList<>();
-        backtrack(nums,0, track);
+        backtrack(nums, 0, track);
         return res;
     }
 
+
         private void backtrack(int[] nums, int startIndex, LinkedList<Integer> track) {
 
-            // 加入到
+            //
             res.add(new ArrayList<>(track));
-            if (track.size() == nums.length) {
-                return;
-            }
 
             // 选择集
             for (int i = startIndex; i < nums.length; i++) {
-
-                // 选择
                 track.add(nums[i]);
-                // 递归
                 backtrack(nums, i+1, track);
-                // 撤销选择
                 track.removeLast();
             }
 
         }
-    }
+}
 //leetcode submit region end(Prohibit modification and deletion)
  
 }

@@ -75,28 +75,32 @@ class P2_AddTwoNumbers{
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 
-        ListNode dummy = new ListNode(-1);
-        ListNode p1 = dummy, p2 = l1, p3 = l2;
-        int high = 0;
-        while (p2 != null || p3 != null || high > 0) {
+       ListNode dummy = new ListNode(-1);
+       ListNode p = dummy, p1 = l1, p2 = l2;
 
-            int sum = 0;
+       int temp = 0;
+        while (temp > 0 || p1 != null || p2 != null) {
+
+            int sum = temp;
+
+            if (p1 != null) {
+                sum += p1.val;
+                p1 = p1.next;
+            }
+
             if (p2 != null) {
                 sum += p2.val;
                 p2 = p2.next;
             }
 
-            if (p3 != null) {
-                sum += p3.val;
-                p3 = p3.next;
-            }
-            sum += high;
-            // 计算新的进制和数字
-            high = sum / 10;
-            p1.next = new ListNode((sum % 10));
-            p1 = p1.next;
+            temp = sum /10;
+            int val = sum %10;
+            p.next = new ListNode(val);
+            p = p.next;
         }
         return dummy.next;
+
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -42,8 +42,14 @@ package leetcode.editor.cn;
 // candidates 的所有元素 互不相同 
 // 1 <= target <= 40 
 // 
-// Related Topics 数组 回溯 
-// 👍 2293 👎 0
+//
+// Related Topics数组 | 回溯 
+//
+// 👍 2670, 👎 0 
+//
+//
+//
+//
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -53,7 +59,7 @@ import java.util.List;
  * 组合总和
  *
  * @author hsfxuebao
- * 2022-12-30 10:31:31 
+ * 2023-11-19 10:56:57 
  */
 class P39_CombinationSum{
     public static void main(String[] args) {
@@ -62,47 +68,34 @@ class P39_CombinationSum{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-
-    private List<List<Integer>> res = new ArrayList<>();
+        List<List<Integer>> res = new ArrayList<>();
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
 
-        // 路径
-        List<Integer> track = new ArrayList<>();
-        backtrack(candidates, track, target, 0, 0);
+        LinkedList<Integer> track = new LinkedList<>();
+        backtrack(candidates, 0, track, target);
         return res;
-
     }
+        private void backtrack(int[] candidates, int startIndex, LinkedList<Integer> track, int target) {
 
-        /**
-         * 回溯
-         */
-        private void backtrack(int[] candidates, List<Integer> track, int target, int sum, int start) {
-
-            // 终止条件
-            if (sum > target) {
+            if (target == 0) {
+                res.add(new ArrayList<>(track));
                 return;
             }
-            // 符合条件
-            if (sum == target) {
-                res.add(new ArrayList<>(track));
+            if (target < 0) {
                 return;
             }
 
             // 选择集
-            for (int i = start; i < candidates.length; i++) {
+            for (int i = startIndex; i < candidates.length; i++) {
 
-                // 选择
                 track.add(candidates[i]);
-                // 递归
-                backtrack(candidates, track, target, sum+candidates[i], i);
-                // 撤销选择
-                track.remove(track.size() - 1);
+                // todo
+                backtrack(candidates, i, track, target-candidates[i]);
+                track.removeLast();
             }
 
         }
-
-
-    }
+}
 //leetcode submit region end(Prohibit modification and deletion)
  
 }
