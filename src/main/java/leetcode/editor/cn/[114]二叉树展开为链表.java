@@ -45,7 +45,7 @@ package leetcode.editor.cn;
 //
 // Related Topics栈 | 树 | 深度优先搜索 | 链表 | 二叉树 
 //
-// 👍 1422, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1584, 👎 0 
 //
 //
 //
@@ -57,7 +57,7 @@ import common.TreeNode;
  * 二叉树展开为链表
  *
  * @author hsfxuebao
- * 2023-03-21 21:07:23 
+ * 2023-11-20 20:50:12 
  */
 class P114_FlattenBinaryTreeToLinkedList{
     public static void main(String[] args) {
@@ -81,32 +81,37 @@ class P114_FlattenBinaryTreeToLinkedList{
  * }
  */
 class Solution {
-    /**
-     * 分解子问题
-     * 将以root 为根节点的 拉平成 链表
-     */
+
+    // 遍历
     public void flatten(TreeNode root) {
-        // base case
+
         if (root == null) {
             return;
         }
-        // 将 左右子树 拉平成链表
-        flatten(root.left);
-        flatten(root.right);
-        // 后序位置
-        // 1.左右子树 已经被拉平成链表了
-        TreeNode right = root.right;
-        TreeNode left = root.left;
-        // 2. 将左子树 做成 右子树
-        // 将root的左子树 全部 放到右子树下
-        root.left = null;
-        root.right = left;
-        // 3. 将原先右子树 放到当前右子树的末端
-        TreeNode p = root;
-        while (p.right != null) {
-            p = p.right;
+        back(root);
+
+    }
+
+    private TreeNode back(TreeNode root) {
+        if (root == null) {
+            return null;
         }
-        p.right = right;
+        TreeNode left = back(root.left);
+        TreeNode right = back(root.right);
+
+
+        TreeNode temp = root;
+        while (left != null) {
+            temp.right = left;
+            temp = temp.right;
+            left = left.right;
+        }
+
+        temp.right = right;
+        // 重要，清空左边节点
+        root.left = null;
+        return root;
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

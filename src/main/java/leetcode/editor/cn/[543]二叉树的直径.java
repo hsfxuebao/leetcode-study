@@ -1,27 +1,40 @@
 package leetcode.editor.cn;
 
-//给定一棵二叉树，你需要计算它的直径长度。一棵二叉树的直径长度是任意两个结点路径长度中的最大值。这条路径可能穿过也可能不穿过根结点。 
+//给你一棵二叉树的根节点，返回该树的 直径 。 
+//
+// 二叉树的 直径 是指树中任意两个节点之间最长路径的 长度 。这条路径可能经过也可能不经过根节点 root 。 
+//
+// 两节点之间路径的 长度 由它们之间边数表示。 
 //
 // 
 //
-// 示例 : 给定二叉树 
-//
-//           1
-//         / \
-//        2   3
-//       / \     
-//      4   5    
+// 示例 1： 
+// 
+// 
+//输入：root = [1,2,3,4,5]
+//输出：3
+//解释：3 ，取路径 [4,2,1,3] 或 [5,2,1,3] 的长度。
 // 
 //
-// 返回 3, 它的长度是路径 [4,2,1,3] 或者 [5,2,1,3]。 
+// 示例 2： 
+//
+// 
+//输入：root = [1,2]
+//输出：1
+// 
 //
 // 
 //
-// 注意：两结点之间的路径长度是以它们之间边的数目表示。 
+// 提示： 
+//
+// 
+// 树中节点数目在范围 [1, 10⁴] 内 
+// -100 <= Node.val <= 100 
+// 
 //
 // Related Topics树 | 深度优先搜索 | 二叉树 
 //
-// 👍 1281, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1437, 👎 0 
 //
 //
 //
@@ -33,7 +46,7 @@ import common.TreeNode;
  * 二叉树的直径
  *
  * @author hsfxuebao
- * 2023-03-20 08:51:00 
+ * 2023-11-20 20:32:58 
  */
 class P543_DiameterOfBinaryTree{
     public static void main(String[] args) {
@@ -57,34 +70,27 @@ class P543_DiameterOfBinaryTree{
  * }
  */
 class Solution {
-    /**
-     * 后续遍历位置
-     * @param root
-     * @return
-     */
-    // 记录最大直径的长度
-    int maxDiameter = 0;
+
+    int res = 0;
     public int diameterOfBinaryTree(TreeNode root) {
-        maxDepth(root);
-        return maxDiameter;
+
+        // 分解问题
+        backtrack(root);
+        return res;
     }
 
-    /**
-     *
-     * 以root 为节点，当前节点的最大深度
-     * @param root
-     * @return
-     */
-    private int maxDepth(TreeNode root) {
+    private int backtrack(TreeNode root) {
         if (root == null) {
             return 0;
         }
-        int leftDep = maxDepth(root.left);
-        int rightDep = maxDepth(root.right);
 
-        int curDep = leftDep + rightDep;
-        maxDiameter = Math.max(curDep, maxDiameter);
-        return Math.max(leftDep, rightDep) + 1;
+        //
+        int leftRes = backtrack(root.left);
+        int rightRes = backtrack(root.right);
+        res = Math.max(res, leftRes+rightRes);
+        return Math.max(leftRes, rightRes) + 1;
+
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

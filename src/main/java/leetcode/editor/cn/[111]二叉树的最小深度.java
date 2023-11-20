@@ -33,7 +33,7 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 深度优先搜索 | 广度优先搜索 | 二叉树 
 //
-// 👍 1080, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1125, 👎 0 
 //
 //
 //
@@ -49,7 +49,7 @@ import common.TreeNode;
  * 二叉树的最小深度
  *
  * @author hsfxuebao
- * 2023-09-12 09:51:40 
+ * 2023-11-20 16:03:34 
  */
 class P111_MinimumDepthOfBinaryTree{
     public static void main(String[] args) {
@@ -73,18 +73,22 @@ class P111_MinimumDepthOfBinaryTree{
  * }
  */
 class Solution {
+    public int minDepth(TreeNode root) {
+        // 层序遍历
+//        return minDepthLevel(root);
+        // 分解问题
+        return minDepthIter(root);
+    }
 
+    int depth = 0;
+    private int minDepthIter(TreeNode root) {
 
-    // 分解问题
-    public int minDepth1(TreeNode root) {
-        if(root == null){
+        if (root == null) {
             return 0;
         }
+        int leftDep = minDepthIter(root.left);
+        int rightDep = minDepthIter(root.right);
 
-        //
-        int leftDep = minDepth(root.left);
-        int rightDep = minDepth(root.right);
-        int curMinDep = Math.min(leftDep, rightDep) + 1;
         // 返回最小深度
         // 有两种情况，有可能 其中一个节点为null，此时应该为 leftDep+rightDep+1;
         // 如果左右节点都不为空，此时为Math.min(leftDep,rightDep)+1;
@@ -93,35 +97,33 @@ class Solution {
                 : Math.min(leftDep, rightDep) + 1;
     }
 
-    // 层序遍历
-    public int minDepth(TreeNode root) {
-
+    private int minDepthLevel(TreeNode root) {
         if (root == null) {
             return 0;
         }
-
         Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
+        queue.offer(root);
         int depth = 1;
 
         while (!queue.isEmpty()) {
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
+
+            int levelSize = queue.size();
+            for (int i = 0; i < levelSize; i++) {
+
                 TreeNode node = queue.poll();
                 if (node.left == null && node.right == null) {
                     return depth;
                 }
                 if (node.left != null) {
-                    queue.add(node.left);
+                    queue.offer(node.left);
                 }
                 if (node.right != null) {
-                    queue.add(node.right);
+                    queue.offer(node.right);
                 }
             }
             depth++;
         }
         return depth;
-
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -42,9 +42,9 @@ package leetcode.editor.cn;
 //
 // 进阶：遍历树来统计节点是一种时间复杂度为 O(n) 的简单解决方案。你可以设计一个更快的算法吗？ 
 //
-// Related Topics树 | 深度优先搜索 | 二分查找 | 二叉树 
+// Related Topics位运算 | 树 | 二分查找 | 二叉树 
 //
-// 👍 1024, 👎 0 
+// 👍 1057, 👎 0 
 //
 //
 //
@@ -56,7 +56,7 @@ import common.TreeNode;
  * 完全二叉树的节点个数
  *
  * @author hsfxuebao
- * 2023-09-25 20:56:59 
+ * 2023-11-20 20:37:59 
  */
 class P222_CountCompleteTreeNodes{
     public static void main(String[] args) {
@@ -85,26 +85,33 @@ class Solution {
         if (root == null) {
             return 0;
         }
-        // 左节点 和右节点一致  它是二叉树
-        int leftHeight = 0, rightHeight = 0;
-        TreeNode left = root, right = root;
+        // 左边和右边的 高度差
+        int leftHeight = 0;
+        TreeNode left = root;
         while (left != null) {
-            leftHeight++;
             left = left.left;
-        }
-        while (right != null) {
             leftHeight++;
+        }
+
+        int rightHeight = 0;
+        TreeNode right = root;
+        while (right != null) {
             right = right.right;
+            rightHeight++;
         }
-        // 跟节点为完全二叉树
+
+        // 高度相等，使用公式计算节点数
         if (leftHeight == rightHeight) {
-            return (int) Math.pow(2, leftHeight) - 1;
+            return (int)Math.pow(2, leftHeight) - 1;
         }
-        return 1+ countNodes(root.left) + countNodes(root.right);
 
-
-
+        //
+        int leftNode = countNodes(root.left);
+        int rightNode = countNodes(root.right);
+        return leftNode+rightNode+1;
     }
+
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
  

@@ -35,7 +35,7 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 深度优先搜索 | 动态规划 | 二叉树 
 //
-// 👍 2063, 👎 0 
+// 👍 2101, 👎 0 
 //
 //
 //
@@ -47,7 +47,7 @@ import common.TreeNode;
  * 二叉树中的最大路径和
  *
  * @author hsfxuebao
- * 2023-09-26 10:44:57 
+ * 2023-11-20 20:26:37 
  */
 class P124_BinaryTreeMaximumPathSum{
     public static void main(String[] args) {
@@ -71,24 +71,27 @@ class P124_BinaryTreeMaximumPathSum{
  * }
  */
 class Solution {
-
-    // 分解问题
     int maxPathSum = Integer.MIN_VALUE;
     public int maxPathSum(TreeNode root) {
-        traceback(root);
-        return maxPathSum;
-    }
-
-    // 递归
-    // 返回root为节点 的单边最大和
-    private int traceback(TreeNode root) {
         if (root == null) {
             return 0;
         }
-        int leftMaxSum = Math.max(0, traceback(root.left));
-        int rightMaxSum = Math.max(0, traceback(root.right));
-        maxPathSum = Math.max(maxPathSum, root.val+leftMaxSum+rightMaxSum);
-        return Math.max(leftMaxSum, rightMaxSum) + root.val;
+        backtrack(root);
+        return maxPathSum;
+    }
+
+    // 返回以root为节点，单边 最大的路径和
+    private int backtrack(TreeNode root) {
+
+        if (root == null) {
+            return 0;
+        }
+        //
+        int leftMax = Math.max(0, backtrack(root.left));
+        int rightMax = Math.max(0, backtrack(root.right));
+        maxPathSum = Math.max(maxPathSum, leftMax+rightMax+root.val);
+
+        return Math.max(leftMax, rightMax) + root.val;
 
     }
 }

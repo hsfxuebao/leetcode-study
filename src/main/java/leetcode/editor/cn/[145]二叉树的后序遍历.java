@@ -110,7 +110,7 @@ class Solution {
         List<Integer> rightList = postorderTraversal(root.right);
         res.addAll(rightList);
         res.add(root.val);
-        return result;
+        return res;
     }
 
 

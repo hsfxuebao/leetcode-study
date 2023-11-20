@@ -35,14 +35,11 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 深度优先搜索 | 广度优先搜索 | 二叉树 
 //
-// 👍 1705, 👎 0 
+// 👍 1742, 👎 0 
 //
 //
 //
 //
-
-import static com.sun.org.apache.xerces.internal.impl.xs.opti.SchemaDOM.traverse;
-
 
 import common.TreeNode;
 
@@ -50,7 +47,7 @@ import common.TreeNode;
  * 二叉树的最大深度
  *
  * @author hsfxuebao
- * 2023-09-23 16:02:43 
+ * 2023-11-20 11:34:05 
  */
 class P104_MaximumDepthOfBinaryTree{
     public static void main(String[] args) {
@@ -75,43 +72,38 @@ class P104_MaximumDepthOfBinaryTree{
  */
 class Solution {
 
-    // 动态规划思路，分解子问题
-    public int maxDepth1(TreeNode root) {
+    int res = 0;
+    // 回溯 遍历
+    public int maxDepth(TreeNode root) {
+        int depth = 0;
+        backtrack(root, depth);
+        return res;
+    }
 
+    private void backtrack(TreeNode root, int depth) {
+        if (root == null) {
+            return;
+        }
+
+        // 选择集
+        depth++;
+        res = Math.max(res, depth);
+        backtrack(root.left, depth);
+        backtrack(root.right, depth);
+
+    }
+
+    // 分解子问题
+    public int maxDepth1(TreeNode root) {
         if (root == null) {
             return 0;
         }
         int leftDepth = maxDepth1(root.left);
         int rightDepth = maxDepth1(root.right);
-
-        int curDepth = Math.max(leftDepth, rightDepth) + 1;
-        return curDepth;
-    }
-    // 回溯，遍历
-    int maxDepth = Integer.MIN_VALUE;
-    int depth = 0;
-    public int maxDepth(TreeNode root) {
-
-        if (root == null) {
-            return 0;
-        }
-        trackback(root);
-        return maxDepth;
-
+        return Math.max(leftDepth, rightDepth) + 1;
     }
 
-    private void trackback(TreeNode root) {
-        if (root == null) {
-            return;
-        }
-        // 前序位置
-        depth++;
-        maxDepth = Math.max(maxDepth, depth);
 
-        trackback(root.left);
-        trackback(root.right);
-        depth--;
-    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
  
