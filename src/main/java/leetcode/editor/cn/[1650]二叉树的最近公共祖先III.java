@@ -29,21 +29,26 @@ class P1650_lowestCommonAncestor {
 
         // 根本问题 求 两个单链表的相交问题
         Node lowestCommonAncestor(Node p, Node q) {
-            Node a = p, b = q;
 
-            while (a != b) {
-                if (a == null) {
-                    a = q;
+            if (p == null || q == null) {
+                return null;
+            }
+
+            Node p1 = p, p2 = q;
+            while (p1 != p2) {
+
+                if (p1 == null) {
+                    p1 = q;
                 } else {
-                    a = a.parent;
+                    p1 = p1.parent;
                 }
-                if (b == null) {
-                    b = p;
+                if (p2 == null) {
+                    p2 = p;
                 } else {
-                    b = b.parent;
+                    p2 = p2.parent;
                 }
             }
-            return a;
+            return p1;
         }
 
     }

@@ -1048,6 +1048,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[2360]图中的最长环.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[2360]图中的最长环.md" />
+              <option name="frontendQuestionId" value="leetcode.cn2360" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[2360]图中的最长环.java" />
+              <option name="titleSlug" value="longest-cycle-in-a-graph" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[236]二叉树的最近公共祖先.java">
           <value>
             <LeetcodeEditor>

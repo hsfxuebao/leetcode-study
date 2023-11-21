@@ -80,16 +80,16 @@ class Solution {
         if (root == null) {
             return null;
         }
-        return find(root, p, q);
+        return find(root, p.val, q.val);
     }
 
     // 返回 p和q节点的 公共祖先
-    private TreeNode find(TreeNode root, TreeNode p, TreeNode q) {
+    private TreeNode find(TreeNode root, int p, int q) {
         if (root == null) {
             return null;
         }
         // 若有一个值相等，返回当前值
-        if (root.val == p.val || root.val == q.val) {
+        if (root.val == p || root.val == q) {
             return root;
         }
 

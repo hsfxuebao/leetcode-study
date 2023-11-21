@@ -1,5 +1,8 @@
 package leetcode.editor.cn;
 
+import static com.sun.prism.image.CompoundCoords.find1;
+
+
 import common.TreeNode;
 
 /**
@@ -28,37 +31,37 @@ class P1644_lowestCommonAncestor {
             if (root == null) {
                 return null;
             }
-            TreeNode treeNode = find(root, p, q);
+            TreeNode treeNode = find(root, p.val, q.val);
             if (findP && findQ) {
                 return treeNode;
             }
             return null;
         }
 
-        // 需要遍历所有节点
-        private TreeNode find(TreeNode root, TreeNode p, TreeNode q) {
+        private TreeNode find(TreeNode root, int p, int q) {
             if (root == null) {
                 return null;
             }
 
-            TreeNode leftNode = find(root.left, p, q);
-            TreeNode rightNode = find(root.right, p, q);
-            if (leftNode != null && rightNode != null) {
-                return root;
-            }
-
-            if (root.val == p.val || root.val == q.val) {
-                if (root.val == p.val) {
+            TreeNode left = find(root.left, p, q);
+            TreeNode right = find(root.right, p, q);
+            if (root.val == p || root.val == q) {
+                if (root.val == p) {
                     findP = true;
                 }
-                if (root.val == q.val) {
+                if (root.val == q) {
                     findQ = true;
                 }
                 return root;
             }
-            return leftNode != null ? leftNode : rightNode;
+            if (left != null && right != null) {
+                return root;
+            }
+            return left == null ? right : left;
 
         }
+
+
     }
 
 

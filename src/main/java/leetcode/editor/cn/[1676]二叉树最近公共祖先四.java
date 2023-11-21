@@ -33,29 +33,35 @@ class P1676_lowestCommonAncestor {
 
 
         public TreeNode lowestCommonAncestor(TreeNode root, TreeNode[] nodes) {
-            // 将nodes转成set集合，便于判断
-            Set<Integer> nodeSet = new HashSet<>();
-            for (TreeNode node : nodes) {
-                nodeSet.add(node.val);
-            }
-            return find(root, nodeSet);
-        }
-
-        private TreeNode find(TreeNode root, Set<Integer> nodeSet) {
             if (root == null) {
                 return null;
             }
-            if (nodeSet.contains(root.val)) {
+
+            // 转成set
+            Set<Integer> sets = new HashSet<>();
+            for (TreeNode node : nodes) {
+                sets.add(node.val);
+            }
+            return find(root, sets);
+        }
+
+        private TreeNode find(TreeNode root, Set<Integer> sets) {
+            if (root == null) {
+                return null;
+            }
+
+            if (sets.contains(root.val)) {
                 return root;
             }
-            // 左右子树
-            TreeNode left = find(root.left, nodeSet);
-            TreeNode right = find(root.right, nodeSet);
+            TreeNode left = find(root.left, sets);
+            TreeNode right = find(root.right, sets);
             if (left != null && right != null) {
                 return root;
             }
-            return left != null ? left : right;
+            return left == null ? right : left;
+
         }
+
 
     }
 

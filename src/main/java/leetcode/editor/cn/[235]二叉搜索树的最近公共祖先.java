@@ -35,7 +35,7 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 深度优先搜索 | 二叉搜索树 | 二叉树 
 //
-// 👍 1048, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1175, 👎 0 
 //
 //
 //
@@ -47,7 +47,7 @@ import common.TreeNode;
  * 二叉搜索树的最近公共祖先
  *
  * @author hsfxuebao
- * 2023-03-28 09:49:33 
+ * 2023-11-21 09:55:14 
  */
 class P235_LowestCommonAncestorOfABinarySearchTree{
     public static void main(String[] args) {
@@ -67,28 +67,22 @@ class P235_LowestCommonAncestorOfABinarySearchTree{
 
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null) {
-            return null;
-        }
-        int smallVal = p.val > q.val ? q.val : p.val;
-        int bigVal = p.val > q.val ? p.val : q.val;
-        return find(root, smallVal, bigVal);
+        int pVal = Math.min(p.val, q.val);
+        int qVal = Math.max(p.val, q.val);
+        return find(root, pVal, qVal);
     }
 
-    private TreeNode find(TreeNode root, int smallVal, int bigVal) {
+    // p小 q大
+    private TreeNode find(TreeNode root, int p, int q) {
         if (root == null) {
             return null;
         }
-        // 节点值太大 向左查找
-        if (root.val > bigVal) {
-            return find(root.left, smallVal, bigVal);
+        if (root.val < p) {
+            return find(root.right, p, q);
         }
-        // 节点值太小  向右查找
-        if (root.val < smallVal) {
-            return find(root.right, smallVal, bigVal);
+        if (root.val > q) {
+            return find(root.left, p, q);
         }
-        // val1 <= root.val <= val2
-        // 则当前节点就是最近公共祖先
         return root;
     }
 }
