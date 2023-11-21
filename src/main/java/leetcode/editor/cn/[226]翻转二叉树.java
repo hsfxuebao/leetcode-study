@@ -40,7 +40,7 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 深度优先搜索 | 广度优先搜索 | 二叉树 
 //
-// 👍 1530, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1734, 👎 0 
 //
 //
 //
@@ -52,7 +52,7 @@ import common.TreeNode;
  * 翻转二叉树
  *
  * @author hsfxuebao
- * 2023-03-22 19:06:00 
+ * 2023-11-21 18:57:22 
  */
 class P226_InvertBinaryTree{
     public static void main(String[] args) {
@@ -76,37 +76,25 @@ class P226_InvertBinaryTree{
  * }
  */
 class Solution {
+    public TreeNode invertTree(TreeNode root) {
 
-    // 分解子问题，以root为根节点 二叉树翻转，返回翻转后的二叉树的根节点
-    public TreeNode invertTree1(TreeNode root) {
         if (root == null) {
             return null;
         }
-        TreeNode leftNode = invertTree1(root.left);
-        TreeNode rightNode = invertTree1(root.right);
-        root.left = rightNode;
-        root.right = leftNode;
+        backtrack(root);
         return root;
+
     }
 
-    // 递归
-    public TreeNode invertTree(TreeNode root) {
-        trackback(root);
-        return root;
-    }
-
-    private void trackback(TreeNode root) {
+    private TreeNode backtrack(TreeNode root) {
         if (root == null) {
-            return;
+            return null;
         }
-        // 更换左右节点
-        TreeNode temp = root.left;
-        root.left = root.right;
-        root.right = temp;
-
-        trackback(root.left);
-        trackback(root.right);
-
+        TreeNode left = backtrack(root.left);
+        TreeNode right = backtrack(root.right);
+        root.left = right;
+        root.right = left;
+        return root;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
