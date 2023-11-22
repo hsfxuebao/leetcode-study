@@ -50,18 +50,16 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 深度优先搜索 | 广度优先搜索 | 设计 | 字符串 | 二叉树 
 //
-// 👍 1076, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1182, 👎 0 
 //
 //
 //
 //
 
-
+import java.awt.*;
 import java.util.LinkedList;
 import java.util.Queue;
 
-
-import com.sun.deploy.util.StringUtils;
 
 import common.TreeNode;
 
@@ -69,12 +67,12 @@ import common.TreeNode;
  * 二叉树的序列化与反序列化
  *
  * @author hsfxuebao
- * 2023-03-23 21:17:20 
+ * 2023-11-22 11:14:52 
  */
 class P297_SerializeAndDeserializeBinaryTree{
     public static void main(String[] args) {
 
-    }  
+    }
     //leetcode submit region begin(Prohibit modification and deletion)
 /**
  * Definition for a binary tree node.
@@ -87,147 +85,183 @@ class P297_SerializeAndDeserializeBinaryTree{
  */
 public class Codec {
 
-    // Encodes a tree to a single string.
     String NULL = "#";
     String SEP = ",";
-    StringBuilder sb = new StringBuilder();
+    // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
-        // 前序
-//        traverse(root, sb);
-        // 后序
-//        traversePost(root, sb);
-        // 层序
-        traverseLevel(root, sb);
-        return sb.toString();
+        // 先序遍历
+//        return serializePre(root);
+        // 后续遍历
+//        return serializePost(root);
+        // 层序遍历
+        return serializeLevel(root);
     }
 
-    private void traverseLevel(TreeNode root, StringBuilder sb) {
+    private String serializeLevel(TreeNode root) {
+
+        StringBuilder sb = new StringBuilder();
         if (root == null) {
-            return;
+            return sb.toString();
         }
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
-        sb.append(root.val).append(SEP);
 
         while (!queue.isEmpty()) {
-
-            TreeNode node = queue.poll();
-            if (node.left != null) {
-                sb.append(node.left.val).append(SEP);
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                if (node == null) {
+                    sb.append(NULL).append(SEP);
+                    continue;
+                }
+                sb.append(node.val).append(SEP);
                 queue.offer(node.left);
-            } else {
-                sb.append(NULL).append(SEP);
-            }
-
-            if (node.right != null) {
-                sb.append(node.right.val).append(SEP);
                 queue.offer(node.right);
-            } else {
-                sb.append(NULL).append(SEP);
             }
         }
+        return sb.toString();
 
     }
 
-    private void traversePost(TreeNode root, StringBuilder sb) {
+    //
+    private String serializePost(TreeNode root) {
+        StringBuilder sb = new StringBuilder();
+        serializePost(root, sb);
+        return sb.toString();
+    }
+
+    private void serializePost(TreeNode root, StringBuilder sb) {
         if (root == null) {
             sb.append(NULL).append(SEP);
             return;
         }
-        traversePost(root.left, sb);
-        traversePost(root.right, sb);
+        serializePost(root.left, sb);
+        serializePost(root.right, sb);
         // 后序
         sb.append(root.val).append(SEP);
     }
 
-    private void traverse(TreeNode root, StringBuilder sb) {
 
+    private String serializePre(TreeNode root) {
+        StringBuilder sb = new StringBuilder();
+        serializePre(root, sb);
+        return sb.toString();
+    }
+    private void serializePre(TreeNode root, StringBuilder sb) {
         if (root == null) {
             sb.append(NULL).append(SEP);
             return;
         }
-        // 前序位置
+        // 先序
         sb.append(root.val).append(SEP);
-        traverse(root.left, sb);
-        traverse(root.right, sb);
+        serializePre(root.left, sb);
+        serializePre(root.right, sb);
     }
 
     // Decodes your encoded data to tree.
-    LinkedList<String> nodes = new LinkedList<String>();
     public TreeNode deserialize(String data) {
-        if (data == "") {
-            return null;
-        }
-        for (String str : data.split(SEP)) {
-            nodes.add(str);
-        }
-        // 前序
-//        return deserialize(nodes);
+
+        // 先序
+//        return deserializePre(data);
         // 后序
-//        return deserializePost(nodes);
+//        return deserializePost(data);
         // 层序
-        return deserializeLevel(nodes);
+        return deserializeLevel(data);
     }
 
-    private TreeNode deserializeLevel(LinkedList<String> nodes) {
-
-        if (nodes.isEmpty()) {
+    private TreeNode deserializeLevel(String data) {
+        if (data.isEmpty()) {
             return null;
         }
-        String nodeVal = nodes.get(0);
-        TreeNode node = new TreeNode(Integer.parseInt(nodeVal));
+        LinkedList<String> levelList = new LinkedList<>();
+        String[] split = data.split(SEP);
+        for (String s : split) {
+            levelList.add(s);
+        }
+        return deserializeLevel(levelList);
+
+    }
+    private TreeNode deserializeLevel(LinkedList<String> levelList) {
+
+        String str = levelList.removeFirst();
+        if (NULL.equals(str)) {
+            return null;
+        }
         Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(node);
-        for (int i = 1; i < nodes.size(); ) {
-            TreeNode root = queue.poll();
-            String leftVal = nodes.get(i++);
-            if (NULL.equals(leftVal)) {
-                root.left = null;
-            } else {
-                TreeNode leftNode = new TreeNode(Integer.parseInt(leftVal));
-                root.left = leftNode;
-                queue.offer(leftNode);
+        TreeNode root = new TreeNode(Integer.parseInt(str));
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+
+                // 左边
+                String leftStr = levelList.removeFirst();
+                if (!NULL.equals(leftStr)) {
+                    node.left = new TreeNode(Integer.parseInt(leftStr));
+                    queue.offer(node.left);
+                } else {
+                    node.left = null;
+                }
+
+                // 右边
+                String rightStr = levelList.removeFirst();
+                if (!NULL.equals(rightStr)) {
+                    node.right = new TreeNode(Integer.parseInt(rightStr));
+                    queue.offer(node.right);
+                } else {
+                    node.right = null;
+                }
+
             }
-            String rightVal = nodes.get(i++);
-            if (NULL.equals(rightVal)) {
-                root.right = null;
-            } else {
-                TreeNode rightNode = new TreeNode(Integer.parseInt(rightVal));
-                root.right = rightNode;
-                queue.offer(rightNode);
-            }
         }
-        return node;
-    }
-
-    private TreeNode deserializePost(LinkedList<String> nodes) {
-
-        if (nodes.isEmpty()) {
-            return null;
-        }
-        String nodeVal = nodes.removeLast();
-        if (NULL.equals(nodeVal)) {
-            return null;
-        }
-        TreeNode node = new TreeNode(Integer.parseInt(nodeVal));
-        node.right = deserializePost(nodes);
-        node.left = deserializePost(nodes);
-        return node;
-    }
-
-    private TreeNode deserialize(LinkedList<String> nodes) {
-        if (nodes.isEmpty()) {
-            return null;
-        }
-        // 找到根节点
-        String rootVal = nodes.removeFirst();
-        if (NULL.equals(rootVal)) {
-            return null;
-        }
-        TreeNode root = new TreeNode(Integer.parseInt(rootVal));
-        root.left = deserialize(nodes);
-        root.right = deserialize(nodes);
         return root;
+    }
+
+    private TreeNode deserializePost(String data) {
+        LinkedList<String> postList = new LinkedList<>();
+        String[] split = data.split(SEP);
+        for (String s : split) {
+            postList.add(s);
+        }
+        return deserializePost(postList);
+
+    }
+
+    private TreeNode deserializePost(LinkedList<String> postList) {
+
+        String str = postList.removeLast();
+        if (NULL.equals(str)) {
+            return null;
+        }
+        TreeNode node = new TreeNode(Integer.parseInt(str));
+        node.right = deserializePost(postList);
+        node.left = deserializePost(postList);
+        return node;
+    }
+
+    private TreeNode deserializePre(String data) {
+        LinkedList<String> preList = new LinkedList<>();
+        String[] split = data.split(SEP);
+        for (String s : split) {
+            preList.add(s);
+        }
+        return deserializePre(preList);
+    }
+
+    private TreeNode deserializePre(LinkedList<String> preList) {
+
+        String str = preList.removeFirst();
+        if (NULL.equals(str)) {
+            return null;
+        }
+
+        TreeNode node = new TreeNode(Integer.parseInt(str));
+        node.left = deserializePre(preList);
+        node.right = deserializePre(preList);
+        return node;
     }
 }
 

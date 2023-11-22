@@ -2060,6 +2060,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[617]合并二叉树.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[617]合并二叉树.md" />
+              <option name="frontendQuestionId" value="leetcode.cn617" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[617]合并二叉树.java" />
+              <option name="titleSlug" value="merge-two-binary-trees" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[61]旋转链表.java">
           <value>
             <LeetcodeEditor>
@@ -2500,6 +2511,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[863]二叉树中所有距离为 K 的结点.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[863]二叉树中所有距离为 K 的结点.md" />
+              <option name="frontendQuestionId" value="leetcode.cn863" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[863]二叉树中所有距离为 K 的结点.java" />
+              <option name="titleSlug" value="all-nodes-distance-k-in-binary-tree" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[865]具有所有最深节点的最小子树.java">
           <value>
             <LeetcodeEditor>
@@ -2706,6 +2728,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[94]二叉树的中序遍历.java" />
               <option name="titleSlug" value="binary-tree-inorder-traversal" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[951]翻转等价二叉树.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[951]翻转等价二叉树.md" />
+              <option name="frontendQuestionId" value="leetcode.cn951" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[951]翻转等价二叉树.java" />
+              <option name="titleSlug" value="flip-equivalent-binary-trees" />
             </LeetcodeEditor>
           </value>
         </entry>

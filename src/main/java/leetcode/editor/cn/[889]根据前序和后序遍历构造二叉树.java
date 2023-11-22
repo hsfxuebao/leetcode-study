@@ -39,23 +39,23 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 数组 | 哈希表 | 分治 | 二叉树 
 //
-// 👍 296, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 330, 👎 0 
 //
 //
 //
 //
 
-import common.TreeNode;
-
-import javax.swing.event.TreeExpansionEvent;
 import java.util.HashMap;
 import java.util.Map;
+
+
+import common.TreeNode;
 
 /**
  * 根据前序和后序遍历构造二叉树
  *
  * @author hsfxuebao
- * 2023-02-12 14:54:32 
+ * 2023-11-22 19:40:45 
  */
 class P889_ConstructBinaryTreeFromPreorderAndPostorderTraversal{
     public static void main(String[] args) {
@@ -79,41 +79,37 @@ class P889_ConstructBinaryTreeFromPreorderAndPostorderTraversal{
  * }
  */
 class Solution {
-    private Map<Integer, Integer> postVal2IndexMap = new HashMap<>();
+    Map<Integer, Integer> postOrderMap = new HashMap<>();
     public TreeNode constructFromPrePost(int[] preorder, int[] postorder) {
-        for (int i = 0; i < postorder.length - 1; i++) {
-            
-            postVal2IndexMap.put(postorder[i], i);
+
+        for (int i = 0; i < postorder.length; i++) {
+            postOrderMap.put(postorder[i], i);
         }
-        return buildTree(preorder, 0, preorder.length - 1, postorder, 0, postorder.length - 1);
+        return constructFromPrePost(preorder, 0, preorder.length -1, postorder, 0, postorder.length - 1);
     }
 
-    private TreeNode buildTree(int[] preorder, int preStart, int preEnd, int[] postorder, int postStart, int postEnd) {
+    private TreeNode constructFromPrePost(int[] preorder, int preStart, int preEnd, int[] postorder, int postStart, int postEnd) {
+
         if (preStart > preEnd) {
             return null;
         }
         if (preStart == preEnd) {
-            return new TreeNode(preorder[preStart]);
+            return new TreeNode(preorder[preEnd]);
         }
+        // 根节点
+        int nodeVal = preorder[preStart];
 
-        // root 节点对应的值就是前序遍历数组的第⼀个元素
-        int rootVal = preorder[preStart];
-        // root.left 的值是前序遍历第⼆个元素
-        // 通过前序和后序遍历构造⼆叉树的关键在于通过左⼦树的根节点
-        // 确定 preorder 和 postorder 中左右⼦树的元素区间
-        int leftRootVal = preorder[preStart + 1];
-        // 找到 左子树对应的 索引
-        Integer leftRootIndex = postVal2IndexMap.get(leftRootVal);
+        // 左子树节点
+        // todo preStart 必须小于preEnd 不能等于
+        int leftNodeVal = preorder[preStart+1];
+        // 左子树节点对应的位置
+        int index = postOrderMap.get(leftNodeVal);
         // 左子树的长度
-        int leftLen = leftRootIndex - postStart + 1;
-
-        //
-        TreeNode root = new TreeNode(rootVal);
-        root.left = buildTree(preorder, preStart+1, preStart + leftLen,
-                postorder, postStart, leftRootIndex);
-        root.right = buildTree(preorder, preStart + leftLen + 1, preEnd,
-                postorder, leftRootIndex+1, preEnd);
-        return root;
+        int leftLen = index - postStart;
+        TreeNode node = new TreeNode(nodeVal);
+        node.left = constructFromPrePost(preorder, preStart+1, preStart+leftLen+1, postorder, postStart, postStart+leftLen);
+        node.right = constructFromPrePost(preorder, preStart+leftLen+1+1, preEnd, postorder, postStart+leftLen+1, postEnd-1);
+        return node;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

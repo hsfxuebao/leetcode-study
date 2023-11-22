@@ -35,22 +35,23 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 数组 | 哈希表 | 分治 | 二叉树 
 //
-// 👍 1861, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 2143, 👎 0 
 //
 //
 //
 //
-
-import common.TreeNode;
 
 import java.util.HashMap;
 import java.util.Map;
+
+
+import common.TreeNode;
 
 /**
  * 从前序与中序遍历序列构造二叉树
  *
  * @author hsfxuebao
- * 2023-02-09 09:41:47 
+ * 2023-11-22 19:05:57 
  */
 class P105_ConstructBinaryTreeFromPreorderAndInorderTraversal{
     public static void main(String[] args) {
@@ -74,34 +75,32 @@ class P105_ConstructBinaryTreeFromPreorderAndInorderTraversal{
  * }
  */
 class Solution {
-    private Map<Integer, Integer> inVal2IndexMap = new HashMap<>();
+
+    // 记录中序遍历值 和对应的index
+    Map<Integer, Integer> inOrderMap = new HashMap<>();
     public TreeNode buildTree(int[] preorder, int[] inorder) {
+
         for (int i = 0; i < inorder.length; i++) {
-            inVal2IndexMap.put(inorder[i], i);
+            inOrderMap.put(inorder[i], i);
         }
-        return buildTree(preorder, 0, preorder.length -1, inorder, 0, inorder.length - 1);
+        return buildTree(preorder, 0, preorder.length - 1, inorder, 0, inorder.length -1);
 
     }
 
-    /**
-        定义：前序遍历数组为 preorder[preStart..preEnd]，
-        中序遍历数组为 inorder[inStart..inEnd]，
-        构造这个⼆叉树并返回该⼆叉树的根节点
-    */
-    private TreeNode buildTree(int[] preorder, int preStart, int preEnd, int[] inorder, int inStart, int inEnd) {
+    private TreeNode buildTree(int[] preorder, int preStart, int preEnd,
+                               int[] inorder, int inStart, int inEnd) {
 
-        if (preStart > preEnd) {
+        if (preEnd < preStart) {
             return null;
         }
-        int rootVal = preorder[preStart];
-        int inIndex = inVal2IndexMap.get(rootVal);
-        int leftLen = inIndex - inStart;
-
-        // 构造当前跟节点
-        TreeNode root = new TreeNode(rootVal);
-        root.left = buildTree(preorder, preStart+1, preStart+leftLen, inorder, inStart, inIndex-1);
-        root.right = buildTree(preorder, preStart+leftLen+1, preEnd, inorder, inIndex+1, inEnd);
-        return root;
+        // 获取节点
+        int nodeVal = preorder[preStart];
+        TreeNode node  = new TreeNode(nodeVal);
+        // 在中序遍历中的索引
+        Integer len = inOrderMap.get(nodeVal) - inStart;
+        node.left = buildTree(preorder, preStart+1, preStart+len, inorder, inStart, inStart+len);
+        node.right = buildTree(preorder, preStart+len+1, preEnd, inorder, inStart+len+1, inEnd);
+        return node;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -35,22 +35,23 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 数组 | 哈希表 | 分治 | 二叉树 
 //
-// 👍 930, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1142, 👎 0 
 //
 //
 //
 //
-
-import common.TreeNode;
 
 import java.util.HashMap;
 import java.util.Map;
+
+
+import common.TreeNode;
 
 /**
  * 从中序与后序遍历序列构造二叉树
  *
  * @author hsfxuebao
- * 2023-02-10 09:48:20 
+ * 2023-11-22 19:24:09 
  */
 class P106_ConstructBinaryTreeFromInorderAndPostorderTraversal{
     public static void main(String[] args) {
@@ -74,30 +75,29 @@ class P106_ConstructBinaryTreeFromInorderAndPostorderTraversal{
  * }
  */
 class Solution {
-    private Map<Integer, Integer> inVal2IndexMap = new HashMap<>();
+
+    // 记录中序遍历值 和对应的index
+    Map<Integer, Integer> inOrderMap = new HashMap<>();
     public TreeNode buildTree(int[] inorder, int[] postorder) {
         for (int i = 0; i < inorder.length; i++) {
-            inVal2IndexMap.put(inorder[i], i);
+            inOrderMap.put(inorder[i], i);
         }
-        TreeNode treeNode = buildTree(inorder, 0, inorder.length - 1, 
-                postorder, 0, postorder.length - 1);
-        return treeNode;
+        return buildTree(postorder, 0, postorder.length - 1, inorder, 0, inorder.length -1);
     }
 
-    public TreeNode buildTree(int[] inorder, int inStart, int inEnd, int[] postorder, int postStart, int postEnd) {
-        if (inStart > inEnd) {
+    private TreeNode buildTree(int[] postorder, int postStart, int postEnd, int[] inorder, int inStart, int inEnd) {
+
+        if (postEnd < postStart) {
             return null;
         }
-        
-        int rootVal = postorder[postEnd];
-        // 中序 中找到  root节点
-        Integer inIndex = inVal2IndexMap.get(rootVal);
-        // 左子树 长度
-        int leftLen = inIndex - inStart;
-        TreeNode rootNode = new TreeNode(rootVal);
-        rootNode.left = buildTree(inorder, inStart, inIndex - 1, postorder, postStart, postStart+leftLen-1);
-        rootNode.right = buildTree(inorder, inIndex+1, inEnd, postorder, postStart+leftLen, postEnd-1);
-        return rootNode;
+        int nodeVal = postorder[postEnd];
+        TreeNode node = new TreeNode(nodeVal);
+        // 中序遍历 获取位置
+        int len = inOrderMap.get(nodeVal) - inStart;
+
+        node.left = buildTree(postorder, postStart, postStart+len-1, inorder, inStart, inStart+len-1);
+        node.right = buildTree(postorder,postStart+len, postEnd-1 , inorder, inStart+len+1, inEnd);
+        return node;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
