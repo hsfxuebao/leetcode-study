@@ -1,6 +1,6 @@
 package leetcode.editor.cn;
 
-//给定一个整数数组 prices ，它的第 i 个元素 prices[i] 是一支给定的股票在第 i 天的价格，和一个整型 k 。 
+//给你一个整数数组 prices 和一个整数 k ，其中 prices[i] 是某支给定的股票在第 i 天的价格。 
 //
 // 设计一个算法来计算你所能获取的最大利润。你最多可以完成 k 笔交易。也就是说，你最多可以买 k 次，卖 k 次。 
 //
@@ -29,14 +29,14 @@ package leetcode.editor.cn;
 // 提示： 
 //
 // 
-// 0 <= k <= 100 
-// 0 <= prices.length <= 1000 
+// 1 <= k <= 100 
+// 1 <= prices.length <= 1000 
 // 0 <= prices[i] <= 1000 
 // 
 //
 // Related Topics数组 | 动态规划 
 //
-// 👍 940, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1116, 👎 0 
 //
 //
 //
@@ -46,7 +46,7 @@ package leetcode.editor.cn;
  * 买卖股票的最佳时机 IV
  *
  * @author hsfxuebao
- * 2023-05-15 21:54:22 
+ * 2023-11-23 20:55:22 
  */
 class P188_BestTimeToBuyAndSellStockIv{
     public static void main(String[] args) {
@@ -55,54 +55,31 @@ class P188_BestTimeToBuyAndSellStockIv{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int maxProfit(int k, int[] prices) {
+    public int maxProfit(int n, int[] prices) {
 
-        // k为正无穷
-        if (k > prices.length / 2) {
-            return maxProfitNotK(prices);
+        if (prices == null) {
+            return 0;
+        }
+        int length = prices.length;
+        int maxK = n;
+        if (maxK > length / 2) {
+            maxK = length /2;
         }
 
-        return maxProfit_k(prices, k);
-
-    }
-
-
-        public int maxProfit_k(int[] prices, int maxK) {
-            int[][][] dp = new int[prices.length][maxK+1][2];
-
-            for (int i = 0; i < prices.length; i++) {
-                for (int k = maxK; k >= 1; k--) {
-                    // base case
-                    if (i - 1 == -1) {
-                        dp[0][k][0] = 0;
-                        dp[0][k][1] = -prices[0];
-                        continue;
-                    }
-                    dp[i][k][0] = Math.max(dp[i-1][k][0], dp[i-1][k][1] + prices[i]);
-                    dp[i][k][1] = Math.max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i]);
-
+        int[][][] dp = new int[prices.length][maxK+1][2];
+        for (int i = 0; i < prices.length; i++) {
+            for (int k = maxK; k > 0; k--) {
+                if (i == 0) {
+                    dp[i][k][0] = 0;
+                    dp[i][k][1] = -prices[i];
+                } else {
+                    dp[i][k][0] = Math.max(dp[i-1][k][0], dp[i-1][k][1]+prices[i]);
+                    dp[i][k][1] = Math.max(dp[i-1][k][1], dp[i-1][k-1][0]-prices[i]);
                 }
             }
-            return dp[prices.length - 1][maxK][0];
         }
-
-        /**
-         * 买卖股票，k为正无穷
-         */
-        public int maxProfitNotK(int[] prices) {
-            int[][] dp = new int[prices.length][2];
-
-            // base case
-            dp[0][0] = 0;
-            dp[0][1] = -prices[0];
-
-            for (int i = 1; i < prices.length; i++) {
-
-                dp[i][0] = Math.max(dp[i-1][0], dp[i-1][1] + prices[i]);
-                dp[i][1] = Math.max(dp[i-1][1], dp[i-1][0] - prices[i]);
-            }
-            return dp[prices.length - 1][0];
-        }
+        return dp[prices.length-1][maxK][0];
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
  

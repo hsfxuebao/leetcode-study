@@ -51,7 +51,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 动态规划 
 //
-// 👍 1408, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1633, 👎 0 
 //
 //
 //
@@ -61,7 +61,7 @@ package leetcode.editor.cn;
  * 买卖股票的最佳时机 III
  *
  * @author hsfxuebao
- * 2023-05-15 21:39:36 
+ * 2023-11-23 20:42:26 
  */
 class P123_BestTimeToBuyAndSellStockIii{
     public static void main(String[] args) {
@@ -72,22 +72,23 @@ class P123_BestTimeToBuyAndSellStockIii{
 class Solution {
     public int maxProfit(int[] prices) {
         int maxK = 2;
+        if (prices == null) {
+            return 0;
+        }
         int[][][] dp = new int[prices.length][maxK+1][2];
-
         for (int i = 0; i < prices.length; i++) {
-            for (int k = maxK; k >= 1; k--) {
-                // base case
-                if (i - 1 == -1) {
-                    dp[0][k][0] = 0;
-                    dp[0][k][1] = -prices[0];
-                    continue;
+            for (int k = maxK; k > 0; k--) {
+                if (i == 0) {
+                    dp[i][k][0] = 0;
+                    dp[i][k][1] = -prices[i];
+                } else {
+                    dp[i][k][0] = Math.max(dp[i-1][k][0], dp[i-1][k][1]+prices[i]);
+                    dp[i][k][1] = Math.max(dp[i-1][k][1], dp[i-1][k-1][0]-prices[i]);
                 }
-                dp[i][k][0] = Math.max(dp[i-1][k][0], dp[i-1][k][1] + prices[i]);
-                dp[i][k][1] = Math.max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i]);
-
             }
         }
-        return dp[prices.length - 1][2][0];
+        return dp[prices.length-1][maxK][0];
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

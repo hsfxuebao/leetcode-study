@@ -43,7 +43,7 @@ package leetcode.editor.cn;
 //
 // Related Topics贪心 | 数组 | 动态规划 
 //
-// 👍 2120, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 2357, 👎 0 
 //
 //
 //
@@ -53,7 +53,7 @@ package leetcode.editor.cn;
  * 买卖股票的最佳时机 II
  *
  * @author hsfxuebao
- * 2023-05-15 21:04:00 
+ * 2023-11-23 19:50:54 
  */
 class P122_BestTimeToBuyAndSellStockIi{
     public static void main(String[] args) {
@@ -62,40 +62,27 @@ class P122_BestTimeToBuyAndSellStockIi{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-        /**
-         * 二维dp
-         * @param prices
-         * @return
-         */
-    public int maxProfit1(int[] prices) {
+    public int maxProfit(int[] prices) {
+
+        if (prices == null || prices.length <= 1) {
+            return 0;
+        }
+
+        // dp[i][j] 表示第i天 是否持有股票 1-持有股票 0-没有持有股票
         int[][] dp = new int[prices.length][2];
+        for (int i = 0; i < prices.length; i++) {
 
-        // base case
-        dp[0][0] = 0;
-        dp[0][1] = -prices[0];
-
-        for (int i = 1; i < prices.length; i++) {
-
-            dp[i][0] = Math.max(dp[i-1][0], dp[i-1][1] + prices[i]);
-            dp[i][1] = Math.max(dp[i-1][1], dp[i-1][0] - prices[i]);
-        }
-        return dp[prices.length - 1][0];
-    }
-
-        /**
-         * 一维dp
-         */
-        public int maxProfit(int[] prices) {
-            // base case
-            int dp_i_0 = 0;
-            int dp_i_1 = -prices[0];
-
-            for (int i = 1; i < prices.length; i++) {
-                dp_i_0 = Math.max(dp_i_0, dp_i_1 + prices[i]);
-                dp_i_1 = Math.max(dp_i_1, dp_i_0 -prices[i]);
+            if (i == 0) {
+                dp[i][0] = 0;
+                dp[i][1] = -prices[i];
+            } else {
+                dp[i][0] = Math.max(dp[i-1][0], dp[i-1][1] +prices[i]);
+                dp[i][1] = Math.max(dp[i-1][1], dp[i-1][0] - prices[i]);
             }
-            return dp_i_0;
         }
+        return dp[prices.length-1][0];
+
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
  

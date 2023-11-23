@@ -60,35 +60,25 @@ class P714_BestTimeToBuyAndSellStockWithTransactionFee{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int maxProfit1(int[] prices, int fee) {
+    public int maxProfit(int[] prices, int fee) {
+        if (prices == null || prices.length <= 1) {
+            return 0;
+        }
+
+        // dp[i][j] 表示第i天 是否持有股票 1-持有股票 0-没有持有股票
         int[][] dp = new int[prices.length][2];
+        for (int i = 0; i < prices.length; i++) {
 
-        // base case
-        dp[0][0] = 0;
-        dp[0][1] = -prices[0] - fee;
-
-        for (int i = 1; i < prices.length; i++) {
-
-            dp[i][0] = Math.max(dp[i-1][0], dp[i-1][1] + prices[i]);
-            dp[i][1] = Math.max(dp[i-1][1], dp[i-1][0] - prices[i] - fee);
+            if (i == 0) {
+                dp[i][0] = 0;
+                dp[i][1] = -prices[i]-fee;
+            } else {
+                dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]);
+                dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] - prices[i] - fee);
+            }
         }
         return dp[prices.length - 1][0];
     }
-
-        /**
-         * 一维dp
-         */
-        public int maxProfit(int[] prices, int fee) {
-            // base case
-            int dp_i_0 = 0;
-            int dp_i_1 = -prices[0] - fee;
-
-            for (int i = 1; i < prices.length; i++) {
-                dp_i_0 = Math.max(dp_i_0, dp_i_1 + prices[i]);
-                dp_i_1 = Math.max(dp_i_1, dp_i_0 -prices[i] - fee);
-            }
-            return dp_i_0;
-        }
 }
 //leetcode submit region end(Prohibit modification and deletion)
  
