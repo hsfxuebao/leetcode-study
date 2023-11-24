@@ -54,7 +54,7 @@ package leetcode.editor.cn;
 //
 // Related Topics哈希表 | 字符串 | 滑动窗口 
 //
-// 👍 2429, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 2753, 👎 0 
 //
 //
 //
@@ -67,7 +67,7 @@ import java.util.Map;
  * 最小覆盖子串
  *
  * @author hsfxuebao
- * 2023-04-04 21:41:13 
+ * 2023-11-24 09:53:01 
  */
 class P76_MinimumWindowSubstring{
     public static void main(String[] args) {
@@ -77,55 +77,51 @@ class P76_MinimumWindowSubstring{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String minWindow(String s, String t) {
-        if (t.length() > s.length()) {
-            return "";
-        }
 
-        // need的子串
+        String res = "";
+        int minLen = Integer.MAX_VALUE;
         Map<Character, Integer> needMap = new HashMap<>();
         Map<Character, Integer> windowsMap = new HashMap<>();
+        // 记录满足t单个字符的数量
         int valid = 0;
         for (int i = 0; i < t.length(); i++) {
             char ch = t.charAt(i);
             int oldVal = needMap.getOrDefault(ch, 0);
             needMap.put(ch, oldVal+1);
         }
-        int left = 0, right = 0;
-        int start = 0, len = Integer.MAX_VALUE;
-        while (right < s.length()) {
 
-            char ch = s.charAt(right);
+        int left = 0, right = 0;
+        while (right < s.length()) {
+            char c = s.charAt(right);
             right++;
-            if (needMap.containsKey(ch)) {
-                Integer oldVal = windowsMap.getOrDefault(ch, 0);
-                windowsMap.put(ch, oldVal+1);
-                if (needMap.get(ch).equals(oldVal + 1)) {
+            if (needMap.containsKey(c)) {
+                int newVal = windowsMap.getOrDefault(c, 0)+1;
+                windowsMap.put(c, newVal);
+                // 数量对上
+                if (newVal == needMap.get(c)) {
                     valid++;
                 }
             }
 
-             while (valid == needMap.size()) {
-                // 更新长度
-                 if (right - left < len) {
-                     start = left;
-                     len = right - left;
-                 }
-                 char chs = s.charAt(left);
-                 if (needMap.containsKey(chs)) {
-                     int oldVal = windowsMap.get(chs);
-                     if (needMap.get(chs).equals(oldVal)) {
-                         valid--;
-                     }
-                     windowsMap.put(chs, oldVal-1);
-                 }
-                 left++;
+            while (valid == needMap.size()) {
+                // 计算长度
+                int len = right - left;
+                if (len < minLen) {
+                    minLen = len;
+                    res = s.substring(left, right);
+                }
+                char ch = s.charAt(left);
+                left++;
+                if (needMap.containsKey(ch)) {
+                    int oldVal = windowsMap.get(ch);
+                    if (oldVal == needMap.get(ch)) {
+                        valid--;
+                    }
+                    windowsMap.put(ch, oldVal-1);
+                }
             }
-
         }
-        return len == Integer.MAX_VALUE ? "" : s.substring(start, start + len);
-
-
-
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

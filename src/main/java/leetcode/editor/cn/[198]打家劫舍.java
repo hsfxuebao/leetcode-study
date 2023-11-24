@@ -55,15 +55,31 @@ class P198_HouseRobber{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int rob(int[] nums) {
-       int dp[] = new int[nums.length+2];
-       // base case
-
-        for (int i = 2; i < dp.length; i++) {
-            dp[i] = Math.max(dp[i-1], dp[i-2] + nums[i-2]);
-        }
-        return dp[nums.length+1];
+       //
+//        return rob1(nums);
+        return rob2(nums);
     }
-}
+
+        private int rob2(int[] nums) {
+            int pre = 0, pre2 = 0;
+            int res = 0;
+            for (int i = 0; i < nums.length; i++) {
+                res = Math.max(pre, pre2+nums[i]);
+                pre2 = pre;
+                pre = res;
+            }
+            return res;
+        }
+
+
+        private int rob1(int[] nums) {
+            int[] dp = new int[nums.length+2];
+            for (int i = 2; i < dp.length; i++) {
+                dp[i] = Math.max(dp[i-1], dp[i-2] + nums[i-2]);
+            }
+            return dp[nums.length+1];
+        }
+    }
 //leetcode submit region end(Prohibit modification and deletion)
  
 }

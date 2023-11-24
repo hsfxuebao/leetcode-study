@@ -44,18 +44,14 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 深度优先搜索 | 动态规划 | 二叉树 
 //
-// 👍 1875, 👎 0 
+// 👍 1905, 👎 0 
 //
 //
 //
 //
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 
 
 import common.TreeNode;
@@ -64,7 +60,7 @@ import common.TreeNode;
  * 打家劫舍 III
  *
  * @author hsfxuebao
- * 2023-09-28 09:58:42 
+ * 2023-11-24 16:21:30 
  */
 class P337_HouseRobberIii{
     public static void main(String[] args) {
@@ -88,97 +84,32 @@ class P337_HouseRobberIii{
  * }
  */
 class Solution {
-    Map<TreeNode, Integer> map = new HashMap<>();
+    public int rob(TreeNode root) {
 
-    /**
-     * 递归 + 备忘录
-     */
-    public int rob1(TreeNode root) {
+        // 递归  超时了
+        // 递归+备忘录
+        return rob1(root);
+
+    }
+
+    Map<TreeNode, Integer> map = new HashMap<>();
+    // 返回当前节点，拿与不拿的最大值
+    private int rob1(TreeNode root) {
         if (root == null) {
             return 0;
         }
         if (map.containsKey(root)) {
             return map.get(root);
         }
-
-        // 抢
-        int do_it = root.val
-                + (root.left != null ? rob1(root.left.left) + rob1(root.left.right) : 0)
-                + (root.right != null ? rob1(root.right.left) + rob1(root.right.right) : 0);
-        // 不抢
-        int do_not_it = rob1(root.left) + rob1(root.right);
-        int res = Math.max(do_it, do_not_it);
+        int take = root.val +
+                (root.left != null ? (rob1(root.left.left)+rob1(root.left.right)):0) +
+                (root.right != null ? (rob1(root.right.left)+rob1(root.right.right)):0);
+        int notTake = (root.left != null ? rob1(root.left):0) +
+                (root.right != null ? rob1(root.right):0);
+        int res = Math.max(take, notTake);
         map.put(root, res);
         return res;
-    }
 
-    int rob2(TreeNode root) {
-        int[] res = dp(root);
-        return Math.max(res[0], res[1]);
-    }
-
-    /* 返回一个大小为 2 的数组 arr
-    arr[0] 表示不抢 root 的话，得到的最大钱数
-    arr[1] 表示抢 root 的话，得到的最大钱数 */
-    int[] dp(TreeNode root) {
-        if (root == null)
-            return new int[]{0, 0};
-        int[] left = dp(root.left);
-        int[] right = dp(root.right);
-        // 抢，下家就不能抢了
-        int rob = root.val + left[0] + right[0];
-        // 不抢，下家可抢可不抢，取决于收益大小
-        int not_rob = Math.max(left[0], left[1])
-                + Math.max(right[0], right[1]);
-//        int not_rob = left[1] + right[1];
-
-        return new int[]{not_rob, rob};
-    }
-
-
-    // todo 层序遍历是不可以的
-    int rob(TreeNode root) {
-        // 层序遍历
-        if (root == null) {
-            return 0;
-        }
-
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
-        List<Integer> levelSumList = new ArrayList<>();
-
-        while (!queue.isEmpty()) {
-            int levelSize = queue.size();
-            int sum = 0;
-            for (int i = 0; i < levelSize; i++) {
-                TreeNode node = queue.poll();
-                sum += node.val;
-                if (node.left != null) {
-                    queue.offer(node.left);
-                }
-                if (node.right != null) {
-                    queue.offer(node.right);
-                }
-            }
-            levelSumList.add(sum);
-        }
-
-        int[] nums = new int[levelSumList.size()];
-        for (int i = 0; i < levelSumList.size(); i++) {
-            nums[i] = levelSumList.get(i);
-        }
-        return rob(nums);
-
-
-    }
-    public int rob(int[] nums) {
-        int dp[] = new int[nums.length+2];
-        // base case
-
-        for (int i = 2; i < dp.length; i++) {
-            dp[i] = Math.max(dp[i-1], dp[i-2] + nums[i-2]);
-        }
-        return dp[nums.length+1];
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

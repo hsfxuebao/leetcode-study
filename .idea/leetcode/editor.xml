@@ -399,6 +399,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[129]求根节点到叶节点数字之和.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[129]求根节点到叶节点数字之和.md" />
+              <option name="frontendQuestionId" value="leetcode.cn129" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[129]求根节点到叶节点数字之和.java" />
+              <option name="titleSlug" value="sum-root-to-leaf-numbers" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1302]层数最深叶子节点的和.java">
           <value>
             <LeetcodeEditor>
@@ -674,6 +685,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[162]寻找峰值.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[162]寻找峰值.md" />
+              <option name="frontendQuestionId" value="leetcode.cn162" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[162]寻找峰值.java" />
+              <option name="titleSlug" value="find-peak-element" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1631]最小体力消耗路径.java">
           <value>
             <LeetcodeEditor>
@@ -682,6 +704,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[1631]最小体力消耗路径.java" />
               <option name="titleSlug" value="path-with-minimum-effort" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[165]比较版本号.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[165]比较版本号.md" />
+              <option name="frontendQuestionId" value="leetcode.cn165" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[165]比较版本号.java" />
+              <option name="titleSlug" value="compare-version-numbers" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -1675,6 +1708,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[437]路径总和 III.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[437]路径总和 III.md" />
+              <option name="frontendQuestionId" value="leetcode.cn437" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[437]路径总和 III.java" />
+              <option name="titleSlug" value="path-sum-iii" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[438]找到字符串中所有字母异位词.java">
           <value>
             <LeetcodeEditor>
@@ -2266,6 +2310,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[695]岛屿的最大面积.java" />
               <option name="titleSlug" value="max-area-of-island" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[69]x 的平方根 .java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/doc/content/[69]x 的平方根 .md" />
+              <option name="frontendQuestionId" value="leetcode.cn69" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/src/main/java/leetcode/editor/cn/[69]x 的平方根 .java" />
+              <option name="titleSlug" value="sqrtx" />
             </LeetcodeEditor>
           </value>
         </entry>

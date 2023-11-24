@@ -41,7 +41,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 动态规划 
 //
-// 👍 1338, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1530, 👎 0 
 //
 //
 //
@@ -51,7 +51,7 @@ package leetcode.editor.cn;
  * 打家劫舍 II
  *
  * @author hsfxuebao
- * 2023-04-18 21:21:50 
+ * 2023-11-24 15:53:17 
  */
 class P213_HouseRobberIi{
     public static void main(String[] args) {
@@ -61,26 +61,25 @@ class P213_HouseRobberIi{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int rob(int[] nums) {
-        int m = nums.length;
-        if (m == 1) {
+        if (nums == null) {
+            return 0;
+        }
+        if (nums.length == 1) {
             return nums[0];
         }
-        return Math.max(rob(nums, 0, m-2), rob(nums, 1, m-1));
-
+        return Math.max(rob(nums, 0, nums.length -1), rob(nums, 1, nums.length));
     }
 
         private int rob(int[] nums, int start, int end) {
 
-            int pre = 0, pre2 = 0;
-            int res = 0;
-            for (int i = start; i <= end ; i++) {
-                res = Math.max(pre2 + nums[i], pre);
-                pre2 = pre;
-                pre = res;
+            int[] dp = new int[end+2];
+            for (int i = start+2; i < dp.length; i++) {
+                dp[i] = Math.max(dp[i-1], dp[i-2]+nums[i-2]);
             }
-            return res;
-
+            return dp[end+1];
         }
+
+
     }
 //leetcode submit region end(Prohibit modification and deletion)
  

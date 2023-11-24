@@ -1,6 +1,5 @@
 package leetcode.editor.cn;
 
-import static com.sun.prism.image.CompoundCoords.find1;
 
 
 import common.TreeNode;

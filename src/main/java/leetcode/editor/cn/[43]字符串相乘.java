@@ -50,33 +50,34 @@ class P43_MultiplyStrings{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String multiply(String num1, String num2) {
-        int num1Len = num1.length();
-        int num2Len = num2.length();
-        int[] res = new int[num1Len+num2Len];
-        for (int i = num1Len-1; i >= 0; i--) {
-            for (int j = num2Len-1; j >= 0; j--) {
-                int mul = (num1.charAt(i)-'0') * (num2.charAt(j)-'0');
-//                int p1 = i+j, p2 = i+j+1;
-//                int sum = cal + res[p2];
-//                res[p2] = sum % 10;
-//                res[p1] += sum /10;
-                // 乘积在 res 对应的索引位置
-                int p1 = i + j, p2 = i + j + 1;
-                // 叠加到 res 上
-                int sum = mul + res[p2];
-                res[p2] = sum % 10;
-                res[p1] += sum / 10;
+
+
+
+        int len1 = num1.length();
+        int len2 = num2.length();
+        int[] result = new int[len1+len2];
+
+        for (int i = len1 - 1; i >= 0; i--) {
+            for (int j = len2 - 1; j >= 0; j--) {
+                // 高位
+                int p1 = i+j;
+                // 低位
+                int p2 = i+j+1;
+                int sum = (num1.charAt(i) - '0') * (num2.charAt(j) - '0');
+                // 低位相加有可能超过10
+                sum += result[p2];
+                result[p2] = sum %10;
+                result[p1] += sum/10;
             }
         }
 
-        //
-        StringBuilder sb = new StringBuilder();
         int i = 0;
-        while (i < res.length && res[i] == 0) {
+        while (i < result.length && result[i] == 0) {
             i++;
         }
-        for (int j = i; j < res.length; j++) {
-            sb.append(res[j]);
+        StringBuilder sb = new StringBuilder();
+        for (; i < result.length; i++) {
+            sb.append(result[i]);
         }
         return sb.toString().length() == 0 ? "0" : sb.toString();
         
