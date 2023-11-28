@@ -60,7 +60,7 @@ package leetcode.editor.cn;
 //
 // Related Topics设计 | 哈希表 | 链表 | 双向链表 
 //
-// 👍 2703, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 3017, 👎 0 
 //
 //
 //
@@ -73,7 +73,7 @@ import java.util.Map;
  * LRU 缓存
  *
  * @author hsfxuebao
- * 2023-06-01 19:36:18 
+ * 2023-11-28 09:49:39 
  */
 class P146_LruCache{
     public static void main(String[] args) {
@@ -82,131 +82,126 @@ class P146_LruCache{
     //leetcode submit region begin(Prohibit modification and deletion)
 class LRUCache {
 
-
         int cap;
-        DoubleList cache;
+        DoubleList doubleList;
         Map<Integer, Node> map;
 
-        public LRUCache(int cap){
-            this.cap = cap;
-            this.cache = new DoubleList();
-            this.map = new HashMap<>();
+    public LRUCache(int capacity) {
+        this.cap = capacity;
+        this.doubleList = new DoubleList();
+        this.map = new HashMap<>();
+    }
+    
+    public int get(int key) {
+        if (map.containsKey(key)) {
+            // 将节点移到最前面
+            makeRecently(key);
+            return map.get(key).val;
         }
-
-        public Integer get(int key){
-            if (!map.containsKey(key)) {
-                return -1;
-            }
-            // 将key数据提升到 最末尾
-            mackRencently(key);
-            return map.get(key).value;
-        }
+        return -1;
+    }
 
 
-        // 将key 提升到最近访问的位置
-        private void mackRencently(int key) {
-            Node node = map.get(key);
-            cache.removeNode(node);
-            cache.addLast(node);
-        }
 
-        public void put(int key, int value) {
-
-            // 若map存在，可能就是更新value值
-            if (map.containsKey(key)) {
-                // 删除 之前的值
-                deleteKey(key);
-                // 添加新的值
-                addRecently(key, value);
-                return;
-            }
-
-            // 判断是否超过容量
-            if (cache.size >= cap) {
-                // 删除链表最前端的数据
-                removeLastRecently();
-            }
+    public void put(int key, int value) {
+        // key的更新
+        if (map.containsKey(key)) {
+            // 删除老的节点，添加新的节点
+            deleteKey(key);
             addRecently(key, value);
-
+           return;
         }
+        // 超过容量
+        if (doubleList.size >= cap) {
+            // 删除最老的节点
+            removeLastRecently();
+        }
+        // 添加新的节点
+        addRecently(key, value);
+    }
 
-        private void removeLastRecently() {
-            Node node = cache.removeFirst();
-            map.remove(node.key);
-
+        private void deleteKey(int key) {
+            Node node = map.get(key);
+            doubleList.deleteNode(node);
+            map.remove(key);
         }
 
         private void addRecently(int key, int value) {
             Node node = new Node(key, value);
-            cache.addLast(node);
+            doubleList.addLast(node);
             map.put(key, node);
-
         }
 
-        // 删除key
-        private void deleteKey(int key) {
+        private void removeLastRecently() {
+            Node node = doubleList.removeFirst();
+            map.remove(node.key);
+        }
+
+
+        // 将key移到最前面
+        private void makeRecently(int key) {
             Node node = map.get(key);
-            cache.removeNode(node);
-            map.remove(key);
+            doubleList.deleteNode(node);
+            doubleList.addLast(node);
         }
 
 
-        public class DoubleList {
+    class DoubleList {
 
-            int size;
-            Node head;
-            Node tail;
+        private int size;
+        private Node head;
+        private Node tail;
 
-            public DoubleList(){
-                head = new Node(0,0);
-                tail = new Node(0,0);
-                head.next = tail;
-                tail.pre = head;
-                size = 0;
-            }
-
-            // 添加到末尾
-            public void addLast(Node node) {
-                node.pre = tail.pre;
-                node.next = tail;
-                tail.pre.next = node;
-                tail.pre = node;
-                size++;
-            }
-            public void removeNode(Node node) {
-                node.pre.next = node.next;
-                node.next.pre = node.pre;
-                size--;
-            }
-
-            public Node removeFirst(){
-                if (head.next == tail) {
-                    return null;
-                }
-                Node firstNode = head.next;
-                removeNode(firstNode);
-                return firstNode;
-            }
-
-
-
+        public DoubleList() {
+            this.size = 0;
+            this.head = new Node(0, 0);
+            this.tail = new Node(0, 0);
+            this.head.next = tail;
+            this.tail.pre = head;
         }
 
+        // 往末尾添加元素
+        public void addLast(Node node) {
+            node.pre = tail.pre;
+            node.next = tail;
+            tail.pre.next = node;
+            tail.pre = node;
+            size++;
+        }
 
+        // 删除一个元素
+        public void deleteNode(Node node) {
+            node.next.pre = node.pre;
+            node.pre.next = node.next;
+            size--;
+        }
 
-        public class Node {
-            int key,value;
-            Node pre;
-            Node next;
+        public Node removeFirst() {
 
-            public Node(int key, int value){
-                this.key = key;
-                this.value = value;
-            }
+            Node cur = head.next;
+            deleteNode(cur);
+            return cur;
+
         }
 
 
 
+
+    }
+
+
+    class Node {
+        private int key;
+        private int val;
+        private Node pre;
+        private Node next;
+
+        public Node(int key, int val) {
+            this.key = key;
+            this.val = val;
+        }
+
+    }
 
 }
 

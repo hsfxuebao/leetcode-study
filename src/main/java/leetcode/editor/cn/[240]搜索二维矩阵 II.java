@@ -41,7 +41,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 二分查找 | 分治 | 矩阵 
 //
-// 👍 1250, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1386, 👎 0 
 //
 //
 //
@@ -51,7 +51,7 @@ package leetcode.editor.cn;
  * 搜索二维矩阵 II
  *
  * @author hsfxuebao
- * 2023-04-02 09:46:13 
+ * 2023-11-27 10:07:16 
  */
 class P240_SearchA2dMatrixIi{
     public static void main(String[] args) {
@@ -60,26 +60,27 @@ class P240_SearchA2dMatrixIi{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-
     public boolean searchMatrix(int[][] matrix, int target) {
+
         if (matrix == null) {
             return false;
         }
+        int row = matrix.length;
+        int col = matrix[0].length;
 
-        // 初始化在 右上角，大于target 往下移动，小于target往左移动
-        int row = 0, col = matrix[0].length - 1;
-        while (row < matrix.length && col >= 0) {
+        int i = 0, j = col-1;
+        while (i < row && j >= 0) {
 
-            if (matrix[row][col] == target) {
+            if (matrix[i][j] > target) {
+                j--;
+            } else if (matrix[i][j] < target) {
+                i++;
+            } else {
                 return true;
-            } else if (matrix[row][col] > target) {
-                col--;
-            } else if (matrix[row][col] < target) {
-                row++;
             }
-
         }
         return false;
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

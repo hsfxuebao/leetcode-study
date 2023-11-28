@@ -47,7 +47,7 @@ package leetcode.editor.cn;
 //
 // Related Topics栈 | 设计 
 //
-// 👍 1656, 👎 0 
+// 👍 1688, 👎 0 
 //
 //
 //
@@ -59,40 +59,40 @@ import java.util.Stack;
  * 最小栈
  *
  * @author hsfxuebao
- * 2023-09-20 17:12:04 
+ * 2023-11-27 09:35:55 
  */
 class P155_MinStack{
     public static void main(String[] args) {
-//        Solution solution = new P155_MinStack().new Solution();
-        
+
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class MinStack {
 
-        Stack<Integer> stack = new Stack<>();
-        Stack<Integer> minStack = new Stack<>();
+        private Stack<Integer> stack;
+        private Stack<Integer> minStack;
 
     public MinStack() {
-
+        stack = new Stack<>();
+        minStack = new Stack<>();
     }
     
     public void push(int val) {
+
         stack.push(val);
+        // 比较大小，放入到minStack
         if (minStack.isEmpty()) {
             minStack.push(val);
         } else {
-
-            Integer value = minStack.peek();
-            int minValue = Math.min(val, value);
-            minStack.push(minValue);
-
+            int peek = minStack.peek();
+            int value = val < peek ? val : peek;
+            minStack.push(value);
         }
 
     }
     
     public void pop() {
-        stack.pop();
         minStack.pop();
+        stack.pop();
     }
     
     public int top() {

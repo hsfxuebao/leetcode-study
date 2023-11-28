@@ -59,27 +59,26 @@ class P74_SearchA2dMatrix{
 class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
 
-        // 将二维数组 转换成一维数组
-        // row = 位置 / 列的长度， col = 位置 % 列的长度
-        int colLen = matrix[0].length;
-        int rowLen = matrix.length;
+        // 将二维数据转成以为数组
+        int row = matrix.length;
+        int col = matrix[0].length;
+        int left = 0, right = row * col - 1;
 
-        int left = 0, right = rowLen * colLen - 1;
         while (left <= right) {
 
             int mid = left + (right - left)/2;
-            int row = mid / colLen;
-            int col = mid % colLen;
-            if (matrix[row][col] == target) {
+            // 换算成二维矩阵的行和列
+            int i = mid / col;
+            int j = mid % col;
+            if (matrix[i][j] > target) {
+                right--;
+            } else if (matrix[i][j] < target) {
+                left++;
+            } else {
                 return true;
-            } else if (matrix[row][col] > target) {
-                right = mid - 1;
-            } else if (matrix[row][col] < target) {
-                left = mid + 1;
             }
         }
         return false;
-
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

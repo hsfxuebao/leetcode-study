@@ -35,7 +35,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 双指针 
 //
-// 👍 1951, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 2233, 👎 0 
 //
 //
 //
@@ -45,7 +45,7 @@ package leetcode.editor.cn;
  * 移动零
  *
  * @author hsfxuebao
- * 2023-04-05 10:27:38 
+ * 2023-11-25 21:37:29 
  */
 class P283_MoveZeroes{
     public static void main(String[] args) {
@@ -55,16 +55,18 @@ class P283_MoveZeroes{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public void moveZeroes(int[] nums) {
-        int slow = 0, fast = 0;
-        while (fast < nums.length) {
-            if (nums[fast] != 0) {
-                nums[slow] = nums[fast];
-                slow++;
-            }
-            fast++;
-        }
 
-        for (int i = slow; i < nums.length; i++) {
+        int left = 0, right = 0;
+        while (right < nums.length) {
+
+            if (nums[right] != 0) {
+                nums[left] = nums[right];
+                left++;
+            }
+            right++;
+        }
+        // 将left 后面的元素 用0填充
+        for (int i = left; i < nums.length; i++) {
             nums[i] = 0;
         }
     }

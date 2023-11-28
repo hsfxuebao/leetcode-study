@@ -40,7 +40,7 @@ package leetcode.editor.cn;
 //
 // Related Topics广度优先搜索 | 数组 | 动态规划 
 //
-// 👍 2402, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 2633, 👎 0 
 //
 //
 //
@@ -52,7 +52,7 @@ import java.util.Arrays;
  * 零钱兑换
  *
  * @author hsfxuebao
- * 2023-04-20 21:12:27 
+ * 2023-11-26 16:40:49 
  */
 class P322_CoinChange{
     public static void main(String[] args) {
@@ -61,44 +61,33 @@ class P322_CoinChange{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-        /**
-         * 二维dp
-         */
     public int coinChange(int[] coins, int amount) {
 
-        // dp[i][j] 表示第i面值的金额，凑成金额j，需要最少硬币数
         int[][] dp = new int[coins.length+1][amount+1];
-        // 全部填充 amount+1的数值，若dp[i][j] = amount+1，表示凑不成改金额
-        for (int i = 0; i <= coins.length; i++) {
-            Arrays.fill(dp[i], amount+1);
+        // 初始化值
+        for (int[] ints : dp) {
+            // 对于每一行赋值 amount+1
+            Arrays.fill(ints, amount+1);
         }
-        // base case j=0时，dp[i][0] = 0
-        for (int i = 0; i <= coins.length; i++) {
-            dp[i][0] = 0;
-        }
+        // 对于第一列 赋值为0
+        dp[0][0] = 0;
 
-        for (int i = 1; i <= coins.length; i++) {
-            for (int j = 1; j <= amount; j++) {
+        for (int i = 1; i < dp.length; i++) {
+            for (int j = 0; j < dp[0].length; j++) {
 
-                // 可以拿 coins[i]对应的金额面值
-                if (j - coins[i - 1] >= 0) {
-                    // min(拿，不拿)
-                    // 可以重复拿
+                if (j - coins[i-1] >= 0) {
+
+                    // 不拿  拿  取最小值
                     dp[i][j] = Math.min(dp[i-1][j], dp[i][j-coins[i-1]]+1);
                 } else {
-
+                    // 不拿
                     dp[i][j] = dp[i-1][j];
-
                 }
-
             }
         }
-        return dp[coins.length][amount] == amount+1 ? -1 : dp[coins.length][amount];
+        return dp[coins.length][amount] == amount+1 ? -1 :dp[coins.length][amount];
 
     }
-
-
-
 }
 //leetcode submit region end(Prohibit modification and deletion)
  

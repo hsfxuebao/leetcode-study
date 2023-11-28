@@ -42,21 +42,20 @@ package leetcode.editor.cn;
 //
 // Related Topics队列 | 数组 | 滑动窗口 | 单调队列 | 堆（优先队列） 
 //
-// 👍 2509, 👎 0 
+// 👍 2617, 👎 0 
 //
 //
 //
 //
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.Queue;
 
 /**
  * 滑动窗口最大值
  *
  * @author hsfxuebao
- * 2023-09-14 21:08:34 
+ * 2023-11-27 09:49:56 
  */
 class P239_SlidingWindowMaximum{
     public static void main(String[] args) {
@@ -67,52 +66,59 @@ class P239_SlidingWindowMaximum{
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
 
+        // 初始化
         MonotonicQueue monotonicQueue = new MonotonicQueue();
-        List<Integer> result = new ArrayList<>();
-        int left = 0, right = 0;
-
-
-        for (int i = 0; i < nums.length; i++) {
-            if (i < k - 1) {
-                monotonicQueue.push(nums[i]);
-            } else {
-                monotonicQueue.push(nums[i]);
-                result.add(monotonicQueue.max());
-                monotonicQueue.pop(nums[i-k+1]);
-            }
+        for (int i = 0; i < k-1; i++) {
+            monotonicQueue.push(nums[i]);
         }
 
-        int[] res = new int[result.size()];
-        for (int i = 0; i < result.size(); i++) {
-            res[i] = result.get(i);
+        int left = 0, right = k-1;
+        int[] res = new int[nums.length-k+1];
+        while (right < nums.length) {
+
+            // 放入队列中
+            monotonicQueue.push(nums[right]);
+            res[right - k+1] = monotonicQueue.max();
+
+            right++;
+
+            monotonicQueue.pop(nums[left++]);
         }
         return res;
+
+
     }
 
 
-        public class MonotonicQueue {
 
-            LinkedList<Integer> queue = new LinkedList();
 
-            public void push(int num) {
+    class MonotonicQueue{
 
-                while (!queue.isEmpty() && queue.getLast() < num) {
-                    queue.removeLast();
-                }
-                queue.addLast(num);
+        private LinkedList<Integer> maxQ = new LinkedList<>();
+
+        // 增加
+        public void push(int val) {
+
+            while (!maxQ.isEmpty() && maxQ.getLast() < val) {
+                maxQ.removeLast();
             }
-
-            public void pop(int num) {
-                if (num == queue.getFirst()) {
-                    queue.removeFirst();
-                }
-            }
-            public int max() {
-                return queue.getFirst();
-            }
-
+            maxQ.addLast(val);
 
         }
+        // 查询
+
+        public int max() {
+            return maxQ.getFirst();
+        }
+        // 删除
+        public void pop(int n) {
+            if (n == maxQ.getFirst()) {
+                maxQ.pop();
+            }
+        }
+
+
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
  

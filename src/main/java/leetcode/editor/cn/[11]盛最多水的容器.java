@@ -38,7 +38,7 @@ package leetcode.editor.cn;
 //
 // Related Topics贪心 | 数组 | 双指针 
 //
-// 👍 4245, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 4703, 👎 0 
 //
 //
 //
@@ -48,7 +48,7 @@ package leetcode.editor.cn;
  * 盛最多水的容器
  *
  * @author hsfxuebao
- * 2023-04-13 19:50:50 
+ * 2023-11-25 21:31:39 
  */
 class P11_ContainerWithMostWater{
     public static void main(String[] args) {
@@ -59,21 +59,20 @@ class P11_ContainerWithMostWater{
 class Solution {
     public int maxArea(int[] height) {
 
-        int left = 0, right = height.length - 1;
+        int maxArea = Integer.MIN_VALUE;
+        int left = 0, right = height.length -1;
 
-        int maxArea = 0;
         while (left < right) {
+            int area = Math.min(height[left], height[right]) * (right-left);
+            maxArea = Math.max(maxArea, area);
 
-            maxArea = Math.max(maxArea, Math.min(height[left], height[right]) * (right - left));
-            if (height[left] >= height[right]) {
+            if (height[left] > height[right]) {
                 right--;
             } else {
                 left++;
             }
-
         }
         return maxArea;
-
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

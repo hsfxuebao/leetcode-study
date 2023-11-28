@@ -65,12 +65,14 @@ class P287_FindTheDuplicateNumber{
 class Solution {
     public int findDuplicate(int[] nums) {
         int n = nums.length;
+
+        // 遍历数据
         for (int i = 0; i < n; i++) {
-            int index = Math.abs(nums[i]) -1;
+            int index = Math.abs(nums[i]);
             if (nums[index] < 0) {
-                return index + 1;
+                return index;
             } else {
-                nums[index] = (-1) * nums[index];
+                nums[index] = - nums[index];
             }
         }
         return -1;

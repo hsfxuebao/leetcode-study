@@ -67,14 +67,10 @@ class Solution {
         if (n == 2) {
             return 2;
         }
-
-        // 以为dp数组
         int[] dp = new int[n+1];
-        // base case
         dp[1] = 1;
         dp[2] = 2;
-        // 状态转移
-        for (int i = 3; i <= n; i++) {
+        for (int i = 3; i < n+1; i++) {
             dp[i] = dp[i-1] + dp[i-2];
         }
         return dp[n];
