@@ -47,7 +47,7 @@ package leetcode.editor.cn;
 //
 // Related Topics字符串 | 动态规划 
 //
-// 👍 2925, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 3222, 👎 0 
 //
 //
 //
@@ -57,7 +57,7 @@ package leetcode.editor.cn;
  * 编辑距离
  *
  * @author hsfxuebao
- * 2023-04-24 09:42:34 
+ * 2023-12-01 20:33:32 
  */
 class P72_EditDistance{
     public static void main(String[] args) {
@@ -70,44 +70,35 @@ class Solution {
 
         int m = word1.length();
         int n = word2.length();
-        // 以i,j 为结尾 最少操作数
         int[][] dp = new int[m+1][n+1];
-
-        // base case
-        // 第一行
-        for (int j = 1; j <= n; j++) {
-            dp[0][j] = j;
-        }
-        // 第一列
         for (int i = 1; i <= m; i++) {
             dp[i][0] = i;
         }
-
+        for (int j = 1; j <= n; j++) {
+            dp[0][j] = j;
+        }
 
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
-                // 相等
                 if (word1.charAt(i - 1) == word2.charAt(j - 1)) {
                     dp[i][j] = dp[i - 1][j - 1];
                 } else {
+                    dp[i][j] = min(
+                            dp[i - 1][j] + 1,
 
-                    dp[i][j] = minVal(
-                            dp[i][j-1],  // 增
-                            dp[i-1][j], // 删
-                            dp[i-1][j-1]  // 改
-                    ) + 1;
+                            dp[i][j - 1] + 1,
 
-
+                            dp[i - 1][j - 1] + 1);
                 }
             }
         }
+
         return dp[m][n];
     }
-
-        private int minVal(int i, int j, int k) {
-            return Math.min(Math.min(i, j), k);
+        int min(int a, int b, int c) {
+            return Math.min(a, Math.min(b, c));
         }
-    }
+}
 //leetcode submit region end(Prohibit modification and deletion)
  
 }
