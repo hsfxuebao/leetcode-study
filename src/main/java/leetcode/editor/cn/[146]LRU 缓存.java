@@ -73,7 +73,7 @@ import java.util.Map;
  * LRU 缓存
  *
  * @author hsfxuebao
- * 2023-11-28 09:49:39 
+ * 2023-11-29 16:27:46 
  */
 class P146_LruCache{
     public static void main(String[] args) {
@@ -83,85 +83,75 @@ class P146_LruCache{
 class LRUCache {
 
         int cap;
-        DoubleList doubleList;
+        DoubleList cache;
         Map<Integer, Node> map;
-
     public LRUCache(int capacity) {
         this.cap = capacity;
-        this.doubleList = new DoubleList();
+        this.cache = new DoubleList();
         this.map = new HashMap<>();
     }
     
     public int get(int key) {
         if (map.containsKey(key)) {
-            // 将节点移到最前面
             makeRecently(key);
-            return map.get(key).val;
+            return map.get(key).value;
         }
         return -1;
     }
-
-
-
+    
     public void put(int key, int value) {
-        // key的更新
+
         if (map.containsKey(key)) {
-            // 删除老的节点，添加新的节点
-            deleteKey(key);
+            Node node = map.get(key);
+            cache.removeNode(node);
             addRecently(key, value);
-           return;
+            return;
         }
-        // 超过容量
-        if (doubleList.size >= cap) {
-            // 删除最老的节点
-            removeLastRecently();
+
+        if (cache.size >= cap) {
+            deleteLastKey();
         }
-        // 添加新的节点
+        // 添加节点到最新访问
         addRecently(key, value);
     }
 
-        private void deleteKey(int key) {
-            Node node = map.get(key);
-            doubleList.deleteNode(node);
-            map.remove(key);
-        }
-
         private void addRecently(int key, int value) {
             Node node = new Node(key, value);
-            doubleList.addLast(node);
+            cache.addLast(node);
             map.put(key, node);
         }
 
-        private void removeLastRecently() {
-            Node node = doubleList.removeFirst();
+        private void deleteLastKey() {
+            Node node = cache.removeFirstNode();
             map.remove(node.key);
         }
 
 
-        // 将key移到最前面
+        // 将key对应的节点移到最后面 
         private void makeRecently(int key) {
             Node node = map.get(key);
-            doubleList.deleteNode(node);
-            doubleList.addLast(node);
+            cache.removeNode(node);
+            cache.addLast(node);
         }
 
 
-    class DoubleList {
+    class DoubleList{
 
-        private int size;
-        private Node head;
-        private Node tail;
+        int size;
+        Node head;
+        Node tail;
 
-        public DoubleList() {
+        public DoubleList(){
             this.size = 0;
-            this.head = new Node(0, 0);
-            this.tail = new Node(0, 0);
+            this.head = new Node(0,0);
+            this.tail = new Node(0,0);
             this.head.next = tail;
             this.tail.pre = head;
         }
 
-        // 往末尾添加元素
+        // 添加节点到末尾
         public void addLast(Node node) {
+
             node.pre = tail.pre;
             node.next = tail;
             tail.pre.next = node;
@@ -169,36 +159,27 @@ class LRUCache {
             size++;
         }
 
-        // 删除一个元素
-        public void deleteNode(Node node) {
-            node.next.pre = node.pre;
+        public void removeNode(Node node) {
             node.pre.next = node.next;
+            node.next.pre = node.pre;
             size--;
         }
-
-        public Node removeFirst() {
-
+        public Node removeFirstNode() {
             Node cur = head.next;
-            deleteNode(cur);
+            removeNode(cur);
             return cur;
-
         }
-
-
 
 
     }
 
-
     class Node {
-        private int key;
-        private int val;
-        private Node pre;
-        private Node next;
-
-        public Node(int key, int val) {
+        int key, value;
+        Node pre;
+        Node next;
+        public Node(int key, int value){
             this.key = key;
-            this.val = val;
+            this.value = value;
         }
 
     }

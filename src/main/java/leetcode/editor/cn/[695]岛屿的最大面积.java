@@ -41,7 +41,7 @@ package leetcode.editor.cn;
 //
 // Related Topics深度优先搜索 | 广度优先搜索 | 并查集 | 数组 | 矩阵 
 //
-// 👍 959, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1028, 👎 0 
 //
 //
 //
@@ -51,7 +51,7 @@ package leetcode.editor.cn;
  * 岛屿的最大面积
  *
  * @author hsfxuebao
- * 2023-04-25 21:04:01 
+ * 2023-11-28 21:14:57 
  */
 class P695_MaxAreaOfIsland{
     public static void main(String[] args) {
@@ -61,37 +61,38 @@ class P695_MaxAreaOfIsland{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int maxAreaOfIsland(int[][] grid) {
+        int row = grid.length, col = grid[0].length;
 
-        int row = grid.length;
-        int col  = grid[0].length;
-        int maxArea = 0;
+        int res = 0;
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 if (grid[i][j] == 1) {
-                    maxArea = Math.max(maxArea, dfs(grid, i, j));
+                    int val = dfs(grid, i, j);
+                    res = Math.max(res, val);
                 }
             }
         }
-        return maxArea;
+        return res;
     }
 
-        private int dfs(int[][] grid, int i, int j) {
-            // 非法情况
-            if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length) {
-                return 0;
-            }
 
-            // 当前位置 已经是海水了
-            if (grid[i][j] == 0) {
-                return 0;
-            }
-            grid[i][j] = 0;
-            return dfs(grid, i+1, j) +
-                    dfs(grid, i-1, j) +
-                    dfs(grid, i, j+1) +
-                    dfs(grid, i, j-1) + 1;
+    private int dfs(int[][] grid, int i, int j) {
+        if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length) {
+            return 0;
         }
+        // 已经是海水了
+        if (grid[i][j] == 0) {
+            return 0;
+        }
+        grid[i][j] = 0;
+
+        return dfs(grid, i-1, j) +
+                dfs(grid, i+1, j) +
+                dfs(grid, i, j-1) +
+                dfs(grid, i, j+1) + 1;
     }
+
+}
 //leetcode submit region end(Prohibit modification and deletion)
  
 }

@@ -29,12 +29,12 @@ package leetcode.editor.cn;
 // m == grid.length 
 // n == grid[i].length 
 // 1 <= m, n <= 200 
-// 0 <= grid[i][j] <= 100 
+// 0 <= grid[i][j] <= 200 
 // 
 //
 // Related Topics数组 | 动态规划 | 矩阵 
 //
-// 👍 1486, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1610, 👎 0 
 //
 //
 //
@@ -44,7 +44,7 @@ package leetcode.editor.cn;
  * 最小路径和
  *
  * @author hsfxuebao
- * 2023-04-22 17:57:10 
+ * 2023-11-28 21:10:12 
  */
 class P64_MinimumPathSum{
     public static void main(String[] args) {
@@ -54,29 +54,25 @@ class P64_MinimumPathSum{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int minPathSum(int[][] grid) {
-       int m = grid.length;
-       int n = grid[0].length;
-
-       int[][] dp = new int[m][n];
-       // base case
-        // 最后一行
-        dp[m-1][n-1] = grid[m-1][n-1];
-        for (int j = n-2; j >= 0; j--) {
-            dp[m-1][j] = dp[m-1][j+1] + grid[m-1][j];
+        int row = grid.length, col = grid[0].length;
+        int[][] dp = new int[row][col];
+        // 初始化
+        dp[0][0] = grid[0][0];
+        // 第一行
+        for (int j = 1; j < col; j++) {
+            dp[0][j] = dp[0][j-1] +grid[0][j];
         }
-        // 最后一列
-        for (int i = m-2; i >= 0; i--) {
-            dp[i][n-1] = dp[i+1][n-1] + grid[i][n-1];
+        // 第一列
+        for (int i = 1; i < row; i++) {
+            dp[i][0] = dp[i-1][0] + grid[i][0];
         }
 
-        for (int i = m-2; i >= 0; i--) {
-            for (int j = n-2; j >= 0; j--) {
-                dp[i][j] = grid[i][j] + Math.min(dp[i+1][j], dp[i][j+1]);
+        for (int i = 1; i < row; i++) {
+            for (int j = 1; j < col; j++) {
+                dp[i][j] = Math.min(dp[i-1][j], dp[i][j-1]) + grid[i][j];
             }
-
         }
-        return dp[0][0];
-
+        return dp[row-1][col-1];
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

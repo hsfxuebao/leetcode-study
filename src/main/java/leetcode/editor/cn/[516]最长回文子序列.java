@@ -33,7 +33,7 @@ package leetcode.editor.cn;
 //
 // Related Topics字符串 | 动态规划 
 //
-// 👍 1008, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1140, 👎 0 
 //
 //
 //
@@ -43,7 +43,7 @@ package leetcode.editor.cn;
  * 最长回文子序列
  *
  * @author hsfxuebao
- * 2023-04-23 19:31:24 
+ * 2023-12-01 20:17:58 
  */
 class P516_LongestPalindromicSubsequence{
     public static void main(String[] args) {
@@ -53,28 +53,22 @@ class P516_LongestPalindromicSubsequence{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int longestPalindromeSubseq(String s) {
-
-        // dp[i][j] 对于数组nums[i,j] 最长回文子串的长度
-        int len = s.length();
-        int[][] dp = new int[len][len];
-
-        // base case i==j 值为1
-        for (int i = 0; i < len; i++) {
+        int m = s.length();
+        int[][] dp = new int[m][m];
+        // base case
+        for (int i = 0; i < m; i++) {
             dp[i][i] = 1;
         }
-
-        for (int i = len - 2; i >= 0; i--) {
-            for (int j = i+1; j < len; j++) {
-                // 左边 和右边  相等
+        for (int i = m-1; i >= 0; i--) {
+            for (int j = i+1; j < m; j++) {
                 if (s.charAt(i) == s.charAt(j)) {
-                    dp[i][j] = 2 + dp[i + 1][j - 1];
+                    dp[i][j] = dp[i + 1][j - 1] + 2;
                 } else {
-                    dp[i][j] = Math.max(dp[i+1][j], dp[i][j-1]);
+                    dp[i][j] = Math.max(dp[i][j - 1], dp[i+1][j]);
                 }
             }
         }
-        return dp[0][len-1];
-
+        return dp[0][m-1];
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

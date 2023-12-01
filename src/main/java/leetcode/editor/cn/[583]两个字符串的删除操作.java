@@ -36,7 +36,7 @@ package leetcode.editor.cn;
 //
 // Related Topics字符串 | 动态规划 
 //
-// 👍 568, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 639, 👎 0 
 //
 //
 //
@@ -46,7 +46,7 @@ package leetcode.editor.cn;
  * 两个字符串的删除操作
  *
  * @author hsfxuebao
- * 2023-04-18 19:29:16 
+ * 2023-12-01 19:43:26 
  */
 class P583_DeleteOperationForTwoStrings{
     public static void main(String[] args) {
@@ -55,32 +55,33 @@ class P583_DeleteOperationForTwoStrings{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-        /**
-         * 最长公共子序列问题
-         */
     public int minDistance(String word1, String word2) {
-        int commonLen = longestCommonSubsequence(word1, word2);
-        return word1.length() - commonLen + word2.length() - commonLen;
-    }
 
-        public int longestCommonSubsequence(String text1, String text2) {
+        int m = word1.length();
+        int n = word2.length();
 
-            int m = text1.length();
-            int n = text2.length();
-            int[][] dp = new int[m+1][n+1];
-            for (int i = 1; i <= m; i++) {
-                for (int j = 1; j <= n; j++) {
+        // 计算最长公共子序列
+        int[][] dp = new int[m+1][n+1];
+        // base case
+        for (int i = 1; i <= m; i++) {
+            dp[i][0] = i;
+        }
+        for (int j = 1; j <= n; j++) {
+            dp[0][j] = j;
+        }
 
-                    if (text1.charAt(i - 1) == text2.charAt(j - 1)) {
-                        dp[i][j] = 1 + dp[i - 1][j - 1];
-                    } else {
-                        dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
-                    }
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (word1.charAt(i - 1) == word2.charAt(j - 1)) {
+                    dp[i][j] = dp[i - 1][j - 1];
+                } else {
+                    dp[i][j] = Math.min(dp[i-1][j], dp[i][j-1])+1;
                 }
             }
-            return dp[m][n];
-
         }
+        // 需要删除的次数
+        return dp[m][n];
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
  
