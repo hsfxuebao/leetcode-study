@@ -42,7 +42,7 @@ package leetcode.editor.cn;
 //
 // Related Topics递归 | 链表 
 //
-// 👍 2221, 👎 0 
+// 👍 2235, 👎 0 
 //
 //
 //
@@ -54,7 +54,7 @@ import common.ListNode;
  * K 个一组翻转链表
  *
  * @author hsfxuebao
- * 2023-11-13 11:10:27 
+ * 2023-12-04 20:24:04 
  */
 class P25_ReverseNodesInKGroup{
     public static void main(String[] args) {
@@ -75,30 +75,31 @@ class P25_ReverseNodesInKGroup{
 class Solution {
     public ListNode reverseKGroup(ListNode head, int k) {
 
-
         ListNode a = head, b = head;
         for (int i = 0; i < k; i++) {
             if (b == null) {
-               return head;
+                return head;
             }
             b = b.next;
         }
-        // 反转
-        ListNode newHead = reverseIter(a, b);
-        // 递归调用
-        a.next = reverseKGroup(b, k);
-        return newHead;
+
+        // 反转ab之间的链表
+        ListNode listNode = reverse1(a, b);
+        if (b != null) {
+            a.next = reverseKGroup(b, k);
+        }
+        return listNode;
     }
 
-    // 迭代反转链表，返回头结点，前闭后开[a,b)
-    private ListNode reverseIter(ListNode a, ListNode b) {
 
-        ListNode cur = a, next = null, pre = null;
+    private ListNode reverse1(ListNode a, ListNode b) {
+
+        ListNode cur = a, pre = null, next = a;
         while (cur != b) {
             next = cur.next;
             cur.next = pre;
             pre = cur;
-            cur = next;
+            cur  = next;
         }
         return pre;
     }
