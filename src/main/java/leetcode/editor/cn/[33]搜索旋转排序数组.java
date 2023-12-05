@@ -46,7 +46,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 二分查找 
 //
-// 👍 2791, 👎 0 
+// 👍 2806, 👎 0 
 //
 //
 //
@@ -56,7 +56,14 @@ package leetcode.editor.cn;
  * 搜索旋转排序数组
  *
  * @author hsfxuebao
- * 2023-11-16 15:09:01 
+ * 2023-12-05 21:25:53
+ *
+ *          * 中间节点，左边有序 或者右边有序
+ *          * 左边有序：判断target是否在左边，否则右边
+ *          * 右边有序：判断target是否在右边，否则左边
+ *          *
+ *          * 左边有序 or 右边有序，跟第一个值对比即可
+ *
  */
 class P33_SearchInRotatedSortedArray{
     public static void main(String[] args) {
@@ -65,45 +72,22 @@ class P33_SearchInRotatedSortedArray{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-
-        /**
-         * 中间节点，左边有序 或者右边有序
-         * 左边有序：判断target是否在左边，否则右边
-         * 右边有序：判断target是否在右边，否则左边
-         *
-         * 左边有序 or 右边有序，跟第一个值对比即可
-         */
     public int search(int[] nums, int target) {
 
-        if (nums == null || nums.length == 0) {
-            return -1;
-        }
-        int len = nums.length;
-        if (len == 1) {
-            return nums[0] == target ? 0: -1;
-        }
-
-
-        int left = 0, right = nums.length - 1;
-
+        int left  = 0, right = nums.length - 1;
         while (left <= right) {
             int mid = left + (right - left)/2;
+
             if (nums[mid] == target) {
                 return mid;
             }
-
-            // 左边有序
             if (nums[0] <= nums[mid]) {
-
-                // 在左边
                 if (nums[left] <= target && target < nums[mid]) {
                     right = mid - 1;
                 } else {
                     left = mid + 1;
                 }
-
             } else {
-                // 右边有序
                 if (nums[mid] < target && target <= nums[right]) {
                     left = mid + 1;
                 } else {
