@@ -43,7 +43,7 @@ package leetcode.editor.cn;
 //
 // Related Topics栈 | 递归 | 数学 | 字符串 
 //
-// 👍 914, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 994, 👎 0 
 //
 //
 //
@@ -57,7 +57,7 @@ import java.util.Stack;
  * 基本计算器
  *
  * @author hsfxuebao
- * 2023-06-16 21:40:14 
+ * 2023-12-06 10:21:56 
  */
 class P224_BasicCalculator{
     public static void main(String[] args) {
@@ -71,29 +71,25 @@ class Solution {
         for (int i = 0; i < s.length(); i++) {
             queue.offer(s.charAt(i));
         }
-
         return helper(queue);
     }
 
-
-        // 计算
         private int helper(Queue<Character> queue) {
-            Stack<Integer> stack = new Stack<>();
+
             int num = 0;
             char sign = '+';
-
+            Stack<Integer> stack = new Stack<>();
             while (!queue.isEmpty()) {
+
                 Character ch = queue.poll();
-                if (Character.isDigit(ch)) {
-                    num = num * 10 + (ch - '0');
-                }
                 if (ch == '(') {
                     num = helper(queue);
                 }
+                if (Character.isDigit(ch)) {
+                    num = num * 10 + (ch - '0');
+                }
 
-                if ((!Character.isDigit(ch) && ch != ' ')
-                        || queue.isEmpty()) {
-
+                if ((!Character.isDigit(ch) && ch != ' ') || queue.isEmpty()) {
                     if (sign == '+') {
                         stack.push(num);
                     }
@@ -106,19 +102,18 @@ class Solution {
                     if (sign == '/') {
                         stack.push(stack.pop() / num);
                     }
-                    num = 0;
                     sign = ch;
+                    num = 0;
                 }
                 if (ch == ')') {
                     break;
                 }
             }
-            // 求和计算
-            int  res = 0;
+            int sum = 0;
             while (!stack.isEmpty()) {
-                res += stack.pop();
+                sum += stack.pop();
             }
-            return res;
+            return sum;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

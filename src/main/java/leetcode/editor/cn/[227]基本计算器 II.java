@@ -45,44 +45,40 @@ package leetcode.editor.cn;
 //
 // Related Topics栈 | 数学 | 字符串 
 //
-// 👍 700, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 736, 👎 0 
 //
 //
 //
 //
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
 /**
  * 基本计算器 II
  *
  * @author hsfxuebao
- * 2023-06-15 21:27:04 
+ * 2023-12-06 10:06:38 
  */
 class P227_BasicCalculatorIi{
     public static void main(String[] args) {
         Solution solution = new P227_BasicCalculatorIi().new Solution();
-        String str = " 3/2 ";
-        solution.calculate(str);
+        
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
     public int calculate(String s) {
 
-
         Stack<Integer> stack = new Stack<>();
+        char sign = '+'; // 一开始为加号
         int num = 0;
-        char sign = '+';
-
         for (int i = 0; i < s.length(); i++) {
             char ch = s.charAt(i);
             if (Character.isDigit(ch)) {
-                num = num * 10 + (ch - '0');
+                num = num*10 + (ch - '0');
             }
-            if ((!Character.isDigit(ch) && ch != ' ')
-                    || i == s.length() - 1) {
+
+            if ((ch != ' ' && !Character.isDigit(ch)) || i == s.length() - 1) {
 
                 if (sign == '+') {
                     stack.push(num);
@@ -97,18 +93,18 @@ class Solution {
                     stack.push(stack.pop() / num);
                 }
 
-                // 更新num 和符号sign
-                num = 0;
+                // 符号更换
                 sign = ch;
+                num = 0;
             }
         }
-
-        // 计算数值
-        int res = 0;
+        // 求和
+        int sum = 0;
         while (!stack.isEmpty()) {
-            res += stack.pop();
+            sum += stack.pop();
         }
-        return res;
+
+        return sum;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
