@@ -43,7 +43,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 分治 | 动态规划 
 //
-// 👍 6411, 👎 0 
+// 👍 6485, 👎 0 
 //
 //
 //
@@ -53,7 +53,7 @@ package leetcode.editor.cn;
  * 最大子数组和
  *
  * @author hsfxuebao
- * 2023-11-17 16:55:40 
+ * 2023-12-07 21:31:21 
  */
 class P53_MaximumSubarray{
     public static void main(String[] args) {
@@ -63,19 +63,19 @@ class P53_MaximumSubarray{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int maxSubArray(int[] nums) {
-        // 以i结尾的最大连续
+
         int[] dp = new int[nums.length];
         dp[0] = nums[0];
         for (int i = 1; i < nums.length; i++) {
-            // 要 前面的 或 不要前面的 取最大值
             dp[i] = Math.max(nums[i], nums[i]+dp[i-1]);
         }
-        // 遍历 取最大值
+
         int res = Integer.MIN_VALUE;
         for (int i = 0; i < dp.length; i++) {
             res = Math.max(res, dp[i]);
         }
         return res;
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

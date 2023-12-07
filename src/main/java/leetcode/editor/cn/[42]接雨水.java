@@ -71,23 +71,23 @@ class Solution {
 
         private int trap2(int[] height) {
             int left = 0, right = height.length - 1;
+            int leftMax = 0, rightMax = 0;
+            int sum = 0;
+            while (left <= right) {
+                int leftNum = height[left];
+                int rightNum = height[right];
+                leftMax = Math.max(leftNum, leftMax);
+                rightMax = Math.max(rightNum, rightMax);
 
-            int leftMax = 0;
-            int rightMax = 0;
-            int res = 0;
-            while (left < right) {
-
-                leftMax = Math.max(leftMax,height[left]);
-                rightMax = Math.max(rightMax, height[right]);
                 if (leftMax >= rightMax) {
-                    res += rightMax - height[right];
+                    sum += rightMax - height[right];
                     right--;
                 } else {
-                    res += leftMax - height[left];
+                    sum += leftMax - height[left];
                     left++;
                 }
             }
-            return res;
+            return sum;
         }
 
         private int trap1(int[] height) {

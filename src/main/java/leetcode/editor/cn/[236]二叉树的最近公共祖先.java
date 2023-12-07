@@ -52,6 +52,9 @@ package leetcode.editor.cn;
 
 
 
+
+
+
 import common.TreeNode;
 
 /**
@@ -77,31 +80,36 @@ class P236_LowestCommonAncestorOfABinaryTree{
  */
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null) {
+
+        if (p == null && q == null) {
             return null;
         }
-        return find(root, p.val, q.val);
+        return find(root, p, q);
+
     }
 
-    // 返回 p和q节点的 公共祖先
-    private TreeNode find(TreeNode root, int p, int q) {
-        if (root == null) {
+    // 返回 p 和q的最近公共祖先，肯定在二叉树中
+    private TreeNode find(TreeNode head, TreeNode p, TreeNode q) {
+
+        if (head == null) {
             return null;
         }
-        // 若有一个值相等，返回当前值
-        if (root.val == p || root.val == q) {
-            return root;
+
+        if (head == p || head == q) {
+            return head;
         }
 
-        TreeNode left = find(root.left, p, q);
-        TreeNode right = find(root.right, p, q);
-        // 左右子树 都不为null 返回root节点
+       TreeNode left = find(head.left, p, q);
+       TreeNode right = find(head.right, p, q);
         if (left != null && right != null) {
-            return root;
+            return head;
         }
 
-        return left == null ? right : left;
+       return left != null ? left : right;
+
     }
+
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
  
