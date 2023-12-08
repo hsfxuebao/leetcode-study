@@ -47,7 +47,7 @@ package leetcode.editor.cn;
 //
 // Related Topics链表 | 分治 | 堆（优先队列） | 归并排序 
 //
-// 👍 2692, 👎 0 
+// 👍 2715, 👎 0 
 //
 //
 //
@@ -64,7 +64,7 @@ import common.ListNode;
  * 合并 K 个升序链表
  *
  * @author hsfxuebao
- * 2023-11-11 09:55:19 
+ * 2023-12-08 10:18:03 
  */
 class P23_MergeKSortedLists{
     public static void main(String[] args) {
@@ -85,10 +85,7 @@ class P23_MergeKSortedLists{
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
 
-        ListNode dummy = new ListNode(-1);
-        ListNode p1 = dummy;
-
-        // 小顶堆  从大到小排序
+        // 优先级队列
         Queue<ListNode> queue = new PriorityQueue<>(new Comparator<ListNode>() {
             @Override
             public int compare(ListNode o1, ListNode o2) {
@@ -96,22 +93,23 @@ class Solution {
             }
         });
 
-        for (int i = 0; i < lists.length; i++) {
-            if (lists[i] != null) {
-                queue.offer(lists[i]);
+        for (ListNode list : lists) {
+            if (list != null) {
+                queue.offer(list);
             }
         }
 
+
+        ListNode dummy = new ListNode(-1);
+        ListNode p = dummy;
         while (!queue.isEmpty()) {
 
-            ListNode poll = queue.poll();
-            // 将弹出来的下一个节点放到队列中
-            if (poll.next != null) {
-                queue.add(poll.next);
+            ListNode node = queue.poll();
+            if (node.next != null) {
+                queue.offer(node.next);
             }
-            p1.next = new ListNode(poll.val);
-            p1 = p1.next;
-
+            p.next = new ListNode(node.val);
+            p = p.next;
         }
         return dummy.next;
 

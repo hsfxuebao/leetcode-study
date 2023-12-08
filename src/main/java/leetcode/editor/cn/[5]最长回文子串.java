@@ -32,7 +32,7 @@ package leetcode.editor.cn;
 //
 // Related Topics字符串 | 动态规划 
 //
-// 👍 6929, 👎 0 
+// 👍 6966, 👎 0 
 //
 //
 //
@@ -42,7 +42,7 @@ package leetcode.editor.cn;
  * 最长回文子串
  *
  * @author hsfxuebao
- * 2023-11-16 15:58:12 
+ * 2023-12-08 10:02:56 
  */
 class P5_LongestPalindromicSubstring{
     public static void main(String[] args) {
@@ -56,32 +56,30 @@ class Solution {
         String res = "";
         for (int i = 0; i < s.length(); i++) {
 
-            String palindrome1 = palindrome(s, i, i);
-            String palindrome2 = palindrome(s, i, i + 1);
+            // 以i为中心，i和i+1为中心扩散
+            String palindrome = palindrome(s, i, i);
+            if (palindrome.length() > res.length()) {
+                res = palindrome;
+            }
+            String palindrome1 = palindrome(s, i, i + 1);
             if (palindrome1.length() > res.length()) {
                 res = palindrome1;
             }
-            if (palindrome2.length() > res.length()) {
-                res = palindrome2;
-            }
         }
         return res;
+
     }
 
-    // 返回最长回文子串
-        private String palindrome(String s, int i, int j) {
+    public String palindrome(String s, int left, int right) {
 
-            int left = i, right = j;
-            while (left >= 0 && right < s.length()
-                    && s.charAt(left) == s.charAt(right)) {
-                left--;
-                right++;
-            }
-            return s.substring(left+1, right);
+        while (left >= 0 && left < s.length()
+                && right < s.length() && right >= 0 && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
         }
+        return s.substring(left+1, right);
 
-
-
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
  

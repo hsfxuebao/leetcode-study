@@ -53,7 +53,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 双指针 
 //
-// 👍 2375, 👎 0 
+// 👍 2382, 👎 0 
 //
 //
 //
@@ -62,8 +62,10 @@ package leetcode.editor.cn;
 /**
  * 下一个排列
  *
+ * 上一个排列https://blog.csdn.net/tjh1998/article/details/124733594
+ *
  * @author hsfxuebao
- * 2023-11-28 20:08:03 
+ * 2023-12-08 20:48:24 
  */
 class P31_NextPermutation{
     public static void main(String[] args) {
@@ -73,25 +75,33 @@ class P31_NextPermutation{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public void nextPermutation(int[] nums) {
-        // 从右向左 遍历找到第一个nums[i] < nums[i+1] 的节点
-        int i =nums.length - 2;
+
+        // 从右到左 找到nums[i] < nums[i+1]的数
+        int i = nums.length - 2;
         while (i >= 0 && nums[i] >= nums[i + 1]) {
             i--;
         }
-        // 从右向左 找到第一个nums[j] > nums[i]
         if (i >= 0) {
+
+            // 从i位置开始 找到nums[j] > nums[i]
             int j = nums.length - 1;
-            while (j >= 0 && nums[i] >= nums[j]) {
+            while (j >= 0 && nums[j] <= nums[i]) {
                 j--;
             }
-            // i 和j交换位置
+            // 将i, j位置交换
             swap(nums, i, j);
         }
 
-        // 从i+1位置开始反转
+        // 从i+1位置 逆序
         reverse1(nums, i+1);
+
     }
 
+    public void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
         private void reverse1(int[] nums, int start) {
             int left = start, right = nums.length -1;
             while (left < right) {
@@ -101,12 +111,8 @@ class Solution {
             }
         }
 
-        private void swap(int[] nums, int i, int j) {
-            int temp = nums[i];
-            nums[i] = nums[j];
-            nums[j] = temp;
-        }
-    }
+
+}
 //leetcode submit region end(Prohibit modification and deletion)
  
 }
