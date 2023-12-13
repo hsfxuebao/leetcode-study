@@ -46,7 +46,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 二分查找 | 动态规划 
 //
-// 👍 3469, 👎 0 
+// 👍 3492, 👎 0 
 //
 //
 //
@@ -56,7 +56,7 @@ package leetcode.editor.cn;
  * 最长递增子序列
  *
  * @author hsfxuebao
- * 2023-11-17 20:10:31 
+ * 2023-12-11 09:05:19 
  */
 class P300_LongestIncreasingSubsequence{
     public static void main(String[] args) {
@@ -66,42 +66,34 @@ class P300_LongestIncreasingSubsequence{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int lengthOfLIS(int[] nums) {
+        int[] res = new int[nums.length];
+        int len = 0;
 
-
-        // 二分查找
-        return lengthOfLIS1(nums);
-    }
-
-        // 二分查找
-        private int lengthOfLIS1(int[] nums) {
-            int[] top = new int[nums.length];
-            // 初始化长度为1
-            top[0] = nums[0];
-            int index = 1;
-            // 对于数组中的每一个值
-            for (int i = 1; i < nums.length; i++) {
+        for (int i = 0; i < nums.length; i++) {
+            // 左侧边界值
+            int left = 0, right = len;
+            while (left < right) {
                 int target = nums[i];
-                int left = 0, right = index -1;
-                // 最左侧
-                while (left <= right) {
-                    int mid = left + (right - left) /2;
-                    if (top[mid] > target) {
-                        right = mid -1;
-                    } else if (top[mid] < target) {
-                        left = mid + 1;
-                    } else if (top[mid] == target) {
-                        right = mid - 1;
-                    }
+                int mid = left + (right - left)/2;
+                if (res[mid] == target) {
+                    right = mid;
+                } else if (res[mid] > target) {
+                    right = mid;
+                } else if (res[mid] < target) {
+                    left = mid + 1;
                 }
-                // 越界
-                if (left == index) {
-                    index++;
-                }
-                top[left] = target;
             }
-            return index;
+
+            if (left == len) {
+                len++;
+            }
+            res[left] = nums[i];
         }
+        return len;
+
+
     }
+}
 //leetcode submit region end(Prohibit modification and deletion)
  
 }

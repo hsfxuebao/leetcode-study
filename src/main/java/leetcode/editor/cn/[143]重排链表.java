@@ -42,7 +42,7 @@ package leetcode.editor.cn;
 //
 // Related Topics栈 | 递归 | 链表 | 双指针 
 //
-// 👍 1403, 👎 0 
+// 👍 1415, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
@@ -54,7 +54,7 @@ import common.ListNode;
  * 重排链表
  *
  * @author hsfxuebao
- * 2023-11-13 19:24:47 
+ * 2023-12-11 09:29:46 
  */
 class P143_ReorderList{
     public static void main(String[] args) {
@@ -75,33 +75,36 @@ class P143_ReorderList{
 class Solution {
     public void reorderList(ListNode head) {
 
-        if (head == null) {
-            return;
-        }
 
-        // 找到中间节点，偶数为 靠右节点，奇数为中间节点
-        ListNode fast = head, slow = head;
+        // 快慢指针  找到中间位置
+        ListNode slow = head, fast = head;
         while (fast != null && fast.next != null) {
-            fast = fast.next.next;
             slow = slow.next;
+            fast = fast.next.next;
         }
 
-        ListNode l2 = slow.next;
-        // 断开连接
+
+        // 断开节点
+        ListNode postNode = slow.next;
         slow.next = null;
 
         // 反转链表
-        ListNode newHead = reverseIter(l2);
+        ListNode newHead = reverseIter(postNode);
+
+
         ListNode p1 = head, p2 = newHead;
-        // 交叉节点
-        while (p2 != null) {
+        // 较差链接链表
+        while (p1 != null) {
+
             ListNode p1Next = p1.next;
             ListNode p2Next = p2.next;
+
             p1.next = p2;
             p1 = p1Next;
 
             p2.next = p1;
             p2 = p2Next;
+
         }
 
     }
@@ -116,7 +119,6 @@ class Solution {
             cur = next;
         }
         return pre;
-
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

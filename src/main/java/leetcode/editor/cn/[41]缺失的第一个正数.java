@@ -37,7 +37,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 哈希表 
 //
-// 👍 1982, 👎 0 
+// 👍 2000, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
@@ -47,7 +47,7 @@ package leetcode.editor.cn;
  * 缺失的第一个正数
  *
  * @author hsfxuebao
- * 2023-11-17 09:49:11 
+ * 2023-12-13 09:52:51 
  */
 class P41_FirstMissingPositive{
     public static void main(String[] args) {
@@ -59,37 +59,29 @@ class Solution {
     public int firstMissingPositive(int[] nums) {
 
         int len = nums.length;
-        // 现将负数和0 设置为 len+1;
+
+        // 将负数 替换成len
         for (int i = 0; i < len; i++) {
             if (nums[i] <= 0) {
                 nums[i] = len+1;
             }
         }
-        // 遍历数组，将nums[i] 对应的index 设置为负数
+
         for (int i = 0; i < len; i++) {
-            int num = Math.abs(nums[i]);
-            int index = num - 1;
+
+            int index = Math.abs(nums[i]) -1;
             if (index < len) {
                 nums[index] = - Math.abs(nums[index]);
             }
-
         }
-        // 遍历，找到 第一个大于0 的整数
+
+        // 找到第一个不为负数就是确实的第一个正整数
         for (int i = 0; i < len; i++) {
             if (nums[i] > 0) {
                 return i+1;
             }
         }
         return len+1;
-
-
-    }
-
-    private void swap(int[] nums, int i, int j) {
-
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
 
     }
 }
