@@ -25,26 +25,29 @@ package leetcode.editor.cn;
 // 提示： 
 //
 // 
-// 1 <= intervals.length <= 104 
+// 1 <= intervals.length <= 10⁴ 
 // intervals[i].length == 2 
-// 0 <= starti <= endi <= 104 
+// 0 <= starti <= endi <= 10⁴ 
 // 
-// Related Topics 数组 排序 
-// 👍 1753 👎 0
+//
+// Related Topics数组 | 排序 
+//
+// 👍 2193, 👎 0 
+//
+//
+//
+//
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.Comparator;
 import java.util.List;
-
-
-import sun.awt.image.ImageWatched.Link;
 
 /**
  * 合并区间
  *
  * @author hsfxuebao
- * 2023-01-01 17:13:54 
+ * 2023-12-15 19:29:01 
  */
 class P56_MergeIntervals{
     public static void main(String[] args) {
@@ -54,29 +57,31 @@ class P56_MergeIntervals{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[][] merge(int[][] intervals) {
-        // 按start升序
-        Arrays.sort(intervals, (int[] a, int[] b) -> {
-            return a[0] - b[0];
+
+        // 按照start升序排序
+        Arrays.sort(intervals, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return o1[0] - o2[0];
+            }
         });
 
-        List<int[]> result = new ArrayList<>();
-        // 放入第一个数组
-        result.add(intervals[0]);
+        List<int[]> res = new ArrayList<>();
+        res.add(intervals[0]);
 
         for (int i = 1; i < intervals.length; i++) {
-            int[] nums = intervals[i];
-            // 找到 result 中最后一个元素
-            int[] res = result.get(result.size() - 1);
-            // 两个区间相交，更新end值
-            if (nums[0] <= res[1]) {
-                res[1] = Math.max(nums[1], res[1]);
+            // 去除上一个元素的 end
+            int[] pre = res.get(res.size() - 1);
+            int[] interval = intervals[i];
+            if (interval[0] <= pre[1]) {
+                pre[1] = Math.max(pre[1], interval[1]);
             } else {
-                // 新的一个区间
-                result.add(nums);
+                res.add(interval);
             }
 
         }
-        return result.toArray(new int[0][0]);
+        return res.toArray(new int[0][0]);
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

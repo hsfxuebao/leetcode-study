@@ -52,7 +52,7 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 深度优先搜索 | 二叉树 
 //
-// 👍 695, 👎 0 
+// 👍 705, 👎 0 
 //
 //
 //
@@ -68,7 +68,7 @@ import common.TreeNode;
  * 求根节点到叶节点数字之和
  *
  * @author hsfxuebao
- * 2023-11-24 17:28:27 
+ * 2023-12-15 19:42:26 
  */
 class P129_SumRootToLeafNumbers{
     public static void main(String[] args) {
@@ -92,41 +92,36 @@ class P129_SumRootToLeafNumbers{
  * }
  */
 class Solution {
-
-    List<Integer> result = new ArrayList<>();
+    List<String> res = new ArrayList<>();
     public int sumNumbers(TreeNode root) {
 
         if (root == null) {
             return 0;
         }
-        StringBuilder track = new StringBuilder();
-        dfs(root, track);
-        int sum = 0;
-        for (Integer val : result) {
-            sum += val;
+        StringBuilder sb = new StringBuilder();
+        dfs(root, sb);
+        // 遍历list
+        int num = 0;
+        for (String re : res) {
+            num += Integer.parseInt(re);
         }
-        return sum;
-
+        return num;
     }
 
-    private void dfs(TreeNode root, StringBuilder track) {
+    private void dfs(TreeNode root, StringBuilder sb) {
+
         if (root == null) {
             return;
         }
 
-        // 选择该节点
-        track.append(root.val);
+        sb.append(root.val);
         if (root.left == null && root.right == null) {
-            result.add(Integer.parseInt(track.toString()));
+            res.add(sb.toString());
         }
-        // 选择集
-        // 左边和右边  选择
-        dfs(root.left, track);
-        dfs(root.right, track);
-        // 撤销选择
-        track.deleteCharAt(track.length()-1);
+        dfs(root.left, sb);
+        dfs(root.right, sb);
 
-
+        sb.deleteCharAt(sb.length() - 1);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
