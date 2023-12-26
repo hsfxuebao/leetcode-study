@@ -38,7 +38,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 二分查找 
 //
-// 👍 1172, 👎 0 
+// 👍 1231, 👎 0 
 //
 //
 //
@@ -48,7 +48,7 @@ package leetcode.editor.cn;
  * 寻找峰值
  *
  * @author hsfxuebao
- * 2023-11-24 15:19:51 
+ * 2023-12-19 16:58:24 
  */
 class P162_FindPeakElement{
     public static void main(String[] args) {
@@ -57,29 +57,16 @@ class P162_FindPeakElement{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-
-
-        // 二分查找，核心思想是找到上升或下降的曲线
     public int findPeakElement(int[] nums) {
 
-        if (nums == null) {
-            return 0;
-        }
-
         int left = 0, right = nums.length -1;
-        // 因为题⽬必然有解，所以设置 left == right 为结束条件
         while (left < right) {
-
-            int mid = left+(right-left)/2;
-            //
+            int mid = left + (right - left)/2;
             if (nums[mid] > nums[mid + 1]) {
-                // mid就是一个峰值 或者其左侧有峰值
                 right = mid;
             } else {
-                // mid 右侧有一个峰值
-                left = mid+1;
+                left = mid + 1;
             }
-
         }
         return left;
 

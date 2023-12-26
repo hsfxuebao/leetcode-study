@@ -48,7 +48,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 回溯 | 矩阵 
 //
-// 👍 1599, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1730, 👎 0 
 //
 //
 //
@@ -58,7 +58,7 @@ package leetcode.editor.cn;
  * 单词搜索
  *
  * @author hsfxuebao
- * 2023-05-25 19:51:14 
+ * 2023-12-21 09:33:22 
  */
 class P79_WordSearch{
     public static void main(String[] args) {
@@ -67,13 +67,12 @@ class P79_WordSearch{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-
         boolean found = false;
     public boolean exist(char[][] board, String word) {
 
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
-               dfs(board, i, j, word, 0);
+                dfs(board, i, j, word, 0);
                 if (found) {
                     return true;
                 }
@@ -82,32 +81,33 @@ class Solution {
         return false;
     }
 
-        private void dfs(char[][] board, int row, int col, String word, int index) {
+        private void dfs(char[][] board, int i, int j, String word, int p) {
 
-            // 终止条件
-            if (index == word.length()) {
+            if (p == word.length()) {
                 found = true;
                 return;
             }
             if (found) {
                 return;
             }
-
-            if (row < 0 || row >= board.length || col < 0 || col >= board[0].length) {
+            // 非法
+            if (i < 0 || i >= board.length || j < 0 || j >= board[0].length) {
                 return;
             }
-            // 判断
-            if (word.charAt(index) != board[row][col]) {
+            if (word.charAt(p) != board[i][j]) {
                 return;
             }
 
-            // 选择
-            board[row][col] = (char)(-board[row][col]);
-            dfs(board, row+1, col, word, index+1);
-            dfs(board, row-1, col, word, index+1);
-            dfs(board, row, col-1, word, index+1);
-            dfs(board, row, col+1, word, index+1);
-            board[row][col] = (char)(-board[row][col]);
+            // 记录已经使用过了
+            board[i][j] = (char)-board[i][j];
+            // 上下左右查找
+            dfs(board, i+1, j, word, p+1);
+            dfs(board, i-1, j, word, p+1);
+            dfs(board, i, j-1, word, p+1);
+            dfs(board, i, j+1, word, p+1);
+            // 撤销选择
+            board[i][j] = (char)-board[i][j];
+
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

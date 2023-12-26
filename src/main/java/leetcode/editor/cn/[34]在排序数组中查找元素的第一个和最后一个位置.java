@@ -39,7 +39,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 二分查找 
 //
-// 👍 2540, 👎 0 
+// 👍 2573, 👎 0 
 //
 //
 //
@@ -49,7 +49,7 @@ package leetcode.editor.cn;
  * 在排序数组中查找元素的第一个和最后一个位置
  *
  * @author hsfxuebao
- * 2023-11-17 20:40:25 
+ * 2023-12-20 19:20:15 
  */
 class P34_FindFirstAndLastPositionOfElementInSortedArray{
     public static void main(String[] args) {
@@ -59,52 +59,51 @@ class P34_FindFirstAndLastPositionOfElementInSortedArray{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] searchRange(int[] nums, int target) {
-
-        return new int[]{searchInsertLeft(nums, target), searchInsertRight(nums, target)};
-
+        return new int[]{leftSearch(nums, target), rightSearch(nums, target)};
     }
 
+        private int leftSearch(int[] nums, int target) {
 
-
-        // 搜索左侧边界
-        private int searchInsertLeft(int[] nums, int target) {
-
-            int left = 0, right = nums.length - 1;
+            int left = 0, right = nums.length-1;
             while (left <= right) {
                 int mid = left + (right - left)/2;
-                if (nums[mid] > target) {
+
+                if (nums[mid] == target) {
                     right = mid -1;
+                } else if (nums[mid] > target) {
+                    right = mid - 1;
                 } else if (nums[mid] < target) {
                     left = mid + 1;
-                } else if (nums[mid] == target) {
-                    right = mid-1;
                 }
             }
+
             if (left == nums.length) {
                 return -1;
             }
             return nums[left] == target ? left : -1;
         }
-        // 搜索右侧边界
-        private int searchInsertRight(int[] nums, int target) {
+        private int rightSearch(int[] nums, int target) {
 
-            int left = 0, right = nums.length - 1;
+            int left = 0, right = nums.length-1;
             while (left <= right) {
                 int mid = left + (right - left)/2;
-                if (nums[mid] > target) {
-                    right = mid -1;
+
+                if (nums[mid] == target) {
+                    left = mid + 1;
+                } else if (nums[mid] > target) {
+                    right = mid - 1;
                 } else if (nums[mid] < target) {
                     left = mid + 1;
-                } else if (nums[mid] == target) {
-                    left = mid+1;
                 }
             }
-            if (right < 0) {
+
+            if (right == -1) {
                 return -1;
             }
             return nums[right] == target ? right : -1;
         }
-}
+
+    }
 //leetcode submit region end(Prohibit modification and deletion)
  
 }

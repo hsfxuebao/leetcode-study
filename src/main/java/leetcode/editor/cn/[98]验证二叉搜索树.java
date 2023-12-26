@@ -38,7 +38,7 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 深度优先搜索 | 二叉搜索树 | 二叉树 
 //
-// 👍 1949, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 2238, 👎 0 
 //
 //
 //
@@ -50,7 +50,7 @@ import common.TreeNode;
  * 验证二叉搜索树
  *
  * @author hsfxuebao
- * 2023-03-28 21:35:52 
+ * 2023-12-25 21:05:42 
  */
 class P98_ValidateBinarySearchTree{
     public static void main(String[] args) {
@@ -75,9 +75,7 @@ class P98_ValidateBinarySearchTree{
  */
 class Solution {
     public boolean isValidBST(TreeNode root) {
-        if (root == null) {
-            return true;
-        }
+
         return isValidBST(root, null, null);
 
     }
@@ -87,15 +85,15 @@ class Solution {
         if (root == null) {
             return true;
         }
+
         if (min != null && root.val <= min.val) {
             return false;
         }
         if (max != null && root.val >= max.val) {
             return false;
         }
-        return isValidBST(root.left, min, root)
-                && isValidBST(root.right, root, max);
-
+        return isValidBST(root.right, root, max)
+                && isValidBST(root.left, min, root);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

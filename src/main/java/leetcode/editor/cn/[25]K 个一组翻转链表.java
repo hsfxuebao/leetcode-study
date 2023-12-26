@@ -42,11 +42,13 @@ package leetcode.editor.cn;
 //
 // Related Topics递归 | 链表 
 //
-// 👍 2235, 👎 0 
+// 👍 2253, 👎 0 
 //
 //
 //
 //
+
+import javax.swing.plaf.basic.BasicTableHeaderUI;
 
 import common.ListNode;
 
@@ -54,7 +56,7 @@ import common.ListNode;
  * K 个一组翻转链表
  *
  * @author hsfxuebao
- * 2023-12-04 20:24:04 
+ * 2023-12-22 16:23:53 
  */
 class P25_ReverseNodesInKGroup{
     public static void main(String[] args) {
@@ -75,31 +77,34 @@ class P25_ReverseNodesInKGroup{
 class Solution {
     public ListNode reverseKGroup(ListNode head, int k) {
 
-        ListNode a = head, b = head;
+        if (head == null) {
+            return null;
+        }
+
+        ListNode aHead = head, bHead = head;
         for (int i = 0; i < k; i++) {
-            if (b == null) {
+            if (bHead == null) {
                 return head;
             }
-            b = b.next;
+            bHead = bHead.next;
         }
 
-        // 反转ab之间的链表
-        ListNode listNode = reverse1(a, b);
-        if (b != null) {
-            a.next = reverseKGroup(b, k);
-        }
-        return listNode;
+        // 反转链表
+        ListNode newHead = reverse(aHead, bHead);
+        aHead.next = reverseKGroup(bHead, k);
+        return newHead;
+
     }
 
+    // [a, b)
+    private ListNode reverse(ListNode aHead, ListNode bHead) {
 
-    private ListNode reverse1(ListNode a, ListNode b) {
-
-        ListNode cur = a, pre = null, next = a;
-        while (cur != b) {
+        ListNode cur = aHead, next = aHead, pre = null;
+        while (cur != bHead) {
             next = cur.next;
             cur.next = pre;
             pre = cur;
-            cur  = next;
+            cur = next;
         }
         return pre;
     }

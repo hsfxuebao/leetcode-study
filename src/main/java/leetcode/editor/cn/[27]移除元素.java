@@ -42,7 +42,7 @@ package leetcode.editor.cn;
 //
 // 
 //输入：nums = [0,1,2,2,3,0,4,2], val = 2
-//输出：5, nums = [0,1,4,0,3]
+//输出：5, nums = [0,1,3,0,4]
 //解释：函数应该返回新的长度 5, 并且 nums 中的前五个元素为 0, 1, 3, 0, 4。注意这五个元素可为任意顺序。你不需要考虑数组中超出新长度后面
 //的元素。
 // 
@@ -59,7 +59,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 双指针 
 //
-// 👍 1735, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 2103, 👎 0 
 //
 //
 //
@@ -69,7 +69,7 @@ package leetcode.editor.cn;
  * 移除元素
  *
  * @author hsfxuebao
- * 2023-04-05 10:23:44 
+ * 2023-12-21 09:46:29 
  */
 class P27_RemoveElement{
     public static void main(String[] args) {
@@ -79,17 +79,16 @@ class P27_RemoveElement{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int removeElement(int[] nums, int val) {
+        int left = 0, right = 0;
+        while (right < nums.length) {
 
-       int slow = 0, fast = 0;
-        while (fast < nums.length) {
-
-            if (nums[fast] != val) {
-                nums[slow] = nums[fast];
-                slow++;
+            if (nums[right] != val) {
+                nums[left] = nums[right];
+                left++;
             }
-            fast++;
+            right++;
         }
-        return slow;
+        return left;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -44,16 +44,11 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 深度优先搜索 | 二叉树 
 //
-// 👍 2462, 👎 0 
+// 👍 2545, 👎 0 
 //
 //
 //
 //
-
-
-
-
-
 
 import common.TreeNode;
 
@@ -61,7 +56,7 @@ import common.TreeNode;
  * 二叉树的最近公共祖先
  *
  * @author hsfxuebao
- * 2023-09-27 16:00:40 
+ * 2023-12-19 14:35:19 
  */
 class P236_LowestCommonAncestorOfABinaryTree{
     public static void main(String[] args) {
@@ -81,35 +76,31 @@ class P236_LowestCommonAncestorOfABinaryTree{
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 
-        if (p == null && q == null) {
+        if (root == null) {
             return null;
         }
-        return find(root, p, q);
 
+        return dfs(root, p, q);
+        
     }
 
-    // 返回 p 和q的最近公共祖先，肯定在二叉树中
-    private TreeNode find(TreeNode head, TreeNode p, TreeNode q) {
+    private TreeNode dfs(TreeNode root, TreeNode p, TreeNode q) {
 
-        if (head == null) {
+        if (root == null) {
             return null;
         }
-
-        if (head == p || head == q) {
-            return head;
+        if (root == p || root == q) {
+            return root;
         }
 
-       TreeNode left = find(head.left, p, q);
-       TreeNode right = find(head.right, p, q);
+        TreeNode left = dfs(root.left, p, q);
+        TreeNode right = dfs(root.right, p, q);
         if (left != null && right != null) {
-            return head;
+            return root;
         }
-
-       return left != null ? left : right;
+        return left != null ? left : right;
 
     }
-
-
 }
 //leetcode submit region end(Prohibit modification and deletion)
  

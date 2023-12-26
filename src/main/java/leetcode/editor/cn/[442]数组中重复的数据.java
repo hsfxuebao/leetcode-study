@@ -65,18 +65,14 @@ class P442_FindAllDuplicatesInAnArray{
 class Solution {
     public List<Integer> findDuplicates(int[] nums) {
 
-        List<Integer> res = new ArrayList<>();
-        int n = nums.length;
-        // 索引表示 0-n-1的数，如果遇到对应的数改成负数
-        for (int i = 0; i < n; i++) {
-            int num = Math.abs(nums[i]);
+       List<Integer> res = new ArrayList<>();
 
-            if (nums[num - 1] < 0) {
-                res.add(num);
-            } else {
-                // 将对应的索引 变成负数
-                nums[num-1] = - nums[num-1];
+        for (int i = 0; i < nums.length; i++) {
+            int index = Math.abs(nums[i]) - 1;
+            if (nums[index] < 0) {
+                res.add(index+1);
             }
+            nums[index] = -Math.abs(nums[index]);
         }
         return res;
 

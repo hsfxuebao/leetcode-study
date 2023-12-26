@@ -31,7 +31,7 @@ package leetcode.editor.cn;
 //
 // Related Topics并查集 | 数组 | 哈希表 
 //
-// 👍 1642, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1926, 👎 0 
 //
 //
 //
@@ -44,7 +44,7 @@ import java.util.Set;
  * 最长连续序列
  *
  * @author hsfxuebao
- * 2023-05-12 20:56:19 
+ * 2023-12-21 09:40:53 
  */
 class P128_LongestConsecutiveSequence{
     public static void main(String[] args) {
@@ -59,26 +59,22 @@ class Solution {
         for (int num : nums) {
             set.add(num);
         }
-        int res = 0;
 
-        // 遍历数组，找到 连续数组的第一个开头的元素
+        int res = 0;
         for (int num : nums) {
-            // 如果包含 num-1 说明不是第一个元素
             if (set.contains(num - 1)) {
                 continue;
             }
-            int curNum = num;
-            int curLen = 1;
-            while (set.contains(curNum+1)) {
-                curNum += 1;
-                curLen += 1;
-            }
 
-            res = Math.max(curLen, res);
+            int val = num+1;
+            int count = 1;
+            while (set.contains(val)) {
+                count++;
+                val++;
+            }
+            res = Math.max(res, count);
         }
         return res;
-
-
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

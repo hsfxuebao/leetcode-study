@@ -44,7 +44,7 @@ package leetcode.editor.cn;
  * 区间子数组个数
  *
  * @author hsfxuebao
- * 2023-12-18 21:19:10 
+ * 2023-12-20 19:15:06 
  */
 class P795_NumberOfSubarraysWithBoundedMaximum{
     public static void main(String[] args) {
@@ -54,18 +54,24 @@ class P795_NumberOfSubarraysWithBoundedMaximum{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int numSubarrayBoundedMax(int[] nums, int left, int right) {
-        return count(nums, right) - count(nums, left - 1);
+        return count(nums, right) - count(nums, left-1);
+
+
     }
 
-        private int count(int[] nums, int lower) {
-            int res = 0, cnt = 0;
-            for (int num : nums) {
-                cnt = num <= lower ? cnt +1: 0;
-                res += cnt;
-            }
-            return res;
+
+    // 小于等于lower 的数量
+    private int count(int[] nums, int lower) {
+
+        int res = 0, cnt = 0;
+        for (int i = 0; i < nums.length; i++) {
+            cnt = nums[i] <= lower ? cnt+1 : 0;
+            res += cnt;
         }
+        return res;
+
     }
+}
 //leetcode submit region end(Prohibit modification and deletion)
  
 }

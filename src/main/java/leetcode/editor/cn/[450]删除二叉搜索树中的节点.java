@@ -58,7 +58,7 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 二叉搜索树 | 二叉树 
 //
-// 👍 1102, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1289, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
@@ -70,7 +70,7 @@ import common.TreeNode;
  * 删除二叉搜索树中的节点
  *
  * @author hsfxuebao
- * 2023-03-29 09:26:18 
+ * 2023-12-25 21:17:29 
  */
 class P450_DeleteNodeInABst{
     public static void main(String[] args) {
@@ -94,26 +94,31 @@ class P450_DeleteNodeInABst{
  * }
  */
 class Solution {
-
     public TreeNode deleteNode(TreeNode root, int key) {
+
         if (root == null) {
             return null;
         }
+
         if (root.val == key) {
 
-            // 左右子树 有一个为空，直接把
             if (root.left == null) {
                 return root.right;
             }
             if (root.right == null) {
                 return root.left;
             }
-            // 左右子树都不为空，找到右子树 最小值，替换当前的节点
-            TreeNode minNode = getMin(root.right);
-            root.right = deleteNode(root.right, minNode.val);
-            minNode.left = root.left;
-            minNode.right = root.right;
-            root = minNode;
+
+            // 找到 右子树最小值
+            TreeNode min = getMin(root.right);
+            root.right = deleteNode(root.right, min.val);
+
+            // 替换两个节点
+            min.left = root.left;
+            min.right = root.right;
+            root = min;
+
+
         }
         if (root.val > key) {
             root.left = deleteNode(root.left, key);
@@ -122,14 +127,15 @@ class Solution {
             root.right = deleteNode(root.right, key);
         }
         return root;
+
     }
 
-    private TreeNode getMin(TreeNode node) {
+    private TreeNode getMin(TreeNode root) {
 
-        while (node.left != null) {
-            node = node.left;
+        while (root.left != null) {
+            root = root.left;
         }
-        return node;
+        return root;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

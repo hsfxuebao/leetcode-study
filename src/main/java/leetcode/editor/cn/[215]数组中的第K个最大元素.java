@@ -32,7 +32,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 分治 | 快速选择 | 排序 | 堆（优先队列） 
 //
-// 👍 2363, 👎 0 
+// 👍 2372, 👎 0 
 //
 //
 //
@@ -46,7 +46,7 @@ import java.util.Queue;
  * 数组中的第K个最大元素
  *
  * @author hsfxuebao
- * 2023-12-05 21:17:48 
+ * 2023-12-20 19:12:55 
  */
 class P215_KthLargestElementInAnArray{
     public static void main(String[] args) {
@@ -55,7 +55,6 @@ class P215_KthLargestElementInAnArray{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-
     public int findKthLargest(int[] nums, int k) {
 
         Queue<Integer> queue = new PriorityQueue<>(new Comparator<Integer>() {
@@ -64,6 +63,8 @@ class Solution {
                 return o1 - o2;
             }
         });
+
+
         for (int num : nums) {
             queue.offer(num);
             if (queue.size() > k) {
@@ -71,6 +72,7 @@ class Solution {
             }
         }
         return queue.peek();
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -31,7 +31,7 @@ package leetcode.editor.cn;
 //
 // Related Topics数组 | 矩阵 | 模拟 
 //
-// 👍 1545, 👎 0 
+// 👍 1561, 👎 0 
 //
 //
 //
@@ -44,7 +44,7 @@ import java.util.List;
  * 螺旋矩阵
  *
  * @author hsfxuebao
- * 2023-11-28 19:47:16 
+ * 2023-12-19 14:18:40 
  */
 class P54_SpiralMatrix{
     public static void main(String[] args) {
@@ -54,46 +54,51 @@ class P54_SpiralMatrix{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public List<Integer> spiralOrder(int[][] matrix) {
-
-        int row = matrix.length, col = matrix[0].length;
-        int upperBound = 0, lowerBound = row - 1;
-        int leftBound = 0, rightBound = col - 1;
         List<Integer> res = new ArrayList<>();
+        if (matrix == null) {
+            return res;
+        }
+        
+        int row = matrix.length, col = matrix[0].length;
+        int left = 0, right = col-1, upper = 0, lower = row - 1;
+
         while (res.size() < row * col) {
 
-
-            // 第一行 向右遍历
-            if (upperBound <= lowerBound) {
-                for (int i = leftBound; i <= rightBound; i++) {
-                    res.add(matrix[upperBound][i]);
+            // 第一行
+            if (upper <= lower) {
+                for (int i = left; i <= right; i++) {
+                    res.add(matrix[upper][i]);
                 }
-                upperBound++;
-            }
-            // 最后一列 从上到下遍历
-            if (leftBound <= rightBound) {
-                for (int i = upperBound; i <= lowerBound; i++) {
-                    res.add(matrix[i][rightBound]);
-                }
-                rightBound--;
-            }
-            // 最后一行，从右向左遍历
-            if (upperBound <= lowerBound) {
-                for (int j = rightBound; j >= leftBound; j--) {
-                    res.add(matrix[lowerBound][j]);
-                }
-                lowerBound--;
-            }
-            if (leftBound <= rightBound) {
-                for (int i = lowerBound; i >= upperBound; i--) {
-                    res.add(matrix[i][leftBound]);
-                }
-                leftBound++;
+                upper++;
             }
 
+            // 最后一列
+            if (left <= right) {
+                for (int i = upper; i <= lower; i++) {
+                    res.add(matrix[i][right]);
+                }
+                right--;
+            }
+
+            // 最后一行
+            if (upper <= lower) {
+                for (int i = right; i >= left; i--) {
+                    res.add(matrix[lower][i]);
+                }
+                lower--;
+            }
+            // 第一列
+            if (left <= right) {
+                for (int i = lower; i >= upper; i--) {
+                    res.add(matrix[i][left]);
+                }
+                left++;
+            }
 
         }
         return res;
-
+        
+        
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -35,7 +35,7 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 深度优先搜索 | 二叉搜索树 | 二叉树 
 //
-// 👍 1175, 👎 0 
+// 👍 1182, 👎 0 
 //
 //
 //
@@ -47,7 +47,7 @@ import common.TreeNode;
  * 二叉搜索树的最近公共祖先
  *
  * @author hsfxuebao
- * 2023-11-21 09:55:14 
+ * 2023-12-19 14:40:36 
  */
 class P235_LowestCommonAncestorOfABinarySearchTree{
     public static void main(String[] args) {
@@ -67,22 +67,27 @@ class P235_LowestCommonAncestorOfABinarySearchTree{
 
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+
         int pVal = Math.min(p.val, q.val);
         int qVal = Math.max(p.val, q.val);
-        return find(root, pVal, qVal);
+
+        return dfs(root, pVal, qVal);
     }
 
-    // p小 q大
-    private TreeNode find(TreeNode root, int p, int q) {
+    // p 是小的数，q是大的数
+    private TreeNode dfs(TreeNode root, int p, int q) {
+
         if (root == null) {
             return null;
         }
+
         if (root.val < p) {
-            return find(root.right, p, q);
+            return dfs(root.right, p, q);
         }
         if (root.val > q) {
-            return find(root.left, p, q);
+            return dfs(root.left, p, q);
         }
+
         return root;
     }
 }

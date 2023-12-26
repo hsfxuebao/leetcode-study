@@ -57,7 +57,26 @@ class P238_ProductOfArrayExceptSelf{
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int[] productExceptSelf(int[] nums) {
+        public int[] productExceptSelf(int[] nums) {
+            int[] result = new int[nums.length];
+
+            // result 存放前缀乘积
+            result[0] = 1;
+            for (int i = 1; i < nums.length; i++) {
+                result[i] = nums[i-1] * result[i-1];
+            }
+
+            int right = 1;
+            for (int i = nums.length-1; i >= 0; i--) {
+
+                result[i] = result[i] * right;
+                right = right * nums[i];
+            }
+
+            return result;
+
+        }
+    public int[] productExceptSelf1(int[] nums) {
 
         // 从左到右 0-i乘积
         int[] prefix = new int[nums.length];

@@ -42,7 +42,7 @@ package leetcode.editor.cn;
 //
 // Related Topics栈 | 递归 | 链表 | 双指针 
 //
-// 👍 1415, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 1421, 👎 0 
 //
 //
 //
@@ -54,7 +54,7 @@ import common.ListNode;
  * 重排链表
  *
  * @author hsfxuebao
- * 2023-12-11 09:29:46 
+ * 2023-12-22 17:14:28 
  */
 class P143_ReorderList{
     public static void main(String[] args) {
@@ -73,45 +73,45 @@ class P143_ReorderList{
  * }
  */
 class Solution {
+
     public void reorderList(ListNode head) {
 
-
-        // 快慢指针  找到中间位置
-        ListNode slow = head, fast = head;
+        // 中间节点，偶数偏右，奇数偏右
+        ListNode fast = head, slow = head;
         while (fast != null && fast.next != null) {
-            slow = slow.next;
             fast = fast.next.next;
+            slow = slow.next;
         }
 
-
-        // 断开节点
-        ListNode postNode = slow.next;
+//        // 奇数
+//        if (fast != null) {
+//            slow = slow.next;
+//        }
+//
+        // 断开链接
+        ListNode newHead = slow.next;
         slow.next = null;
-
         // 反转链表
-        ListNode newHead = reverseIter(postNode);
+        ListNode reverseHead = reverse(newHead);
 
-
-        ListNode p1 = head, p2 = newHead;
-        // 较差链接链表
-        while (p1 != null) {
+        // 连接两个链表
+        ListNode p1 = head, p2 = reverseHead;
+        while (p2 != null) {
 
             ListNode p1Next = p1.next;
             ListNode p2Next = p2.next;
-
             p1.next = p2;
+            p2.next = p1Next;
+
             p1 = p1Next;
-
-            p2.next = p1;
             p2 = p2Next;
-
         }
+
 
     }
 
-    private ListNode reverseIter(ListNode head) {
-
-        ListNode pre = null, cur = head, next = head;
+    private ListNode reverse(ListNode head){
+        ListNode cur = head, next = head, pre = null;
         while (cur != null) {
             next = cur.next;
             cur.next = pre;
@@ -120,6 +120,8 @@ class Solution {
         }
         return pre;
     }
+
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
  
