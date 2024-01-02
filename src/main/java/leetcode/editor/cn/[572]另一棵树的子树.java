@@ -38,7 +38,7 @@ package leetcode.editor.cn;
 //
 // Related Topics树 | 深度优先搜索 | 二叉树 | 字符串匹配 | 哈希函数 
 //
-// 👍 887, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
+// 👍 996, 👎 0bug 反馈 | 使用指南 | 更多配套插件 
 //
 //
 //
@@ -50,7 +50,7 @@ import common.TreeNode;
  * 另一棵树的子树
  *
  * @author hsfxuebao
- * 2023-03-25 20:31:44 
+ * 2023-12-27 16:55:26 
  */
 class P572_SubtreeOfAnotherTree{
     public static void main(String[] args) {
@@ -79,30 +79,25 @@ class Solution {
             return subRoot == null;
         }
 
-        // 当前节点
         if (isSamTree(root, subRoot)) {
             return true;
         }
-        // 左右子节点
-        return isSubtree(root.left, subRoot)
-                || isSubtree(root.right, subRoot);
 
+        return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
     }
 
-    private boolean isSamTree(TreeNode root, TreeNode subRoot) {
-
+    public boolean isSamTree(TreeNode root, TreeNode subRoot) {
         if (root == null && subRoot == null) {
             return true;
         }
-        if (root == null || subRoot == null) {
+        if (root == null || subRoot == null || root.val != subRoot.val) {
             return false;
         }
-        if (root.val != subRoot.val) {
-            return false;
-        }
+
         return isSamTree(root.left, subRoot.left) && isSamTree(root.right, subRoot.right);
 
     }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
  

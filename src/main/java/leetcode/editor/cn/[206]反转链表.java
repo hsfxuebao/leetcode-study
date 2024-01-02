@@ -78,9 +78,9 @@ class Solution {
     public ListNode reverseList(ListNode head) {
 
         // 递归
-        return reverseListRec(head);
+//        return reverseListRec(head);
         // 迭代
-//        return reverseListIte(head);
+        return reverseListIte(head);
 
     }
 
@@ -96,18 +96,21 @@ class Solution {
     }
 
     private ListNode reverseListIte(ListNode head) {
+
         if (head == null) {
             return head;
         }
 
-        ListNode cur = head, pre = null, next = head;
+        ListNode cur = head, next = head, pre = null;
         while (cur != null) {
             next = cur.next;
             cur.next = pre;
             pre = cur;
-            cur  = next;
+            cur = next;
         }
         return pre;
+
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
