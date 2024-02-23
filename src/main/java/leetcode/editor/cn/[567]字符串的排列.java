@@ -56,45 +56,45 @@ class P567_PermutationInString{
 class Solution {
     public boolean checkInclusion(String s1, String s2) {
 
-        // need的子串
-        Map<Character, Integer> needMap = new HashMap<>();
-        Map<Character, Integer> windowsMap = new HashMap<>();
-        int valid = 0;
+
+        Map<Character, Integer> need = new HashMap<>();
+        Map<Character, Integer> window = new HashMap<>();
         for (int i = 0; i < s1.length(); i++) {
             char ch = s1.charAt(i);
-            int oldVal = needMap.getOrDefault(ch, 0);
-            needMap.put(ch, oldVal+1);
+            need.put(ch, need.getOrDefault(ch, 0)+1);
         }
 
         int left = 0, right = 0;
+        int valid = 0;
         while (right < s2.length()) {
 
-            char ch = s2.charAt(right);
+            char c = s2.charAt(right);
             right++;
-            if (needMap.containsKey(ch)) {
-                int oldVal = windowsMap.getOrDefault(ch, 0);
-                windowsMap.put(ch, oldVal+1);
-                if (needMap.get(ch).equals(oldVal + 1)) {
+
+            if (need.containsKey(c)) {
+
+                window.put(c, window.getOrDefault(c, 0) +1);
+                if (need.get(c).equals(window.get(c))) {
                     valid++;
                 }
             }
 
-
             while (right - left == s1.length()) {
-                if (valid == needMap.size()) {
+
+                if (valid == need.size()) {
                     return true;
                 }
-                char chs = s2.charAt(left);
+                char ch = s2.charAt(left);
                 left++;
-                if (needMap.containsKey(chs)) {
-                    int oldVal = windowsMap.get(chs);
-                    if (needMap.get(chs).equals(oldVal)) {
+                if (need.containsKey(ch)) {
+                    int oldVal = window.get(ch);
+                    window.put(ch, oldVal - 1);
+                    if (need.get(ch).equals(oldVal)) {
                         valid--;
                     }
-                    windowsMap.put(chs, oldVal-1);
                 }
-
             }
+
         }
 
         return false;

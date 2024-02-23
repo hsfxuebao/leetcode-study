@@ -63,51 +63,48 @@ class P438_FindAllAnagramsInAString{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public List<Integer> findAnagrams(String s, String p) {
-
-        // 需要的字符
-        Map<Character, Integer> needMap = new HashMap<>();
-        Map<Character, Integer> windowsMap = new HashMap<>();
-        // 记录数量
-        int valid = 0;
-        // 记录结果
         List<Integer> result = new ArrayList<>();
+
+        Map<Character, Integer> need = new HashMap<>();
+        Map<Character, Integer> window = new HashMap<>();
         for (int i = 0; i < p.length(); i++) {
             char ch = p.charAt(i);
-            needMap.put(ch, needMap.getOrDefault(ch, 0)+1);
+            need.put(ch, need.getOrDefault(ch, 0)+1);
         }
 
-        // 活动窗口
         int left = 0, right = 0;
+        int valid = 0;
         while (right < s.length()) {
-            char ch = s.charAt(right);
+
+            char c = s.charAt(right);
             right++;
-            if (needMap.containsKey(ch)) {
-                int oldVal = windowsMap.getOrDefault(ch, 0);
-                windowsMap.put(ch, oldVal+1);
-                // todo 包装类型比较大小
-                if (needMap.get(ch).equals(oldVal + 1)) {
+
+            if (need.containsKey(c)) {
+
+                window.put(c, window.getOrDefault(c, 0) +1);
+                if (need.get(c).equals(window.get(c))) {
                     valid++;
                 }
             }
 
-            while (right - left >= p.length()) {
+            while (right - left == p.length()) {
 
-                if (valid == needMap.size()) {
+                if (valid == need.size()) {
                     result.add(left);
                 }
-                char c = s.charAt(left);
+                char ch = s.charAt(left);
                 left++;
-                // 更新窗口
-                if (needMap.containsKey(c)) {
-                    Integer oldVal = windowsMap.get(c);
-                    if (needMap.get(c).equals(oldVal)) {
+                if (need.containsKey(ch)) {
+                    int oldVal = window.get(ch);
+                    window.put(ch, oldVal - 1);
+                    if (need.get(ch).equals(oldVal)) {
                         valid--;
                     }
-                    windowsMap.put(c, oldVal-1);
                 }
             }
 
         }
+
         return result;
 
     }

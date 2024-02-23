@@ -98,23 +98,21 @@ public class Solution {
         // 快慢指针
         ListNode fast = head, slow = head;
         while (fast != null && fast.next != null) {
-            slow = slow.next;
             fast = fast.next.next;
+            slow = slow.next;
             if (slow == fast) {
                 break;
             }
         }
-        // 判断是否 有相交的节点
         if (fast == null || fast.next == null) {
             return null;
         }
-
         slow = head;
         while (slow != fast) {
             slow = slow.next;
             fast = fast.next;
         }
-        return fast;
+        return slow;
 
     }
 }

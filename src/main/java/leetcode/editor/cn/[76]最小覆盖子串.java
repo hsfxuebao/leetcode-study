@@ -80,31 +80,31 @@ class Solution {
 
         String res = "";
         int minLen = Integer.MAX_VALUE;
-        Map<Character, Integer> needMap = new HashMap<>();
-        Map<Character, Integer> windowsMap = new HashMap<>();
-        // 记录满足t单个字符的数量
-        int valid = 0;
+
+        Map<Character, Integer> need = new HashMap<>();
+        Map<Character, Integer> window = new HashMap<>();
         for (int i = 0; i < t.length(); i++) {
             char ch = t.charAt(i);
-            int oldVal = needMap.getOrDefault(ch, 0);
-            needMap.put(ch, oldVal+1);
+            need.put(ch, need.getOrDefault(ch, 0)+1);
         }
 
         int left = 0, right = 0;
+        int valid = 0;
         while (right < s.length()) {
+
             char c = s.charAt(right);
             right++;
-            if (needMap.containsKey(c)) {
-                int newVal = windowsMap.getOrDefault(c, 0)+1;
-                windowsMap.put(c, newVal);
-                // 数量对上
-                if (newVal == needMap.get(c)) {
+
+            if (need.containsKey(c)) {
+
+                window.put(c, window.getOrDefault(c, 0) +1);
+                if (need.get(c).equals(window.get(c))) {
                     valid++;
                 }
             }
 
-            while (valid == needMap.size()) {
-                // 计算长度
+            while (valid == need.size()) {
+
                 int len = right - left;
                 if (len < minLen) {
                     minLen = len;
@@ -112,15 +112,17 @@ class Solution {
                 }
                 char ch = s.charAt(left);
                 left++;
-                if (needMap.containsKey(ch)) {
-                    int oldVal = windowsMap.get(ch);
-                    if (oldVal == needMap.get(ch)) {
+                if (need.containsKey(ch)) {
+                    int oldVal = window.get(ch);
+                    window.put(ch, oldVal - 1);
+                    if (need.get(ch).equals(oldVal)) {
                         valid--;
                     }
-                    windowsMap.put(ch, oldVal-1);
                 }
             }
+
         }
+
         return res;
     }
 }

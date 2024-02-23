@@ -68,18 +68,20 @@ class Solution {
         ListNode smallNode = new ListNode(-1);
         ListNode bigNode = new ListNode(-1);
         ListNode smallHead = smallNode, bigHead = bigNode, p = head;
-        while (p != null) {
-            if (p.val >= x) {
-                bigHead.next = new ListNode(p.val);
-                bigHead = bigHead.next;
-            } else {
-                smallHead.next = new ListNode(p.val);
-                smallHead = smallHead.next;
-            }
-            p = p.next;
-        }
 
-        // 链接两个链表
+        while (p != null) {
+
+            if (p.val < x) {
+                smallHead.next = p;
+                smallHead = smallHead.next;
+            } else {
+                bigHead.next = p;
+                bigHead = bigHead.next;
+            }
+            ListNode next = p.next;
+            p.next = null;
+            p = next;
+        }
         smallHead.next = bigNode.next;
         return smallNode.next;
 

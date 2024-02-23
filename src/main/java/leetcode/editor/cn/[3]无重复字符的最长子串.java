@@ -61,23 +61,23 @@ class P3_LongestSubstringWithoutRepeatingCharacters{
 class Solution {
     public int lengthOfLongestSubstring(String s) {
 
-        int[] windows = new int[256];
-        int res = 0;
-        int left = 0, right = 0;
+       int[] window = new int[256];
+       int res = 0;
+       int left = 0, right = 0;
         while (right < s.length()) {
 
-            char ch = s.charAt(right);
+            char rightCh = s.charAt(right);
             right++;
-            windows[ch]++;
+            window[rightCh]++;
 
-            // 左指针移动
-            while (windows[ch] > 1) {
-                char c = s.charAt(left);
-                windows[c]--;
+            while (window[rightCh] > 1) {
+
+                char leftCh = s.charAt(left);
                 left++;
+                window[leftCh]--;
             }
 
-            res = Math.max(res, right-left);
+            res = Math.max(res, right -left);
 
         }
         return res;

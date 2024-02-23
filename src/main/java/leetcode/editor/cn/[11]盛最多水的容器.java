@@ -72,6 +72,7 @@ class Solution {
                 left++;
             }
         }
+
         return maxArea;
     }
 }

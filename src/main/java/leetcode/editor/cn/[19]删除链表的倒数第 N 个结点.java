@@ -74,25 +74,23 @@ class P19_RemoveNthNodeFromEndOfList{
  */
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
-
-        // 防止出现空指针
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
-        // 找到要删除节点的前一个节点
-        ListNode preNode = findN(dummy, n + 1);
-        preNode.next = preNode.next.next;
+
+        ListNode node = findN(dummy, n + 1);
+        node.next = node.next.next;
         return dummy.next;
+
     }
 
     // 查找倒数第n个节点，并返回
     private ListNode findN(ListNode head, int n) {
 
         ListNode fast = head, slow = head;
-        // 快指针先走n
         for (int i = 0; i < n; i++) {
-            fast = fast.next;
+           fast = fast.next;
         }
-        // 快慢指针同时走
+
         while (fast != null) {
             fast = fast.next;
             slow = slow.next;

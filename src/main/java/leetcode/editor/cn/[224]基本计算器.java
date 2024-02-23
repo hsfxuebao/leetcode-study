@@ -76,44 +76,47 @@ class Solution {
 
         private int helper(Queue<Character> queue) {
 
-            int num = 0;
-            char sign = '+';
             Stack<Integer> stack = new Stack<>();
-            while (!queue.isEmpty()) {
+            char sign = '+';
 
-                Character ch = queue.poll();
-                if (ch == '(') {
-                    num = helper(queue);
-                }
+            int num = 0;
+            while (!queue.isEmpty()){
+                char ch = queue.poll();
                 if (Character.isDigit(ch)) {
                     num = num * 10 + (ch - '0');
                 }
+                if (ch == '(') {
+                    num = helper(queue);
+                }
 
                 if ((!Character.isDigit(ch) && ch != ' ') || queue.isEmpty()) {
+
                     if (sign == '+') {
-                        stack.push(num);
+                        stack.add(num);
                     }
                     if (sign == '-') {
-                        stack.push(-num);
+                        stack.add(-num);
                     }
                     if (sign == '*') {
-                        stack.push(stack.pop() * num);
+                        stack.add(num * stack.pop());
                     }
                     if (sign == '/') {
-                        stack.push(stack.pop() / num);
+                        stack.add(stack.pop() / num);
                     }
-                    sign = ch;
+
                     num = 0;
+                    sign = ch;
                 }
+
                 if (ch == ')') {
                     break;
                 }
             }
-            int sum = 0;
+            int result = 0;
             while (!stack.isEmpty()) {
-                sum += stack.pop();
+                result += stack.pop();
             }
-            return sum;
+            return result;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

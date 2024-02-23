@@ -71,21 +71,22 @@ class Solution {
 
     }
 
-        private void backtrack(int[] nums, int startIndex, LinkedList<Integer> track) {
+        private void backtrack(int[] nums, int start, LinkedList<Integer> track) {
+              res.add(track);
 
-            //
-            res.add(new ArrayList<>(track));
+            for (int i = start; i < nums.length; i++) {
 
-            // 选择集
-            for (int i = startIndex; i < nums.length; i++) {
-                // 跳过重复的元素
-                if (i > startIndex && nums[i - 1] == nums[i]) {
+                if (i > start && nums[i] == nums[start]) {
                     continue;
                 }
+
                 track.add(nums[i]);
                 backtrack(nums, i+1, track);
                 track.removeLast();
+
+
             }
+
 
         }
     }

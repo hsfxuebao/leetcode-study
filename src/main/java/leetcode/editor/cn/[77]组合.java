@@ -64,26 +64,28 @@ class Solution {
         List<List<Integer>> res = new ArrayList<>();
     public List<List<Integer>> combine(int n, int k) {
         LinkedList<Integer> track = new LinkedList<>();
-        backtrack(n, 1, track, k);
+        backtrack(n, 1, k, track);
         return res;
     }
 
-        private void backtrack(int n, int startIndex, LinkedList<Integer> track, int k) {
+        private void backtrack(int n, int start, int k, LinkedList<Integer> track) {
 
             if (track.size() == k) {
                 res.add(new ArrayList<>(track));
                 return;
             }
 
-            // 选择集
-            for (int i = startIndex; i <= n; i++) {
-                track.add(i);
-                backtrack(n, i+1, track, k);
-                track.removeLast();
-            }
+            for (int i = start; i <= n; i++) {
 
+                track.add(i);
+                backtrack(n, i+1, k, track);
+                track.removeLast();
+
+            }
         }
-}
+
+
+    }
 //leetcode submit region end(Prohibit modification and deletion)
  
 }

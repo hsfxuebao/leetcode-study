@@ -98,21 +98,17 @@ class Solution {
                 queue.offer(list);
             }
         }
-
-
         ListNode dummy = new ListNode(-1);
         ListNode p = dummy;
         while (!queue.isEmpty()) {
-
-            ListNode node = queue.poll();
-            if (node.next != null) {
-                queue.offer(node.next);
+            ListNode poll = queue.poll();
+            p.next = new ListNode(poll.val);
+            if (poll.next != null) {
+                queue.offer(poll.next);
             }
-            p.next = new ListNode(node.val);
             p = p.next;
         }
         return dummy.next;
-
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

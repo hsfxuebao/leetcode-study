@@ -77,19 +77,20 @@ class Solution {
                 return;
             }
 
-            // 选择集
             for (int i = 0; i < nums.length; i++) {
                 if (used[i]) {
                     continue;
                 }
-                // 选择
+
                 track.add(nums[i]);
                 used[i] = true;
                 backtrack(nums, track, used);
-                // 撤销选择
                 track.removeLast();
                 used[i] = false;
+
             }
+
+
 
         }
     }

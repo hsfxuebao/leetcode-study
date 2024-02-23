@@ -72,12 +72,13 @@ class Solution {
 
     public String palindrome(String s, int left, int right) {
 
-        while (left >= 0 && left < s.length()
-                && right < s.length() && right >= 0 && s.charAt(left) == s.charAt(right)) {
+        while (left >= 0 && left < s.length() && right >= 0 && right < s.length()
+            && s.charAt(left) == s.charAt(right)) {
             left--;
             right++;
         }
         return s.substring(left+1, right);
+
 
     }
 }

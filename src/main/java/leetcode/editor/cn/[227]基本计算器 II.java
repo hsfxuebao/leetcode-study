@@ -70,41 +70,39 @@ class Solution {
     public int calculate(String s) {
 
         Stack<Integer> stack = new Stack<>();
-        char sign = '+'; // 一开始为加号
+        char sign = '+';
+
         int num = 0;
         for (int i = 0; i < s.length(); i++) {
             char ch = s.charAt(i);
             if (Character.isDigit(ch)) {
-                num = num*10 + (ch - '0');
+                num = num * 10 + (ch - '0');
             }
 
-            if ((ch != ' ' && !Character.isDigit(ch)) || i == s.length() - 1) {
+            if ((!Character.isDigit(ch) && ch != ' ') || i == s.length() - 1) {
 
                 if (sign == '+') {
-                    stack.push(num);
+                    stack.add(num);
                 }
                 if (sign == '-') {
-                    stack.push(-num);
+                    stack.add(-num);
                 }
                 if (sign == '*') {
-                    stack.push(stack.pop() * num);
+                    stack.add(num * stack.pop());
                 }
                 if (sign == '/') {
-                    stack.push(stack.pop() / num);
+                    stack.add(stack.pop() / num);
                 }
 
-                // 符号更换
-                sign = ch;
                 num = 0;
+                sign = ch;
             }
         }
-        // 求和
-        int sum = 0;
+        int result = 0;
         while (!stack.isEmpty()) {
-            sum += stack.pop();
+            result += stack.pop();
         }
-
-        return sum;
+        return result;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

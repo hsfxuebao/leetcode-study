@@ -59,26 +59,33 @@ class Solution {
 
         // 无重复元素 不可复选 子集
     public List<List<Integer>> subsets(int[] nums) {
+
         LinkedList<Integer> track = new LinkedList<>();
         backtrack(nums, 0, track);
         return res;
+
     }
 
+        private void backtrack(int[] nums, int start, LinkedList<Integer> track) {
 
-        private void backtrack(int[] nums, int startIndex, LinkedList<Integer> track) {
-
-            //
             res.add(new ArrayList<>(track));
 
             // 选择集
-            for (int i = startIndex; i < nums.length; i++) {
+            for (int i = start; i < nums.length; i++) {
+
+                // 选择
                 track.add(nums[i]);
+                // 递归
                 backtrack(nums, i+1, track);
+                // 撤销选择
                 track.removeLast();
+
             }
 
         }
-}
+
+
+    }
 //leetcode submit region end(Prohibit modification and deletion)
  
 }
