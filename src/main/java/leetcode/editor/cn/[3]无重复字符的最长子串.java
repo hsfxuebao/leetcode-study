@@ -61,27 +61,23 @@ class P3_LongestSubstringWithoutRepeatingCharacters{
 class Solution {
     public int lengthOfLongestSubstring(String s) {
 
-       int[] window = new int[256];
-       int res = 0;
-       int left = 0, right = 0;
-        while (right < s.length()) {
+        int[] window = new int[256];
+        int res = Integer.MIN_VALUE;
+        int left = 0, right = 0;
 
+        while (right < s.length()) {
             char rightCh = s.charAt(right);
             right++;
             window[rightCh]++;
-
             while (window[rightCh] > 1) {
-
                 char leftCh = s.charAt(left);
-                left++;
                 window[leftCh]--;
+                left++;
+
             }
-
-            res = Math.max(res, right -left);
-
+            res = Math.max(res, right- left);
         }
-        return res;
-
+        return res == Integer.MIN_VALUE ? 0 : res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

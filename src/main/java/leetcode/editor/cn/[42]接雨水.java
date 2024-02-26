@@ -74,6 +74,7 @@ class Solution {
             int leftMax = 0, rightMax = 0;
             int sum = 0;
             while (left <= right) {
+
                 int leftNum = height[left];
                 int rightNum = height[right];
                 leftMax = Math.max(leftNum, leftMax);
@@ -82,6 +83,7 @@ class Solution {
                 if (leftMax >= rightMax) {
                     sum += rightMax - height[right];
                     right--;
+
                 } else {
                     sum += leftMax - height[left];
                     left++;

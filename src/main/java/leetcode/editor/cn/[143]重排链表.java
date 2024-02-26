@@ -76,30 +76,28 @@ class Solution {
 
     public void reorderList(ListNode head) {
 
-        // 中间节点，偶数偏右，奇数偏右
+        if (head == null || head.next == null) {
+            return;
+        }
+        // 找到中间节点
         ListNode fast = head, slow = head;
         while (fast != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;
         }
-
-//        // 奇数
-//        if (fast != null) {
-//            slow = slow.next;
-//        }
-//
-        // 断开链接
-        ListNode newHead = slow.next;
+        //
+        ListNode rightHead = slow.next;
         slow.next = null;
+
         // 反转链表
-        ListNode reverseHead = reverse(newHead);
+        ListNode rightNode = reverse1(rightHead);
 
-        // 连接两个链表
-        ListNode p1 = head, p2 = reverseHead;
+        // 合并成一个链表
+        ListNode p1 = head, p2 = rightNode;
         while (p2 != null) {
-
             ListNode p1Next = p1.next;
             ListNode p2Next = p2.next;
+
             p1.next = p2;
             p2.next = p1Next;
 
@@ -110,13 +108,15 @@ class Solution {
 
     }
 
-    private ListNode reverse(ListNode head){
-        ListNode cur = head, next = head, pre = null;
+    private ListNode reverse1(ListNode head) {
+
+        ListNode pre = null, next = head, cur = head;
         while (cur != null) {
             next = cur.next;
             cur.next = pre;
             pre = cur;
             cur = next;
+
         }
         return pre;
     }

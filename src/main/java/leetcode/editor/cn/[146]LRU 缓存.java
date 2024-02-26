@@ -82,21 +82,20 @@ class P146_LruCache{
     //leetcode submit region begin(Prohibit modification and deletion)
 class LRUCache {
 
+
         DoubleNode cache;
-        Map<Integer, Node> map = new HashMap<>();
         int cap;
-        public LRUCache(int cap) {
-            cache = new DoubleNode();
+        Map<Integer, Node> map = new HashMap<>();
+
+        public LRUCache(int cap){
             this.cap = cap;
+            cache = new DoubleNode();
         }
 
         //
         public int get(int key) {
             if (map.containsKey(key)) {
-
-                // 更新位置
                 updateNode(key);
-
                 return map.get(key).value;
             }
             return -1;
@@ -108,96 +107,93 @@ class LRUCache {
             cache.addLastNode(node);
         }
 
+
         public void put(int key, int value) {
 
             if (map.containsKey(key)) {
-                // 删除节点
-                removeNode(key);
-                addNode(key, value);
+                removeNode1(key);
+                addNode1(key, value);
                 return;
             }
 
             if (cache.size >= cap) {
-                // 删除节点
-                remodeRecentlyNode();
+               removeRecentlyNode();
             }
+            addNode1(key, value);
 
-            // 添加节点
-            addNode(key, value);
         }
 
-        private void removeNode(int key) {
+        private void removeNode1(int key) {
             Node node = map.get(key);
             cache.removeNode(node);
             map.remove(key);
+        }
 
+        private void addNode1(int key, int value) {
+            Node node = new Node(key, value);
+            cache.addLastNode(node);
+            map.put(key, node);
 
         }
 
-        private void remodeRecentlyNode() {
+        private void removeRecentlyNode() {
             Node node = cache.removeFirstNode();
             map.remove(node.key);
         }
 
-        private void addNode(int key, int value) {
-            Node node = new Node(key, value);
-            map.put(key, node);
-            cache.addLastNode(node);
-        }
-
 
     }
 
-    class DoubleNode{
-
-        int size;
-        Node head;
-        Node tail;
-
-        public DoubleNode(){
-            head = new Node(0, 0);
-            tail = new Node(0, 0);
-            this.head.next = tail;
-            this.tail.pre = head;
-            size = 0;
-        }
 
 
-        // 末尾添加节点
-        public void addLastNode(Node node) {
-            node.pre = this.tail.pre;
-            node.next = this.tail;
-            this.tail.pre.next = node;
-            this.tail.pre = node;
-            size++;
-        }
-        // 删除一个节点
-        public void removeNode(Node node){
-            node.pre.next = node.next;
-            node.next.pre = node.pre;
-            size--;
-        }
-
-        // 删除头节点
-        public Node removeFirstNode(){
-
-            Node node = this.head.next;
-            removeNode(node);
-            return node;
-        }
 
 
+ class DoubleNode{
+
+    int size;
+    Node head;
+    Node tail;
+
+    public DoubleNode(){
+        this.size = 0;
+        head = new Node(0,0);
+        tail = new Node(0,0);
+        this.head.next = tail;
+        this.tail.pre = head;
     }
 
- class Node {
+    // 末尾添加元素
+    public void addLastNode(Node node){
+        node.pre = tail.pre;
+        node.next = tail;
+        this.tail.pre.next = node;
+        this.tail.pre = node;
+        size++;
+    }
+    public void removeNode(Node node){
+        node.pre.next = node.next;
+        node.next.pre = node.pre;
+        size--;
+    }
 
-        int key, value;
-        Node pre;
-        Node next;
-        public Node(int key, int value){
-            this.key = key;
-            this.value = value;
-        }
+    public Node removeFirstNode(){
+        Node node = this.head.next;
+        removeNode(node);
+        return node;
+    }
+
+
+
+ }
+ class Node{
+
+    int key, value;
+    Node pre;
+    Node next;
+    public Node(int key, int value){
+        this.key= key;
+        this.value = value;
+    }
 
  }
 

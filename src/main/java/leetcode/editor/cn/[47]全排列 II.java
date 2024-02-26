@@ -74,19 +74,27 @@ class Solution {
                 return;
             }
 
-            // 选择集
             for (int i = 0; i < nums.length; i++) {
+
                 if (used[i]) {
                     continue;
                 }
-                if (i > 0 && nums[i] == nums[i-1] && !used[i-1]) {
+
+                // 剪纸逻辑
+                if (i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) {
                     continue;
                 }
+
                 track.add(nums[i]);
                 used[i] = true;
                 backtrack(nums, i+1, track, used);
+
                 track.removeLast();
                 used[i] = false;
+
+
+
+
             }
 
         }

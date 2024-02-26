@@ -95,7 +95,7 @@ public class Solution {
         if (head == null) {
             return null;
         }
-        // 快慢指针
+
         ListNode fast = head, slow = head;
         while (fast != null && fast.next != null) {
             fast = fast.next.next;
@@ -107,12 +107,15 @@ public class Solution {
         if (fast == null || fast.next == null) {
             return null;
         }
+
         slow = head;
+
         while (slow != fast) {
             slow = slow.next;
             fast = fast.next;
         }
         return slow;
+
 
     }
 }

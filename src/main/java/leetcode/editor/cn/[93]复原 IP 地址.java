@@ -78,54 +78,54 @@ class Solution {
 
         private void backtrack(String s, int start, LinkedList<String> track) {
 
-
-            // 合法
-            if (track.size() == 4 && start == s.length()) {
+            if (track.size() == 4 && s.length() == start) {
                 res.add(String.join(".", track));
                 return;
             }
 
-            // 选择集
             for (int i = start; i < s.length(); i++) {
 
-                // 不合法判断
+                // 非法情况（单个位置）
                 if (!valid1(s, start, i)) {
                     continue;
                 }
-                // 大于4个 肯定不合法
                 if (track.size() > 4) {
-                    break;
+                    continue;
                 }
-                // 选择
+
                 track.add(s.substring(start, i+1));
                 backtrack(s, i+1, track);
-                // 撤销选择
                 track.removeLast();
+
             }
+
+
 
         }
 
         private boolean valid1(String s, int start, int end) {
-            int len = end - start + 1;
-            if (len <= 0 || len > 3) {
+
+            int len = end - start +1;
+            if (len < 0 || len > 3) {
                 return false;
             }
-
-            // 只有一位数组肯定是合法的
             if (len == 1) {
                 return true;
             }
-
-            // 0开头肯定不合法
             if (s.charAt(start) == '0') {
                 return false;
             }
 
+            if (len == 2) {
+                return true;
+            }
             if (Integer.parseInt(s.substring(start, end + 1)) > 255) {
                 return false;
             }
 
             return true;
+
+
         }
 
 

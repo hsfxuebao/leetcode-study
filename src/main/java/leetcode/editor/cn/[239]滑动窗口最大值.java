@@ -48,7 +48,9 @@ package leetcode.editor.cn;
 //
 //
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -65,28 +67,28 @@ class P239_SlidingWindowMaximum{
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
+        List<Integer> res = new ArrayList<>();
+        MonotonicQueue queue = new MonotonicQueue();
 
-        // 初始化
-        MonotonicQueue monotonicQueue = new MonotonicQueue();
         for (int i = 0; i < k-1; i++) {
-            monotonicQueue.push(nums[i]);
+            queue.push(nums[i]);
         }
 
-        int left = 0, right = k-1;
-        int[] res = new int[nums.length-k+1];
+       int left = 0, right = k-1;
         while (right < nums.length) {
 
-            // 放入队列中
-            monotonicQueue.push(nums[right]);
-            res[right - k+1] = monotonicQueue.max();
-
+            queue.push(nums[right]);
             right++;
 
-            monotonicQueue.pop(nums[left++]);
+            res.add(queue.max());
+
+            queue.pop(nums[left++]);
         }
-        return res;
-
-
+        int[] result = new int[res.size()];
+        for (int i = 0; i < res.size(); i++) {
+            result[i] = res.get(i);
+        }
+        return result;
     }
 
 
@@ -96,26 +98,27 @@ class Solution {
 
         private LinkedList<Integer> maxQ = new LinkedList<>();
 
-        // 增加
-        public void push(int val) {
+        public void push(int value){
 
-            while (!maxQ.isEmpty() && maxQ.getLast() < val) {
+            while (!maxQ.isEmpty() && maxQ.getLast() < value) {
                 maxQ.removeLast();
             }
-            maxQ.addLast(val);
+            maxQ.addLast(value);
 
         }
-        // 查询
 
-        public int max() {
+
+        // 获取最大值
+        public int max(){
             return maxQ.getFirst();
         }
-        // 删除
-        public void pop(int n) {
+
+        public void pop(int n){
             if (n == maxQ.getFirst()) {
                 maxQ.pop();
             }
         }
+
 
 
     }

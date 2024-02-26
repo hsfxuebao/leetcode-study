@@ -96,11 +96,9 @@ class Solution {
     }
 
     private ListNode reverseListIte(ListNode head) {
-
         if (head == null) {
-            return head;
+            return null;
         }
-
         ListNode cur = head, next = head, pre = null;
         while (cur != null) {
             next = cur.next;

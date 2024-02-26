@@ -50,6 +50,7 @@ package leetcode.editor.cn;
 //
 //
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -65,7 +66,11 @@ import java.util.Set;
 class P139_WordBreak{
     public static void main(String[] args) {
         Solution solution = new P139_WordBreak().new Solution();
-        
+        List<String> list = new ArrayList<>();
+        list.add("leet");
+        list.add("code");
+        boolean  result = solution.wordBreak("leetcode", list);
+        System.out.println(result);
     }  
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
@@ -89,34 +94,32 @@ class Solution {
 
     }
         private boolean backtrack1(String s, int i) {
-
             if (i == s.length()) {
                 return true;
             }
 
-            // 内存中判断
+            // 是否计算过
             if (memo[i] != -1) {
-                return memo[i] == 0 ? false : true;
+                return memo[i] == 1 ? true : false;
             }
 
-            // 选择集 设 wordDict 的长度为 M，字符串 s 的长度为 N
-            // 由于M > N 所以可以写成这样
-            // 此时复杂度为 o(2^N * N^2)
-            // 遍历 s[i..] 的所有前缀
-            for (int j = 1; i+j <= s.length(); j++) {
-                //
-                if (wordDict.contains(s.substring(i, i + j))) {
-                    // 回溯
-                    boolean result = backtrack1(s, i+j);
-                    if (result) {
+            for (String word : wordDict) {
+                int len = word.length();
+                if (i + len <= s.length()
+                        && word.equals(s.substring(i, i + len))) {
+
+                    boolean flag = backtrack1(s, i + len);
+                    if (flag) {
                         memo[i] = 1;
                         return true;
                     }
+
                 }
             }
-            // s[i ..] 无法被拼出
+
             memo[i] = 0;
             return false;
+
         }
 
 

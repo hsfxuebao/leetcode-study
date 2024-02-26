@@ -82,16 +82,14 @@ class Solution {
 
     // 返回以root为节点，单边 最大的路径和
     private int backtrack(TreeNode root) {
-
         if (root == null) {
             return 0;
         }
-        //
-        int leftMax = Math.max(0, backtrack(root.left));
-        int rightMax = Math.max(0, backtrack(root.right));
-        maxPathSum = Math.max(maxPathSum, leftMax+rightMax+root.val);
+        int leftNum = Math.max(0, backtrack(root.left));
+        int rightNum = Math.max(0, backtrack(root.right));
 
-        return Math.max(leftMax, rightMax) + root.val;
+        maxPathSum = Math.max(maxPathSum, leftNum+rightNum+root.val);
+        return leftNum >= rightNum ? leftNum+root.val : rightNum + root.val;
 
     }
 }

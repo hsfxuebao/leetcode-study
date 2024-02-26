@@ -61,33 +61,28 @@ class P90_SubsetsIi{
 class Solution {
         List<List<Integer>> res = new ArrayList<>();
         // 有重复元素 不能复选  子集
-    public List<List<Integer>> backtrack(int[] nums) {
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
 
         // 排序
         Arrays.sort(nums);
         LinkedList<Integer> track = new LinkedList<>();
         backtrack(nums, 0, track);
         return res;
-
     }
 
         private void backtrack(int[] nums, int start, LinkedList<Integer> track) {
-              res.add(track);
+            res.add(new ArrayList<>(track));
 
             for (int i = start; i < nums.length; i++) {
 
-                if (i > start && nums[i] == nums[start]) {
+                if (i > start && nums[i] == nums[i-1]) {
                     continue;
                 }
 
                 track.add(nums[i]);
-                backtrack(nums, i+1, track);
+                backtrack(nums, i + 1, track);
                 track.removeLast();
-
-
             }
-
-
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

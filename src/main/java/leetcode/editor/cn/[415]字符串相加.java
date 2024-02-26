@@ -69,21 +69,19 @@ class Solution {
         int temp = 0;
 
         while (temp > 0 || index1 >= 0 || index2 >= 0) {
-
-            int res = 0;
+            int sum = temp;
             if (index1 >= 0) {
-                res += (num1.charAt(index1) - '0');
+                sum += num1.charAt(index1) - '0';
             }
             if (index2 >= 0) {
-                res += (num2.charAt(index2) - '0');
+                sum += num2.charAt(index2) - '0';
             }
-            res += temp;
-            temp = res / 10;
 
-            int num = res % 10;
-            sb.append(num);
+            sb.append(sum % 10);
+            temp = sum /10;
             index1--;
             index2--;
+
         }
         return sb.reverse().toString();
     }

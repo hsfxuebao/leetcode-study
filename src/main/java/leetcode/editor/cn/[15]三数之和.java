@@ -77,18 +77,23 @@ class P15_ThreeSum{
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
-        // 排序
+        if (nums == null || nums.length < 3) {
+            return res;
+        }
+
         Arrays.sort(nums);
+
         for (int i = 0; i < nums.length; ) {
+
             int num = nums[i];
-            // 两数之和
+
             List<List<Integer>> lists = twoSum(nums, i + 1, -num);
             for (List<Integer> list : lists) {
                 list.add(num);
                 res.add(list);
             }
-            // 跳过重复的元素
-            while (i < nums.length && nums[i] == num) {
+            // 跳过重复数据
+            while (i < nums.length && num == nums[i]) {
                 i++;
             }
         }
@@ -102,37 +107,35 @@ class Solution {
          */
         public List<List<Integer>> twoSum(int[] nums, int startIndex, int target) {
 
-            List<List<Integer>> result = new ArrayList<>();
+            List<List<Integer>> res = new ArrayList<>();
             int left = startIndex, right = nums.length - 1;
             while (left < right) {
                 int leftNum = nums[left];
                 int rightNum = nums[right];
                 int sum = leftNum + rightNum;
                 if (sum > target) {
-                    while (right > startIndex && nums[right] == rightNum) {
+                    while (left < right && rightNum == nums[right]) {
                         right--;
                     }
                 } else if (sum < target) {
-                    while (left < nums.length && nums[left] == leftNum) {
+                    while (left < right && leftNum == nums[left]) {
                         left++;
                     }
                 } else if (sum == target) {
-
-                    // 加入到结果中
-                    List<Integer> res = new ArrayList<>();
-                    res.add(leftNum);
-                    res.add(rightNum);
-                    result.add(res);
-                    // 跳过重复的元素
-                    while (right > startIndex && nums[right] == rightNum) {
+                    List<Integer> result = new ArrayList<>();
+                    result.add(leftNum);
+                    result.add(rightNum);
+                    res.add(result);
+                    while (rightNum == nums[right] && left < right) {
                         right--;
                     }
-                    while (left < nums.length && nums[left] == leftNum) {
+                    while (leftNum == nums[left] && left < right) {
                         left++;
                     }
                 }
             }
-            return result;
+            return res;
+
         }
 }
 //leetcode submit region end(Prohibit modification and deletion)

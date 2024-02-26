@@ -75,7 +75,8 @@ class Solution {
         backtrack(candidates, 0, track, target);
         return res;
     }
-        private void backtrack(int[] candidates, int startIndex, LinkedList<Integer> track, int target) {
+        private void backtrack(int[] candidates, int startIndex,
+                               LinkedList<Integer> track, int target) {
 
             if (target == 0) {
                 res.add(new ArrayList<>(track));
@@ -85,13 +86,12 @@ class Solution {
                 return;
             }
 
-            // 选择集
             for (int i = startIndex; i < candidates.length; i++) {
 
                 track.add(candidates[i]);
-                // todo
                 backtrack(candidates, i, track, target-candidates[i]);
                 track.removeLast();
+
             }
 
         }

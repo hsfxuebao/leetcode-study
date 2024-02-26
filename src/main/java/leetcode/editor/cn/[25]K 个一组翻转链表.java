@@ -78,27 +78,24 @@ class Solution {
     public ListNode reverseKGroup(ListNode head, int k) {
 
         if (head == null) {
-            return null;
+            return head;
         }
 
-        ListNode aHead = head, bHead = head;
+        ListNode aHead = head, bHead = aHead;
         for (int i = 0; i < k; i++) {
             if (bHead == null) {
                 return head;
             }
             bHead = bHead.next;
         }
-
-        // 反转链表
-        ListNode newHead = reverse(aHead, bHead);
+        ListNode newHead = reverse1(aHead, bHead);
         aHead.next = reverseKGroup(bHead, k);
-        return newHead;
 
+        return newHead;
     }
 
     // [a, b)
-    private ListNode reverse(ListNode aHead, ListNode bHead) {
-
+    private ListNode reverse1(ListNode aHead, ListNode bHead) {
         ListNode cur = aHead, next = aHead, pre = null;
         while (cur != bHead) {
             next = cur.next;
@@ -108,6 +105,9 @@ class Solution {
         }
         return pre;
     }
+
+
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
  

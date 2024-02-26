@@ -75,17 +75,18 @@ class Solution {
          * 双指针
          * 需要记录原始数据 的索引
          */
-        public int[] twoSum1(int[] nums, int target) {
+        public int[] twoSum(int[] nums, int target) {
             Arrays.sort(nums);
-            int left = 0, right = nums.length - 1;
+            int left = 0, right =  nums.length - 1;
+
             while (left < right) {
                 int sum = nums[left] + nums[right];
                 if (sum > target) {
                     right--;
                 } else if (sum < target) {
                     left++;
-                } else if (sum == target) {
-                    // 返回排序前的索引
+                } else {
+                    // todo 返回排序前的索引
                     return new int[]{left, right};
                 }
             }
@@ -95,7 +96,7 @@ class Solution {
         /**
          * 时间复杂度o(n) 空间复杂度o(n)
          */
-    public int[] twoSum(int[] nums, int target) {
+    public int[] twoSum1(int[] nums, int target) {
         Map<Integer, Integer> num2IndexMap = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
             if (num2IndexMap.containsKey(target - nums[i])) {

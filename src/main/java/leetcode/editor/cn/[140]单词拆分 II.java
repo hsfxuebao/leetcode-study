@@ -88,28 +88,27 @@ class Solution {
 
     }
 
-        private void backtrack(String s, int i) {
+        private void backtrack(String s, int start) {
 
-            // base case
-            if (i == s.length()) {
+
+            if (start == s.length()) {
                 result.add(String.join(" ", track));
                 return;
             }
 
-            // 选择集
             for (String word : wordDict) {
-                int length = word.length();
-                if (i + length <= s.length()
-                        && s.substring(i, i + length).equals(word)) {
-                    // 选择
+                int len = word.length();
+                if (start + len <= s.length()
+                        && word.equals(s.substring(start, start + len))) {
                     track.add(word);
-                    // 递归
-                    backtrack(s, i+length);
-                    // 撤销选择
+                    backtrack(s, start+len);
                     track.removeLast();
                 }
+
             }
         }
+
+
     }
 //leetcode submit region end(Prohibit modification and deletion)
  

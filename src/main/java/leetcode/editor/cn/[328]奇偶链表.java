@@ -75,9 +75,8 @@ class Solution {
             return null;
         }
 
-       ListNode evenHead = head.next;
+        ListNode oddHead = head, evenHead = head.next;
         ListNode odd = head, even = evenHead;
-
         while (even != null && even.next != null) {
             odd.next = even.next;
             odd = odd.next;
@@ -87,7 +86,8 @@ class Solution {
         }
 
         odd.next = evenHead;
-        return head;
+        return oddHead;
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

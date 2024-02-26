@@ -60,7 +60,7 @@ class Solution {
 
         int len = nums.length;
 
-        // 将负数 替换成len
+       // 将负数替换成len+1
         for (int i = 0; i < len; i++) {
             if (nums[i] <= 0) {
                 nums[i] = len+1;
@@ -68,20 +68,20 @@ class Solution {
         }
 
         for (int i = 0; i < len; i++) {
-
-            int index = Math.abs(nums[i]) -1;
+            int index = Math.abs(nums[i]) - 1;
             if (index < len) {
                 nums[index] = - Math.abs(nums[index]);
             }
         }
 
-        // 找到第一个不为负数就是确实的第一个正整数
+        // 找到第一个不为负数的整数
         for (int i = 0; i < len; i++) {
             if (nums[i] > 0) {
                 return i+1;
             }
         }
         return len+1;
+
 
     }
 }

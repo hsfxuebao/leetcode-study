@@ -89,18 +89,20 @@ class Solution {
         if (root == null) {
             return null;
         }
-        if (root == p || root == q) {
+
+        if (p.val == root.val || q.val == root.val) {
             return root;
         }
 
-        TreeNode left = dfs(root.left, p, q);
-        TreeNode right = dfs(root.right, p, q);
-        if (left != null && right != null) {
+        TreeNode leftNode = dfs(root.left, p, q);
+        TreeNode rightNode = dfs(root.right, p, q);
+        if (leftNode != null && rightNode != null) {
             return root;
         }
-        return left != null ? left : right;
-
+        return leftNode != null ? leftNode : rightNode;
     }
+
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
  
